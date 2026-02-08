@@ -51,15 +51,18 @@
 
 　プロファイルのメタ情報を構成する要素を示す。
 
-| 項目                    | 説明                                   | 値                                                    |
-| :---------------------- | :------------------------------------- | :---------------------------------------------------- |
-| プロファイル名 name     | プロファイルを識別する名称             | Japan xAPI LMS Profile                                |
-| バージョン version      | プロファイルの改訂番号やリリース状態   | v1.0.0                                                |
-| 作成者/管理者 publisher | プロファイルの作成者や責任者           | ICT CONNECT 21 xAPI SWG                               |
-| 作成日/更新日 created   | 文書化日または改訂日                   | 2026年4月1日                                          |
-| 言語 languages          | メタ情報およびプロファイルの記載言語   | 日本語                                                |
-| 目的/説明 description   | プロファイルが対象とする学習ログや用途 | 日本の初等中等教育におけるLMS学習ログ標準プロファイル |
-| ドキュメントバージョン  | 文書版数                               | 2026年度版                                            |
+| 項目                     | 説明                                   | 値                                                    |
+| :----------------------- | :------------------------------------- | :---------------------------------------------------- |
+| **id**                   | プロファイルIRI                        | `https://w3id.org/japan-xapi/profiles/lms`            |
+| **type**                 | オブジェクトタイプ                     | `Profile`                                             |
+| **conformsTo**           | 準拠するxAPI Profile仕様               | `https://w3id.org/xapi/profiles#1.0`                  |
+| プロファイル名 prefLabel | プロファイルを識別する名称             | Japan xAPI LMS Profile                                |
+| バージョン version       | プロファイルの改訂番号やリリース状態   | v1.0.0                                                |
+| 作成者/管理者 author     | プロファイルの作成者や責任者           | ICT CONNECT 21 xAPI SWG                               |
+| 作成日/更新日 versions   | 文書化日または改訂日                   | 2026-04-01                                            |
+| 言語 languages           | メタ情報およびプロファイルの記載言語   | 日本語                                                |
+| 目的/説明 definition     | プロファイルが対象とする学習ログや用途 | 日本の初等中等教育におけるLMS学習ログ標準プロファイル |
+| ドキュメントバージョン   | 文書版数                               | 2026年度版                                            |
 
 # 4.　StatementTemplate
 
@@ -105,12 +108,12 @@
 
 #### 4.3.1.2　記述規則（Rules）
 
-1. $.object.definition.extensions['https://w3id.org/japan-xapi/extensions/lms/unit']
+1. $.object.definition.extensions['https://w3id.org/japan-xapi/extensions/unit']
    1. recommended
-   2. 学習課題が属する単元名
-2. $.context.extensions['https://w3id.org/japan-xapi/extensions/lms/due-date']
+   2. 学習課題が属する単元名 (Core Profile参照)
+2. $.context.extensions['https://w3id.org/japan-xapi/extensions/due-date']
    1. recommended
-   2. 学習課題の実施期限日 (date-time)
+   2. 学習課題の実施期限日 (date-time) (Core Profile参照)
 3. $.object.definition.extensions['https://w3id.org/japan-xapi/extensions/subject']
    1. recommended
    2. 教科 (Core Profile参照)
@@ -120,12 +123,12 @@
 
 #### 4.3.1.3　Markdownテーブル
 
-| 項目説明 (Description / ScopeNote)                            | Location (JSONPath)                                                                 | Presence    |
-| :------------------------------------------------------------ | :---------------------------------------------------------------------------------- | :---------- |
-| **単元名**<br>学習課題が属する単元名。                        | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/lms/unit']` | recommended |
-| **期限日**<br>学習課題の実施期限日。ISO 8601形式。            | `$.context.extensions['https://w3id.org/japan-xapi/extensions/lms/due-date']`       | recommended |
-| **教科**<br>Core Profileで定義された教科Extensionを使用する。 | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/subject']`  | recommended |
-| **学年**<br>Core Profileで定義された学年Extensionを使用する。 | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/grade']`    | recommended |
+| 項目説明 (Description / ScopeNote)                            | Location (JSONPath)                                                                | Presence    |
+| :------------------------------------------------------------ | :--------------------------------------------------------------------------------- | :---------- |
+| **単元名**<br>学習課題が属する単元名。                        | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/unit']`    | recommended |
+| **期限日**<br>学習課題の実施期限日。ISO 8601形式。            | `$.context.extensions['https://w3id.org/japan-xapi/extensions/due-date']`          | recommended |
+| **教科**<br>Core Profileで定義された教科Extensionを使用する。 | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/subject']` | recommended |
+| **学年**<br>Core Profileで定義された学年Extensionを使用する。 | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/grade']`   | recommended |
 
 ### 4.3.2　学習課題の配布
 

@@ -51,15 +51,18 @@
 
 　プロファイルのメタ情報を構成する要素を示す。
 
-| 項目                    | 説明                                   | 値                                                                   |
-| :---------------------- | :------------------------------------- | :------------------------------------------------------------------- |
-| プロファイル名 name     | プロファイルを識別する名称             | Japan xAPI Group Learning Support Tool Profile                       |
-| バージョン version      | プロファイルの改訂番号やリリース状態   | v1.0.0                                                               |
-| 作成者/管理者 publisher | プロファイルの作成者や責任者           | ICT CONNECT 21 xAPI SWG                                              |
-| 作成日/更新日 created   | 文書化日または改訂日                   | 2026年4月1日                                                         |
-| 言語 languages          | メタ情報およびプロファイルの記載言語   | 日本語                                                               |
-| 目的/説明 description   | プロファイルが対象とする学習ログや用途 | 日本の初等中等教育におけるグループ学習支援ツールログ標準プロファイル |
-| ドキュメントバージョン  | 文書版数                               | 2026年度版                                                           |
+| 項目                     | 説明                                   | 値                                                                   |
+| :----------------------- | :------------------------------------- | :------------------------------------------------------------------- |
+| **id**                   | プロファイルIRI                        | `https://w3id.org/japan-xapi/profiles/group`                         |
+| **type**                 | オブジェクトタイプ                     | `Profile`                                                            |
+| **conformsTo**           | 準拠するxAPI Profile仕様               | `https://w3id.org/xapi/profiles#1.0`                                 |
+| プロファイル名 prefLabel | プロファイルを識別する名称             | Japan xAPI Group Learning Support Tool Profile                       |
+| バージョン version       | プロファイルの改訂番号やリリース状態   | v1.0.0                                                               |
+| 作成者/管理者 author     | プロファイルの作成者や責任者           | ICT CONNECT 21 xAPI SWG                                              |
+| 作成日/更新日 versions   | 文書化日または改訂日                   | 2026-04-01                                                           |
+| 言語 languages           | メタ情報およびプロファイルの記載言語   | 日本語                                                               |
+| 目的/説明 definition     | プロファイルが対象とする学習ログや用途 | 日本の初等中等教育におけるグループ学習支援ツールログ標準プロファイル |
+| ドキュメントバージョン   | 文書版数                               | 2026年度版                                                           |
 
 # 4.　StatementTemplate
 
@@ -153,15 +156,15 @@
 
 #### 4.3.3.2　記述規則（Rules）
 
-1. $.object.definition.extensions['https://w3id.org/japan-xapi/extensions/group/scrapbook-item-type']
+1. $.object.definition.extensions['https://w3id.org/japan-xapi/extensions/scrapbook-item-type']
    1. recommended
-   2. 作成されたオブジェクトの種類（text, shape等）
+   2. 作成されたオブジェクトの種類（text, shape等） (Core Profile参照)
 
 #### 4.3.3.3　Markdownテーブル
 
-| 項目説明 (Description / ScopeNote)                                      | Location (JSONPath)                                                                                  | Presence    |
-| :---------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------- | :---------- |
-| **オブジェクト種類**<br>作成されたオブジェクトの種類（text, shape等）。 | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/group/scrapbook-item-type']` | recommended |
+| 項目説明 (Description / ScopeNote)                                      | Location (JSONPath)                                                                            | Presence    |
+| :---------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------- | :---------- |
+| **オブジェクト種類**<br>作成されたオブジェクトの種類（text, shape等）。 | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/scrapbook-item-type']` | recommended |
 
 ### 4.3.4　議論スレッドの作成
 
