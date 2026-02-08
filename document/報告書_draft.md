@@ -60,6 +60,7 @@ xAPI は、アメリカADL (Advanced Distributed Learning) が策定したスタ
 - ADL xAPI Vocabulary (http://xapi.vocab.pub/)
 - 文部科学省 教育データ標準
 - 既存の国内xAPI実装事例（京都大学LEAFシステム等）
+  https://docs.google.com/spreadsheets/d/1CWrOHDWuSGFE9ehMfTfsSQybv_VdZ3ZHey9YdCp8Q3U/edit?gid=0#gid=0
 
 ## 5. プロファイルドキュメントの概要 {#プロファイルドキュメントの概要}
 

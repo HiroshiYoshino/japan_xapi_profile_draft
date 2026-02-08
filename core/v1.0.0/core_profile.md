@@ -48,18 +48,18 @@
 
 　プロファイルのメタ情報を構成する要素を示す。
 
-| 項目                     | 説明                                   | 値                                                                 |
-| :----------------------- | :------------------------------------- | :----------------------------------------------------------------- |
-| **id**                   | プロファイルIRI                        | `https://w3id.org/japan-xapi/profiles/core`                        |
-| **type**                 | オブジェクトタイプ                     | `Profile`                                                          |
-| **conformsTo**           | 準拠するxAPI Profile仕様               | `https://w3id.org/xapi/profiles#1.0`                               |
-| プロファイル名 prefLabel | プロファイルを識別する名称             | Japan xAPI Core Profile                                            |
-| バージョン version       | プロファイルの改訂番号やリリース状態   | v1.0.0                                                             |
-| 作成者/管理者 author     | プロファイルの作成者や責任者           | ICT CONNECT 21 xAPI SWG                                            |
-| 作成日/更新日 versions   | 文書化日または改訂日                   | 2026-04-01                                                         |
-| 言語 languages           | メタ情報およびプロファイルの記載言語   | 日本語                                                             |
-| 目的/説明 definition     | プロファイルが対象とする学習ログや用途 | 日本の初等中等教育を主対象とする学習ログの共通語彙定義プロファイル |
-| ドキュメントバージョン   | 文書版数                               | 2026年度版                                                         |
+| 項目                                        | 説明                                   | 値                                                                 |
+| :------------------------------------------ | :------------------------------------- | :----------------------------------------------------------------- |
+| **id**                                      | プロファイルIRI                        | `https://w3id.org/japan-xapi/profiles/core`                        |
+| **type**                                    | オブジェクトタイプ                     | `Profile`                                                          |
+| **conformsTo**                              | 準拠するxAPI Profile仕様               | `https://w3id.org/xapi/profiles#1.0`                               |
+| プロファイル名 prefLabel                    | プロファイルを識別する名称             | Japan xAPI Core Profile                                            |
+| バージョン version                          | プロファイルの改訂番号やリリース状態   | v1.0.0                                                             |
+| 作成者/管理者 author                        | プロファイルの作成者や責任者           | ICT CONNECT 21 xAPI SWG                                            |
+| 作成日/更新日 versions                      | 文書化日または改訂日                   | 2026-04-01                                                         |
+| 言語 languages                              | メタ情報およびプロファイルの記載言語   | 日本語                                                             |
+| 目的/説明 $.object.definition.name['ja-JP'] | プロファイルが対象とする学習ログや用途 | 日本の初等中等教育を主対象とする学習ログの共通語彙定義プロファイル |
+| ドキュメントバージョン                      | 文書版数                               | 2026年度版                                                         |
 
 # 3.　Concepts (概念定義)
 
@@ -157,7 +157,7 @@
 
 #### scrapbook_item_type (スクラップブックアイテムタイプ)
 
-- **IRI**: `https://w3id.org/japan-xapi/extensions/scrapbook-item-type`
+- **IRI**: `https://w3id.org/japan-xapi/$.object.definition.description['ja-JP']item-type`
 - **Type**: `ActivityExtension`
 - **Definition**: スクラップブック等で作成されるオブジェクトの種類（text, shape, image等）。
 - **Schema**:

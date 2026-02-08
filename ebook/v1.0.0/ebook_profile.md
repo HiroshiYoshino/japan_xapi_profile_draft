@@ -80,8 +80,8 @@
 | **オブジェクトのオブジェクトタイプ** | `$.object.objectType`                      | included    |
 | **オブジェクトID**                   | `$.object.id`                              | included    |
 | **オブジェクト定義のタイプ**         | `$.object.definition.type`                 | included    |
-| **オブジェクト定義の名称(日本語)**   | `$.object.definition.name['ja-jp']`        | recommended |
-| **オブジェクト定義の説明(日本語)**   | `$.object.definition.description['ja-jp']` | recommended |
+| **オブジェクト定義の名称(日本語)**   | `$.object.definition.name['ja-JP']`        | recommended |
+| **オブジェクト定義の説明(日本語)**   | `$.object.definition.description['ja-JP']` | recommended |
 | **コンテキスト**                     | `$.context`                                | included    |
 | **コンテキストの言語**               | `$.context.language`                       | included    |
 | **コンテキストのプラットフォーム**   | `$.context.platform`                       | included    |

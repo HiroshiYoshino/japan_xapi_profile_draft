@@ -80,8 +80,8 @@
 | **オブジェクトのオブジェクトタイプ** | `$.object.objectType`                      | included    |
 | **オブジェクトID**                   | `$.object.id`                              | included    |
 | **オブジェクト定義のタイプ**         | `$.object.definition.type`                 | included    |
-| **オブジェクト定義の名称(日本語)**   | `$.object.definition.name['ja-jp']`        | recommended |
-| **オブジェクト定義の説明(日本語)**   | `$.object.definition.description['ja-jp']` | recommended |
+| **オブジェクト定義の名称(日本語)**   | `$.object.definition.name['ja-JP']`        | recommended |
+| **オブジェクト定義の説明(日本語)**   | `$.object.definition.description['ja-JP']` | recommended |
 | **コンテキスト**                     | `$.context`                                | included    |
 | **コンテキストの言語**               | `$.context.language`                       | included    |
 | **コンテキストのプラットフォーム**   | `$.context.platform`                       | included    |
@@ -142,7 +142,7 @@ CBT/デジタルドリルにおける主なユースケースは、学習者が�
 
 #### 4.3.1.2　記述規則（Rules）
 
-1. $.object.definition.name.ja-jp
+1. $.object.definition.name.ja-JP
    1. recommended
    2. Assessmentの日本語表示名
 2. $.object.definition.extensions['https://w3id.org/japan-xapi/extensions/subject']
@@ -159,7 +159,7 @@ CBT/デジタルドリルにおける主なユースケースは、学習者が�
 
 | 項目説明 (Description / ScopeNote)                                                           | Location (JSONPath)                                                                | Presence    |
 | :------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------- | :---------- |
-| **Assessmentの日本語表示名**                                                                 | `$.object.definition.name.ja-jp`                                                   | recommended |
+| **Assessmentの日本語表示名**                                                                 | `$.object.definition.name.ja-JP`                                                   | recommended |
 | **教科**<br>Core Profileで定義された教科Extensionを使用する。                                | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/subject']` | recommended |
 | **学年**<br>Core Profileで定義された学年Extensionを使用する。                                | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/grade']`   | recommended |
 | **評価タイプ**<br>診断的(diagnostic)、形成的(formative)、総括的(summative)のいずれかを指定。 | `$.context.extensions['https://w3id.org/japan-xapi/extensions/assessment-type']`   | recommended |
@@ -231,7 +231,7 @@ CBT/デジタルドリルにおける主なユースケースは、学習者が�
 
 #### 4.3.3.2　記述規則（Rules）
 
-1. $.object.definition.name.ja-jp
+1. $.object.definition.name.ja-JP
    1. recommended
    2. コンテンツの日本語表示名
 2. $.object.definition.extensions['https://w3id.org/japan-xapi/extensions/subject']
@@ -251,7 +251,7 @@ CBT/デジタルドリルにおける主なユースケースは、学習者が�
 
 | 項目説明 (Description / ScopeNote)                                       | Location (JSONPath)                                                                     | Presence    |
 | :----------------------------------------------------------------------- | :-------------------------------------------------------------------------------------- | :---------- |
-| **コンテンツの日本語表示名**                                             | `$.object.definition.name.ja-jp`                                                        | recommended |
+| **コンテンツの日本語表示名**                                             | `$.object.definition.name.ja-JP`                                                        | recommended |
 | **教科**<br>Core Profileで定義された教科Extensionを使用する。            | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/subject']`      | recommended |
 | **学年**<br>Core Profileで定義された学年Extensionを使用する。            | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/grade']`        | recommended |
 | **コンテンツの種類**<br>hint(ヒント), result(結果), explanation(解説) 等 | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/content-type']` | recommended |
@@ -293,7 +293,7 @@ CBT/デジタルドリルにおける主なユースケースは、学習者が�
 5. $.result.duration
    1. recommended
    2. 所要時間 (ISO 8601 duration)
-6. $.object.definition.name.ja-jp
+6. $.object.definition.name.ja-JP
    1. recommended
    2. Assessmentの日本語表示名
 7. $.object.definition.extensions['https://w3id.org/japan-xapi/extensions/subject']
@@ -312,7 +312,7 @@ CBT/デジタルドリルにおける主なユースケースは、学習者が�
 | **最大点**                                                    | `$.result.score.max`                                                               | included    |
 | **完了フラグ**<br>最後まで完了した場合はtrue、途中終了はfalse | `$.result.success`                                                                 | recommended |
 | **所要時間**<br>ISO 8601期間形式 (例: PT1H30M)                | `$.result.duration`                                                                | recommended |
-| **Assessment名**                                              | `$.object.definition.name.ja-jp`                                                   | recommended |
+| **Assessment名**                                              | `$.object.definition.name.ja-JP`                                                   | recommended |
 | **教科**<br>Core Profileで定義された教科Extensionを使用する。 | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/subject']` | recommended |
 | **学年**<br>Core Profileで定義された学年Extensionを使用する。 | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/grade']`   | recommended |
 | **活動発生日時**                                              | `$.timestamp`                                                                      | included    |
