@@ -87,13 +87,24 @@
 | **コンテキストのプラットフォーム**   | `$.context.platform`                       | included    |
 | **プロファイルバージョン**           | `$.version`                                | included    |
 
-# 3.　StatementTemplate
+# 3. CBT/デジタルドリルに関するユースケース
 
-## 3.1　本章の位置づけ
+CBT/デジタルドリルにおける主なユースケースは、学習者がドリルやテストなどのアセスメントに取り組み、その結果を記録することである。
+
+主な学習活動の例：
+
+- **アセスメントの実施**: 学習者がドリルやテストを開始し、一連の問題に取り組む。
+- **問題への回答**: 個々の問題に対して解答を行い、正誤や得点を確認する。
+- **解説やヒントの参照**: 問題に取り組む中で、ヒントを見たり、解答後に解説を読んだりする。
+- **結果の確認**: アセスメント全体の正答率や合否などの結果を確認する。
+
+# 4.　StatementTemplate
+
+## 4.1　本章の位置づけ
 
 　本章では、CBTプロファイルにおける各操作のデータ構造を定義する。各テンプレートは以下の「基本仕様」および「記述規則」の構成で記述される。
 
-## 3.2　前提条件
+## 4.2　前提条件
 
 - 基本仕様
   - 冒頭にdifinitionの位置づけとして、Templateの目的やどのような操作を記録するためのものかを定義する。
@@ -109,11 +120,11 @@
 - Markdownテーブルの構成
   - 各Templateの末尾には、システム設計・実装時に参照しやすいよう、記述規則（Rules）を一覧化したテーブルを配置する。
 
-## 3.3　StatementTemplate一覧
+## 4.3　StatementTemplate一覧
 
-### 3.3.1　Assessmentの開始
+### 4.3.1　Assessmentの開始
 
-#### 3.3.1.1　基本仕様
+#### 4.3.1.1　基本仕様
 
 - Assessmentの提供開始（受験開始操作やページ表示）を記録するためのテンプレート。
 - 識別情報
@@ -129,7 +140,7 @@
 | :----------------- | :--------------------------------------------- |
 | objectActivityType | http://adlnet.gov/expapi/activities/assessment |
 
-#### 3.3.1.2　記述規則（Rules）
+#### 4.3.1.2　記述規則（Rules）
 
 1. $.object.definition.name.ja-jp
    1. recommended
@@ -144,7 +155,7 @@
    1. recommended
    2. 評価タイプ（診断的/形成的/総括的）
 
-#### 3.3.1.3　Markdownテーブル
+#### 4.3.1.3　Markdownテーブル
 
 | 項目説明 (Description / ScopeNote)                                                           | Location (JSONPath)                                                                | Presence    |
 | :------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------- | :---------- |
@@ -154,9 +165,9 @@
 | **評価タイプ**<br>診断的(diagnostic)、形成的(formative)、総括的(summative)のいずれかを指定。 | `$.context.extensions['https://w3id.org/japan-xapi/extensions/assessment-type']`   | recommended |
 | **活動発生日時**                                                                             | `$.timestamp`                                                                      | included    |
 
-### 3.3.2　問題への回答
+### 4.3.2　問題への回答
 
-#### 3.3.2.1　基本仕様
+#### 4.3.2.1　基本仕様
 
 - 学習者が得点・正誤判定単位の設問に回答したことを記録するためのテンプレート。
 - 識別情報
@@ -171,7 +182,7 @@
 | verb | http://adlnet.gov/expapi/verbs/answered |
 | :--- | :-------------------------------------- |
 
-#### 3.3.2.2　記述規則（Rules）
+#### 4.3.2.2　記述規則（Rules）
 
 1. $.result.score.scaled
    1. included
@@ -189,7 +200,7 @@
    1. recommended
    2. 出題順序
 
-#### 3.3.2.3　Markdownテーブル
+#### 4.3.2.3　Markdownテーブル
 
 | 項目説明 (Description / ScopeNote) | Location (JSONPath)                                                                       | Presence    |
 | :--------------------------------- | :---------------------------------------------------------------------------------------- | :---------- |
@@ -200,9 +211,9 @@
 | **回答所要時間**                   | `$.result.duration`                                                                       | recommended |
 | **出題順序**                       | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/question-order']` | recommended |
 
-### 3.3.3　学習コンテンツやページの参照
+### 4.3.3　学習コンテンツやページの参照
 
-#### 3.3.3.1　基本仕様
+#### 4.3.3.1　基本仕様
 
 - 学習コンテンツやページの閲覧を記録するためのテンプレート。
 - 識別情報
@@ -218,7 +229,7 @@
 | :----------------- | :-------------------------------------- |
 | objectActivityType | http://activitystrea.ms/schema/1.0/page |
 
-#### 3.3.3.2　記述規則（Rules）
+#### 4.3.3.2　記述規則（Rules）
 
 1. $.object.definition.name.ja-jp
    1. recommended
@@ -236,7 +247,7 @@
    1. recommended
    2. ヒントや解説の対象となるAssessmentまたはQuestionのID
 
-#### 3.3.3.3　Markdownテーブル
+#### 4.3.3.3　Markdownテーブル
 
 | 項目説明 (Description / ScopeNote)                                       | Location (JSONPath)                                                                     | Presence    |
 | :----------------------------------------------------------------------- | :-------------------------------------------------------------------------------------- | :---------- |
@@ -247,9 +258,9 @@
 | **親アクティビティID**<br>関連する問題や評価のID                         | `$.context.contextActivities.parent[*].id`                                              | recommended |
 | **活動発生日時**                                                         | `$.timestamp`                                                                           | included    |
 
-### 3.3.4　Assessmentの終了
+### 4.3.4　Assessmentの終了
 
-#### 3.3.4.1　基本仕様
+#### 4.3.4.1　基本仕様
 
 - Assessmentの終了を記録するためのテンプレート。
 - 識別情報
@@ -265,7 +276,7 @@
 | :----------------- | :--------------------------------------------- |
 | objectActivityType | http://adlnet.gov/expapi/activities/assessment |
 
-#### 3.3.4.2　記述規則（Rules）
+#### 4.3.4.2　記述規則（Rules）
 
 1. $.result.score.scaled
    1. included
@@ -292,7 +303,7 @@
    1. recommended
    2. 学年 (Core Profile参照)
 
-#### 3.3.4.3　Markdownテーブル
+#### 4.3.4.3　Markdownテーブル
 
 | 項目説明 (Description / ScopeNote)                            | Location (JSONPath)                                                                | Presence    |
 | :------------------------------------------------------------ | :--------------------------------------------------------------------------------- | :---------- |
