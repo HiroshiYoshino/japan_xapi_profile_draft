@@ -12,7 +12,7 @@
 ## 1.3　前提条件
 
 　本ドキュメントにおける各ユースケースは、xAPIプロファイル仕様で定義されているStatementTemplateおよびStatementTemplateRulesの構造および考え方に準拠して記載する。  
-　本ドキュメントに記載されるStatementTemplateのうち独自に定義したものについては、coreプロファイル内のconceptに記載している。  
+　本ドキュメントに記載されるStatementTemplateで使用される語彙（Verb、ActivityType、Extension等）は以下のいずれかに整理される。(1) SWG独自に定義した語彙を使用する場合、Core Profile内のConceptsに定義されている。(2) ADLや他の標準で定義済みの語彙を使用する場合、それらを直接参照し、Domain Profileで再定義しない。(3) eBook固有のExtension（launch-reason等）を使用する場合、本プロファイルでDomain固有語彙として定義する。Domain Profile（本プロファイルはDomain Profileの1つ）としてeBook Profileは Statement Templateおよび Rules の定義に集中し、語彙定義はCore Profileに委譲する。  
 　各ユースケースに付随するStatementTemplate要素表には、StatementTemplateを構成する要素を示している。ただし、actorについては全ユースケース共通でAgentとするため、各ユースケースの規範表への個別の記載は行わないものとする。  
 　本ドキュメントは、電子書籍における学習ログの標準的な解釈および実装方針を読み手が理解しやすい形で示すことを主目的とした仕様書である。このため、xAPIプロファイル仕様上は必須である項目のうち、機械処理やプロファイル登録といった運用段階において主に必要となる項目については、本書の目的に照らし記載を省略する。各項目の省略理由は下記に示すとおりである。
 
@@ -122,7 +122,7 @@
 
 ## 4.3　StatementTemplate一覧
 
-### 3.3.1　プラットフォームの起動
+### 4.3.1　プラットフォームの起動
 
 #### 4.3.1.1　基本仕様
 
@@ -156,7 +156,7 @@
 | **ビューアID**<br>開始されたビューアを識別するIRIまたはURL。 | `$.object.id`                                                                        | included    |
 | **起動理由**<br>例："user-launch", "resume", "system-launch" | `$.context.extensions['https://w3id.org/japan-xapi/extensions/ebook/launch-reason']` | recommended |
 
-### 3.3.2　コンテンツの利用開始
+### 4.3.2　コンテンツの利用開始
 
 #### 4.3.2.1　基本仕様
 
@@ -186,7 +186,7 @@
 | **オブジェクトのオブジェクトタイプ**<br>書籍等のコンテンツ | `$.object.objectType` | included |
 | **オブジェクトID**<br>開いたコンテンツを一意に識別するID   | `$.object.id` | included |
 
-### 3.3.3　ページ移動 (Progressed)
+### 4.3.3　ページ移動 (Progressed)
 
 #### 4.3.3.1　基本仕様
 
@@ -216,7 +216,7 @@
 | **オブジェクトのオブジェクトタイプ**<br>Page等のコンテンツ | `$.object.objectType` | included |
 | **オブジェクトID**<br>ページを一意に識別するID             | `$.object.id` | included |
 
-### 3.3.4　設定変更 (Interacted)
+### 4.3.4　設定変更 (Interacted)
 
 #### 4.3.4.1　基本仕様
 
@@ -246,7 +246,7 @@
 | **オブジェクトのオブジェクトタイプ**<br>Settings等の要素     | `$.object.objectType` | included |
 | **オブジェクトID**<br>設定項目を一意に識別するID             | `$.object.id` | included |
 
-### 3.3.5　注釈・書き込み (Noted)
+### 4.3.5　注釈・書き込み (Noted)
 
 #### 4.3.5.1　基本仕様
 

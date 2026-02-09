@@ -78,6 +78,50 @@
 - **Definition**: テキストや画像の一部を強調表示する行為。
 - **Scope Note**: 重要な箇所へのマーキング等に使用する。
 
+#### attempted
+
+- **IRI**: `http://adlnet.gov/expapi/verbs/attempted`
+- **Display**: `attempted` (en), `開始した` (ja)
+- **Definition**: アセスメントの提供開始を示す。
+- **Scope Note**: 受験開始操作やページ表示時に使用する。
+
+#### answered
+
+- **IRI**: `http://adlnet.gov/expapi/verbs/answered`
+- **Display**: `answered` (en), `回答した` (ja)
+- **Definition**: 学習者がAssessment内の設問に応答したことを示す。
+- **Scope Note**: 個別の質問に対する回答時に使用する。
+
+#### completed
+
+- **IRI**: `http://adlnet.gov/expapi/verbs/completed`
+- **Display**: `completed` (en), `終了した` (ja)
+- **Definition**: Assessmentが終了したことを示す。
+- **Scope Note**: 学習者が明示的に終了したかどうかは result.completed で示す。
+
+#### viewed
+
+- **IRI**: `http://id.tincanapi.com/verb/viewed`
+- **Display**: `viewed` (en), `閲覧した` (ja)
+- **Definition**: 学習コンテンツやアイテムページの閲覧を示す。
+- **Scope Note**: eBook、ヒント、解説などのコンテンツ参照時に使用する。
+
+## 3.2.2　ActivityTypes (活動の種類)
+
+### 3.2.2.1　本プロファイルで定義する ActivityType
+
+#### assessment
+
+- **IRI**: `http://adlnet.gov/expapi/activities/assessment`
+- **Definition**: アセスメント全体を識別するアクティビティタイプ。
+- **Scope Note**: attempted/completed ステートメントで使用する。
+
+#### page
+
+- **IRI**: `http://activitystrea.ms/schema/1.0/page`
+- **Definition**: Webコンテンツやアプリにおけるページを表す。
+- **Scope Note**: viewed ステートメントで使用する。
+
 ## 3.3　Extensions (拡張)
 
 ドメイン横断的に利用されるコンテキスト拡張およびアクティビティ拡張。
@@ -157,12 +201,65 @@
 
 #### scrapbook_item_type (スクラップブックアイテムタイプ)
 
-- **IRI**: `https://w3id.org/japan-xapi/$.object.definition.description['ja-JP']item-type`
+- **IRI**: `https://w3id.org/japan-xapi/extensions/scrapbook-item-type`
 - **Type**: `ActivityExtension`
 - **Definition**: スクラップブック等で作成されるオブジェクトの種類（text, shape, image等）。
 - **Schema**:
   ```json
   { "type": "string" }
+  ```
+
+#### purpose-of-question (問題の趣旨)
+
+- **IRI**: `https://w3id.org/japan-xapi/extensions/purpose-of-question`
+- **Type**: `ActivityExtension`
+- **Definition**: 問題の趣旨を表す値。学習指導要領コードよりも細かいレベルで問題の目的を示す。
+- **Scope Note**: 例えば「真分数の乗法の計算」など、より細粒度の学習目標を記録できる。複数レベルの趣旨を設定可能。
+- **Schema**:
+  ```json
+  {
+    "type": "array",
+    "items": { "type": "string" }
+  }
+  ```
+
+#### question-order (問題の出題順序)
+
+- **IRI**: `https://w3id.org/japan-xapi/extensions/question-order`
+- **Type**: `ActivityExtension`
+- **Definition**: デジタルドリルやCBTにおける問題の出題順序を表す値。
+- **Scope Note**: アダプティブに出題順序が変化する場合、実際に出題された順序を記録する。
+- **Schema**:
+  ```json
+  { "type": "integer" }
+  ```
+
+#### content-type (コンテンツの種類)
+
+- **IRI**: `https://w3id.org/japan-xapi/extensions/content-type`
+- **Type**: `ActivityExtension`
+- **Definition**: 学習者が参照したものが、問題解答中のヒント、解答後の結果、解答後の解説などのどれであるかを示す。
+- **Scope Note**: hint（回答中のヒント）、result（得点、正誤等の結果）、explanation（問題の解説）などの値を持つ。
+- **Schema**:
+  ```json
+  {
+    "type": "array",
+    "enum": ["hint", "result", "explanation"]
+  }
+  ```
+
+#### assessment-type (評価のタイプ)
+
+- **IRI**: `https://w3id.org/japan-xapi/extensions/assessment-type`
+- **Type**: `ContextExtension`
+- **Definition**: 評価のタイプを表す値。
+- **Scope Note**: diagnostic（診断的）、formative（形成的）、summative（総括的）のいずれか。
+- **Schema**:
+  ```json
+  {
+    "type": "array",
+    "enum": ["diagnostic", "formative", "summative"]
+  }
   ```
 
 # 4.　Statement Templates (ステートメントテンプレート)
