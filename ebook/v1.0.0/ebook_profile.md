@@ -174,6 +174,18 @@
 | :----------------- | :-------------------------------------- |
 | objectActivityType | http://activitystrea.ms/schema/1.0/book |
 
+#### 4.3.2.2　記述規則（Rules）
+
+なし。共通記述規則に準拠する。
+
+#### 4.3.2.3　Markdownテーブル
+
+| 項目説明 (Description / ScopeNote)                         | Location (JSONPath) | Presence |
+| :-------------------------------------------------------- | :------------------ | :------- |
+| **動詞の表示名(英語)**<br>open                             | `$.verb.display.en` | included |
+| **オブジェクトのオブジェクトタイプ**<br>書籍等のコンテンツ | `$.object.objectType` | included |
+| **オブジェクトID**<br>開いたコンテンツを一意に識別するID   | `$.object.id` | included |
+
 ### 3.3.3　ページ移動 (Progressed)
 
 #### 4.3.3.1　基本仕様
@@ -192,9 +204,21 @@
 | :----------------- | :---------------------------------------- |
 | objectActivityType | http://activitystrea.ms/schema/1.0/page   |
 
+#### 4.3.3.2　記述規則（Rules）
+
+なし。共通記述規則に準拠する。
+
+#### 4.3.3.3　Markdownテーブル
+
+| 項目説明 (Description / ScopeNote)                         | Location (JSONPath) | Presence |
+| :-------------------------------------------------------- | :------------------ | :------- |
+| **動詞の表示名(英語)**<br>progressed                       | `$.verb.display.en` | included |
+| **オブジェクトのオブジェクトタイプ**<br>Page等のコンテンツ | `$.object.objectType` | included |
+| **オブジェクトID**<br>ページを一意に識別するID             | `$.object.id` | included |
+
 ### 3.3.4　設定変更 (Interacted)
 
-#### 3.3.4.1　基本仕様
+#### 4.3.4.1　基本仕様
 
 - 拡大縮小、文字サイズ変更などを記録するためのテンプレート。
 - 識別情報
@@ -210,9 +234,21 @@
 | :----------------- | :-------------------------------------------------------- |
 | objectActivityType | https://w3id.org/japan-xapi/activity-types/ebook/settings |
 
+#### 4.3.4.2　記述規則（Rules）
+
+なし。共通記述規則に準拠する。
+
+#### 4.3.4.3　Markdownテーブル
+
+| 項目説明 (Description / ScopeNote)                           | Location (JSONPath) | Presence |
+| :----------------------------------------------------------- | :------------------ | :------- |
+| **動詞の表示名(英語)**<br>interacted                         | `$.verb.display.en` | included |
+| **オブジェクトのオブジェクトタイプ**<br>Settings等の要素     | `$.object.objectType` | included |
+| **オブジェクトID**<br>設定項目を一意に識別するID             | `$.object.id` | included |
+
 ### 3.3.5　注釈・書き込み (Noted)
 
-#### 3.3.5.1　基本仕様
+#### 4.3.5.1　基本仕様
 
 - メモやペンの書き込みを記録するためのテンプレート。
 - 識別情報
@@ -227,3 +263,15 @@
 | verb               | https://w3id.org/xapi/adb/verbs/noted   |
 | :----------------- | :-------------------------------------- |
 | objectActivityType | http://activitystrea.ms/schema/1.0/note |
+
+#### 4.3.5.2　記述規則（Rules）
+
+なし。共通記述規則に準拠する。
+
+#### 4.3.5.3　Markdownテーブル
+
+| 項目説明 (Description / ScopeNote)                         | Location (JSONPath) | Presence |
+| :-------------------------------------------------------- | :------------------ | :------- |
+| **動詞の表示名(英語)**<br>noted                            | `$.verb.display.en` | included |
+| **オブジェクトのオブジェクトタイプ**<br>Note等の注釈       | `$.object.objectType` | included |
+| **オブジェクトID**<br>注釈を一意に識別するID             | `$.object.id` | included |

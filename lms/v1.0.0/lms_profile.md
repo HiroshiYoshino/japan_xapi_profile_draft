@@ -200,10 +200,23 @@
 
 - 判定条件
 
-| verb | http://adlnet.gov/expapi/verbs/shared |
-| :--- | :------------------------------------ |
+| verb               | http://adlnet.gov/expapi/verbs/shared                 |
+| :----------------- | :---------------------------------------------------- |
+| objectActivityType | http://adlnet.gov/expapi/activities/school-assessment |
 
-### 4.3.3　学習課題の実施開始 (Launched)
+#### 4.3.2.2　記述規則（Rules）
+
+なし。共通記述規則に準拠する。
+
+#### 4.3.2.3　Markdownテーブル
+
+| 項目説明 (Description / ScopeNote)                                   | Location (JSONPath) | Presence |
+| :------------------------------------------------------------------- | :------------------ | :------- |
+| **動詞の表示名(英語)**<br>shared                                     | `$.verb.display.en` | included |
+| **オブジェクトのオブジェクトタイプ**<br>Assignment等の学習課題        | `$.object.objectType` | included |
+| **オブジェクトID**<br>学習課題を一意に識別するID                      | `$.object.id` | included |
+
+### 4.3.3　学習課題の実施開始
 
 #### 4.3.3.1　基本仕様
 
@@ -221,7 +234,19 @@
 | :----------------- | :---------------------------------------------------- |
 | objectActivityType | http://adlnet.gov/expapi/activities/school-assessment |
 
-### 4.3.4　学習課題の完了 (Completed)
+#### 4.3.3.2　記述規則（Rules）
+
+なし。共通記述規則に準拠する。
+
+#### 4.3.3.3　Markdownテーブル
+
+| 項目説明 (Description / ScopeNote)                                   | Location (JSONPath) | Presence |
+| :------------------------------------------------------------------- | :------------------ | :------- |
+| **動詞の表示名(英語)**<br>launched                                   | `$.verb.display.en` | included |
+| **オブジェクトのオブジェクトタイプ**<br>Assignment等の学習課題        | `$.object.objectType` | included |
+| **オブジェクトID**<br>学習課題を一意に識別するID                      | `$.object.id` | included |
+
+### 4.3.4　学習課題の完了
 
 #### 4.3.4.1　基本仕様
 
@@ -239,11 +264,23 @@
 | :----------------- | :---------------------------------------------------- |
 | objectActivityType | http://adlnet.gov/expapi/activities/school-assessment |
 
-### 4.3.5　学習課題へのフィードバック (Responded)
+#### 4.3.4.2　記述規則（Rules）
+
+なし。共通記述規則に準拠する。
+
+#### 4.3.4.3　Markdownテーブル
+
+| 項目説明 (Description / ScopeNote)                                   | Location (JSONPath) | Presence |
+| :------------------------------------------------------------------- | :------------------ | :------- |
+| **動詞の表示名(英語)**<br>completed                                  | `$.verb.display.en` | included |
+| **オブジェクトのオブジェクトタイプ**<br>Assignment等の学習課題        | `$.object.objectType` | included |
+| **オブジェクトID**<br>学習課題を一意に識別するID                      | `$.object.id` | included |
+
+### 4.3.5　学習課題へのフィードバック
 
 #### 4.3.5.1　基本仕様
 
-- 教員が課題成果に対してコメント等を行ったことを記録するためのテンプレート。
+- 教職員が児童生徒の学習課題成果にコメントなどのフィードバックを行ったことを表すステートメント。
 - 識別情報
 
 | id        | https://w3id.org/japan-xapi/templates/lms/assessment-responded |
@@ -255,3 +292,138 @@
 
 | verb | http://adlnet.gov/expapi/verbs/responded |
 | :--- | :--------------------------------------- |
+| objectActivityType | http://adlnet.gov/expapi/activities/school-assessment |
+
+#### 4.3.5.2　記述規則（Rules）
+
+なし。共通記述規則に準拠する。ただし、result.response および result.completion は、本仕様において任意（MAY）の項目であるため、本記述規則による制約を課さない。
+
+#### 4.3.5.3　Markdownテーブル
+
+| 項目説明 (Description / ScopeNote)                                   | Location (JSONPath) | Presence |
+| :------------------------------------------------------------------- | :------------------ | :------- |
+| **動詞の表示名(英語)**<br>responded                                  | `$.verb.display.en` | included |
+| **オブジェクトのオブジェクトタイプ**<br>Assignment等の学習課題        | `$.object.objectType` | included |
+| **オブジェクトID**<br>学習課題を一意に識別するID                      | `$.object.id` | included |
+| **フィードバック内容**<br>後ろに続く結果オブジェクトに含められる。    | `$.result.response` | optional |
+| **完了フラグ**<br>フィードバック後の完了状態                          | `$.result.completion` | optional |
+
+### 4.3.6　学習課題を閲覧する
+
+#### 4.3.6.1　基本仕様
+
+- 児童生徒が学習課題を閲覧したことを記録するためのテンプレート。
+- 識別情報
+
+| id        | https://w3id.org/japan-xapi/templates/lms/assessment-viewed |
+| :-------- | :---------------------------------------------------------- |
+| inScheme  | https://w3id.org/japan-xapi/profiles/lms/v1.0.0             |
+| prefLabel | 学習課題を閲覧する                                          |
+
+- 判定条件
+
+| verb               | http://id.tincanapi.com/verb/viewed                   |
+| :----------------- | :---------------------------------------------------- |
+| objectActivityType | http://adlnet.gov/expapi/activities/school-assessment |
+
+#### 4.3.6.2　記述規則（Rules）
+
+なし。共通記述規則に準拠する。
+
+#### 4.3.6.3　Markdownテーブル
+
+| 項目説明 (Description / ScopeNote)                                   | Location (JSONPath) | Presence |
+| :------------------------------------------------------------------- | :------------------ | :------- |
+| **動詞の表示名(英語)**<br>viewed                                     | `$.verb.display.en` | included |
+| **オブジェクトのオブジェクトタイプ**<br>Assignment等の学習課題        | `$.object.objectType` | included |
+| **オブジェクトID**<br>学習課題を一意に識別するID                      | `$.object.id` | included |
+
+### 4.3.7　学習課題を異常終了する
+
+#### 4.3.7.1　基本仕様
+
+- 児童生徒が学習課題を異常終了（放棄）したことを記録するためのテンプレート。
+- 識別情報
+
+| id        | https://w3id.org/japan-xapi/templates/lms/assessment-abandoned |
+| :-------- | :------------------------------------------------------------- |
+| inScheme  | https://w3id.org/japan-xapi/profiles/lms/v1.0.0                |
+| prefLabel | 学習課題を異常終了する                                         |
+
+- 判定条件
+
+| verb               | https://w3id.org/xapi/adl/verbs/abandoned             |
+| :----------------- | :---------------------------------------------------- |
+| objectActivityType | http://adlnet.gov/expapi/activities/school-assessment |
+
+#### 4.3.7.2　記述規則（Rules）
+
+なし。共通記述規則に準拠する。
+
+#### 4.3.7.3　Markdownテーブル
+
+| 項目説明 (Description / ScopeNote)                                   | Location (JSONPath) | Presence |
+| :------------------------------------------------------------------- | :------------------ | :------- |
+| **動詞の表示名(英語)**<br>abandoned                                  | `$.verb.display.en` | included |
+| **オブジェクトのオブジェクトタイプ**<br>Assignment等の学習課題        | `$.object.objectType` | included |
+| **オブジェクトID**<br>学習課題を一意に識別するID                      | `$.object.id` | included |
+
+### 4.3.8　学習課題の実施状況を初期化する
+
+#### 4.3.8.1　基本仕様
+
+- 学習課題の実施状況が初期化されたことを記録するためのテンプレート。
+- 識別情報
+
+| id        | https://w3id.org/japan-xapi/templates/lms/assessment-initialized |
+| :-------- | :--------------------------------------------------------------- |
+| inScheme  | https://w3id.org/japan-xapi/profiles/lms/v1.0.0                  |
+| prefLabel | 学習課題の実施状況を初期化する                                   |
+
+- 判定条件
+
+| verb               | http://adlnet.gov/expapi/verbs/initialized            |
+| :----------------- | :---------------------------------------------------- |
+| objectActivityType | http://adlnet.gov/expapi/activities/school-assessment |
+
+#### 4.3.8.2　記述規則（Rules）
+
+なし。共通記述規則に準拠する。
+
+#### 4.3.8.3　Markdownテーブル
+
+| 項目説明 (Description / ScopeNote)                                   | Location (JSONPath) | Presence |
+| :------------------------------------------------------------------- | :------------------ | :------- |
+| **動詞の表示名(英語)**<br>initialized                                | `$.verb.display.en` | included |
+| **オブジェクトのオブジェクトタイプ**<br>Assignment等の学習課題        | `$.object.objectType` | included |
+| **オブジェクトID**<br>学習課題を一意に識別するID                      | `$.object.id` | included |
+
+### 4.3.9　学習課題を免除する
+
+#### 4.3.9.1　基本仕様
+
+- 教職員が児童生徒の学習課題を免除したことを記録するためのテンプレート。
+- 識別情報
+
+| id        | https://w3id.org/japan-xapi/templates/lms/assessment-waived |
+| :-------- | :---------------------------------------------------------- |
+| inScheme  | https://w3id.org/japan-xapi/profiles/lms/v1.0.0             |
+| prefLabel | 学習課題を免除する                                          |
+
+- 判定条件
+
+| verb               | https://w3id.org/xapi/adl/verbs/waived                |
+| :----------------- | :---------------------------------------------------- |
+| objectActivityType | http://adlnet.gov/expapi/activities/school-assessment |
+
+#### 4.3.9.2　記述規則（Rules）
+
+なし。共通記述規則に準拠する。
+
+#### 4.3.9.3　Markdownテーブル
+
+| 項目説明 (Description / ScopeNote)                                   | Location (JSONPath) | Presence |
+| :------------------------------------------------------------------- | :------------------ | :------- |
+| **動詞の表示名(英語)**<br>waived                                     | `$.verb.display.en` | included |
+| **オブジェクトのオブジェクトタイプ**<br>Assignment等の学習課題        | `$.object.objectType` | included |
+| **オブジェクトID**<br>学習課題を一意に識別するID                      | `$.object.id` | included |
