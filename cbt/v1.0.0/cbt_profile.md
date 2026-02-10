@@ -129,7 +129,7 @@ CBT/デジタルドリルにおける主なユースケースは、学習者が�
 - Assessmentの提供開始（受験開始操作やページ表示）を記録するためのテンプレート。
 - 識別情報
 
-| id        | https://w3id.org/japan-xapi/templates/cbt/assessment-attempted |
+| id        | https://w3id.org/japan-xapi/templates/cbt/attempted |
 | :-------- | :------------------------------------------------------------- |
 | inScheme  | https://w3id.org/japan-xapi/profiles/cbt/v1.0.0                |
 | prefLabel | Assessmentの開始                                               |
@@ -191,7 +191,7 @@ CBT/デジタルドリルにおける主なユースケースは、学習者が�
 - 学習者が得点・正誤判定単位の設問に回答したことを記録するためのテンプレート。
 - 識別情報
 
-| id        | https://w3id.org/japan-xapi/templates/cbt/question-answered |
+| id        | https://w3id.org/japan-xapi/templates/cbt/answered |
 | :-------- | :---------------------------------------------------------- |
 | inScheme  | https://w3id.org/japan-xapi/profiles/cbt/v1.0.0             |
 | prefLabel | 問題への回答                                                |
@@ -281,7 +281,7 @@ CBT/デジタルドリルにおける主なユースケースは、学習者が�
 - 学習コンテンツやページの閲覧を記録するためのテンプレート。
 - 識別情報
 
-| id        | https://w3id.org/japan-xapi/templates/cbt/content-viewed |
+| id        | https://w3id.org/japan-xapi/templates/cbt/viewed |
 | :-------- | :------------------------------------------------------- |
 | inScheme  | https://w3id.org/japan-xapi/profiles/cbt/v1.0.0          |
 | prefLabel | 学習コンテンツやページの参照                             |
@@ -359,7 +359,7 @@ CBT/デジタルドリルにおける主なユースケースは、学習者が�
 - Assessmentの終了を記録するためのテンプレート。
 - 識別情報
 
-| id        | https://w3id.org/japan-xapi/templates/cbt/assessment-completed |
+| id        | https://w3id.org/japan-xapi/templates/cbt/completed |
 | :-------- | :------------------------------------------------------------- |
 | inScheme  | https://w3id.org/japan-xapi/profiles/cbt/v1.0.0                |
 | prefLabel | Assessmentの終了                                               |
