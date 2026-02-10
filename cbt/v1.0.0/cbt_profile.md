@@ -230,25 +230,28 @@ CBT/デジタルドリルにおける主なユースケースは、学習者が�
 9. $.result.score.max
    1. included
    2. 最大点
-10. $.result.response
+10. $.result.score.min
+   1. optional
+   2. 最小点   
+11. $.result.response
     1. recommended
     2. 回答値
-11. $.result.duration
+12. $.result.duration
     1. recommended
     2. 回答所要時間
-12. $.context.extensions['https://w3id.org/japan-xapi/extensions/subject']
+13. $.context.extensions['https://w3id.org/japan-xapi/extensions/subject']
     1. recommended
     2. 教科・Context拡張 (Core Profile参照)
-13. $.context.extensions['https://w3id.org/japan-xapi/extensions/grade']
+14. $.context.extensions['https://w3id.org/japan-xapi/extensions/grade']
     1. recommended
     2. 学年・Context拡張 (Core Profile参照)
-14. $.context.extensions['https://w3id.org/japan-xapi/extensions/course-of-study-code']
+15. $.context.extensions['https://w3id.org/japan-xapi/extensions/course-of-study-code']
     1. recommended
     2. 学習指導要領コード・Context拡張 (Core Profile参照)
-15. $.context.extensions['https://w3id.org/japan-xapi/extensions/assessment-type']
+16. $.context.extensions['https://w3id.org/japan-xapi/extensions/assessment-type']
     1. recommended
     2. 評価タイプ (Core Profile参照)
-16. $.context.contextActivities.grouping[*].id
+17. $.context.contextActivities.grouping[*].id
     1. recommended
     2. ある一回のAssessmentの取り組みに対して同一のIRIを記述する
 
@@ -273,6 +276,22 @@ CBT/デジタルドリルにおける主なユースケースは、学習者が�
 | **評価タイプ**<br>診断的(diagnostic)、形成的(formative)、総括的(summative)のいずれか。      | `$.context.extensions['https://w3id.org/japan-xapi/extensions/assessment-type']`             | recommended |
 | **Assessment実施グループID**<br>ある一回のAssessmentの取り組みに対して同一のIRIを記述。   | `$.context.contextActivities.grouping[*].id`                                                 | recommended |
 | **活動発生日時**                                                                            | `$.timestamp`                                                                                | included    |
+
+#### 4.3.2.4 補記
+- 問題に得点や部分点がある場合は、その得点情報を$.result.scoreに記録する。
+  - 例1:一つの問題に回答欄が一つあり問題の配点が5点の場合、maxを5、rawを5(正答)または0(誤答)、scaledを1(正答)または0(誤答)とする。
+  - 例2:一つの問題に回答欄が二つあり、それぞれで得点が設定されている場合、例えば回答欄一つ目が3点、二つ目が2点の場合、maxを5、rawを5(両方正答)または3(回答欄一つ目を正答)または2(回答欄二つ目を正答)または0(両方誤答)、scaledを1(両方正答)または0.6(回答欄一つ目を正答)または0.4(回答欄二つ目を正答)または0(両方誤答)とする。
+- 正誤情報のみあり得点情報がない場合は、正誤の判定箇所の数をそのまま得点として$.result.scoreに記録する。
+  - 例1:一つの問題に回答欄が一つある場合、maxを1、rawを1(正答)または0(誤答)、scaledを1(正答)または0(誤答)とする。
+  - 例2:一つの問題に回答欄が二つあり、それぞれで正誤の判定ができる場合、maxを2、rawを2(回答欄二つともに正答)または1(回答欄の一つを正答)または0(回答欄の両方を誤答)、scaledを1(回答欄二つともに正答)または0.5(回答欄の一つを正答)または0(回答欄の両方を誤答)とする。
+- $.result.score.scaledは、(raw-min)/(max-min) の計算結果とする。
+  - minは省略可能とするが、minが0でない場合は必ず含めることを求める。minを省略した場合は0とみなす。
+  - 小数点の桁数についてはSCORM プロファイル仕様を参考に、最大で小数点以下については7桁まで・8桁目を四捨五入とする。
+    - 例:0.3333333、0.6666667など
+- 採点が自動以外で採点が未実施の場合はresult.scoreが出力できない。このため採点が未実施の段階のstatementではcontext.contextActivities.category[*]で本プロファイルのIRIを参照しない。採点終了後にresult.scoreを出力した際に本プロファイルの参照を行うこととする。
+- 一回のデジタルドリル/CBTの取り組みを通じて、同じ問題を複数回回答する場合がある。その場合、同じ問題に対する各回答をそれぞれ別の問題解答のステートメントで記録することとする。
+- Determining PropertiesにおいてobjectActivityTypeは指定せず、任意のobjectActivityTypeに対して本テンプレートのルールを適用可能とすることで、MEXCBTの「タイプ1」「タイプ2」双方に対応可能とする。
+
 
 ### 4.3.3　学習コンテンツやページの参照
 
@@ -392,25 +411,28 @@ CBT/デジタルドリルにおける主なユースケースは、学習者が�
 7. $.result.score.max
    1. included
    2. 最大点
-8. $.result.success
+8. $.result.score.min
+   1. optional
+   2. 最小点
+9. $.result.success
    1. recommended
    2. 完了フラグ (true/false)
-9. $.result.duration
+10. $.result.duration
    1. recommended
    2. 所要時間 (ISO 8601 duration)
-10. $.context.extensions['https://w3id.org/japan-xapi/extensions/subject']
+11. $.context.extensions['https://w3id.org/japan-xapi/extensions/subject']
     1. recommended
     2. 教科・Context拡張 (Core Profile参照)
-11. $.context.extensions['https://w3id.org/japan-xapi/extensions/grade']
+12. $.context.extensions['https://w3id.org/japan-xapi/extensions/grade']
     1. recommended
     2. 学年・Context拡張 (Core Profile参照)
-12. $.context.extensions['https://w3id.org/japan-xapi/extensions/course-of-study-code']
+13. $.context.extensions['https://w3id.org/japan-xapi/extensions/course-of-study-code']
     1. recommended
     2. 学習指導要領コード・Context拡張 (Core Profile参照)
-13. $.context.extensions['https://w3id.org/japan-xapi/extensions/assessment-type']
+14. $.context.extensions['https://w3id.org/japan-xapi/extensions/assessment-type']
     1. recommended
     2. 評価タイプ (Core Profile参照)
-14. $.context.contextActivities.grouping[*].id
+15. $.context.contextActivities.grouping[*].id
     1. recommended
     2. ある一回のAssessmentの取り組みに対して同一のIRIを記述する
 
@@ -433,3 +455,11 @@ CBT/デジタルドリルにおける主なユースケースは、学習者が�
 | **評価タイプ**<br>診断的(diagnostic)、形成的(formative)、総括的(summative)。 | `$.context.extensions['https://w3id.org/japan-xapi/extensions/assessment-type']`             | recommended |
 | **Assessment実施グループID**<br>ある一回のAssessmentの取り組みに対して同一のIO。 | `$.context.contextActivities.grouping[*].id`                                                 | recommended |
 | **活動発生日時**                                              | `$.timestamp`                                                                                | included    |
+
+#### 4.3.4.4 補記
+- $.result.score.scaledは、(raw-min)/(max-min) の計算結果とする。
+  - minは省略可能とするが、minが0でない場合は必ず含めることを求める。minを省略した場合は0とみなす。
+  - 小数点の桁数についてはSCORM プロファイル仕様を参考に、最大で小数点以下については7桁まで・8桁目を四捨五入とする。
+    - 例:0.3333333、0.6666667など
+- 採点が自動以外で採点が未実施の場合はresult.scoreが出力できない。このため採点が未実施の段階のstatementでは本プロファイルの参照を行わないこととする。すべての採点終了後にresult.scoreを出力した際に本プロファイルの参照を行うこととする。
+- 一回のデジタルドリル/CBTの取り組みを通じて、同じ問題を複数回回答する場合がある。その場合、$.result.scoreには各問題に対して一番最後に解答した結果を集計した得点を最終的な達成点として記録することを想定する。過程については個別の問題解答のステートメントで記録することとする。
