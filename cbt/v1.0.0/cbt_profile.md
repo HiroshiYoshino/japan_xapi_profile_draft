@@ -138,7 +138,6 @@ CBT/デジタルドリルにおける主なユースケースは、学習者が�
 
 | verb               | http://adlnet.gov/expapi/verbs/attempted       |
 | :----------------- | :--------------------------------------------- |
-| objectActivityType | http://adlnet.gov/expapi/activities/assessment |
 
 #### 4.3.1.2　記述規則（Rules）
 
@@ -291,7 +290,6 @@ CBT/デジタルドリルにおける主なユースケースは、学習者が�
 
 | verb               | http://id.tincanapi.com/verb/viewed     |
 | :----------------- | :-------------------------------------- |
-| objectActivityType | http://activitystrea.ms/schema/1.0/page |
 
 #### 4.3.3.2　記述規則（Rules）
 
@@ -370,7 +368,6 @@ CBT/デジタルドリルにおける主なユースケースは、学習者が�
 
 | verb               | http://adlnet.gov/expapi/verbs/completed       |
 | :----------------- | :--------------------------------------------- |
-| objectActivityType | http://adlnet.gov/expapi/activities/assessment |
 
 #### 4.3.4.2　記述規則（Rules）
 
