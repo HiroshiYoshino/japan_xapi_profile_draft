@@ -61,31 +61,31 @@
 | 作成者/管理者 author     | プロファイルの作成者や責任者           | ICT CONNECT 21 xAPI SWG                               |
 | 作成日/更新日 versions   | 文書化日または改訂日                   | 2026-04-01                                            |
 | 言語 languages           | メタ情報およびプロファイルの記載言語   | 日本語                                                |
-| 目的/説明 definition     | プロファイルが対象とする学習ログや用途 | 日本の初等中等教育における電子書籍学習ログ標準プロファイル |
+| 目的/説明 definition     | プロファイルが対象とする学習ログや用途 | 日本の初等中等教育における電子書籍学習ログのプロファイル |
 | ドキュメントバージョン   | 文書版数                               | 2026年度版                                            |
 
 ## 2.3　共通記述規則
 
 　本プロファイルで定義するすべてのStatementTemplateに対して、以下のRulesを適用する。
 
-| 項目説明 (Description / ScopeNote)   | Location (JSONPath)                        | Presence    |
-| :----------------------------------- | :----------------------------------------- | :---------- |
-| **ステートメントID**                 | `$.id`                                     | included    |
-| **タイムスタンプ**                   | `$.timestamp`                              | included    |
-| **アクター**                         | `$.actor`                                  | included    |
-| **アクターのオブジェクトタイプ**     | `$.actor.objectType`                       | included    |
+| 項目                               | Location (JSONPath)                        | Presence    |
+| :--------------------------------- | :----------------------------------------- | :---------- |
+| **ステートメントID**               | `$.id`                                     | included    |
+| **タイムスタンプ**                 | `$.timestamp`                              | included    |
+| **アクター**                       | `$.actor`                                  | included    |
+| **アクターのオブジェクトタイプ**   | `$.actor.objectType`                       | included    |
 | **アクターのアカウントホームページ** | `$.actor.account.homePage`                 | included    |
-| **アクターのアカウント名**           | `$.actor.account.name`                     | included    |
-| **動詞の表示名(英語)**               | `$.verb.display.en`                        | included    |
+| **アクターのアカウント名**         | `$.actor.account.name`                     | included    |
+| **動詞の表示名(英語)**             | `$.verb.display.en`                        | included    |
 | **オブジェクトのオブジェクトタイプ** | `$.object.objectType`                      | included    |
-| **オブジェクトID**                   | `$.object.id`                              | included    |
-| **オブジェクト定義のタイプ**         | `$.object.definition.type`                 | included    |
-| **オブジェクト定義の名称(日本語)**   | `$.object.definition.name['ja-JP']`        | recommended |
-| **オブジェクト定義の説明(日本語)**   | `$.object.definition.description['ja-JP']` | recommended |
-| **コンテキスト**                     | `$.context`                                | included    |
-| **コンテキストの言語**               | `$.context.language`                       | included    |
-| **コンテキストのプラットフォーム**   | `$.context.platform`                       | included    |
-| **プロファイルバージョン**           | `$.version`                                | included    |
+| **オブジェクトID**                 | `$.object.id`                              | included    |
+| **オブジェクト定義のタイプ**       | `$.object.definition.type`                 | included    |
+| **オブジェクト定義の名称(日本語)** | `$.object.definition.name['ja-JP']`        | recommended |
+| **オブジェクト定義の説明(日本語)** | `$.object.definition.description['ja-JP']` | recommended |
+| **コンテキスト**                   | `$.context`                                | included    |
+| **コンテキストの言語**             | `$.context.language`                       | included    |
+| **コンテキストのプラットフォーム** | `$.context.platform`                       | included    |
+| **プロファイルバージョン**         | `$.version`                                | included    |
 
 # 3.　電子書籍（ebook）における読書行動
 
@@ -149,31 +149,23 @@
 
 * 電子書籍プラットフォームがシステムとして起動されたことを記録するためのテンプレート。
 
-| id | https://w3id.org/xapi/ebook/templates/viewer-launched |
-| :---- | :---- |
-| inScheme | https://w3id.org/xapi/ebook/v1 |
-| prefLabel | プラットフォームの起動 |
+| 項目     | 値                                             |
+| :------- | :--------------------------------------------- |
+| id       | https://w3id.org/xapi/ebook/templates/viewer-launched |
+| inScheme | https://w3id.org/xapi/ebook/v1                 |
+| prefLabel | プラットフォームの起動                       |
 
-| verb | http://adlnet.gov/expapi/verbs/launched |
-| :---- | :---- |
-| objectActivityType | https://w3id.org/xapi/ebook/activity-types/viewer |
+| 項目              | 値                                                      |
+| :---------------- | :---------------------------------------------------- |
+| verb              | http://adlnet.gov/expapi/verbs/launched               |
+| objectActivityType | https://w3id.org/xapi/ebook/activity-types/viewer     |
 
 #### 4.3.1.2　記述規則（Rules）
 
-1. `$.object.id`
-   1. included
-   2. 開始された電子書籍プラットフォームを識別するIRIまたはURL
-
-2. `$.context.extensions['https://w3id.org/xapi/ebook/extensions/launchReason']`
-   1. recommended
-   2. プラットフォーム起動のきっかけ（"user-launch"、"resume"、"system-launch" など）
-
-#### 4.3.1.3　Markdownテーブル
-
-| 項目説明 | Location | Presence |
-| :--- | :--- | :--- |
-| **プラットフォームID** | `$.object.id` | included |
-| **起動理由** | `$.context.extensions['https://w3id.org/xapi/ebook/extensions/launchReason']` | recommended |
+| 項目     | 説明 | Location | Presence |
+| :------- | :--- | :--- | :--- |
+| **プラットフォームID** |      | `$.object.id` | included |
+| **起動理由** |      | `$.context.extensions['https://w3id.org/xapi/ebook/extensions/launchReason']` | recommended |
 
 ### 4.3.2　プラットフォームの終了
 
@@ -181,31 +173,23 @@
 
 * 電子書籍プラットフォームの利用が終了したことを記録するためのテンプレート。
 
-| id | https://w3id.org/xapi/ebook/templates/viewer-terminated |
-| :---- | :---- |
-| inScheme | https://w3id.org/xapi/ebook/v1 |
-| prefLabel | プラットフォームの終了 |
+| 項目     | 値                                             |
+| :------- | :--------------------------------------------- |
+| id       | https://w3id.org/xapi/ebook/templates/viewer-terminated |
+| inScheme | https://w3id.org/xapi/ebook/v1                 |
+| prefLabel | プラットフォームの終了                       |
 
-| verb | http://adlnet.gov/expapi/verbs/terminated |
-| :---- | :---- |
-| objectActivityType | https://w3id.org/xapi/ebook/activity-types/viewer |
+| 項目              | 値                                                      |
+| :---------------- | :---------------------------------------------------- |
+| verb              | http://adlnet.gov/expapi/verbs/terminated             |
+| objectActivityType | https://w3id.org/xapi/ebook/activity-types/viewer     |
 
 #### 4.3.2.2　記述規則（Rules）
 
-1. `$.object.id`
-   1. included
-   2. 終了した電子書籍プラットフォームを識別するIRIまたはURL
-
-2. `$.context.extensions['https://w3id.org/xapi/ebook/extensions/terminationReason']`
-   1. recommended
-   2. プラットフォーム終了理由（"user-quit"、"timeout"、"system-close" など）
-
-#### 4.3.2.3　Markdownテーブル
-
-| 項目説明 | Location | Presence |
-| :--- | :--- | :--- |
-| **プラットフォームID** | `$.object.id` | included |
-| **終了理由** | `$.context.extensions['https://w3id.org/xapi/ebook/extensions/terminationReason']` | recommended |
+| 項目     | 説明 | Location | Presence |
+| :------- | :--- | :--- | :--- |
+| **プラットフォームID** |      | `$.object.id` | included |
+| **終了理由** |      | `$.context.extensions['https://w3id.org/xapi/ebook/extensions/terminationReason']` | recommended |
 
 ### 4.3.3　コンテンツの利用開始
 
@@ -213,26 +197,22 @@
 
 * 電子書籍コンテンツを利用開始したことを記録するためのテンプレート。
 
-| id | https://w3id.org/xapi/ebook/templates/content-opened |
-| :---- | :---- |
-| inScheme | https://w3id.org/xapi/ebook/v1 |
-| prefLabel | コンテンツの利用開始 |
+| 項目     | 値                                             |
+| :------- | :--------------------------------------------- |
+| id       | https://w3id.org/xapi/ebook/templates/content-opened |
+| inScheme | https://w3id.org/xapi/ebook/v1                 |
+| prefLabel | コンテンツの利用開始                         |
 
-| verb | http://activitystrea.ms/schema/1.0/open |
-| :---- | :---- |
-| objectActivityType | http://activitystrea.ms/schema/1.0/book |
+| 項目              | 値                                        |
+| :---------------- | :----------------------------------------- |
+| verb              | http://activitystrea.ms/schema/1.0/open   |
+| objectActivityType | http://activitystrea.ms/schema/1.0/book   |
 
 #### 4.3.3.2　記述規則（Rules）
 
-1. `$.object.id`
-   1. included
-   2. 開いたコンテンツを一意に識別するID
-
-#### 4.3.3.3　Markdownテーブル
-
-| 項目説明 | Location | Presence |
-| :--- | :--- | :--- |
-| **コンテンツID** | `$.object.id` | included |
+| 項目     | 説明 | Location | Presence |
+| :------- | :--- | :--- | :--- |
+| **コンテンツID** |      | `$.object.id` | included |
 
 ### 4.3.4　コンテンツの利用終了
 
@@ -240,36 +220,23 @@
 
 * 電子書籍コンテンツの表示を終了したことを記録するためのテンプレート。
 
-| id | https://w3id.org/xapi/ebook/templates/content-closed |
-| :---- | :---- |
-| inScheme | https://w3id.org/xapi/ebook/v1 |
-| prefLabel | コンテンツの利用終了 |
+| 項目     | 値                                             |
+| :------- | :--------------------------------------------- |
+| id       | https://w3id.org/xapi/ebook/templates/content-closed |
+| inScheme | https://w3id.org/xapi/ebook/v1                 |
+| prefLabel | コンテンツの利用終了                         |
 
-| verb | http://activitystrea.ms/schema/1.0/close |
-| :---- | :---- |
-| objectActivityType | http://activitystrea.ms/schema/1.0/book |
+| 項目              | 値                                         |
+| :---------------- | :----------------------------------------- |
+| verb              | http://activitystrea.ms/schema/1.0/close   |
+| objectActivityType | http://activitystrea.ms/schema/1.0/book    |
 
 #### 4.3.4.2　記述規則（Rules）
-
-1. `$.object.id`
-   1. included
-   2. 表示終了したコンテンツのIDまたはURL
-
-2. `$.result.duration`
-   1. included
-   2. 表示開始から終了までの総経過時間（ISO 8601）
-
-3. `$.result.extensions['https://w3id.org/xapi/ebook/extensions/endPosition']`
-   1. recommended
-   2. 終了時のページ番号または位置情報
-
-#### 4.3.4.3　Markdownテーブル
-
-| 項目説明 | Location | Presence |
-| :--- | :--- | :--- |
-| **コンテンツID** | `$.object.id` | included |
-| **経過時間** | `$.result.duration` | included |
-| **終了位置** | `$.result.extensions['https://w3id.org/xapi/ebook/extensions/endPosition']` | recommended |
+| 項目     | 説明 | Location | Presence |
+| :------- | :--- | :--- | :--- |
+| **コンテンツID** | 表示終了したコンテンツのIDまたはURL | `$.object.id` | included |
+| **経過時間** | 表示開始から終了までの総経過時間（ISO 8601） | `$.result.duration` | included |
+| **終了位置** | 終了時のページ番号または位置情報 | `$.result.extensions['https://w3id.org/xapi/ebook/extensions/endPosition']` | recommended |
 
 ### 4.3.5　コンテンツの表示
 
@@ -277,22 +244,16 @@
 
 * 電子書籍コンテンツが画面上に表示可能になったことを記録するためのテンプレート。
 
-| id | https://w3id.org/xapi/ebook/templates/content-rendered |
-| :---- | :---- |
-| inScheme | https://w3id.org/xapi/ebook/v1 |
-| prefLabel | コンテンツの表示 |
+| 項目     | 値                                             |
+| :------- | :--------------------------------------------- |
+| id       | https://w3id.org/xapi/ebook/templates/content-rendered |
+| inScheme | https://w3id.org/xapi/ebook/v1                 |
+| prefLabel | コンテンツの表示                             |
 
 #### 4.3.5.2　記述規則（Rules）
-
-1. `$.object.id`
-   1. included
-   2. 表示されたコンテンツのIDまたはURL
-
-#### 4.3.5.3　Markdownテーブル
-
-| 項目説明 | Location | Presence |
-| :--- | :--- | :--- |
-| **コンテンツID** | `$.object.id` | included |
+| 項目     | 説明 | Location | Presence |
+| :------- | :--- | :--- | :--- |
+| **コンテンツID** | 表示されたコンテンツのIDまたはURL | `$.object.id` | included |
 
 ### 4.3.6　コンテンツの非表示
 
@@ -300,22 +261,16 @@
 
 * 表示されていたコンテンツが非表示になったことを記録するためのテンプレート。
 
-| id | https://w3id.org/xapi/ebook/templates/content-hidden |
-| :---- | :---- |
-| inScheme | https://w3id.org/xapi/ebook/v1 |
-| prefLabel | コンテンツの非表示 |
+| 項目     | 値                                             |
+| :------- | :--------------------------------------------- |
+| id       | https://w3id.org/xapi/ebook/templates/content-hidden |
+| inScheme | https://w3id.org/xapi/ebook/v1                 |
+| prefLabel | コンテンツの非表示                           |
 
 #### 4.3.6.2　記述規則（Rules）
-
-1. `$.object.id`
-   1. included
-   2. 非表示になったコンテンツのIDまたはURL
-
-#### 4.3.6.3　Markdownテーブル
-
-| 項目説明 | Location | Presence |
-| :--- | :--- | :--- |
-| **コンテンツID** | `$.object.id` | included |
+| 項目     | 説明 | Location | Presence |
+| :------- | :--- | :--- | :--- |
+| **コンテンツID** | 非表示になったコンテンツのIDまたはURL | `$.object.id` | included |
 
 ### 4.3.7　読書行動
 
@@ -323,41 +278,24 @@
 
 * 学習者がコンテンツ内の特定箇所で意識的な読み取りを行ったことを記録するためのテンプレート。
 
-| id | https://w3id.org/xapi/ebook/templates/reading-paged |
-| :---- | :---- |
-| inScheme | https://w3id.org/xapi/ebook/v1 |
-| prefLabel | 読書行動 |
+| 項目     | 値                                             |
+| :------- | :--------------------------------------------- |
+| id       | https://w3id.org/xapi/ebook/templates/reading-paged |
+| inScheme | https://w3id.org/xapi/ebook/v1                 |
+| prefLabel | 読書行動                                     |
 
-| verb | http://activitystrea.ms/schema/1.0/read |
-| :---- | :---- |
-| objectActivityType | http://activitystrea.ms/schema/1.0/book |
+| 項目              | 値                                        |
+| :---------------- | :----------------------------------------- |
+| verb              | http://activitystrea.ms/schema/1.0/read   |
+| objectActivityType | http://activitystrea.ms/schema/1.0/book   |
 
 #### 4.3.7.2　記述規則（Rules）
-
-1. `$.object.id`
-   1. included
-   2. 読書対象のコンテンツID
-
-2. `$.result.duration`
-   1. included
-   2. 滞在時間（ISO 8601 Duration）
-
-3. `$.context.extensions['https://w3id.org/xapi/ebook/extensions/startPosition']`
-   1. recommended
-   2. 読書開始時点のページ番号
-
-4. `$.result.extensions['https://w3id.org/xapi/ebook/extensions/endPosition']`
-   1. recommended
-   2. 読書終了時点のページ番号
-
-#### 4.3.7.3　Markdownテーブル
-
-| 項目説明 | Location | Presence |
-| :--- | :--- | :--- |
-| **コンテンツID** | `$.object.id` | included |
-| **滞在時間** | `$.result.duration` | included |
-| **開始位置** | `$.context.extensions['https://w3id.org/xapi/ebook/extensions/startPosition']` | recommended |
-| **終了位置** | `$.result.extensions['https://w3id.org/xapi/ebook/extensions/endPosition']` | recommended |
+| 項目     | 説明 | Location | Presence |
+| :------- | :--- | :--- | :--- |
+| **コンテンツID** | 読書対象のコンテンツID | `$.object.id` | included |
+| **滞在時間** | 滞在時間（ISO 8601 Duration） | `$.result.duration` | included |
+| **開始位置** | 読書開始時点のページ番号 | `$.context.extensions['https://w3id.org/xapi/ebook/extensions/startPosition']` | recommended |
+| **終了位置** | 読書終了時点のページ番号 | `$.result.extensions['https://w3id.org/xapi/ebook/extensions/endPosition']` | recommended |
 
 ### 4.3.8　ページ移動
 
@@ -365,41 +303,24 @@
 
 * 学習者がページ移動したことを記録するためのテンプレート。
 
-| id | https://w3id.org/xapi/ebook/templates/progressed-page |
-| :---- | :---- |
-| inScheme | https://w3id.org/xapi/ebook/v1 |
-| prefLabel | ページ移動 |
+| 項目     | 値                                             |
+| :------- | :--------------------------------------------- |
+| id       | https://w3id.org/xapi/ebook/templates/progressed-page |
+| inScheme | https://w3id.org/xapi/ebook/v1                 |
+| prefLabel | ページ移動                                   |
 
-| verb | http://adlnet.gov/expapi/verbs/progressed |
-| :---- | :---- |
-| objectActivityType | http://activitystrea.ms/schema/1.0/page |
+| 項目              | 値                                         |
+| :---------------- | :----------------------------------------- |
+| verb              | http://adlnet.gov/expapi/verbs/progressed  |
+| objectActivityType | http://activitystrea.ms/schema/1.0/page    |
 
 #### 4.3.8.2　記述規則（Rules）
-
-1. `$.object.id`
-   1. included
-   2. ページ移動が行われたコンテンツID
-
-2. `$.context.extensions['https://w3id.org/xapi/ebook/extensions/startPosition']`
-   1. recommended
-   2. ページ移動の起点となったページ番号
-
-3. `$.result.extensions['https://w3id.org/xapi/ebook/extensions/endPosition']`
-   1. included
-   2. ページ移動の到達点となったページ番号
-
-4. `$.result.extensions['https://w3id.org/xapi/ebook/extensions/navigationMethod']`
-   1. recommended
-   2. ページ移動の操作方法（"flick"、"button"、"toc" など）
-
-#### 4.3.8.3　Markdownテーブル
-
-| 項目説明 | Location | Presence |
-| :--- | :--- | :--- |
-| **コンテンツID** | `$.object.id` | included |
-| **移動元位置** | `$.context.extensions['https://w3id.org/xapi/ebook/extensions/startPosition']` | recommended |
-| **移動先位置** | `$.result.extensions['https://w3id.org/xapi/ebook/extensions/endPosition']` | included |
-| **ナビゲーション方法** | `$.result.extensions['https://w3id.org/xapi/ebook/extensions/navigationMethod']` | recommended |
+| 項目     | 説明 | Location | Presence |
+| :------- | :--- | :--- | :--- |
+| **コンテンツID** | ページ移動が行われたコンテンツID | `$.object.id` | included |
+| **移動元位置** | ページ移動の起点となったページ番号 | `$.context.extensions['https://w3id.org/xapi/ebook/extensions/startPosition']` | recommended |
+| **移動先位置** | ページ移動の到達点となったページ番号 | `$.result.extensions['https://w3id.org/xapi/ebook/extensions/endPosition']` | included |
+| **ナビゲーション方法** | ページ移動の操作方法（"flick"、"button"、"toc" など） | `$.result.extensions['https://w3id.org/xapi/ebook/extensions/navigationMethod']` | recommended |
 
 ### 4.3.9　目次移動
 
@@ -407,31 +328,22 @@
 
 * 目次を使用して特定位置へ移動したことを記録するためのテンプレート。
 
-| id | https://w3id.org/xapi/ebook/templates/navigation-toc |
-| :---- | :---- |
-| inScheme | https://w3id.org/xapi/ebook/v1 |
-| prefLabel | 目次移動 |
+| 項目     | 値                                             |
+| :------- | :--------------------------------------------- |
+| id       | https://w3id.org/xapi/ebook/templates/navigation-toc |
+| inScheme | https://w3id.org/xapi/ebook/v1                 |
+| prefLabel | 目次移動                                     |
 
-| verb | http://adlnet.gov/expapi/verbs/progressed |
-| :---- | :---- |
-| objectActivityType | http://activitystrea.ms/schema/1.0/page |
+| 項目              | 値                                         |
+| :---------------- | :----------------------------------------- |
+| verb              | http://adlnet.gov/expapi/verbs/progressed  |
+| objectActivityType | http://activitystrea.ms/schema/1.0/page    |
 
 #### 4.3.9.2　記述規則（Rules）
-
-1. `$.object.id`
-   1. included
-   2. 目次選択により移動したコンテンツID
-
-2. `$.result.extensions['https://w3id.org/xapi/ebook/extensions/endPosition']`
-   1. included
-   2. 移動先のページ番号または位置情報
-
-#### 4.3.9.3　Markdownテーブル
-
-| 項目説明 | Location | Presence |
-| :--- | :--- | :--- |
-| **コンテンツID** | `$.object.id` | included |
-| **移動先位置** | `$.result.extensions['https://w3id.org/xapi/ebook/extensions/endPosition']` | included |
+| 項目     | 説明 | Location | Presence |
+| :------- | :--- | :--- | :--- |
+| **コンテンツID** | 目次選択により移動したコンテンツID | `$.object.id` | included |
+| **移動先位置** | 移動先のページ番号または位置情報 | `$.result.extensions['https://w3id.org/xapi/ebook/extensions/endPosition']` | included |
 
 ### 4.3.10　縦ローリング
 
@@ -439,31 +351,22 @@
 
 * 表示レイアウトを縦置き1ページ表示へ変更したことを記録するためのテンプレート。
 
-| id | https://w3id.org/xapi/ebook/templates/layout-portrait |
-| :---- | :---- |
-| inScheme | https://w3id.org/xapi/ebook/v1 |
-| prefLabel | 縦ローリング |
+| 項目     | 値                                             |
+| :------- | :--------------------------------------------- |
+| id       | https://w3id.org/xapi/ebook/templates/layout-portrait |
+| inScheme | https://w3id.org/xapi/ebook/v1                 |
+| prefLabel | 縦ローリング                                 |
 
-| verb | http://adlnet.gov/expapi/verbs/interacted |
-| :---- | :---- |
-| objectActivityType | https://w3id.org/xapi/ebook/activity-types/settings |
+| 項目              | 値                                                      |
+| :---------------- | :---------------------------------------------------- |
+| verb              | http://adlnet.gov/expapi/verbs/interacted             |
+| objectActivityType | https://w3id.org/xapi/ebook/activity-types/settings   |
 
 #### 4.3.10.2　記述規則（Rules）
-
-1. `$.object.id`
-   1. included
-   2. プラットフォームを識別するIRIまたはURL
-
-2. `$.context.extensions['https://w3id.org/xapi/ebook/extensions/displayOrientation']`
-   1. included
-   2. 画面向き："portrait"
-
-#### 4.3.10.3　Markdownテーブル
-
-| 項目説明 | Location | Presence |
-| :--- | :--- | :--- |
-| **プラットフォームID** | `$.object.id` | included |
-| **画面向き** | `$.context.extensions['https://w3id.org/xapi/ebook/extensions/displayOrientation']` | included |
+| 項目     | 説明 | Location | Presence |
+| :------- | :--- | :--- | :--- |
+| **プラットフォームID** | プラットフォームを識別するIRIまたはURL | `$.object.id` | included |
+| **画面向き** | 画面向き："portrait" | `$.context.extensions['https://w3id.org/xapi/ebook/extensions/displayOrientation']` | included |
 
 ### 4.3.11　横ローリング
 
@@ -471,31 +374,22 @@
 
 * 表示レイアウトを横置き見開き表示へ変更したことを記録するためのテンプレート。
 
-| id | https://w3id.org/xapi/ebook/templates/layout-landscape |
-| :---- | :---- |
-| inScheme | https://w3id.org/xapi/ebook/v1 |
-| prefLabel | 横ローリング |
+| 項目     | 値                                             |
+| :------- | :--------------------------------------------- |
+| id       | https://w3id.org/xapi/ebook/templates/layout-landscape |
+| inScheme | https://w3id.org/xapi/ebook/v1                 |
+| prefLabel | 横ローリング                                 |
 
-| verb | http://adlnet.gov/expapi/verbs/interacted |
-| :---- | :---- |
-| objectActivityType | https://w3id.org/xapi/ebook/activity-types/settings |
+| 項目              | 値                                                      |
+| :---------------- | :---------------------------------------------------- |
+| verb              | http://adlnet.gov/expapi/verbs/interacted             |
+| objectActivityType | https://w3id.org/xapi/ebook/activity-types/settings   |
 
 #### 4.3.11.2　記述規則（Rules）
-
-1. `$.object.id`
-   1. included
-   2. プラットフォームを識別するIRIまたはURL
-
-2. `$.context.extensions['https://w3id.org/xapi/ebook/extensions/displayOrientation']`
-   1. included
-   2. 画面向き："landscape"
-
-#### 4.3.11.3　Markdownテーブル
-
-| 項目説明 | Location | Presence |
-| :--- | :--- | :--- |
-| **プラットフォームID** | `$.object.id` | included |
-| **画面向き** | `$.context.extensions['https://w3id.org/xapi/ebook/extensions/displayOrientation']` | included |
+| 項目     | 説明 | Location | Presence |
+| :------- | :--- | :--- | :--- |
+| **プラットフォームID** | プラットフォームを識別するIRIまたはURL | `$.object.id` | included |
+| **画面向き** | 画面向き："landscape" | `$.context.extensions['https://w3id.org/xapi/ebook/extensions/displayOrientation']` | included |
 
 ### 4.3.12　リフロー遷移
 
@@ -503,36 +397,23 @@
 
 * リフロー画面（テキスト折り返し表示）を使用したことを記録するためのテンプレート。
 
-| id | https://w3id.org/xapi/ebook/templates/reflow-engaged |
-| :---- | :---- |
-| inScheme | https://w3id.org/xapi/ebook/v1 |
-| prefLabel | リフロー遷移 |
+| 項目     | 値                                             |
+| :------- | :--------------------------------------------- |
+| id       | https://w3id.org/xapi/ebook/templates/reflow-engaged |
+| inScheme | https://w3id.org/xapi/ebook/v1                 |
+| prefLabel | リフロー遷移                                 |
 
-| verb | http://adlnet.gov/expapi/verbs/interacted |
-| :---- | :---- |
-| objectActivityType | https://w3id.org/xapi/ebook/activity-types/settings |
+| 項目              | 値                                                      |
+| :---------------- | :---------------------------------------------------- |
+| verb              | http://adlnet.gov/expapi/verbs/interacted             |
+| objectActivityType | https://w3id.org/xapi/ebook/activity-types/settings   |
 
 #### 4.3.12.2　記述規則（Rules）
-
-1. `$.object.id`
-   1. included
-   2. プラットフォームまたはコンテンツページのID
-
-2. `$.result.extensions['https://w3id.org/xapi/ebook/extensions/fontSize']`
-   1. recommended
-   2. リフロー表示での文字サイズ
-
-3. `$.result.extensions['https://w3id.org/xapi/ebook/extensions/lineSpacing']`
-   1. recommended
-   2. リフロー表示での行間
-
-#### 4.3.12.3　Markdownテーブル
-
-| 項目説明 | Location | Presence |
-| :--- | :--- | :--- |
-| **プラットフォーム/コンテンツID** | `$.object.id` | included |
-| **文字サイズ** | `$.result.extensions['https://w3id.org/xapi/ebook/extensions/fontSize']` | recommended |
-| **行間** | `$.result.extensions['https://w3id.org/xapi/ebook/extensions/lineSpacing']` | recommended |
+| 項目     | 説明 | Location | Presence |
+| :------- | :--- | :--- | :--- |
+| **プラットフォーム/コンテンツID** | プラットフォームまたはコンテンツページのID | `$.object.id` | included |
+| **文字サイズ** | リフロー表示での文字サイズ | `$.result.extensions['https://w3id.org/xapi/ebook/extensions/fontSize']` | recommended |
+| **行間** | リフロー表示での行間 | `$.result.extensions['https://w3id.org/xapi/ebook/extensions/lineSpacing']` | recommended |
 
 ### 4.3.13　しおり追加
 
@@ -540,36 +421,23 @@
 
 * 特定箇所にしおりを追加したことを記録するためのテンプレート。
 
-| id | https://w3id.org/xapi/ebook/templates/bookmark-added |
-| :---- | :---- |
-| inScheme | https://w3id.org/xapi/ebook/v1 |
-| prefLabel | しおり追加 |
+| 項目     | 値                                             |
+| :------- | :--------------------------------------------- |
+| id       | https://w3id.org/xapi/ebook/templates/bookmark-added |
+| inScheme | https://w3id.org/xapi/ebook/v1                 |
+| prefLabel | しおり追加                                   |
 
-| verb | https://w3id.org/xapi/adb/verbs/bookmarked |
-| :---- | :---- |
+| 項目              | 値                                         |
+| :---------------- | :----------------------------------------- |
+| verb              | https://w3id.org/xapi/adb/verbs/bookmarked |
 | objectActivityType | http://activitystrea.ms/schema/1.0/bookmark |
 
 #### 4.3.13.2　記述規則（Rules）
-
-1. `$.object.id`
-   1. included
-   2. ブックマーク対象のコンテンツID
-
-2. `$.result.extensions['https://w3id.org/xapi/ebook/extensions/pageNumber']`
-   1. included
-   2. ブックマークを追加したページ番号
-
-3. `$.context.extensions['https://w3id.org/xapi/ebook/extensions/bookmarkId']`
-   1. recommended
-   2. ブックマークをアプリ内で一意に識別するID
-
-#### 4.3.13.3　Markdownテーブル
-
-| 項目説明 | Location | Presence |
-| :--- | :--- | :--- |
-| **コンテンツID** | `$.object.id` | included |
-| **ページ番号** | `$.result.extensions['https://w3id.org/xapi/ebook/extensions/pageNumber']` | included |
-| **ブックマークID** | `$.context.extensions['https://w3id.org/xapi/ebook/extensions/bookmarkId']` | recommended |
+| 項目     | 説明 | Location | Presence |
+| :------- | :--- | :--- | :--- |
+| **コンテンツID** | ブックマーク対象のコンテンツID | `$.object.id` | included |
+| **ページ番号** | ブックマークを追加したページ番号 | `$.result.extensions['https://w3id.org/xapi/ebook/extensions/pageNumber']` | included |
+| **ブックマークID** | ブックマークをアプリ内で一意に識別するID | `$.context.extensions['https://w3id.org/xapi/ebook/extensions/bookmarkId']` | recommended |
 
 ### 4.3.14　しおり削除
 
@@ -577,36 +445,23 @@
 
 * 既存のしおりを削除したことを記録するためのテンプレート。
 
-| id | https://w3id.org/xapi/ebook/templates/bookmark-removed |
-| :---- | :---- |
-| inScheme | https://w3id.org/xapi/ebook/v1 |
-| prefLabel | しおり削除 |
+| 項目     | 値                                             |
+| :------- | :--------------------------------------------- |
+| id       | https://w3id.org/xapi/ebook/templates/bookmark-removed |
+| inScheme | https://w3id.org/xapi/ebook/v1                 |
+| prefLabel | しおり削除                                   |
 
-| verb | http://activitystrea.ms/schema/1.0/delete |
-| :---- | :---- |
+| 項目              | 値                                         |
+| :---------------- | :----------------------------------------- |
+| verb              | http://activitystrea.ms/schema/1.0/delete  |
 | objectActivityType | http://activitystrea.ms/schema/1.0/bookmark |
 
 #### 4.3.14.2　記述規則（Rules）
-
-1. `$.object.id`
-   1. included
-   2. 削除対象のブックマークが紐づくコンテンツID
-
-2. `$.context.extensions['https://w3id.org/xapi/ebook/extensions/bookmarkId']`
-   1. included
-   2. 削除対象のブックマークID
-
-3. `$.result.extensions['https://w3id.org/xapi/ebook/extensions/pageNumber']`
-   1. recommended
-   2. しおりが紐づいていたページ番号
-
-#### 4.3.14.3　Markdownテーブル
-
-| 項目説明 | Location | Presence |
-| :--- | :--- | :--- |
-| **コンテンツID** | `$.object.id` | included |
-| **ブックマークID** | `$.context.extensions['https://w3id.org/xapi/ebook/extensions/bookmarkId']` | included |
-| **ページ番号** | `$.result.extensions['https://w3id.org/xapi/ebook/extensions/pageNumber']` | recommended |
+| 項目     | 説明 | Location | Presence |
+| :------- | :--- | :--- | :--- |
+| **コンテンツID** | 削除対象のブックマークが紐づくコンテンツID | `$.object.id` | included |
+| **ブックマークID** | 削除対象のブックマークID | `$.context.extensions['https://w3id.org/xapi/ebook/extensions/bookmarkId']` | included |
+| **ページ番号** | しおりが紐づいていたページ番号 | `$.result.extensions['https://w3id.org/xapi/ebook/extensions/pageNumber']` | recommended |
 
 ### 4.3.15　ペン書き込み
 
@@ -614,41 +469,24 @@
 
 * ペン機能で手書き線・文字を書き込んだことを記録するためのテンプレート。
 
-| id | https://w3id.org/xapi/ebook/templates/pen-annotation |
-| :---- | :---- |
-| inScheme | https://w3id.org/xapi/ebook/v1 |
-| prefLabel | ペン書き込み |
+| 項目     | 値                                             |
+| :------- | :--------------------------------------------- |
+| id       | https://w3id.org/xapi/ebook/templates/pen-annotation |
+| inScheme | https://w3id.org/xapi/ebook/v1                 |
+| prefLabel | ペン書き込み                                 |
 
-| verb | https://w3id.org/xapi/adb/verbs/noted |
-| :---- | :---- |
-| objectActivityType | http://activitystrea.ms/schema/1.0/note |
+| 項目              | 値                                         |
+| :---------------- | :----------------------------------------- |
+| verb              | https://w3id.org/xapi/adb/verbs/noted      |
+| objectActivityType | http://activitystrea.ms/schema/1.0/note   |
 
 #### 4.3.15.2　記述規則（Rules）
-
-1. `$.object.id`
-   1. included
-   2. ペン書き込みが行われたコンテンツID
-
-2. `$.context.extensions['https://w3id.org/xapi/ebook/extensions/annotationTool']`
-   1. included
-   2. 使用されたツール種別 ("pen" など)
-
-3. `$.result.extensions['https://w3id.org/xapi/ebook/extensions/pageNumber']`
-   1. included
-   2. 書き込みが行われたページ番号
-
-4. `$.result.extensions['https://w3id.org/xapi/ebook/extensions/targetLocation']`
-   1. recommended
-   2. ページ内の書き込み位置情報
-
-#### 4.3.15.3　Markdownテーブル
-
-| 項目説明 | Location | Presence |
-| :--- | :--- | :--- |
-| **コンテンツID** | `$.object.id` | included |
-| **ツール種別** | `$.context.extensions['https://w3id.org/xapi/ebook/extensions/annotationTool']` | included |
-| **ページ番号** | `$.result.extensions['https://w3id.org/xapi/ebook/extensions/pageNumber']` | included |
-| **位置情報** | `$.result.extensions['https://w3id.org/xapi/ebook/extensions/targetLocation']` | recommended |
+| 項目     | 説明 | Location | Presence |
+| :------- | :--- | :--- | :--- |
+| **コンテンツID** | ペン書き込みが行われたコンテンツID | `$.object.id` | included |
+| **ツール種別** | 使用されたツール種別 ("pen" など) | `$.context.extensions['https://w3id.org/xapi/ebook/extensions/annotationTool']` | included |
+| **ページ番号** | 書き込みが行われたページ番号 | `$.result.extensions['https://w3id.org/xapi/ebook/extensions/pageNumber']` | included |
+| **位置情報** | ページ内の書き込み位置情報 | `$.result.extensions['https://w3id.org/xapi/ebook/extensions/targetLocation']` | recommended |
 
 ### 4.3.16　ペン書き込み削除
 
@@ -656,41 +494,24 @@
 
 * ペン書き込みを削除したことを記録するためのテンプレート。
 
-| id | https://w3id.org/xapi/ebook/templates/pen-annotation-removed |
-| :---- | :---- |
-| inScheme | https://w3id.org/xapi/ebook/v1 |
-| prefLabel | ペン書き込み削除 |
+| 項目     | 値                                             |
+| :------- | :--------------------------------------------- |
+| id       | https://w3id.org/xapi/ebook/templates/pen-annotation-removed |
+| inScheme | https://w3id.org/xapi/ebook/v1                 |
+| prefLabel | ペン書き込み削除                             |
 
-| verb | http://activitystrea.ms/schema/1.0/delete |
-| :---- | :---- |
-| objectActivityType | http://activitystrea.ms/schema/1.0/note |
+| 項目              | 値                                         |
+| :---------------- | :----------------------------------------- |
+| verb              | http://activitystrea.ms/schema/1.0/delete  |
+| objectActivityType | http://activitystrea.ms/schema/1.0/note    |
 
 #### 4.3.16.2　記述規則（Rules）
-
-1. `$.object.id`
-   1. included
-   2. 削除対象の書き込みが紐づくコンテンツID
-
-2. `$.context.extensions['https://w3id.org/xapi/ebook/extensions/annotationTool']`
-   1. included
-   2. 削除対象のツール種別 ("pen" など)
-
-3. `$.result.extensions['https://w3id.org/xapi/ebook/extensions/pageNumber']`
-   1. recommended
-   2. 削除対象の書き込みがあったページ番号
-
-4. `$.result.extensions['https://w3id.org/xapi/ebook/extensions/targetLocation']`
-   1. recommended
-   2. 削除対象の書き込み位置情報
-
-#### 4.3.16.3　Markdownテーブル
-
-| 項目説明 | Location | Presence |
-| :--- | :--- | :--- |
-| **コンテンツID** | `$.object.id` | included |
-| **ツール種別** | `$.context.extensions['https://w3id.org/xapi/ebook/extensions/annotationTool']` | included |
-| **ページ番号** | `$.result.extensions['https://w3id.org/xapi/ebook/extensions/pageNumber']` | recommended |
-| **位置情報** | `$.result.extensions['https://w3id.org/xapi/ebook/extensions/targetLocation']` | recommended |
+| 項目     | 説明 | Location | Presence |
+| :------- | :--- | :--- | :--- |
+| **コンテンツID** | 削除対象の書き込みが紐づくコンテンツID | `$.object.id` | included |
+| **ツール種別** | 削除対象のツール種別 ("pen" など) | `$.context.extensions['https://w3id.org/xapi/ebook/extensions/annotationTool']` | included |
+| **ページ番号** | 削除対象の書き込みがあったページ番号 | `$.result.extensions['https://w3id.org/xapi/ebook/extensions/pageNumber']` | recommended |
+| **位置情報** | 削除対象の書き込み位置情報 | `$.result.extensions['https://w3id.org/xapi/ebook/extensions/targetLocation']` | recommended |
 
 ### 4.3.17　線分書き込み
 
@@ -698,41 +519,24 @@
 
 * 線分書き込み機能で線を書き込んだことを記録するためのテンプレート。
 
-| id | https://w3id.org/xapi/ebook/templates/line-annotation |
-| :---- | :---- |
-| inScheme | https://w3id.org/xapi/ebook/v1 |
-| prefLabel | 線分書き込み |
+| 項目     | 値                                             |
+| :------- | :--------------------------------------------- |
+| id       | https://w3id.org/xapi/ebook/templates/line-annotation |
+| inScheme | https://w3id.org/xapi/ebook/v1                 |
+| prefLabel | 線分書き込み                                 |
 
-| verb | https://w3id.org/xapi/adb/verbs/noted |
-| :---- | :---- |
-| objectActivityType | http://activitystrea.ms/schema/1.0/note |
+| 項目              | 値                                         |
+| :---------------- | :----------------------------------------- |
+| verb              | https://w3id.org/xapi/adb/verbs/noted      |
+| objectActivityType | http://activitystrea.ms/schema/1.0/note    |
 
 #### 4.3.17.2　記述規則（Rules）
-
-1. `$.object.id`
-   1. included
-   2. 書き込みが行われたコンテンツID
-
-2. `$.context.extensions['https://w3id.org/xapi/ebook/extensions/annotationTool']`
-   1. included
-   2. 使用されたツール種別 ("line" など)
-
-3. `$.result.extensions['https://w3id.org/xapi/ebook/extensions/pageNumber']`
-   1. included
-   2. 線分が描画されたページ番号
-
-4. `$.result.extensions['https://w3id.org/xapi/ebook/extensions/targetLocation']`
-   1. recommended
-   2. 線分の描画位置情報（始点・終点座標など）
-
-#### 4.3.17.3　Markdownテーブル
-
-| 項目説明 | Location | Presence |
-| :--- | :--- | :--- |
-| **コンテンツID** | `$.object.id` | included |
-| **ツール種別** | `$.context.extensions['https://w3id.org/xapi/ebook/extensions/annotationTool']` | included |
-| **ページ番号** | `$.result.extensions['https://w3id.org/xapi/ebook/extensions/pageNumber']` | included |
-| **位置情報** | `$.result.extensions['https://w3id.org/xapi/ebook/extensions/targetLocation']` | recommended |
+| 項目     | 説明 | Location | Presence |
+| :------- | :--- | :--- | :--- |
+| **コンテンツID** | 書き込みが行われたコンテンツID | `$.object.id` | included |
+| **ツール種別** | 使用されたツール種別 ("line" など) | `$.context.extensions['https://w3id.org/xapi/ebook/extensions/annotationTool']` | included |
+| **ページ番号** | 線分が描画されたページ番号 | `$.result.extensions['https://w3id.org/xapi/ebook/extensions/pageNumber']` | included |
+| **位置情報** | 線分の描画位置情報（始点・終点座標など） | `$.result.extensions['https://w3id.org/xapi/ebook/extensions/targetLocation']` | recommended |
 
 ### 4.3.18　線分書き込み削除
 
@@ -740,41 +544,24 @@
 
 * 線分書き込みを削除したことを記録するためのテンプレート。
 
-| id | https://w3id.org/xapi/ebook/templates/line-annotation-removed |
-| :---- | :---- |
-| inScheme | https://w3id.org/xapi/ebook/v1 |
-| prefLabel | 線分書き込み削除 |
+| 項目     | 値                                             |
+| :------- | :--------------------------------------------- |
+| id       | https://w3id.org/xapi/ebook/templates/line-annotation-removed |
+| inScheme | https://w3id.org/xapi/ebook/v1                 |
+| prefLabel | 線分書き込み削除                             |
 
-| verb | http://activitystrea.ms/schema/1.0/delete |
-| :---- | :---- |
-| objectActivityType | http://activitystrea.ms/schema/1.0/note |
+| 項目              | 値                                         |
+| :---------------- | :----------------------------------------- |
+| verb              | http://activitystrea.ms/schema/1.0/delete  |
+| objectActivityType | http://activitystrea.ms/schema/1.0/note    |
 
 #### 4.3.18.2　記述規則（Rules）
-
-1. `$.object.id`
-   1. included
-   2. 削除対象の書き込みが紐づくコンテンツID
-
-2. `$.context.extensions['https://w3id.org/xapi/ebook/extensions/annotationTool']`
-   1. included
-   2. 削除対象のツール種別 ("line" など)
-
-3. `$.result.extensions['https://w3id.org/xapi/ebook/extensions/pageNumber']`
-   1. included
-   2. 削除対象があったページ番号
-
-4. `$.result.extensions['https://w3id.org/xapi/ebook/extensions/targetLocation']`
-   1. recommended
-   2. 削除対象の描画位置情報
-
-#### 4.3.18.3　Markdownテーブル
-
-| 項目説明 | Location | Presence |
-| :--- | :--- | :--- |
-| **コンテンツID** | `$.object.id` | included |
-| **ツール種別** | `$.context.extensions['https://w3id.org/xapi/ebook/extensions/annotationTool']` | included |
-| **ページ番号** | `$.result.extensions['https://w3id.org/xapi/ebook/extensions/pageNumber']` | included |
-| **位置情報** | `$.result.extensions['https://w3id.org/xapi/ebook/extensions/targetLocation']` | recommended |
+| 項目     | 説明 | Location | Presence |
+| :------- | :--- | :--- | :--- |
+| **コンテンツID** | 削除対象の書き込みが紐づくコンテンツID | `$.object.id` | included |
+| **ツール種別** | 削除対象のツール種別 ("line" など) | `$.context.extensions['https://w3id.org/xapi/ebook/extensions/annotationTool']` | included |
+| **ページ番号** | 削除対象があったページ番号 | `$.result.extensions['https://w3id.org/xapi/ebook/extensions/pageNumber']` | included |
+| **位置情報** | 削除対象の描画位置情報 | `$.result.extensions['https://w3id.org/xapi/ebook/extensions/targetLocation']` | recommended |
 
 ### 4.3.19　一括削除
 
@@ -782,31 +569,22 @@
 
 * 全ての書き込みを一括削除したことを記録するためのテンプレート。
 
-| id | https://w3id.org/xapi/ebook/templates/all-annotations-cleared |
-| :---- | :---- |
-| inScheme | https://w3id.org/xapi/ebook/v1 |
-| prefLabel | 一括削除 |
+| 項目     | 値                                             |
+| :------- | :--------------------------------------------- |
+| id       | https://w3id.org/xapi/ebook/templates/all-annotations-cleared |
+| inScheme | https://w3id.org/xapi/ebook/v1                 |
+| prefLabel | 一括削除                                     |
 
-| verb | http://activitystrea.ms/schema/1.0/delete |
-| :---- | :---- |
-| objectActivityType | http://activitystrea.ms/schema/1.0/note |
+| 項目              | 値                                         |
+| :---------------- | :----------------------------------------- |
+| verb              | http://activitystrea.ms/schema/1.0/delete  |
+| objectActivityType | http://activitystrea.ms/schema/1.0/note    |
 
 #### 4.3.19.2　記述規則（Rules）
-
-1. `$.object.id`
-   1. included
-   2. 一括削除対象となったコンテンツID
-
-2. `$.context.extensions['https://w3id.org/xapi/ebook/extensions/pageNumber']`
-   1. included
-   2. 削除対象があったページ番号
-
-#### 4.3.19.3　Markdownテーブル
-
-| 項目説明 | Location | Presence |
-| :--- | :--- | :--- |
-| **コンテンツID** | `$.object.id` | included |
-| **ページ番号** | `$.context.extensions['https://w3id.org/xapi/ebook/extensions/pageNumber']` | included |
+| 項目     | 説明 | Location | Presence |
+| :------- | :--- | :--- | :--- |
+| **コンテンツID** | 一括削除対象となったコンテンツID | `$.object.id` | included |
+| **ページ番号** | 削除対象があったページ番号 | `$.context.extensions['https://w3id.org/xapi/ebook/extensions/pageNumber']` | included |
 
 ### 4.3.20　拡大
 
@@ -814,36 +592,23 @@
 
 * 表示倍率の拡大を記録するためのテンプレート。
 
-| id | https://w3id.org/xapi/ebook/templates/zoom-in |
-| :---- | :---- |
-| inScheme | https://w3id.org/xapi/ebook/v1 |
-| prefLabel | 拡大 |
+| 項目     | 値                                             |
+| :------- | :--------------------------------------------- |
+| id       | https://w3id.org/xapi/ebook/templates/zoom-in |
+| inScheme | https://w3id.org/xapi/ebook/v1                 |
+| prefLabel | 拡大                                         |
 
-| verb | http://adlnet.gov/expapi/verbs/interacted |
-| :---- | :---- |
-| objectActivityType | https://w3id.org/xapi/ebook/activity-types/settings |
+| 項目              | 値                                                      |
+| :---------------- | :---------------------------------------------------- |
+| verb              | http://adlnet.gov/expapi/verbs/interacted             |
+| objectActivityType | https://w3id.org/xapi/ebook/activity-types/settings   |
 
 #### 4.3.20.2　記述規則（Rules）
-
-1. `$.object.id`
-   1. included
-   2. 操作が行われたコンテンツID
-
-2. `$.context.extensions['https://w3id.org/xapi/ebook/extensions/pageNumber']`
-   1. included
-   2. 拡大操作時の表示ページ番号
-
-3. `$.result.extensions['https://w3id.org/xapi/ebook/extensions/zoomLevel']`
-   1. included
-   2. 拡大後のズームレベル
-
-#### 4.3.20.3　Markdownテーブル
-
-| 項目説明 | Location | Presence |
-| :--- | :--- | :--- |
-| **コンテンツID** | `$.object.id` | included |
-| **ページ番号** | `$.context.extensions['https://w3id.org/xapi/ebook/extensions/pageNumber']` | included |
-| **ズームレベル** | `$.result.extensions['https://w3id.org/xapi/ebook/extensions/zoomLevel']` | included |
+| 項目     | 説明 | Location | Presence |
+| :------- | :--- | :--- | :--- |
+| **コンテンツID** | 操作が行われたコンテンツID | `$.object.id` | included |
+| **ページ番号** | 拡大操作時の表示ページ番号 | `$.context.extensions['https://w3id.org/xapi/ebook/extensions/pageNumber']` | included |
+| **ズームレベル** | 拡大後のズームレベル | `$.result.extensions['https://w3id.org/xapi/ebook/extensions/zoomLevel']` | included |
 
 ### 4.3.21　縮小
 
@@ -851,36 +616,23 @@
 
 * 表示倍率の縮小を記録するためのテンプレート。
 
-| id | https://w3id.org/xapi/ebook/templates/zoom-out |
-| :---- | :---- |
-| inScheme | https://w3id.org/xapi/ebook/v1 |
-| prefLabel | 縮小 |
+| 項目     | 値                                             |
+| :------- | :--------------------------------------------- |
+| id       | https://w3id.org/xapi/ebook/templates/zoom-out |
+| inScheme | https://w3id.org/xapi/ebook/v1                 |
+| prefLabel | 縮小                                         |
 
-| verb | http://adlnet.gov/expapi/verbs/interacted |
-| :---- | :---- |
-| objectActivityType | https://w3id.org/xapi/ebook/activity-types/settings |
+| 項目              | 値                                                      |
+| :---------------- | :---------------------------------------------------- |
+| verb              | http://adlnet.gov/expapi/verbs/interacted             |
+| objectActivityType | https://w3id.org/xapi/ebook/activity-types/settings   |
 
 #### 4.3.21.2　記述規則（Rules）
-
-1. `$.object.id`
-   1. included
-   2. 操作が行われたコンテンツID
-
-2. `$.context.extensions['https://w3id.org/xapi/ebook/extensions/pageNumber']`
-   1. included
-   2. 縮小操作時の表示ページ番号
-
-3. `$.result.extensions['https://w3id.org/xapi/ebook/extensions/zoomLevel']`
-   1. included
-   2. 縮小後のズームレベル
-
-#### 4.3.21.3　Markdownテーブル
-
-| 項目説明 | Location | Presence |
-| :--- | :--- | :--- |
-| **コンテンツID** | `$.object.id` | included |
-| **ページ番号** | `$.context.extensions['https://w3id.org/xapi/ebook/extensions/pageNumber']` | included |
-| **ズームレベル** | `$.result.extensions['https://w3id.org/xapi/ebook/extensions/zoomLevel']` | included |
+| 項目     | 説明 | Location | Presence |
+| :------- | :--- | :--- | :--- |
+| **コンテンツID** | 操作が行われたコンテンツID | `$.object.id` | included |
+| **ページ番号** | 縮小操作時の表示ページ番号 | `$.context.extensions['https://w3id.org/xapi/ebook/extensions/pageNumber']` | included |
+| **ズームレベル** | 縮小後のズームレベル | `$.result.extensions['https://w3id.org/xapi/ebook/extensions/zoomLevel']` | included |
 
 ### 4.3.22　背景色の変更
 
@@ -888,36 +640,23 @@
 
 * 背景色変更を記録するためのテンプレート。
 
-| id | https://w3id.org/xapi/ebook/templates/background-color-changed |
-| :---- | :---- |
-| inScheme | https://w3id.org/xapi/ebook/v1 |
-| prefLabel | 背景色の変更 |
+| 項目     | 値                                             |
+| :------- | :--------------------------------------------- |
+| id       | https://w3id.org/xapi/ebook/templates/background-color-changed |
+| inScheme | https://w3id.org/xapi/ebook/v1                 |
+| prefLabel | 背景色の変更                                 |
 
-| verb | http://adlnet.gov/expapi/verbs/interacted |
-| :---- | :---- |
-| objectActivityType | https://w3id.org/xapi/ebook/activity-types/settings |
+| 項目              | 値                                                      |
+| :---------------- | :---------------------------------------------------- |
+| verb              | http://adlnet.gov/expapi/verbs/interacted             |
+| objectActivityType | https://w3id.org/xapi/ebook/activity-types/settings   |
 
 #### 4.3.22.2　記述規則（Rules）
-
-1. `$.object.id`
-   1. included
-   2. 変更が行われたコンテンツID
-
-2. `$.context.extensions['https://w3id.org/xapi/ebook/extensions/pageNumber']`
-   1. included
-   2. 変更時の表示ページ番号
-
-3. `$.result.extensions['https://w3id.org/xapi/ebook/extensions/backgroundColor']`
-   1. included
-   2. 変更後の背景色
-
-#### 4.3.22.3　Markdownテーブル
-
-| 項目説明 | Location | Presence |
-| :--- | :--- | :--- |
-| **コンテンツID** | `$.object.id` | included |
-| **ページ番号** | `$.context.extensions['https://w3id.org/xapi/ebook/extensions/pageNumber']` | included |
-| **背景色** | `$.result.extensions['https://w3id.org/xapi/ebook/extensions/backgroundColor']` | included |
+| 項目     | 説明 | Location | Presence |
+| :------- | :--- | :--- | :--- |
+| **コンテンツID** | 変更が行われたコンテンツID | `$.object.id` | included |
+| **ページ番号** | 変更時の表示ページ番号 | `$.context.extensions['https://w3id.org/xapi/ebook/extensions/pageNumber']` | included |
+| **背景色** | 変更後の背景色 | `$.result.extensions['https://w3id.org/xapi/ebook/extensions/backgroundColor']` | included |
 
 ### 4.3.23　文字色の変更
 
@@ -925,33 +664,20 @@
 
 * 文字色変更を記録するためのテンプレート。
 
-| id | https://w3id.org/xapi/ebook/templates/font-color-changed |
-| :---- | :---- |
-| inScheme | https://w3id.org/xapi/ebook/v1 |
-| prefLabel | 文字色の変更 |
+| 項目     | 値                                             |
+| :------- | :--------------------------------------------- |
+| id       | https://w3id.org/xapi/ebook/templates/font-color-changed |
+| inScheme | https://w3id.org/xapi/ebook/v1                 |
+| prefLabel | 文字色の変更                                 |
 
-| verb | http://adlnet.gov/expapi/verbs/interacted |
-| :---- | :---- |
-| objectActivityType | https://w3id.org/xapi/ebook/activity-types/settings |
+| 項目              | 値                                                      |
+| :---------------- | :---------------------------------------------------- |
+| verb              | http://adlnet.gov/expapi/verbs/interacted             |
+| objectActivityType | https://w3id.org/xapi/ebook/activity-types/settings   |
 
 #### 4.3.23.2　記述規則（Rules）
-
-1. `$.object.id`
-   1. included
-   2. 変更が行われたコンテンツID
-
-2. `$.context.extensions['https://w3id.org/xapi/ebook/extensions/pageNumber']`
-   1. included
-   2. 変更時の表示ページ番号
-
-3. `$.result.extensions['https://w3id.org/xapi/ebook/extensions/fontColor']`
-   1. included
-   2. 変更後の文字色
-
-#### 4.3.23.3　Markdownテーブル
-
-| 項目説明 | Location | Presence |
-| :--- | :--- | :--- |
-| **コンテンツID** | `$.object.id` | included |
-| **ページ番号** | `$.context.extensions['https://w3id.org/xapi/ebook/extensions/pageNumber']` | included |
-| **文字色** | `$.result.extensions['https://w3id.org/xapi/ebook/extensions/fontColor']` | included |
+| 項目     | 説明 | Location | Presence |
+| :------- | :--- | :--- | :--- |
+| **コンテンツID** | 変更が行われたコンテンツID | `$.object.id` | included |
+| **ページ番号** | 変更時の表示ページ番号 | `$.context.extensions['https://w3id.org/xapi/ebook/extensions/pageNumber']` | included |
+| **文字色** | 変更後の文字色 | `$.result.extensions['https://w3id.org/xapi/ebook/extensions/fontColor']` | included |

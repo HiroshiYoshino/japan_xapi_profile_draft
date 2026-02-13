@@ -61,31 +61,31 @@
 | 作成者/管理者 author     | プロファイルの作成者や責任者           | ICT CONNECT 21 xAPI SWG                                              |
 | 作成日/更新日 versions   | 文書化日または改訂日                   | 2026-04-01                                                           |
 | 言語 languages           | メタ情報およびプロファイルの記載言語   | 日本語                                                               |
-| 目的/説明 definition     | プロファイルが対象とする学習ログや用途 | 日本の初等中等教育におけるグループ学習支援ツールログ標準プロファイル |
+| 目的/説明 definition     | プロファイルが対象とする学習ログや用途 | 日本の初等中等教育におけるグループ学習支援ツールログのプロファイル |
 | ドキュメントバージョン   | 文書版数                               | 2026年度版                                                           |
 
 ## 2.3　共通記述規則
 
 　本プロファイルで定義するすべてのStatementTemplateに対して、以下のRulesを適用する。
 
-| 項目説明 (Description / ScopeNote)   | Location (JSONPath)                        | Presence    |
-| :----------------------------------- | :----------------------------------------- | :---------- |
-| **ステートメントID**                 | `$.id`                                     | included    |
-| **タイムスタンプ**                   | `$.timestamp`                              | included    |
-| **アクター**                         | `$.actor`                                  | included    |
-| **アクターのオブジェクトタイプ**     | `$.actor.objectType`                       | included    |
+| 項目                               | Location (JSONPath)                        | Presence    |
+| :--------------------------------- | :----------------------------------------- | :---------- |
+| **ステートメントID**               | `$.id`                                     | included    |
+| **タイムスタンプ**                 | `$.timestamp`                              | included    |
+| **アクター**                       | `$.actor`                                  | included    |
+| **アクターのオブジェクトタイプ**   | `$.actor.objectType`                       | included    |
 | **アクターのアカウントホームページ** | `$.actor.account.homePage`                 | included    |
-| **アクターのアカウント名**           | `$.actor.account.name`                     | included    |
-| **動詞の表示名(英語)**               | `$.verb.display.en`                        | included    |
+| **アクターのアカウント名**         | `$.actor.account.name`                     | included    |
+| **動詞の表示名(英語)**             | `$.verb.display.en`                        | included    |
 | **オブジェクトのオブジェクトタイプ** | `$.object.objectType`                      | included    |
-| **オブジェクトID**                   | `$.object.id`                              | included    |
-| **オブジェクト定義のタイプ**         | `$.object.definition.type`                 | included    |
-| **オブジェクト定義の名称(日本語)**   | `$.object.definition.name['ja-JP']`        | recommended |
-| **オブジェクト定義の説明(日本語)**   | `$.object.definition.description['ja-JP']` | recommended |
-| **コンテキスト**                     | `$.context`                                | included    |
-| **コンテキストの言語**               | `$.context.language`                       | included    |
-| **コンテキストのプラットフォーム**   | `$.context.platform`                       | included    |
-| **プロファイルバージョン**           | `$.version`                                | included    |
+| **オブジェクトID**                 | `$.object.id`                              | included    |
+| **オブジェクト定義のタイプ**       | `$.object.definition.type`                 | included    |
+| **オブジェクト定義の名称(日本語)** | `$.object.definition.name['ja-JP']`        | recommended |
+| **オブジェクト定義の説明(日本語)** | `$.object.definition.description['ja-JP']` | recommended |
+| **コンテキスト**                   | `$.context`                                | included    |
+| **コンテキストの言語**             | `$.context.language`                       | included    |
+| **コンテキストのプラットフォーム** | `$.context.platform`                       | included    |
+| **プロファイルバージョン**         | `$.version`                                | included    |
 
 # 3. グループ学習に関するユースケース
 
@@ -128,26 +128,24 @@
 - グループ学習支援ツールがシステムとして起動されたことを記録するためのテンプレート。
 - 識別情報
 
-| id        | https://w3id.org/japan-xapi/templates/group-lst/tool-launched |
-| :-------- | :--------------------------------------------------------------- |
-| inScheme  | https://w3id.org/japan-xapi/profiles/group-lst/v1.0.0           |
-| prefLabel | ツールの起動                                              |
+| 項目     | 値                                                           |
+| :------- | :------------------------------------------------------------ |
+| id       | https://w3id.org/japan-xapi/templates/group-lst/tool-launched |
+| inScheme | https://w3id.org/japan-xapi/profiles/group-lst/v1.0.0         |
+| prefLabel | ツールの起動                                                |
 
 - 判定条件
 
-| verb               | https://w3id.org/xapi/adl/verbs/launched               |
-| :----------------- | :------------------------------------------------------ |
+| 項目              | 値                                                          |
+| :---------------- | :--------------------------------------------------------- |
+| verb              | https://w3id.org/xapi/adl/verbs/launched                  |
 | objectActivityType | https://w3id.org/japan-xapi/activity-types/group-lst/tool |
 
 #### 4.3.1.2　記述規則（Rules）
 
-なし。共通記述規則に準拠する。
-
-#### 4.3.1.3　Markdownテーブル
-
-| 項目説明 (Description / ScopeNote)                     | Location (JSONPath) | Presence |
-| :----------------------------------------------------- | :------------------ | :------- |
-| **ツールID**<br>起動したツールを識別するIRIまたはURL。 | `$.object.id`       | included |
+| 項目     | 説明                               | Location (JSONPath) | Presence |
+| :------- | :--------------------------------- | :------------------ | :------- |
+| **ツールID** | 起動したツールを識別するIRIまたはURL。 | `$.object.id`       | included |
 
 ### 4.3.2　ツール内でのコンテンツ利用開始
 
@@ -156,28 +154,26 @@
 - ツール内の特定コンテンツ（スライド等）の利用を開始したことを記録するためのテンプレート。
 - 識別情報
 
-| id        | https://w3id.org/japan-xapi/templates/group-lst/content-launched |
-| :-------- | :--------------------------------------------------------------- |
-| inScheme  | https://w3id.org/japan-xapi/profiles/group-lst/v1.0.0            |
+| 項目     | 値                                                               |
+| :------- | :--------------------------------------------------------------- |
+| id       | https://w3id.org/japan-xapi/templates/group-lst/content-launched |
+| inScheme | https://w3id.org/japan-xapi/profiles/group-lst/v1.0.0            |
 | prefLabel | ツール内でのコンテンツ利用開始                               |
 
 - 判定条件
 
-| verb               | https://w3id.org/xapi/adl/verbs/launched   |
-| :----------------- | :----------------------------------------- |
+| 項目              | 値                                         |
+| :---------------- | :----------------------------------------- |
+| verb              | https://w3id.org/xapi/adl/verbs/launched   |
 | objectActivityType | http://id.tincanapi.com/activitytype/slide |
 
 #### 4.3.2.2　記述規則（Rules）
 
-なし。共通記述規則に準拠する。
-
-#### 4.3.2.3　Markdownテーブル
-
-| 項目説明 (Description / ScopeNote)                                   | Location (JSONPath) | Presence |
-| :------------------------------------------------------------------- | :------------------ | :------- |
-| **動詞の表示名(英語)**<br>launched                                   | `$.verb.display.en` | included |
-| **オブジェクトのオブジェクトタイプ**<br>Slide等のコンテンツ           | `$.object.objectType` | included |
-| **オブジェクトID**<br>コンテンツを一意に識別するID                    | `$.object.id` | included |
+| 項目     | 説明                               | Location (JSONPath) | Presence |
+| :------- | :--------------------------------- | :------------------ | :------- |
+| **動詞の表示名(英語)** | launched                         | `$.verb.display.en` | included |
+| **オブジェクトのオブジェクトタイプ** | Slide等のコンテンツ           | `$.object.objectType` | included |
+| **オブジェクトID** | コンテンツを一意に識別するID                    | `$.object.id` | included |
 
 ### 4.3.3　オブジェクトの作成
 
@@ -186,28 +182,24 @@
 - コンテンツ内でテキストや図形を作成したことを記録するためのテンプレート。
 - 識別情報
 
-| id        | https://w3id.org/japan-xapi/templates/group-lst/object-created |
-| :-------- | :-------------------------------------------------------------- |
-| inScheme  | https://w3id.org/japan-xapi/profiles/group-lst/v1.0.0          |
-| prefLabel | オブジェクトの作成                                         |
+| 項目     | 値                                                              |
+| :------- | :-------------------------------------------------------------- |
+| id       | https://w3id.org/japan-xapi/templates/group-lst/object-created |
+| inScheme | https://w3id.org/japan-xapi/profiles/group-lst/v1.0.0          |
+| prefLabel | オブジェクトの作成                                          |
 
 - 判定条件
 
-| verb               | https://w3id.org/xapi/scrapbook/verbs/created |
-| :----------------- | :-------------------------------------------- |
+| 項目              | 値                                          |
+| :---------------- | :-------------------------------------------- |
+| verb              | https://w3id.org/xapi/scrapbook/verbs/created |
 | objectActivityType | http://id.tincanapi.com/activitytype/slide    |
 
 #### 4.3.3.2　記述規則（Rules）
 
-1. $.object.definition.extensions['https://w3id.org/japan-xapi/extensions/scrapbook-item-type']
-   1. recommended
-   2. 作成されたオブジェクトの種類（text, shape等） (Core Profile参照)
-
-#### 4.3.3.3　Markdownテーブル
-
-| 項目説明 (Description / ScopeNote)                                      | Location (JSONPath)                                                                            | Presence    |
-| :---------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------- | :---------- |
-| **オブジェクト種類**<br>作成されたオブジェクトの種類（text, shape等）。 | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/scrapbook-item-type']` | recommended |
+| 項目     | 説明                                       | Location (JSONPath)                                                                            | Presence    |
+| :------- | :----------------------------------------- | :--------------------------------------------------------------------------------------------- | :---------- |
+| **オブジェクト種類** | 作成されたオブジェクトの種類（text, shape等）。 | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/scrapbook-item-type']` | recommended |
 
 ### 4.3.4　議論スレッドの作成
 
@@ -216,28 +208,26 @@
 - 議論のためのスレッドを作成したことを記録するためのテンプレート。
 - 識別情報
 
-| id        | https://w3id.org/japan-xapi/templates/group-lst/discussion-created |
-| :-------- | :-------------------------------------------------------------------- |
-| inScheme  | https://w3id.org/japan-xapi/profiles/group-lst/v1.0.0              |
+| 項目     | 値                                                                  |
+| :------- | :------------------------------------------------------------------ |
+| id       | https://w3id.org/japan-xapi/templates/group-lst/discussion-created |
+| inScheme | https://w3id.org/japan-xapi/profiles/group-lst/v1.0.0              |
 | prefLabel | 議論スレッドの作成                                             |
 
 - 判定条件
 
-| verb               | http://activitystrea.ms/create                  |
-| :----------------- | :---------------------------------------------- |
+| 項目              | 値                                              |
+| :---------------- | :---------------------------------------------- |
+| verb              | http://activitystrea.ms/create                  |
 | objectActivityType | http://id.tincanapi.com/activitytype/discussion |
 
 #### 4.3.4.2　記述規則（Rules）
 
-なし。共通記述規則に準拠する。
-
-#### 4.3.4.3　Markdownテーブル
-
-| 項目説明 (Description / ScopeNote)                                   | Location (JSONPath) | Presence |
-| :------------------------------------------------------------------- | :------------------ | :------- |
-| **動詞の表示名(英語)**<br>created                                    | `$.verb.display.en` | included |
-| **オブジェクトのオブジェクトタイプ**<br>Discussion等のスレッド        | `$.object.objectType` | included |
-| **オブジェクトID**<br>スレッドを一意に識別するID                      | `$.object.id` | included |
+| 項目     | 説明                               | Location (JSONPath) | Presence |
+| :------- | :--------------------------------- | :------------------ | :------- |
+| **動詞の表示名(英語)** | created                          | `$.verb.display.en` | included |
+| **オブジェクトのオブジェクトタイプ** | Discussion等のスレッド        | `$.object.objectType` | included |
+| **オブジェクトID** | スレッドを一意に識別するID                      | `$.object.id` | included |
 
 ### 4.3.5　スレッドへの書き込み
 
@@ -246,28 +236,26 @@
 - スレッドに対してコメント・返信を行ったことを記録するためのテンプレート。
 - 識別情報
 
-| id        | https://w3id.org/japan-xapi/templates/group-lst/discussion-replied |
-| :-------- | :------------------------------------------------------------------ |
-| inScheme  | https://w3id.org/japan-xapi/profiles/group-lst/v1.0.0              |
-| prefLabel | スレッドへの書き込み                                           |
+| 項目     | 値                                                                 |
+| :------- | :----------------------------------------------------------------- |
+| id       | https://w3id.org/japan-xapi/templates/group-lst/discussion-replied |
+| inScheme | https://w3id.org/japan-xapi/profiles/group-lst/v1.0.0             |
+| prefLabel | スレッドへの書き込み                                          |
 
 - 判定条件
 
-| verb               | http://id.tincanapi.com/verb/replied            |
-| :----------------- | :---------------------------------------------- |
+| 項目              | 値                                              |
+| :---------------- | :---------------------------------------------- |
+| verb              | http://id.tincanapi.com/verb/replied            |
 | objectActivityType | http://id.tincanapi.com/activitytype/discussion |
 
 #### 4.3.5.2　記述規則（Rules）
 
-なし。共通記述規則に準拠する。
-
-#### 4.3.5.3　Markdownテーブル
-
-| 項目説明 (Description / ScopeNote)                                   | Location (JSONPath) | Presence |
-| :------------------------------------------------------------------- | :------------------ | :------- |
-| **動詞の表示名(英語)**<br>replied                                    | `$.verb.display.en` | included |
-| **オブジェクトのオブジェクトタイプ**<br>Discussion等のスレッド        | `$.object.objectType` | included |
-| **オブジェクトID**<br>スレッドを一意に識別するID                      | `$.object.id` | included |
+| 項目     | 説明                               | Location (JSONPath) | Presence |
+| :------- | :--------------------------------- | :------------------ | :------- |
+| **動詞の表示名(英語)** | replied                          | `$.verb.display.en` | included |
+| **オブジェクトのオブジェクトタイプ** | Discussion等のスレッド        | `$.object.objectType` | included |
+| **オブジェクトID** | スレッドを一意に識別するID                      | `$.object.id` | included |
 
 ### 4.3.6　スタンプ送信
 
@@ -276,25 +264,23 @@
 - 「いいね」等のスタンプを送信したことを記録するためのテンプレート。
 - 識別情報
 
-| id        | https://w3id.org/japan-xapi/templates/group-lst/stamp-voted |
-| :-------- | :--------------------------------------------------------------- |
-| inScheme  | https://w3id.org/japan-xapi/profiles/group-lst/v1.0.0       |
-| prefLabel | スタンプ送信                                            |
+| 項目     | 値                                                      |
+| :------- | :------------------------------------------------------- |
+| id       | https://w3id.org/japan-xapi/templates/group-lst/stamp-voted |
+| inScheme | https://w3id.org/japan-xapi/profiles/group-lst/v1.0.0      |
+| prefLabel | スタンプ送信                                         |
 
 - 判定条件
 
-| verb               | http://id.tincanapi.com/verb/voted-up       |
-| :----------------- | :----------------------------------------- |
+| 項目              | 値                                          |
+| :---------------- | :------------------------------------------ |
+| verb              | http://id.tincanapi.com/verb/voted-up       |
 | objectActivityType | http://id.tincanapi.com/activitytype/comment |
 
 #### 4.3.6.2　記述規則（Rules）
 
-なし。共通記述規則に準拠する。
-
-#### 4.3.6.3　Markdownテーブル
-
-| 項目説明 (Description / ScopeNote)                                   | Location (JSONPath) | Presence |
-| :------------------------------------------------------------------- | :------------------ | :------- |
-| **動詞の表示名(英語)**<br>voted-up                                   | `$.verb.display.en` | included |
-| **オブジェクトのオブジェクトタイプ**<br>Comment等のコンテンツ         | `$.object.objectType` | included |
-| **オブジェクトID**<br>コンテンツを一意に識別するID                    | `$.object.id` | included |
+| 項目     | 説明                               | Location (JSONPath) | Presence |
+| :------- | :--------------------------------- | :------------------ | :------- |
+| **動詞の表示名(英語)** | voted-up                         | `$.verb.display.en` | included |
+| **オブジェクトのオブジェクトタイプ** | Comment等のコンテンツ         | `$.object.objectType` | included |
+| **オブジェクトID** | コンテンツを一意に識別するID                    | `$.object.id` | included |

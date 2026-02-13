@@ -61,31 +61,31 @@
 | 作成者/管理者 author     | プロファイルの作成者や責任者           | ICT CONNECT 21 xAPI SWG                                  |
 | 作成日/更新日 versions   | 文書化日または改訂日                   | 2026-04-01                                               |
 | 言語 languages           | メタ情報およびプロファイルの記載言語   | 日本語                                                   |
-| 目的/説明 definition     | プロファイルが対象とする学習ログや用途 | 日本の初等中等教育におけるCBT/デジタルドリル学習ログ標準プロファイル |
+| 目的/説明 definition     | プロファイルが対象とする学習ログや用途 | 日本の初等中等教育におけるCBT/デジタルドリル学習ログのプロファイル |
 | ドキュメントバージョン   | 文書版数                               | 2026年度版                                               |
 
 ## 2.3　共通記述規則
 
 　本プロファイルで定義するすべてのStatementTemplateに対して、以下のRulesを適用する。
 
-| 項目                                 | Location (JSONPath)                        | Presence    | 説明(scopeNote) |
-| :----------------------------------- | :----------------------------------------- | :---------- | :-------------- |
-| **ステートメントID**                 | `$.id`                                     | included    |                 |
-| **タイムスタンプ**                   | `$.timestamp`                              | included    |                 |
-| **アクター**                         | `$.actor`                                  | included    |                 |
-| **アクターのオブジェクトタイプ**     | `$.actor.objectType`                       | included    |                 |
-| **アクターのアカウントホームページ** | `$.actor.account.homePage`                 | included    |                 |
-| **アクターのアカウント名**           | `$.actor.account.name`                     | included    |                 |
-| **動詞の表示名(英語)**               | `$.verb.display.en`                        | included    |                 |
-| **オブジェクトのオブジェクトタイプ** | `$.object.objectType`                      | included    |                 |
-| **オブジェクトID**                   | `$.object.id`                              | included    |                 |
-| **オブジェクト定義のタイプ**         | `$.object.definition.type`                 | included    |                 |
-| **オブジェクト定義の名称(日本語)**   | `$.object.definition.name['ja-JP']`        | recommended |                 |
-| **オブジェクト定義の説明(日本語)**   | `$.object.definition.description['ja-JP']` | recommended |                 |
-| **コンテキスト**                     | `$.context`                                | included    |                 |
-| **コンテキストの言語**               | `$.context.language`                       | included    |                 |
-| **コンテキストのプラットフォーム**   | `$.context.platform`                       | included    |                 |
-| **プロファイルバージョン**           | `$.version`                                | included    |                 |
+| 項目                                 | Location (JSONPath)                        | Presence    |
+| :----------------------------------- | :----------------------------------------- | :---------- |
+| **ステートメントID**                 | `$.id`                                     | included    |
+| **タイムスタンプ**                   | `$.timestamp`                              | included    |
+| **アクター**                         | `$.actor`                                  | included    |
+| **アクターのオブジェクトタイプ**     | `$.actor.objectType`                       | included    |
+| **アクターのアカウントホームページ** | `$.actor.account.homePage`                 | included    |
+| **アクターのアカウント名**           | `$.actor.account.name`                     | included    |
+| **動詞の表示名(英語)**               | `$.verb.display.en`                        | included    |
+| **オブジェクトのオブジェクトタイプ** | `$.object.objectType`                      | included    |
+| **オブジェクトID**                   | `$.object.id`                              | included    |
+| **オブジェクト定義のタイプ**         | `$.object.definition.type`                 | included    |
+| **オブジェクト定義の名称(日本語)**   | `$.object.definition.name['ja-JP']`        | recommended |
+| **オブジェクト定義の説明(日本語)**   | `$.object.definition.description['ja-JP']` | recommended |
+| **コンテキスト**                     | `$.context`                                | included    |
+| **コンテキストの言語**               | `$.context.language`                       | included    |
+| **コンテキストのプラットフォーム**   | `$.context.platform`                       | included    |
+| **プロファイルバージョン**           | `$.version`                                | included    |
 
 # 3. CBT/デジタルドリルに関するユースケース
 

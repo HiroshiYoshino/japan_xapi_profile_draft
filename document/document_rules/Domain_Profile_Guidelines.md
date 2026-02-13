@@ -115,24 +115,24 @@ Japan xAPI Profileは以下の階層構造を持つ：
 
 **必須テーブル（すべてのDomainで統一）：**
 
-| 項目説明 (Description / ScopeNote)   | Location (JSONPath)                        | Presence    |
-| :----------------------------------- | :----------------------------------------- | :---------- |
-| **ステートメントID**                 | `$.id`                                     | included    |
-| **タイムスタンプ**                   | `$.timestamp`                              | included    |
-| **アクター**                         | `$.actor`                                  | included    |
-| **アクターのオブジェクトタイプ**     | `$.actor.objectType`                       | included    |
+| 項目                               | Location (JSONPath)                        | Presence    |
+| :--------------------------------- | :----------------------------------------- | :---------- |
+| **ステートメントID**               | `$.id`                                     | included    |
+| **タイムスタンプ**                 | `$.timestamp`                              | included    |
+| **アクター**                       | `$.actor`                                  | included    |
+| **アクターのオブジェクトタイプ**   | `$.actor.objectType`                       | included    |
 | **アクターのアカウントホームページ** | `$.actor.account.homePage`                 | included    |
-| **アクターのアカウント名**           | `$.actor.account.name`                     | included    |
-| **動詞の表示名(英語)**               | `$.verb.display.en`                        | included    |
+| **アクターのアカウント名**         | `$.actor.account.name`                     | included    |
+| **動詞の表示名(英語)**             | `$.verb.display.en`                        | included    |
 | **オブジェクトのオブジェクトタイプ** | `$.object.objectType`                      | included    |
-| **オブジェクトID**                   | `$.object.id`                              | included    |
-| **オブジェクト定義のタイプ**         | `$.object.definition.type`                 | included    |
-| **オブジェクト定義の名称(日本語)**   | `$.object.definition.name['ja-JP']`        | recommended |
-| **オブジェクト定義の説明(日本語)**   | `$.object.definition.description['ja-JP']` | recommended |
-| **コンテキスト**                     | `$.context`                                | included    |
-| **コンテキストの言語**               | `$.context.language`                       | included    |
-| **コンテキストのプラットフォーム**   | `$.context.platform`                       | included    |
-| **プロファイルバージョン**           | `$.version`                                | included    |
+| **オブジェクトID**                 | `$.object.id`                              | included    |
+| **オブジェクト定義のタイプ**       | `$.object.definition.type`                 | included    |
+| **オブジェクト定義の名称(日本語)** | `$.object.definition.name['ja-JP']`        | recommended |
+| **オブジェクト定義の説明(日本語)** | `$.object.definition.description['ja-JP']` | recommended |
+| **コンテキスト**                   | `$.context`                                | included    |
+| **コンテキストの言語**             | `$.context.language`                       | included    |
+| **コンテキストのプラットフォーム** | `$.context.platform`                       | included    |
+| **プロファイルバージョン**         | `$.version`                                | included    |
 
 #### 3. ユースケース（ドメイン固有）
 - 対象ドメインにおける学習活動の特性を記述
@@ -169,15 +169,17 @@ Japan xAPI Profileは以下の階層構造を持つ：
 - [操作内容]を記録するためのテンプレート。
 - 識別情報
 
-| id        | https://w3id.org/japan-xapi/templates/[domain]/[template-name] |
-| :-------- | :--------------------------------------------------------------- |
-| inScheme  | https://w3id.org/japan-xapi/profiles/[domain]/v1.0.0            |
-| prefLabel | [テンプレート名]                                                 |
+| 項目     | 値                                                             |
+| :------- | :--------------------------------------------------------------- |
+| id       | https://w3id.org/japan-xapi/templates/[domain]/[template-name] |
+| inScheme | https://w3id.org/japan-xapi/profiles/[domain]/v1.0.0            |
+| prefLabel | [テンプレート名]                                              |
 
 - 判定条件
 
-| verb               | [Verb IRI] |
-| :----------------- | :--------- |
+| 項目              | 値                              |
+| :---------------- | :------------------------------ |
+| verb              | [Verb IRI]                      |
 | objectActivityType | [ActivityType IRI] (該当する場合) |
 ```
 
@@ -305,16 +307,17 @@ Japan xAPI Profileは以下の階層構造を持つ：
 ```markdown
 #### X.X.X.3　Markdownテーブル
 
-| 項目説明 (Description / ScopeNote) | Location (JSONPath) | Presence |
-| :--- | :--- | :--- |
-| [説明] | [JSONPath] | [Presence] |
+| 項目 | 説明 | Location (JSONPath) | Presence |
+| :--- | :--- | :--- | :--- |
+| [項目名] | [説明] | [JSONPath] | [Presence] |
 ```
 
 ### 6.2 テーブル列の定義
 
 | 列名 | 説明 | 記述例 |
 |---|---|---|
-| **項目説明** | 日本語による説明と補注（ScopeNote）。複数行の場合は `<br>` で改行。 | `**教科**<br>Core Profile で定義された教科 Extension。` |
+| **項目** | 項目名。 | `**教科**` |
+| **説明** | 日本語による説明と補注（ScopeNote）。複数行の場合は `<br>` で改行。 | `Core Profile で定義された教科 Extension。` |
 | **Location** | JSONPath 形式での位置。Extensions は IRI をクォーテーション。 | `$.object.definition.extensions['https://...']` |
 | **Presence** | included, recommended, optional のいずれか。 | `included` |
 
@@ -323,26 +326,37 @@ Japan xAPI Profileは以下の階層構造を持つ：
 **簡潔形**：1 行で記述
 
 ```
-| **得点率**<br>0.0 から 1.0 の実数。 | `$.result.score.scaled` | included |
+| **得点率** | 0.0 から 1.0 の実数。 | `$.result.score.scaled` | included |
 ```
 
 **詳細形**：複数の情報を含める場合
 
 ```
-| **教科（Activity拡張）**<br>Core Profile で定義された教科 Extension。推奨値は学習指導要領コードに準じる。 | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/subject']` | recommended |
+| **教科（Activity拡張）** | Core Profile で定義された教科 Extension。推奨値は学習指導要領コードに準じる。 | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/subject']` | recommended |
 ```
 
 ### 6.4 複数拡張がある場合の記述例
 
 ```markdown
-| 項目説明 (Description / ScopeNote) | Location (JSONPath) | Presence |
-| :--- | :--- | :--- |
-| **教科（Activity拡張）**<br>Core Profile で定義。 | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/subject']` | recommended |
-| **教科（Context拡張）**<br>Core Profile で定義。 | `$.context.extensions['https://w3id.org/japan-xapi/extensions/subject']` | recommended |
-| **評価タイプ**<br>diagnostic(診断的)、formative(形成的)、summative(総括的)のいずれか。 | `$.context.extensions['https://w3id.org/japan-xapi/extensions/assessment-type']` | recommended |
+| 項目 | 説明 | Location (JSONPath) | Presence |
+| :--- | :--- | :--- | :--- |
+| **教科（Activity拡張）** | Core Profile で定義。 | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/subject']` | recommended |
+| **教科（Context拡張）** | Core Profile で定義。 | `$.context.extensions['https://w3id.org/japan-xapi/extensions/subject']` | recommended |
+| **評価タイプ** | diagnostic(診断的)、formative(形成的)、summative(総括的)のいずれか。 | `$.context.extensions['https://w3id.org/japan-xapi/extensions/assessment-type']` | recommended |
 ```
 
 ---
+
+### 6.5 注記（[!NOTE]）
+
+RulesやMarkdownテーブルの補足説明は、必要に応じて [!NOTE] ブロックで記述する。
+
+**例**:
+```markdown
+> [!NOTE]
+> - 採点が未実施の場合は result.score を出力しない。
+> - 数値の丸めは小数点以下7桁・8桁目を四捨五入とする。
+```
 
 ## 7. Core Profile 参照ルール
 
@@ -510,7 +524,7 @@ ISO 8601 形式に統一する。
 | **Presence 定義** | included / recommended / optional の定義を統一 |
 | **JSONPath 形式** | `$.*` 方式で統一 |
 | **Extension 表記** | IRI をクォーテーションで統一 |
-| **テーブル列構成** | 3列（Item、Location、Presence）で統一 |
+| **テーブル列構成** | 4列（項目、説明、Location、Presence）で統一 |
 | **Core 参照表記** | 「(Core Profile参照)」で統一 |
 | **Domain 固有表記** | 「([Domain名] Domain固有)」で統一 |
 | **共通記述規則** | 2.3節の17項目テーブルで統一 |
@@ -524,7 +538,7 @@ ISO 8601 形式に統一する。
 - [ ] Presence は included / recommended / optional のいずれかか
 - [ ] Core Profile 参照の場合「(Core Profile参照)」と記載されているか
 - [ ] Domain 固有の場合「([Domain名] Domain固有)」と記載されているか
-- [ ] Markdown テーブルの列構成は「項目説明｜Location｜Presence」か
+- [ ] Markdown テーブルの列構成は「項目｜説明｜Location｜Presence」か
 - [ ] 説明は簡潔で、条件がある場合は詳細に記載されているか
 
 ---

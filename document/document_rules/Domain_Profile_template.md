@@ -75,24 +75,24 @@
 
 　本プロファイルで定義するすべてのStatementTemplateに対して、以下のRulesを適用する。
 
-| 項目説明 (Description / ScopeNote)   | Location (JSONPath)                        | Presence    |
-| :----------------------------------- | :----------------------------------------- | :---------- |
-| **ステートメントID**                 | `$.id`                                     | included    |
-| **タイムスタンプ**                   | `$.timestamp`                              | included    |
-| **アクター**                         | `$.actor`                                  | included    |
-| **アクターのオブジェクトタイプ**     | `$.actor.objectType`                       | included    |
+| 項目                               | Location (JSONPath)                        | Presence    |
+| :--------------------------------- | :----------------------------------------- | :---------- |
+| **ステートメントID**               | `$.id`                                     | included    |
+| **タイムスタンプ**                 | `$.timestamp`                              | included    |
+| **アクター**                       | `$.actor`                                  | included    |
+| **アクターのオブジェクトタイプ**   | `$.actor.objectType`                       | included    |
 | **アクターのアカウントホームページ** | `$.actor.account.homePage`                 | included    |
-| **アクターのアカウント名**           | `$.actor.account.name`                     | included    |
-| **動詞の表示名(英語)**               | `$.verb.display.en`                        | included    |
+| **アクターのアカウント名**         | `$.actor.account.name`                     | included    |
+| **動詞の表示名(英語)**             | `$.verb.display.en`                        | included    |
 | **オブジェクトのオブジェクトタイプ** | `$.object.objectType`                      | included    |
-| **オブジェクトID**                   | `$.object.id`                              | included    |
-| **オブジェクト定義のタイプ**         | `$.object.definition.type`                 | included    |
-| **オブジェクト定義の名称(日本語)**   | `$.object.definition.name['ja-JP']`        | recommended |
-| **オブジェクト定義の説明(日本語)**   | `$.object.definition.description['ja-JP']` | recommended |
-| **コンテキスト**                     | `$.context`                                | included    |
-| **コンテキストの言語**               | `$.context.language`                       | included    |
-| **コンテキストのプラットフォーム**   | `$.context.platform`                       | included    |
-| **プロファイルバージョン**           | `$.version`                                | included    |
+| **オブジェクトID**                 | `$.object.id`                              | included    |
+| **オブジェクト定義のタイプ**       | `$.object.definition.type`                 | included    |
+| **オブジェクト定義の名称(日本語)** | `$.object.definition.name['ja-JP']`        | recommended |
+| **オブジェクト定義の説明(日本語)** | `$.object.definition.description['ja-JP']` | recommended |
+| **コンテキスト**                   | `$.context`                                | included    |
+| **コンテキストの言語**             | `$.context.language`                       | included    |
+| **コンテキストのプラットフォーム** | `$.context.platform`                       | included    |
+| **プロファイルバージョン**         | `$.version`                                | included    |
 
 # 3. [ドメイン名]に関するユースケース
 
@@ -137,15 +137,17 @@
 - [操作内容の説明]を記録するためのテンプレート。
 - 識別情報
 
-| id        | https://w3id.org/japan-xapi/templates/[domain]/[template-id]   |
-| :-------- | :--------------------------------------------------------------- |
-| inScheme  | https://w3id.org/japan-xapi/profiles/[domain]/v1.0.0            |
-| prefLabel | [操作名]                                                         |
+| 項目     | 値                                                             |
+| :------- | :--------------------------------------------------------------- |
+| id       | https://w3id.org/japan-xapi/templates/[domain]/[template-id]   |
+| inScheme | https://w3id.org/japan-xapi/profiles/[domain]/v1.0.0            |
+| prefLabel | [操作名]                                                      |
 
 - 判定条件
 
-| verb               | [Verb IRI（例：http://adlnet.gov/expapi/verbs/launched）]     |
-| :----------------- | :------------------------------------------------------------- |
+| 項目              | 値                                                                 |
+| :---------------- | :----------------------------------------------------------------- |
+| verb              | [Verb IRI（例：http://adlnet.gov/expapi/verbs/launched）]           |
 | objectActivityType | [ActivityType IRI（例：https://w3id.org/japan-xapi/activity-types/[domain]/xxx）] |
 
 > **記述ガイド**: 
@@ -160,6 +162,7 @@
 > - Presenceは included / recommended / optional のいずれか
 > - Core Profile参照の場合は「(Core Profile参照)」と明記
 > - Domain固有の場合は「([Domain名] Domain固有)」と明記
+> - 補足がある場合は [!NOTE] ブロックで記述する
 
 1. $.object.id
    1. included
@@ -178,12 +181,15 @@
 
 #### 4.3.1.3　Markdownテーブル
 
-| 項目説明 (Description / ScopeNote)                                           | Location (JSONPath)                                          | Presence    |
-| :--------------------------------------------------------------------------- | :----------------------------------------------------------- | :---------- |
-| **[項目名]**<br>[詳細説明]                                                   | `$.object.id`                                                | included    |
-| **[項目名]**<br>[詳細説明]                                                   | `$.object.definition.name['ja-JP']`                          | recommended |
-| **[項目名]（Activity拡張）**<br>[詳細説明]<br>Core Profile参照 / Domain固有 | `$.object.definition.extensions['https://w3id.org/...']`     | recommended |
-| **[項目名]（Context拡張）**<br>[詳細説明]<br>Core Profile参照 / Domain固有  | `$.context.extensions['https://w3id.org/...']`               | recommended |
+| 項目     | 説明 | Location (JSONPath)                                      | Presence    |
+| :------- | :--- | :------------------------------------------------------- | :---------- |
+| **[項目名]** | [詳細説明]                                              | `$.object.id`                                                | included    |
+| **[項目名]** | [詳細説明]                                              | `$.object.definition.name['ja-JP']`                          | recommended |
+| **[項目名]（Activity拡張）** | [詳細説明]<br>Core Profile参照 / Domain固有 | `$.object.definition.extensions['https://w3id.org/...']`     | recommended |
+| **[項目名]（Context拡張）** | [詳細説明]<br>Core Profile参照 / Domain固有  | `$.context.extensions['https://w3id.org/...']`               | recommended |
+
+> [!NOTE]
+> - [補足や条件がある場合に記載]
 
 ---
 
@@ -194,15 +200,17 @@
 - [操作内容の説明]を記録するためのテンプレート。
 - 識別情報
 
-| id        | https://w3id.org/japan-xapi/templates/[domain]/[template-id-2] |
-| :-------- | :--------------------------------------------------------------- |
-| inScheme  | https://w3id.org/japan-xapi/profiles/[domain]/v1.0.0            |
-| prefLabel | [操作名2]                                                        |
+| 項目     | 値                                                              |
+| :------- | :--------------------------------------------------------------- |
+| id       | https://w3id.org/japan-xapi/templates/[domain]/[template-id-2] |
+| inScheme | https://w3id.org/japan-xapi/profiles/[domain]/v1.0.0            |
+| prefLabel | [操作名2]                                                     |
 
 - 判定条件
 
-| verb               | [Verb IRI]         |
-| :----------------- | :----------------- |
+| 項目              | 値               |
+| :---------------- | :--------------- |
+| verb              | [Verb IRI]       |
 | objectActivityType | [ActivityType IRI] |
 
 #### 4.3.2.2　記述規則（Rules）
@@ -214,9 +222,9 @@
 
 #### 4.3.2.3　Markdownテーブル
 
-| 項目説明 (Description / ScopeNote) | Location (JSONPath) | Presence |
-| :--------------------------------- | :------------------ | :------- |
-| [項目説明]                         | [JSONPath]          | [Presence] |
+| 項目     | 説明 | Location (JSONPath) | Presence |
+| :------- | :--- | :------------------ | :------- |
+| [項目名] | [説明] | [JSONPath]          | [Presence] |
 
 ---
 
