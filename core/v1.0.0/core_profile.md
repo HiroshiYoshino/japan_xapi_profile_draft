@@ -189,6 +189,22 @@
   { "type": "string" }
   ```
 
+
+
+#### unit (単元名)
+
+- **IRI**: `https://w3id.org/japan-xapi/extensions/unit`
+- **Type**: `ActivityExtension` / `ContextExtension`
+- **Definition**: 学習課題やコンテンツが属する単元名。
+- **Schema**:
+  ```json
+  {
+    "type": "array",
+    "items": { "type": "string" }
+  }
+  ```
+
+
 #### due-date (期限日)
 
 - **IRI**: `https://w3id.org/japan-xapi/extensions/due-date`
