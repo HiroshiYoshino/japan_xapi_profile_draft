@@ -20,8 +20,8 @@
   - 省略理由：idはStatementTemplateをグローバルに一意に識別するためのURI を指定する項目であり、プロファイルの公開形態、管理主体、バージョニング方針が確定した段階で設計されるべきものである。本ドキュメントは標準仕様（案）としての整理および合意形成を目的としているため、現時点では具体的なURIの定義は行わない。
 - typeに期待される固定値StatementTemplate
   - 省略理由：typeに指定される固定値StatementTemplateは、JSON-LD形式における機械可読性を担保するための項目である。本ドキュメントでは、読み手による理解を前提とした仕様書として、StatementTemplateの構造および位置づけを章構成および見出しによって明示しているため、当該項目は省略する。
-- inSchemaに期待されるURI
-  - 省略理由：inSchemaは、当該StatementTemplateが属するプロファイルおよびバージョンをURIにより示すための項目である。本ドキュメントでは、プロファイルの名称およびバージョン管理を文書構成および章立てにより管理していることから、inSchemaによる明示的な指定は行わない
+- inSchemeに期待されるURI
+  - 省略理由：inSchemeは、当該StatementTemplateが属するプロファイルおよびバージョンをURIにより示すための項目である。本ドキュメントでは、プロファイルの名称およびバージョン管理を文書構成および章立てにより管理していることから、inSchemeによる明示的な指定は行わない
 - prefLabel
   - 省略理由：prefLabelはStatementTemplateに対する人可読な名称を付与するための項目である。本ドキュメントでは、各ユースケースを章・節の見出し（項目名）として明示しており、これをもって当該StatementTemplateを識別可能とするため、prefLabel の記載は省略する。
 
@@ -101,12 +101,12 @@
 
 ## 4.1　本章の位置づけ
 
-　本章では、グループ学習支援ツールプロファイルにおける各操作のデータ構造を定義する。各テンプレートは以下の「基本仕様」および「記述規則」の構成で記述される。
+　本章では、Group Learning Support Tool Profileにおける各操作のデータ構造を定義する。各テンプレートは以下の「基本仕様」および「記述規則」の構成で記述される。
 
 ## 4.2　前提条件
 
 - 基本仕様
-  - 冒頭にdifinitionの位置づけとして、Templateの目的やどのような操作を記録するためのものかを定義する。
+  - 冒頭にdefinitionの位置づけとして、Templateの目的やどのような操作を記録するためのものかを定義する。
   - 識別情報
     - Templateを管理上特定するための情報として3要素（id,inScheme,prefLabel）を含む。
   - 判定条件
@@ -130,7 +130,7 @@
 
 | 項目     | 値                                                           |
 | :------- | :------------------------------------------------------------ |
-| id       | https://w3id.org/japan-xapi/templates/group-lst/tool-launched |
+| id       | https://w3id.org/japan-xapi/templates/group-lst/launched#tool |
 | inScheme | https://w3id.org/japan-xapi/profiles/group-lst/v1.0.0         |
 | prefLabel | ツールの起動                                                |
 
@@ -156,7 +156,7 @@
 
 | 項目     | 値                                                               |
 | :------- | :--------------------------------------------------------------- |
-| id       | https://w3id.org/japan-xapi/templates/group-lst/content-launched |
+| id       | https://w3id.org/japan-xapi/templates/group-lst/launched#content |
 | inScheme | https://w3id.org/japan-xapi/profiles/group-lst/v1.0.0            |
 | prefLabel | ツール内でのコンテンツ利用開始                               |
 
@@ -184,7 +184,7 @@
 
 | 項目     | 値                                                              |
 | :------- | :-------------------------------------------------------------- |
-| id       | https://w3id.org/japan-xapi/templates/group-lst/object-created |
+| id       | https://w3id.org/japan-xapi/templates/group-lst/created#object |
 | inScheme | https://w3id.org/japan-xapi/profiles/group-lst/v1.0.0          |
 | prefLabel | オブジェクトの作成                                          |
 
@@ -192,7 +192,7 @@
 
 | 項目              | 値                                          |
 | :---------------- | :-------------------------------------------- |
-| verb              | https://w3id.org/xapi/scrapbook/verbs/created |
+| verb              | https://w3id.org/xapi/adl/verbs/created |
 | objectActivityType | http://id.tincanapi.com/activitytype/slide    |
 
 #### 4.3.3.2　記述規則（Rules）
@@ -210,7 +210,7 @@
 
 | 項目     | 値                                                                  |
 | :------- | :------------------------------------------------------------------ |
-| id       | https://w3id.org/japan-xapi/templates/group-lst/discussion-created |
+| id       | https://w3id.org/japan-xapi/templates/group-lst/created#thread |
 | inScheme | https://w3id.org/japan-xapi/profiles/group-lst/v1.0.0              |
 | prefLabel | 議論スレッドの作成                                             |
 
@@ -238,7 +238,7 @@
 
 | 項目     | 値                                                                 |
 | :------- | :----------------------------------------------------------------- |
-| id       | https://w3id.org/japan-xapi/templates/group-lst/discussion-replied |
+| id       | https://w3id.org/japan-xapi/templates/group-lst/replied |
 | inScheme | https://w3id.org/japan-xapi/profiles/group-lst/v1.0.0             |
 | prefLabel | スレッドへの書き込み                                          |
 
@@ -247,7 +247,6 @@
 | 項目              | 値                                              |
 | :---------------- | :---------------------------------------------- |
 | verb              | http://id.tincanapi.com/verb/replied            |
-| objectActivityType | http://id.tincanapi.com/activitytype/discussion |
 
 #### 4.3.5.2　記述規則（Rules）
 
@@ -266,7 +265,7 @@
 
 | 項目     | 値                                                      |
 | :------- | :------------------------------------------------------- |
-| id       | https://w3id.org/japan-xapi/templates/group-lst/stamp-voted |
+| id       | https://w3id.org/japan-xapi/templates/group-lst/voted-up |
 | inScheme | https://w3id.org/japan-xapi/profiles/group-lst/v1.0.0      |
 | prefLabel | スタンプ送信                                         |
 
@@ -275,7 +274,6 @@
 | 項目              | 値                                          |
 | :---------------- | :------------------------------------------ |
 | verb              | http://id.tincanapi.com/verb/voted-up       |
-| objectActivityType | http://id.tincanapi.com/activitytype/comment |
 
 #### 4.3.6.2　記述規則（Rules）
 

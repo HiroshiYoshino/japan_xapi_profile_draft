@@ -189,3 +189,50 @@ Japan xAPI Group Learning Support Tool Profile は、協働学習（グループ
 #### URLリダイレクション (w3id.org) の設定
 
 プロファイルのIRIは、特定のサーバーや組織に依存しない永続的なID（PURL）として設計されている。`w3id.org` 等のサービスを利用し、定義されたIRIが常に最新の（あるいは指定バージョンの）仕様書の実体にリダイレクトされるよう設定を行う。
+
+### 付.2 既存verbのIRIと定義
+
+各ドメインプロファイルで使用している既存verbのIRIについて、定義の原文と日本語訳を併記する。
+掲載順は、IRIのドメインごと、アルファベット順とする。
+
+#### activitystrea.ms
+
+| IRI | Definition (EN) | 日本語訳 |
+| :-- | :-- | :-- |
+| http://activitystrea.ms/close | Indicates that the actor has closed the object. For instance, the object could represent a ticket being tracked in an issue management system. | アクターがオブジェクトを閉じたことを示す。例えば、オブジェクトは課題管理システムで追跡されているチケットを表す場合がある。 |
+| http://activitystrea.ms/delete | Indicates that the actor has deleted the object. This implies, but does not require, the permanent destruction of the object. | アクターがオブジェクトを削除したことを示す。これはオブジェクトの恒久的な破棄を含意するが、必須ではない。 |
+| http://activitystrea.ms/open | Indicates that the actor has opened the object. For instance, the object could represent a ticket being tracked in an issue management system. | アクターがオブジェクトを開いたことを示す。例えば、オブジェクトは課題管理システムで追跡されているチケットを表す場合がある。 |
+
+#### adlnet.gov
+
+| IRI | Definition (EN) | 日本語訳 |
+| :-- | :-- | :-- |
+| http://adlnet.gov/expapi/verbs/answered | Indicates the actor replied to a question, where the object is generally an activity representing the question. The text of the answer will often be included in the response inside result. | アクターが質問に回答したことを示す。オブジェクトは通常その質問を表すアクティビティである。回答テキストは多くの場合、result内のresponseに含まれる。 |
+| http://adlnet.gov/expapi/verbs/attempted | Indicates the actor made an effort to access the object. An attempt statement without additional activities could be considered incomplete in some cases. | アクターがオブジェクトへのアクセスを試みたことを示す。追加のアクティビティを伴わないattemptedステートメントは場合によっては不完全と見なされることがある。 |
+| http://adlnet.gov/expapi/verbs/completed | Indicates the actor finished or concluded the activity normally. | アクターが活動を正常に完了した、または完了に至ったことを示す。 |
+| http://adlnet.gov/expapi/verbs/initialized | Indicates the activity provider has determined that the actor successfully started an activity. | アクティビティ提供者がアクターが活動を正常に開始したと判断したことを示す。 |
+| http://adlnet.gov/expapi/verbs/interacted | Indicates the actor engaged with a physical or virtual object. | アクターが物理的または仮想のオブジェクトとやり取りしたことを示す。 |
+| http://adlnet.gov/expapi/verbs/launched | Indicates the actor attempted to start an activity. | アクターが活動の開始を試みたことを示す。 |
+| http://adlnet.gov/expapi/verbs/progressed | Indicates a value of how much of an actor has advanced or moved through an activity. | アクターが活動内でどの程度進んだかの値を示す。 |
+| http://adlnet.gov/expapi/verbs/responded | Used to indicate a user responding to a help or chat request | ヘルプまたはチャットの要求に対してユーザーが応答したことを示すために使用される。 |
+| http://adlnet.gov/expapi/verbs/shared | Indicates the actor's intent to openly provide access to an object of common interest to other actors or groups. | アクターが他のアクターまたはグループに共通の関心対象へのアクセスを公開する意図を示す。 |
+| http://adlnet.gov/expapi/verbs/terminated | Indicates that the actor successfully ended an activity. | アクターが活動を正常に終了したことを示す。 |
+
+#### id.tincanapi.com
+
+| IRI | Definition (EN) | 日本語訳 |
+| :-- | :-- | :-- |
+| http://id.tincanapi.com/verb/replied | The actor posted a reply to a forum, comment thread or discussion. | アクターがフォーラム、コメントスレッド、またはディスカッションに返信を投稿したことを示す。 |
+| http://id.tincanapi.com/verb/viewed | Indicates that the actor has viewed the object. | アクターがオブジェクトを閲覧したことを示す。 |
+| http://id.tincanapi.com/verb/voted-up | Indicates that the actor has voted up for a specific object. This is analogous to giving a thumbs up. | アクターが特定のオブジェクトに賛成票を投じたことを示す。これは「いいね」を付けることに相当する。 |
+
+#### w3id.org
+
+| IRI | Definition (EN) | 日本語訳 |
+| :-- | :-- | :-- |
+| https://w3id.org/xapi/adb/verbs/bookmarked | Persisting the current location (page) where the reader stopped the ebook activity. | 読者が電子書籍アクティビティを中断した現在位置（ページ）を保持する。 |
+| https://w3id.org/xapi/adb/verbs/noted | Add annotation or notes to selected text within an ebook or highlight. | 電子書籍内の選択テキストに注釈やメモを追加する、またはハイライトする。 |
+| https://w3id.org/xapi/adb/verbs/read | Indicates that the actor has read the object. | アクターがオブジェクトを読んだことを示す。 |
+| https://w3id.org/xapi/adl/verbs/abandoned | Indicates the activity provider has determined that the session was abnormally terminated either by an actor or due to a system failure. | アクティビティ提供者が、アクターまたはシステム障害によりセッションが異常終了したと判断したことを示す。 |
+| https://w3id.org/xapi/adl/verbs/created | Indicates the actor has created an object. | アクターがオブジェクトを作成したことを示す。 |
+| https://w3id.org/xapi/adl/verbs/waived | Indicates that the learning activity requirements were met by means other than completing the activity. A waived statement is used to indicate that the activity may be skipped by the actor. | 学習アクティビティ要件が完了以外の手段で満たされたことを示す。waivedステートメントは、アクターがアクティビティをスキップできることを示すために使用される。 |

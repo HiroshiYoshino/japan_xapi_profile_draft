@@ -1,0 +1,23 @@
+verb, discription
+http://activitystrea.ms/close, Indicates that the actor has closed the object. For instance, the object could represent a ticket being tracked in an issue management system.
+http://activitystrea.ms/delete, Indicates that the actor has deleted the object. This implies, but does not require, the permanent destruction of the object.
+http://activitystrea.ms/open, Indicates that the actor has opened the object. For instance, the object could represent a ticket being tracked in an issue management system.
+https://w3id.org/xapi/adb/verbs/read, Indicates that the actor has read the object.
+http://adlnet.gov/expapi/verbs/answered, Indicates the actor replied to a question, where the object is generally an activity representing the question. The text of the answer will often be included in the response inside result.
+http://adlnet.gov/expapi/verbs/attempted, Indicates the actor made an effort to access the object. An attempt statement without additional activities could be considered incomplete in some cases.
+http://adlnet.gov/expapi/verbs/completed, Indicates the actor finished or concluded the activity normally. 
+http://adlnet.gov/expapi/verbs/initialized, Indicates the activity provider has determined that the actor successfully started an activity. 
+http://adlnet.gov/expapi/verbs/interacted, Indicates the actor engaged with a physical or virtual object.
+http://adlnet.gov/expapi/verbs/launched, Indicates the actor attempted to start an activity.
+http://adlnet.gov/expapi/verbs/progressed, Indicates a value of how much of an actor has advanced or moved through an activity.
+http://adlnet.gov/expapi/verbs/responded, Used to indicate a user responding to a help or chat request 
+http://adlnet.gov/expapi/verbs/shared, Indicates the actor's intent to openly provide access to an object of common interest to other actors or groups.
+http://adlnet.gov/expapi/verbs/terminated, Indicates that the actor successfully ended an activity. 
+http://id.tincanapi.com/verb/replied, The actor posted a reply to a forum, comment thread or discussion.
+http://id.tincanapi.com/verb/viewed, Indicates that the actor has viewed the object.
+http://id.tincanapi.com/verb/voted-up, Indicates that the actor has voted up for a specific object. This is analogous to giving a thumbs up.
+https://w3id.org/xapi/adb/verbs/bookmarked, Persisting the current location (page) where the reader stopped the ebook activity. 
+https://w3id.org/xapi/adb/verbs/noted, Add annotation or notes to selected text within an ebook or highlight. 
+https://w3id.org/xapi/adl/verbs/abandoned, Indicates the activity provider has determined that the session was abnormally terminated either by an actor or due to a system failure. 
+https://w3id.org/xapi/adl/verbs/created, Indicates the actor has created an object.
+https://w3id.org/xapi/adl/verbs/waived, Indicates that the learning activity requirements were met by means other than completing the activity. A waived statement is used to indicate that the activity may be skipped by the actor.

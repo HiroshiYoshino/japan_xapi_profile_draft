@@ -7,7 +7,7 @@
 
 ## 1.2　目的
 
-　本ドキュメントは、LMSにおける学習ログについて、関係する事業者間で共通の理解のもとに取り扱うことを可能とするため、LMSプロファイルとしての考え方および記述の枠組みを整理し、共有することを目的とする。
+　本ドキュメントは、LMSにおける学習ログについて、関係する事業者間で共通の理解のもとに取り扱うことを可能とするため、LMS Profileとしての考え方および記述の枠組みを整理し、共有することを目的とする。
 
 ## 1.3　前提条件
 
@@ -20,8 +20,8 @@
   - 省略理由：idはStatementTemplateをグローバルに一意に識別するためのURI を指定する項目であり、プロファイルの公開形態、管理主体、バージョニング方針が確定した段階で設計されるべきものである。本ドキュメントは標準仕様（案）としての整理および合意形成を目的としているため、現時点では具体的なURIの定義は行わない。
 - typeに期待される固定値StatementTemplate
   - 省略理由：typeに指定される固定値StatementTemplateは、JSON-LD形式における機械可読性を担保するための項目である。本ドキュメントでは、読み手による理解を前提とした仕様書として、StatementTemplateの構造および位置づけを章構成および見出しによって明示しているため、当該項目は省略する。
-- inSchemaに期待されるURI
-  - 省略理由：inSchemaは、当該StatementTemplateが属するプロファイルおよびバージョンをURIにより示すための項目である。本ドキュメントでは、プロファイルの名称およびバージョン管理を文書構成および章立てにより管理していることから、inSchemaによる明示的な指定は行わない
+- inSchemeに期待されるURI
+  - 省略理由：inSchemeは、当該StatementTemplateが属するプロファイルおよびバージョンをURIにより示すための項目である。本ドキュメントでは、プロファイルの名称およびバージョン管理を文書構成および章立てにより管理していることから、inSchemeによる明示的な指定は行わない
 - prefLabel
   - 省略理由：prefLabelはStatementTemplateに対する人可読な名称を付与するための項目である。本ドキュメントでは、各ユースケースを章・節の見出し（項目名）として明示しており、これをもって当該StatementTemplateを識別可能とするため、prefLabel の記載は省略する。
 
@@ -124,12 +124,12 @@
 
 ## 4.1　本章の位置づけ
 
-　本章では、LMSプロファイルにおける各操作のデータ構造を定義する。各テンプレートは以下の「基本仕様」および「記述規則」の構成で記述される。
+　本章では、LMS Profileにおける各操作のデータ構造を定義する。各テンプレートは以下の「基本仕様」および「記述規則」の構成で記述される。
 
 ## 4.2　前提条件
 
 - 基本仕様
-  - 冒頭にdifinitionの位置づけとして、Templateの目的やどのような操作を記録するためのものかを定義する。
+  - 冒頭にdefinitionの位置づけとして、Templateの目的やどのような操作を記録するためのものかを定義する。
   - 識別情報
     - Templateを管理上特定するための情報として3要素（id,inScheme,prefLabel）を含む。
   - 判定条件
@@ -153,7 +153,7 @@
 
 | 項目     | 値                                                          |
 | :------- | :----------------------------------------------------------- |
-| id       | https://w3id.org/japan-xapi/templates/lms/assessment-created |
+| id       | https://w3id.org/japan-xapi/templates/lms/created |
 | inScheme | https://w3id.org/japan-xapi/profiles/lms/v1.0.0              |
 | prefLabel | 学習課題の作成                                              |
 
@@ -162,7 +162,6 @@
 | 項目              | 値                                                     |
 | :---------------- | :---------------------------------------------------- |
 | verb              | https://w3id.org/xapi/adl/verbs/created               |
-| objectActivityType | http://adlnet.gov/expapi/activities/school-assessment |
 
 #### 4.3.1.2　記述規則（Rules）
 
@@ -182,7 +181,7 @@
 
 | 項目     | 値                                                         |
 | :------- | :---------------------------------------------------------- |
-| id       | https://w3id.org/japan-xapi/templates/lms/assessment-shared |
+| id       | https://w3id.org/japan-xapi/templates/lms/shared |
 | inScheme | https://w3id.org/japan-xapi/profiles/lms/v1.0.0             |
 | prefLabel | 学習課題の配布                                             |
 
@@ -191,7 +190,6 @@
 | 項目              | 値                                                     |
 | :---------------- | :---------------------------------------------------- |
 | verb              | http://adlnet.gov/expapi/verbs/shared                 |
-| objectActivityType | http://adlnet.gov/expapi/activities/school-assessment |
 
 #### 4.3.2.2　記述規則（Rules）
 
@@ -210,7 +208,7 @@
 
 | 項目     | 値                                                           |
 | :------- | :------------------------------------------------------------ |
-| id       | https://w3id.org/japan-xapi/templates/lms/assessment-launched |
+| id       | https://w3id.org/japan-xapi/templates/lms/launched |
 | inScheme | https://w3id.org/japan-xapi/profiles/lms/v1.0.0               |
 | prefLabel | 学習課題の実施開始                                           |
 
@@ -219,7 +217,6 @@
 | 項目              | 値                                                     |
 | :---------------- | :---------------------------------------------------- |
 | verb              | http://adlnet.gov/expapi/verbs/launched               |
-| objectActivityType | http://adlnet.gov/expapi/activities/school-assessment |
 
 #### 4.3.3.2　記述規則（Rules）
 
@@ -238,7 +235,7 @@
 
 | 項目     | 値                                                            |
 | :------- | :------------------------------------------------------------- |
-| id       | https://w3id.org/japan-xapi/templates/lms/assessment-completed |
+| id       | https://w3id.org/japan-xapi/templates/lms/completed |
 | inScheme | https://w3id.org/japan-xapi/profiles/lms/v1.0.0                |
 | prefLabel | 学習課題の完了                                                |
 
@@ -247,7 +244,6 @@
 | 項目              | 値                                                     |
 | :---------------- | :---------------------------------------------------- |
 | verb              | http://adlnet.gov/expapi/verbs/completed              |
-| objectActivityType | http://adlnet.gov/expapi/activities/school-assessment |
 
 #### 4.3.4.2　記述規則（Rules）
 
@@ -266,7 +262,7 @@
 
 | 項目     | 値                                                            |
 | :------- | :------------------------------------------------------------- |
-| id       | https://w3id.org/japan-xapi/templates/lms/assessment-responded |
+| id       | https://w3id.org/japan-xapi/templates/lms/responded |
 | inScheme | https://w3id.org/japan-xapi/profiles/lms/v1.0.0                |
 | prefLabel | 学習課題へのフィードバック                                    |
 
@@ -275,7 +271,6 @@
 | 項目              | 値                                                     |
 | :---------------- | :---------------------------------------------------- |
 | verb              | http://adlnet.gov/expapi/verbs/responded              |
-| objectActivityType | http://adlnet.gov/expapi/activities/school-assessment |
 
 #### 4.3.5.2　記述規則（Rules）
 
@@ -298,7 +293,7 @@
 
 | 項目     | 値                                                         |
 | :------- | :---------------------------------------------------------- |
-| id       | https://w3id.org/japan-xapi/templates/lms/assessment-viewed |
+| id       | https://w3id.org/japan-xapi/templates/lms/viewed |
 | inScheme | https://w3id.org/japan-xapi/profiles/lms/v1.0.0             |
 | prefLabel | 学習課題を閲覧する                                         |
 
@@ -307,7 +302,6 @@
 | 項目              | 値                                                     |
 | :---------------- | :---------------------------------------------------- |
 | verb              | http://id.tincanapi.com/verb/viewed                   |
-| objectActivityType | http://adlnet.gov/expapi/activities/school-assessment |
 
 #### 4.3.6.2　記述規則（Rules）
 
@@ -326,7 +320,7 @@
 
 | 項目     | 値                                                            |
 | :------- | :------------------------------------------------------------- |
-| id       | https://w3id.org/japan-xapi/templates/lms/assessment-abandoned |
+| id       | https://w3id.org/japan-xapi/templates/lms/abandoned |
 | inScheme | https://w3id.org/japan-xapi/profiles/lms/v1.0.0                |
 | prefLabel | 学習課題を異常終了する                                        |
 
@@ -335,7 +329,6 @@
 | 項目              | 値                                                     |
 | :---------------- | :---------------------------------------------------- |
 | verb              | https://w3id.org/xapi/adl/verbs/abandoned             |
-| objectActivityType | http://adlnet.gov/expapi/activities/school-assessment |
 
 #### 4.3.7.2　記述規則（Rules）
 
@@ -354,7 +347,7 @@
 
 | 項目     | 値                                                              |
 | :------- | :--------------------------------------------------------------- |
-| id       | https://w3id.org/japan-xapi/templates/lms/assessment-initialized |
+| id       | https://w3id.org/japan-xapi/templates/lms/initialized |
 | inScheme | https://w3id.org/japan-xapi/profiles/lms/v1.0.0                  |
 | prefLabel | 学習課題の実施状況を初期化する                                  |
 
@@ -363,7 +356,6 @@
 | 項目              | 値                                                     |
 | :---------------- | :---------------------------------------------------- |
 | verb              | http://adlnet.gov/expapi/verbs/initialized            |
-| objectActivityType | http://adlnet.gov/expapi/activities/school-assessment |
 
 #### 4.3.8.2　記述規則（Rules）
 
@@ -382,7 +374,7 @@
 
 | 項目     | 値                                                         |
 | :------- | :---------------------------------------------------------- |
-| id       | https://w3id.org/japan-xapi/templates/lms/assessment-waived |
+| id       | https://w3id.org/japan-xapi/templates/lms/waived |
 | inScheme | https://w3id.org/japan-xapi/profiles/lms/v1.0.0             |
 | prefLabel | 学習課題を免除する                                         |
 
@@ -391,7 +383,6 @@
 | 項目              | 値                                                     |
 | :---------------- | :---------------------------------------------------- |
 | verb              | https://w3id.org/xapi/adl/verbs/waived                |
-| objectActivityType | http://adlnet.gov/expapi/activities/school-assessment |
 
 #### 4.3.9.2　記述規則（Rules）
 
