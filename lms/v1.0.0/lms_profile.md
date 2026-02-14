@@ -388,6 +388,6 @@
 
 | 項目     | 説明                               | Location (JSONPath) | Presence |
 | :------- | :--------------------------------- | :------------------ | :------- |
-| **動詞の表示名(英語)** | waived                           | ```$.verb.display.en``` | included |
+| **動詞の表示名(英語)** | waived                           | `$.verb.display.en` | included |
 | **オブジェクトのオブジェクトタイプ** | Assignment等の学習課題        | `$.object.objectType` | included |
 | **オブジェクトID** | 学習課題を一意に識別するID                      | `$.object.id` | included |
