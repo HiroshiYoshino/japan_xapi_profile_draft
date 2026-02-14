@@ -15,7 +15,7 @@ xAPI サブワーキンググループ
 5. [プロファイルドキュメントの概要](#プロファイルドキュメントの概要)
    - [5.1 Japan xAPI Core Profile](#51-japan-xapi-core-profile)
    - [5.2 Japan xAPI LMS Profile](#52-japan-xapi-lms-profile)
-   - [5.3 Japan xAPI CBT Profile](#53-japan-xapi-cbt-profile)
+   - [5.3 Japan xAPI Assessment Profile](#53-japan-xapi-cbt-profile)
    - [5.4 Japan xAPI eBook Profile](#54-japan-xapi-ebook-profile)
    - [5.5 Japan xAPI Group Learning Support Tool Profile](#55-japan-xapi-group-learning-support-tool-profile)
 6. [今後の課題](#今後の課題)
@@ -40,7 +40,7 @@ xAPI サブワーキンググループ
 
 - 日本国内で流通するスタディ・ログが準拠すべき共通仕様 (Japan xAPI Core Profile)
 - LMS (学習eポータル/学習管理システム) が出力するスタディ・ログが準拠すべき仕様 (Japan xAPI LMS Profile)
-- CBT (Computer Based Testing) が出力するスタディ・ログが準拠すべき仕様 (Japan xAPI CBT Profile)
+- CBT (Computer Based Testing) およびデジタルドリルが出力するスタディ・ログが準拠すべき仕様 (Japan xAPI Assessment Profile)
 - 電子書籍 (eBook) が出力するスタディ・ログが準拠すべき仕様 (Japan xAPI eBook Profile)
 - グループ学習支援ツールが出力するスタディ・ログが準拠すべき仕様 (Japan xAPI Group Learning Support Tool Profile)
 
@@ -50,17 +50,22 @@ xAPI は、アメリカADL (Advanced Distributed Learning) が策定したスタ
 
 学習活動には様々な種類があり、その種類ごとにスタディ・ログに含むべき内容（Verb等）が異なるため、学習活動ごとに「どのようにProfileを書くべきか」という仕様を集約した xAPI Profile が策定されている。本報告書で定義するプロファイル群は、xAPI Profile Specification に準拠しつつ、日本の初等中等教育の実情に合わせて策定されたものである。
 
-特に、全ドメインで共通して利用される語彙やルールを定義した「Core Profile」を基盤とし、その上に各ドメイン（LMS, CBT, eBook, Group）ごとの詳細な仕様を定義する階層構造をとっている。これにより、ドメイン横断的なデータ分析の可能性を担保している。
+特に、全ドメインで共通して利用される語彙やルールを定義した「Core Profile」を基盤とし、その上に各ドメイン（LMS, Assessment, eBook, Group Learning Support Tool）ごとの詳細な仕様を定義する階層構造をとっている。これにより、ドメイン横断的なデータ分析の可能性を担保している。
 
 ## 4. 基礎資料 {#基礎資料}
 
 本報告の内容策定にあたり、以下のドキュメントおよび仕様を参照した。
 
-- xAPI Profile Specification (https://w3id.org/xapi/profiles)
-- ADL xAPI Vocabulary (http://xapi.vocab.pub/)
-- 文部科学省 教育データ標準
-- 既存の国内xAPI実装事例（京都大学LEAFシステム等）
-  https://docs.google.com/spreadsheets/d/1CWrOHDWuSGFE9ehMfTfsSQybv_VdZ3ZHey9YdCp8Q3U/edit?gid=0#gid=0
+- [xAPI Profile Specification](https://adlnet.github.io/xapi-profiles/xapi-profiles-structure.html)
+- [ADL xAPI Profile Server](https://github.com/adlnet/xapi-authored-profiles/tree/master/Profile_Server_Profiles)
+- [文部科学省 教育データ標準](https://www.mext.go.jp/a_menu/other/data_00001.htm)
+- 内閣府 戦略的イノベーション創造プログラム「相互運用性を確保したペダゴジカル情報プラットフォームの研究開発・実用化検討」のための xAPI プロファイル利用に関する仕様
+- 文部科学省 令和5年度教育データの利活用推進事業 報告書「CBTシステム(MEXCBT)の拡充・活用推進、教育データの利活用推進事業」〜xAPIの標準化に関する調査研究事業〜事業報告書
+- 文部科学省 令和5年度教育データの利活用推進事業 プロファイルサーバー/京都大学緒方研究所プロファイルサーバー
+- デジタル庁 令和5年度実証報告書「令和5年度教育関連データのデータ連携の実現に向けた実証調査研究」実証事業報告書
+- デジタル庁 令和6年度実証報告書「令和6年度 スタディログの活用に関する調査研究」実証事業報告書
+- EDE研究会資料 SIG1研究会「教育データ利活用のための情報基盤システムと国際技術標準」
+
 
 ## 5. プロファイルドキュメントの概要 {#プロファイルドキュメントの概要}
 
@@ -71,19 +76,15 @@ xAPI は、アメリカADL (Advanced Distributed Learning) が策定したスタ
 Japan xAPI Core Profile（以下、Core Profile）は、日本の初等中等教育における学習ログの基盤となる共通語彙（Concepts）および共通ルールを定義したプロファイルである。
 主に以下の要素を提供する。
 
-1.  **共通語彙 (Concepts)**:
+- **共通語彙 (Concepts)**:
     - **Verb**: `highlighted` (ハイライトした) など、汎用的な動作。
     - **Extensions**: `difficulty` (難易度), `subject` (教科), `grade` (学年), `course_of_study_code` (学習指導要領コード), `unit` (単元名), `due-date` (期限日) など、複数のドメインで共通して利用される拡張語彙。
-2.  **JCore Session**:
-    - 学習セッションの開始 (`launched`) と終了 (`terminated`) を明確に定義し、一連の学習活動をセッションとして管理するためのルール。
-    - ActorのUUIDによる一意性担保や、学習単元メタデータの取り扱いについて規定。
 
 **本プロジェクトの成果と今後の課題**
 
-- **本プロジェクトの成果**: 本プロファイルは主に「概念定義（Concepts）」を主眼としており、具体的なステートメントのテンプレート定義は最小限（Session関連のみ）に留めている。
+- **本プロジェクトの成果**: 執筆中
 - **今後の課題**:
-  - **機械可読ファイルの公開**: 定義された語彙（Concepts）のJSON-LDファイルを、永続的なURI（w3id.org等）で解決可能な場所に配置・公開し、LRS等のシステムが自動的に検証できるようにする環境整備が必要である。
-  - **共通語彙の拡充**: 今後のドメイン拡張（例：プログラミング教育、STEAM教育等）に伴い、新たな共通語彙が必要となった際の追加・更新プロセスを確立する必要がある。
+  - 執筆中
 
 ### 5.2 Japan xAPI LMS Profile {#52-japan-xapi-lms-profile}
 
@@ -100,8 +101,7 @@ Japan xAPI LMS Profile は、学習管理システム（LMS）および学習e�
 
 - **本プロジェクトの成果**: コース学習のような長期間にわたる学習活動や、非線形な学習パス（個別最適な学習における自由進度学習など）の複雑なパターン定義は、今回のバージョンでは対象外としている。
 - **今後の課題**:
-  - **非線形パターンの定義**: 学習者が自身のペースで進める学習形態に対応するため、より柔軟なActivity FlowやPatternの定義を検討する必要がある。
-  - **実運用検証**: 実際のLMS製品への実装を通じ、定義されたテンプレートが現場の運用フロー（再提出、期限遅れ提出など）に十分に適合するか検証を行う必要がある。
+  - 執筆中
 
 ### 5.3 Japan xAPI Assessment Profile {#53-japan-xapi-assessment-profile}
 
@@ -142,8 +142,7 @@ Japan xAPI eBook Profile は、デジタル教科書や教材ビューア上で�
 
 - **本プロジェクトの成果**: 電子書籍の閲覧行動は極めて非線形であり、特定の「正解ルート」が存在しないため、行動パターンの定義（xAPI Patterns）は今回対象外とした。また、視線追跡などの生体情報との連携は含んでいない。
 - **今後の課題**:
-  - **閲覧滞在時間の精緻化**: 「開いているが見ていない」状態と「熟読している」状態を区別するための、より詳細なイベント定義（スクロール、フォーカス等）やハートビート的な記録手法の検討。
-  - **アノテーションの相互運用**: 書き込み情報（位置、内容）を異なるビューア間で再現可能にするための、アノテーション標準（Web Annotation Data Model等）との整合性検証。
+  - 執筆中
 
 ### 5.5 Japan xAPI Group Learning Support Tool Profile {#55-japan-xapi-group-learning-support-tool-profile}
 
@@ -169,14 +168,11 @@ Japan xAPI Group Learning Support Tool Profile は、協働学習（グループ
 
 1.  **メタデータの整備について**
     - 各プロファイルで参照されるメタデータ（教科、単元、評価タイプなど）について、文部科学省の教育データ標準や既存のコードセットとのマッピングを継続的にメンテナンスする必要がある。
-2.  **URIの永続性と解決 (Dereferencing)**
-    - プロファイル内で定義された全てのIRI (`https://w3id.org/japan-xapi/...`) が、将来にわたってアクセス可能であり、かつ適切な定義書（JSON-LDまたはHTML）にリダイレクトされるよう、`w3id.org` の設定およびGitHub Pages等のホスティング環境を整備・維持する必要がある。
-3.  **認定・検証プログラムの構築**
-    - 事業者が開発したシステムが、本プロファイルに正しく準拠しているかを確認するためのテストスイートや、認定プログラムの運用体制を構築することが、普及に向けた重要なステップとなる。
+2.  執筆中
 
 ## 7. メンバー {#メンバー}
 
-(本報告書の作成を担当したメンバーリストを記載)
+作業中
 
 ## 8. 付録 {#付録}
 
@@ -188,7 +184,7 @@ Japan xAPI Group Learning Support Tool Profile は、協働学習（グループ
 
 #### URLリダイレクション (w3id.org) の設定
 
-プロファイルのIRIは、特定のサーバーや組織に依存しない永続的なID（PURL）として設計されている。`w3id.org` 等のサービスを利用し、定義されたIRIが常に最新の（あるいは指定バージョンの）仕様書の実体にリダイレクトされるよう設定を行う。
+プロファイルのIRIは、特定のサーバーや組織に依存しない永続的なID（PURL）として設計されている。`w3id.org` によって定義されたIRIが常に最新の（あるいは指定バージョンの）仕様書の実体にリダイレクトされるよう設定を行う。
 
 ### 付.2 既存verbのIRIと定義
 
