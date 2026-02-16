@@ -86,25 +86,54 @@ Verb と同様の方針を適用する：
 
 ### 2.4 Extension の設計規則
 
-Extension は原則として独自定義する：
+Extension は原則として独自定義する。一つの Extension は「ActivityExtension のみ」「ContextExtension のみ」「両方兼用」のいずれかに分類される。
 
 #### 2.4.1 Extension IRI の形式
 
-**Activity Extension:**
-- IRI 形式：`https://w3id.org/japan-xapi/extensions/[extension-id]`
-- 例：`https://w3id.org/japan-xapi/extensions/subject`
+IRI 形式は Extension のタイプによらず統一される：
 
-**Context Extension:**
+**Core Profile の Extension:**
 - IRI 形式：`https://w3id.org/japan-xapi/extensions/[extension-id]`
-- 例：`https://w3id.org/japan-xapi/extensions/assessment-type`
+- 例（ActivityExtension のみ）：`https://w3id.org/japan-xapi/extensions/purpose-of-question`
+- 例（ContextExtension のみ）：`https://w3id.org/japan-xapi/extensions/assessment-type`
+- 例（両方兼用）：`https://w3id.org/japan-xapi/extensions/subject`
 
 **Domain 固有 Extension:**
 - IRI 形式：`https://w3id.org/japan-xapi/extensions/[domain]/[extension-id]`
 - 例：`https://w3id.org/japan-xapi/extensions/ebook/launch-reason`
 
-#### 2.4.2 Extension の定義場所
+#### 2.4.2 Extension のタイプ
 
-- **Core Profile**：複数 Domain で共通に使用される Extension
+各 Extension は以下のいずれかのタイプを持つ：
+
+| タイプ | 説明 | 用途 |
+|--------|------|------|
+| **ActivityExtension のみ** | Object（コンテンツ、課題等）に付与される | 学習コンテンツ自体のメタデータ記録 |
+| **ContextExtension のみ** | Context（学習行為の文脈）に付与される | 学習活動時の状況・環境を記録 |
+| **両方兼用** | Object と Context の両方に付与可能 | 教科・学年など、複数の文脈で使用される | 
+
+**実装例（Core Profile の 11 Extension）：**
+
+- **ActivityExtension のみ**：
+  - `purpose-of-question`（問題の趣旨）
+  - `content-type`（コンテンツの種類：hint, result, explanation）
+  - `question-order`（問題の出題順序）
+  - `scrapbook-item-type`（スクラップブック項目タイプ）
+
+- **ContextExtension のみ**：
+  - `difficulty`（難易度）
+  - `assessment-type`（評価のタイプ：diagnostic, formative, summative）
+  - `due-date`（期限日）
+
+- **両方兼用**：
+  - `grade`（学年）
+  - `subject`（教科）
+  - `course-of-study-code`（学習指導要領コード）
+  - `unit`（単元名）
+
+#### 2.4.3 Extension の定義場所
+
+- **Core Profile**：複数 Domain で共通に使用される Extension（上記 11 Extension）
 - **Domain Profile**：特定 Domain のみで使用される Extension
 
 ### 2.5 Statement に書く Concept IRI（推奨：unversioned）

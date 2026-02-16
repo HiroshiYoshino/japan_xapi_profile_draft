@@ -89,6 +89,12 @@
 
 # 3. CBT/デジタルドリルに関するユースケース
 
+## 3.1　本章の位置づけ
+
+　本章では、CBT/デジタルドリルにおける学習活動の特性を述べ、本プロファイルで定義するStatementTemplateの背景にある考え方を示す。
+
+## 3.2　CBT/デジタルドリルの特性と主な学習活動
+
 CBT/デジタルドリルにおける主なユースケースは、学習者がドリルやテストなどのアセスメントに取り組み、その結果を記録することである。
 
 主な学習活動の例：
@@ -97,6 +103,19 @@ CBT/デジタルドリルにおける主なユースケースは、学習者が�
 - **問題への回答**: 学習者がドリルやテストの個々の問題に対して回答を行う。
 - **コンテンツの参照**: 問題に取り組む中で、ヒントのような回答に関わるコンテンツを参照する。また、ドリルやテストの終了後、結果や解説を参照する。
 - **アセスメントの終了**: 学習者がドリルやテストを終了する。
+
+## 3.3　本プロジェクトの成果と今後の課題
+
+**本プロジェクトの成果**
+
+- 本プロファイルでは、アセスメント開始、個々の問題への回答、アセスメント終了といった、CBT/デジタルドリルの基本的なワークフローを記録するStatementTemplateを定義した。これにより、学習者の解答状況、得点、所要時間などをきめ細かく追跡し、個別学習支援や学習成果の評測に活用することが可能になる。一方で、現在の仕様は、設問に対するシンプルな回答行動・結果の記録に主眼を置いており、アダプティブ・ラーニングにおける動的な出題制御（出題エンジンの挙動）やIRT(項目反応理論)の運用を考慮しての回答記録の取り扱いまではカバーしていない。また、非線形な回答順序に関するパターン定義は対象外としている。
+
+**今後の課題（作業中）**
+
+- **能力推定値の記録**: 現在の仕様は単純な得点・正答率の記録にとどまるため、IRT等を用いた能力推定値（θ値）や信頼区間の記録の普及に応じて、その記録方法を検討する必要がある。
+- **アセスメントの運用ポリシーを考慮した能力推定値・動的出題情報の記録**: 例えばCBTを使ったIRT(項目反応理論)運用の際には、個々の設問の正誤や得点は開示が制限される場合がある。また一方で、回答記録の中に動的な出題の根拠となった情報を含め、指導者や学習者が振り返り可能とするべき場合もあると考えられる。そのような運用ポリシーの普及に応じて、回答ログの記録方法や表現方法を検討する必要がある。
+- **問題メタデータの標準化**: 問題そのもののメタデータ（CBTシステム間で共有するためのID体系や難易度指標など）との連携強化。
+- **アンケート回答の記録**: 現在の仕様は、デジタルドリルとCBTで共通する用途として、得点・正誤情報を持つアセスメントの回答記録のみを対象としている。一方で、学習者の意識調査等で用いられるアンケート形式の記録についても、CBTシステムで扱われるケースがある。アンケートの回答記録については、本プロファイルとは別に適切なxAPI Profileの策定を検討する必要がある。
 
 # 4.　StatementTemplate
 
@@ -247,7 +266,7 @@ CBT/デジタルドリルにおける主なユースケースは、学習者が�
 | **学年（Activity Extension）**             | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/grade']`             | recommended | Core Profileで定義された学年Extensionを使用する。                   |
 | **学習指導要領コード（Activity Extension）** | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/course-of-study-code']` | recommended | Core Profileで定義された学習指導要領コードExtension。                     |
 | **単元名（Activity Extension）**             | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/unit']`              | recommended | Core Profileで定義された単元名Extension。                                      |
-| **コンテンツの種類**                 | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/content-type']`      | recommended | hint(ヒント), result(結果), explanation(解説) 等                     |
+| **コンテンツの種類**                 | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/content-type']`      | recommended | hint（ヒント）、result（結果）、explanation（解説）のいずれか。Core Profileで定義。 |
 | **問題の趣旨**                       | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/purpose-of-question']` | recommended | 学習指導要領より細粒度の学習目標を記録。                             |
 | **出題順序**                         | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/question-order']`    | recommended | デジタルドリルやCBTにおける問題の出題順序。                          |
 | **教科（Context Extension）**              | `$.context.extensions['https://w3id.org/japan-xapi/extensions/subject']`                     | recommended | Core Profileで定義された教科Extensionを使用する。                   |

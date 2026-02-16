@@ -317,34 +317,156 @@ Extension は以下の2つに分類される：
 }
 ```
 
-#### 5.5.5 教科、学年、学習指導要領コード
+#### 5.5.5 Core Profile に定義する拡張フィールド一覧
 
-以下の拡張フィールドは Core Profile で必ず定義する：
+Core Profile では以下の 11 個の拡張フィールドを定義し、各 Domain Profile で活用される：
 
-**1. 教科（subject）**
+**1. subject（教科）**
 
 - **IRI**: `https://w3id.org/japan-xapi/extensions/subject`
 - **type**: `ActivityExtension` および `ContextExtension`（両方で使用可能）
-- **定義**: 学習コンテンツが対象とする教科を示す
-- **値の形式**: 文字列または配列（例：国語、算数、[国語, 社会]）
+- **prefLabel**:
+  - ja: 教科
+  - en: subject
+- **definition**:
+  - ja: 学習コンテンツが対象とする教科を示す
+  - en: Indicates the school subject targeted by learning content
+- **Scope Note**: 複数の教科に対応可能
+- **Schema**: `type: array, items: { type: string }`
 
-**2. 学年（grade）**
+**2. grade（学年）**
 
 - **IRI**: `https://w3id.org/japan-xapi/extensions/grade`
 - **type**: `ActivityExtension` および `ContextExtension`
-- **定義**: 学習コンテンツが対象とする学年を示す
-- **値の形式**: 文字列または数値（例：小学3年、3）
+- **prefLabel**:
+  - ja: 学年
+  - en: grade
+- **definition**:
+  - ja: 学習コンテンツが対象とする学年を示す
+  - en: Indicates the grade level targeted by learning content
+- **Scope Note**: 複数の学年に対応可能
+- **Schema**: `type: array, items: { type: string }`
 
-**3. 学習指導要領コード（curriculum-code）**
+**3. course-of-study-code（学習指導要領コード）**
 
-- **IRI**: `https://w3id.org/japan-xapi/extensions/curriculum-code`
+- **IRI**: `https://w3id.org/japan-xapi/extensions/course-of-study-code`
 - **type**: `ActivityExtension` および `ContextExtension`
-- **定義**: 文部科学省が定める学習指導要領のコード体系に基づくコードを示す
-- **値の形式**: 文字列（例：8310130000000000）
+- **prefLabel**:
+  - ja: 学習指導要領コード
+  - en: course of study code
+- **definition**:
+  - ja: 文部科学省が定める学習指導要領のコード体系に基づくコードを示す
+  - en: Indicates a code based on the course of study code system defined by the Ministry of Education, Culture, Sports, Science and Technology
+- **Scope Note**: 複数のコードに対応可能
+- **Schema**: `type: array, items: { type: string }`
+
+**4. unit（単元）**
+
+- **IRI**: `https://w3id.org/japan-xapi/extensions/unit`
+- **type**: `ActivityExtension` および `ContextExtension`
+- **prefLabel**:
+  - ja: 単元
+  - en: unit
+- **definition**:
+  - ja: 学習の単元名を示す
+  - en: Indicates the name of a learning unit
+- **Scope Note**: 複数の単元に対応可能
+- **Schema**: `type: array, items: { type: string }`
+
+**5. purpose-of-question（問題の趣旨）**
+
+- **IRI**: `https://w3id.org/japan-xapi/extensions/purpose-of-question`
+- **type**: `ActivityExtension`
+- **prefLabel**:
+  - ja: 問題の趣旨
+  - en: purpose of question
+- **definition**:
+  - ja: CBT/ドリル等の問題の出題意図・趣旨を示す
+  - en: Indicates the purpose or intent of a question in CBT/drill assessments
+- **Scope Note**: 複数の趣旨に対応可能
+- **Schema**: `type: array, items: { type: string }`
+
+**6. content-type（コンテンツの種類）**
+
+- **IRI**: `https://w3id.org/japan-xapi/extensions/content-type`
+- **type**: `ActivityExtension`
+- **prefLabel**:
+  - ja: コンテンツの種類
+  - en: content type
+- **definition**:
+  - ja: 参照されるコンテンツの種類（ヒント、解答、解説など）を示す
+  - en: Indicates the type of referenced content (hint, answer, explanation, etc.)
+- **Scope Note**: このプロファイルでは hint, result, explanation の3値をサポート
+- **Schema**: `type: string, enum: ["hint", "result", "explanation"]`
+
+**7. question-order（問題の出題順序）**
+
+- **IRI**: `https://w3id.org/japan-xapi/extensions/question-order`
+- **type**: `ActivityExtension`
+- **prefLabel**:
+  - ja: 問題の出題順序
+  - en: question order
+- **definition**:
+  - ja: テスト内での問題の出題順序を示す
+  - en: Indicates the order of a question within a test
+- **Scope Note**: 整数値で出題順序を管理
+- **Schema**: `type: integer`
+
+**8. difficulty（難易度）**
+
+- **IRI**: `https://w3id.org/japan-xapi/extensions/difficulty`
+- **type**: `ContextExtension`
+- **prefLabel**:
+  - ja: 難易度
+  - en: difficulty
+- **definition**:
+  - ja: 学習コンテンツまたは問題の難易度を示す
+  - en: Indicates the difficulty level of learning content or a question
+- **Scope Note**: Domain Profile で具体的な難易度値（例：1-5スケール）を定義
+- **Schema**: `type: string`
+
+**9. assessment-type（評価のタイプ）**
+
+- **IRI**: `https://w3id.org/japan-xapi/extensions/assessment-type`
+- **type**: `ContextExtension`
+- **prefLabel**:
+  - ja: 評価のタイプ
+  - en: assessment type
+- **definition**:
+  - ja: 評価の種類（診断的、形成的、総括的）を示す
+  - en: Indicates the type of assessment (diagnostic, formative, summative)
+- **Scope Note**: このプロファイルでは diagnostic, formative, summative の3値をサポート
+- **Schema**: `type: string, enum: ["diagnostic", "formative", "summative"]`
+
+**10. scrapbook-item-type（スクラップブック項目タイプ）**
+
+- **IRI**: `https://w3id.org/japan-xapi/extensions/scrapbook-item-type`
+- **type**: `ActivityExtension`
+- **prefLabel**:
+  - ja: スクラップブック項目タイプ
+  - en: scrapbook item type
+- **definition**:
+  - ja: グループ学習支援ツール内でスクラップボードに保存されたアイテムのタイプを示す
+  - en: Indicates the type of item stored in a scrapboard in group learning support tools
+- **Scope Note**: Domain Profile で具体的なアイテムタイプ（例：テキスト、画像、URL など）を定義
+- **Schema**: `type: string`
+
+**11. due-date（期限）**
+
+- **IRI**: `https://w3id.org/japan-xapi/extensions/due-date`
+- **type**: `ContextExtension`
+- **prefLabel**:
+  - ja: 期限
+  - en: due date
+- **definition**:
+  - ja: LMS の課題提出等における期限日時を示す
+  - en: Indicates the due date and time for task submission in LMS and similar systems
+- **Scope Note**: ISO 8601 形式の日時で管理
+- **Schema**: `type: string, format: "date-time"`
 
 **注意**：
-- メタデータの記載ルール（具体的な値のフォーマット）については、Core Profile では詳細に規定しない
-- 各 Domain Profile が用途に応じて具体的な値の形式を定める
+- メタデータの具体的な値のフォーマット規定（例：学年の表記方法、難易度の数値スケール）については、Core Profile では詳細に規定しない
+- 各 Domain Profile が用途に応じて具体的な値の形式と許容値を定めるものとする
 
 ---
 
@@ -395,13 +517,53 @@ Extension は以下の2つに分類される：
       }
     },
     {
+      "id": "https://w3id.org/japan-xapi/extensions/subject",
+      "inScheme": "https://w3id.org/japan-xapi/profiles/core/v1.0.0",
+      "type": "ActivityExtension",
+      "prefLabel": { "ja": "教科", "en": "subject" },
+      "definition": { 
+        "ja": "学習コンテンツが対象とする教科を示す。",
+        "en": "Indicates the school subject targeted by learning content."
+      }
+    },
+    {
+      "id": "https://w3id.org/japan-xapi/extensions/grade",
+      "inScheme": "https://w3id.org/japan-xapi/profiles/core/v1.0.0",
+      "type": "ActivityExtension",
+      "prefLabel": { "ja": "学年", "en": "grade" },
+      "definition": { 
+        "ja": "学習コンテンツが対象とする学年を示す。",
+        "en": "Indicates the grade level targeted by learning content."
+      }
+    },
+    {
       "id": "https://w3id.org/japan-xapi/extensions/difficulty",
       "inScheme": "https://w3id.org/japan-xapi/profiles/core/v1.0.0",
       "type": "ContextExtension",
       "prefLabel": { "ja": "難易度", "en": "difficulty" },
       "definition": { 
-        "ja": "学習コンテンツの難易度を示す（1-5など）。",
-        "en": "Indicates the difficulty level of the learning content (e.g., 1-5)."
+        "ja": "学習コンテンツまたは問題の難易度を示す。",
+        "en": "Indicates the difficulty level of learning content or a question."
+      }
+    },
+    {
+      "id": "https://w3id.org/japan-xapi/extensions/assessment-type",
+      "inScheme": "https://w3id.org/japan-xapi/profiles/core/v1.0.0",
+      "type": "ContextExtension",
+      "prefLabel": { "ja": "評価のタイプ", "en": "assessment type" },
+      "definition": { 
+        "ja": "評価の種類（診断的、形成的、総括的）を示す。",
+        "en": "Indicates the type of assessment (diagnostic, formative, summative)."
+      }
+    },
+    {
+      "id": "https://w3id.org/japan-xapi/extensions/due-date",
+      "inScheme": "https://w3id.org/japan-xapi/profiles/core/v1.0.0",
+      "type": "ContextExtension",
+      "prefLabel": { "ja": "期限", "en": "due date" },
+      "definition": { 
+        "ja": "LMS の課題提出等における期限日時を示す。",
+        "en": "Indicates the due date and time for task submission in LMS and similar systems."
       }
     }
   ],
