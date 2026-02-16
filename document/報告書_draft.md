@@ -268,11 +268,10 @@ Japan xAPI Group Learning Support Tool Profile は、協働学習（グループ
 
 1.  **メタデータの整備について**
     - 各プロファイルで参照されるメタデータ（教科、単元、評価タイプなど）について、文部科学省の教育データ標準や既存のコードセットとのマッピングを継続的にメンテナンスする必要がある。
-2.  執筆中
 
 ## 7. メンバー
 
-作業中
+（記載予定）
 
 ## 8. 付録
 
@@ -326,8 +325,8 @@ Japan xAPI Group Learning Support Tool Profile は、協働学習（グループ
 
 | IRI | Definition (EN) | 日本語訳 |
 | :-- | :-- | :-- |
-| https://w3id.org/xapi/adb/verbs/bookmarked | Persisting the current location (page) where the reader stopped the ebook activity. | 読者が電子書籍アクティビティを中断した現在位置（ページ）を保持する。 |
-| https://w3id.org/xapi/adb/verbs/noted | Add annotation or notes to selected text within an ebook or highlight. | 電子書籍内の選択テキストに注釈やメモを追加する、またはハイライトする。 |
+| https://w3id.org/xapi/adb/verbs/bookmarked | Persisting the current location (page) where the reader stopped the eBook activity. | 読者が電子書籍アクティビティを中断した現在位置（ページ）を保持する。 |
+| https://w3id.org/xapi/adb/verbs/noted | Add annotation or notes to selected text within an eBook or highlight. | 電子書籍内の選択テキストに注釈やメモを追加する、またはハイライトする。 |
 | https://w3id.org/xapi/adb/verbs/read | Indicates that the actor has read the object. | アクターがオブジェクトを読んだことを示す。 |
 | https://w3id.org/xapi/adl/verbs/abandoned | Indicates the activity provider has determined that the session was abnormally terminated either by an actor or due to a system failure. | アクティビティ提供者が、アクターまたはシステム障害によりセッションが異常終了したと判断したことを示す。 |
 | https://w3id.org/xapi/adl/verbs/created | Indicates the actor has created an object. | アクターがオブジェクトを作成したことを示す。 |
