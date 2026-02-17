@@ -7,7 +7,7 @@
 
 ## 1.2　目的
 
-　本ドキュメントは、CBT/デジタルドリルにおける学習ログについて、関係する事業者間で共通の理解のもとに取り扱うことを可能とするため、Assessmentプロファイルとしての考え方および記述の枠組みを整理し、共有することを目的とする。
+　本ドキュメントは、CBT/デジタルドリルにおける学習ログについて、関係する事業者間で共通の理解のもとに取り扱うことを可能とするため、Assessment Profileとしての考え方および記述の枠組みを整理し、共有することを目的とする。
 
 ## 1.3　前提条件
 
@@ -89,6 +89,12 @@
 
 # 3. CBT/デジタルドリルに関するユースケース
 
+## 3.1　本章の位置づけ
+
+　本章では、CBT/デジタルドリルにおける学習活動の特性を述べ、本プロファイルで定義するStatementTemplateの背景にある考え方を示す。
+
+## 3.2　CBT/デジタルドリルの特性と主な学習活動
+
 CBT/デジタルドリルにおける主なユースケースは、学習者がドリルやテストなどのアセスメントに取り組み、その結果を記録することである。
 
 主な学習活動の例：
@@ -98,16 +104,29 @@ CBT/デジタルドリルにおける主なユースケースは、学習者が�
 - **コンテンツの参照**: 問題に取り組む中で、ヒントのような回答に関わるコンテンツを参照する。また、ドリルやテストの終了後、結果や解説を参照する。
 - **アセスメントの終了**: 学習者がドリルやテストを終了する。
 
+## 3.3　本プロジェクトの成果と今後の課題
+
+**本プロジェクトの成果**
+
+- 本プロファイルでは、アセスメント開始、個々の問題への回答、アセスメント終了といった、CBT/デジタルドリルの基本的なワークフローを記録するStatementTemplateを定義した。これにより、学習者の解答状況、得点、所要時間などをきめ細かく追跡し、個別学習支援や学習成果の評測に活用することが可能になる。一方で、現在の仕様は、設問に対するシンプルな回答行動・結果の記録に主眼を置いており、アダプティブ・ラーニングにおける動的な出題制御（出題エンジンの挙動）やIRT(項目反応理論)の運用を考慮しての回答記録の取り扱いまではカバーしていない。また、非線形な回答順序に関するパターン定義は対象外としている。
+
+**今後の課題（作業中）**
+
+- **能力推定値の記録**: 現在の仕様は単純な得点・正答率の記録にとどまるため、IRT等を用いた能力推定値（θ値）や信頼区間の記録の普及に応じて、その記録方法を検討する必要がある。
+- **アセスメントの運用ポリシーを考慮した能力推定値・動的出題情報の記録**: 例えばCBTを使ったIRT(項目反応理論)運用の際には、個々の設問の正誤や得点は開示が制限される場合がある。また一方で、回答記録の中に動的な出題の根拠となった情報を含め、指導者や学習者が振り返り可能とするべき場合もあると考えられる。そのような運用ポリシーの普及に応じて、回答ログの記録方法や表現方法を検討する必要がある。
+- **問題メタデータの標準化**: 問題そのもののメタデータ（CBTシステム間で共有するためのID体系や難易度指標など）との連携強化。
+- **アンケート回答の記録**: 現在の仕様は、デジタルドリルとCBTで共通する用途として、得点・正誤情報を持つアセスメントの回答記録のみを対象としている。一方で、学習者の意識調査等で用いられるアンケート形式の記録についても、CBTシステムで扱われるケースがある。アンケートの回答記録については、本プロファイルとは別に適切なxAPI Profileの策定を検討する必要がある。
+
 # 4.　StatementTemplate
 
 ## 4.1　本章の位置づけ
 
-　本章では、Assessmentプロファイルにおける各操作のデータ構造を定義する。各テンプレートは以下の「基本仕様」および「記述規則」の構成で記述される。
+　本章では、Assessment Profileにおける各操作のデータ構造を定義する。各テンプレートは以下の「基本仕様」および「記述規則」の構成で記述される。
 
 ## 4.2　前提条件
 
 - 基本仕様
-  - 冒頭にdifinitionの位置づけとして、Templateの目的やどのような操作を記録するためのものかを定義する。
+  - 冒頭にdefinitionの位置づけとして、Templateの目的やどのような操作を記録するためのものかを定義する。
   - 識別情報
     - Templateを管理上特定するための情報として3要素（id,inScheme,prefLabel）を含む。
   - 判定条件
@@ -146,15 +165,15 @@ CBT/デジタルドリルにおける主なユースケースは、学習者が�
 | 項目                                 | Location (JSONPath)                                                                          | Presence    | 説明(scopeNote)                                                                 |
 | :----------------------------------- | :------------------------------------------------------------------------------------------- | :---------- | :------------------------------------------------------------------------------ |
 | **Assessmentの日本語表示名**         | `$.object.definition.name.ja-JP`                                                             | recommended |                                                                                 |
-| **教科（Activity拡張）**             | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/subject']`           | recommended | Core Profileで定義された教科Extensionを使用する。                              |
-| **学年（Activity拡張）**             | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/grade']`             | recommended | Core Profileで定義された学年Extensionを使用する。                              |
-| **学習指導要領コード（Activity拡張）** | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/course-of-study-code']` | recommended | Core Profileで定義された学習指導要領コード拡張。                                |
-| **単元名（Activity拡張）**             | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/unit']`              | recommended | Core Profileで定義された単元名拡張。                                      |
-| **教科（Context拡張）**              | `$.context.extensions['https://w3id.org/japan-xapi/extensions/subject']`                     | recommended | Core Profileで定義された教科Extensionを使用する。                              |
-| **学年（Context拡張）**              | `$.context.extensions['https://w3id.org/japan-xapi/extensions/grade']`                       | recommended | Core Profileで定義された学年Extensionを使用する。                              |
-| **学習指導要領コード（Context拡張）** | `$.context.extensions['https://w3id.org/japan-xapi/extensions/course-of-study-code']`       | recommended | Core Profileで定義された学習指導要領コード拡張。                                |
-| **単元名（Context拡張）**              | `$.context.extensions['https://w3id.org/japan-xapi/extensions/unit']`                        | recommended | Core Profileで定義された単元名拡張。                                      |
-| **難易度（Context拡張）**              | `$.context.extensions['https://w3id.org/japan-xapi/extensions/difficulty']`                  | optional    | Core Profileで定義された難易度拡張。                                      |
+| **教科（Activity Extension）**             | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/subject']`           | recommended | Core Profileで定義された教科Extensionを使用する。                              |
+| **学年（Activity Extension）**             | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/grade']`             | recommended | Core Profileで定義された学年Extensionを使用する。                              |
+| **学習指導要領コード（Activity Extension）** | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/course-of-study-code']` | recommended | Core Profileで定義された学習指導要領コード拡張。                                |
+| **単元名（Activity Extension）**             | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/unit']`              | recommended | Core Profileで定義された単元名拡張。                                      |
+| **教科（Context Extension）**              | `$.context.extensions['https://w3id.org/japan-xapi/extensions/subject']`                     | recommended | Core Profileで定義された教科Extensionを使用する。                              |
+| **学年（Context Extension）**              | `$.context.extensions['https://w3id.org/japan-xapi/extensions/grade']`                       | recommended | Core Profileで定義された学年Extensionを使用する。                              |
+| **学習指導要領コード（Context Extension）** | `$.context.extensions['https://w3id.org/japan-xapi/extensions/course-of-study-code']`       | recommended | Core Profileで定義された学習指導要領コード拡張。                                |
+| **単元名（Context Extension）**              | `$.context.extensions['https://w3id.org/japan-xapi/extensions/unit']`                        | recommended | Core Profileで定義された単元名拡張。                                      |
+| **難易度（Context Extension）**              | `$.context.extensions['https://w3id.org/japan-xapi/extensions/difficulty']`                  | optional    | Core Profileで定義された難易度拡張。                                      |
 | **評価タイプ**                       | `$.context.extensions['https://w3id.org/japan-xapi/extensions/assessment-type']`             | recommended | 診断的(diagnostic)、形成的(formative)、総括的(summative)のいずれかを指定。      |
 | **Assessment実施グループID**         | `$.context.contextActivities.grouping[*].id`                                                 | recommended | ある一回のAssessmentの取り組みに対して同一のIRIを記述。                         |
 | **活動発生日時**                     | `$.timestamp`                                                                                | included    |                                                                                 |
@@ -183,10 +202,10 @@ CBT/デジタルドリルにおける主なユースケースは、学習者が�
 | 項目                                 | Location (JSONPath)                                                                          | Presence    | 説明(scopeNote)                                                       |
 | :----------------------------------- | :------------------------------------------------------------------------------------------- | :---------- | :-------------------------------------------------------------------- |
 | **問題の日本語表示名**               | `$.object.definition.name.ja-JP`                                                             | recommended |                                                                       |
-| **教科（Activity拡張）**             | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/subject']`           | recommended | Core Profileで定義された教科Extensionを使用する。                    |
-| **学年（Activity拡張）**             | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/grade']`             | recommended | Core Profileで定義された学年Extensionを使用する。                    |
-| **学習指導要領コード（Activity拡張）** | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/course-of-study-code']` | recommended | Core Profileで定義された学習指導要領コード拡張。                      |
-| **単元名（Activity拡張）**             | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/unit']`              | recommended | Core Profileで定義された単元名拡張。                                      |
+| **教科（Activity Extension）**             | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/subject']`           | recommended | Core Profileで定義された教科Extensionを使用する。                    |
+| **学年（Activity Extension）**             | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/grade']`             | recommended | Core Profileで定義された学年Extensionを使用する。                    |
+| **学習指導要領コード（Activity Extension）** | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/course-of-study-code']` | recommended | Core Profileで定義された学習指導要領コードExtension。                      |
+| **単元名（Activity Extension）**             | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/unit']`              | recommended | Core Profileで定義された単元名Extension。                                      |
 | **問題の趣旨**                       | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/purpose-of-question']` | recommended | 学習指導要領より細粒度の学習目標を記録。                              |
 | **出題順序**                         | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/question-order']`    | recommended | デジタルドリルやCBTにおける問題の出題順序。                           |
 | **得点率**                           | `$.result.score.scaled`                                                                      | included    | 0.0から1.0の実数。                                                    |
@@ -195,9 +214,9 @@ CBT/デジタルドリルにおける主なユースケースは、学習者が�
 | **最小点**                           | `$.result.score.min`                                                                         | optional    |                                                                       |
 | **回答値**                           | `$.result.response`                                                                          | recommended |                                                                       |
 | **回答所要時間**                     | `$.result.duration`                                                                          | recommended |                                                                       |
-| **教科（Context拡張）**              | `$.context.extensions['https://w3id.org/japan-xapi/extensions/subject']`                     | recommended | Core Profileで定義された教科Extensionを使用する。                    |
-| **学年（Context拡張）**              | `$.context.extensions['https://w3id.org/japan-xapi/extensions/grade']`                       | recommended | Core Profileで定義された学年Extensionを使用する。                    |
-| **学習指導要領コード（Context拡張）** | `$.context.extensions['https://w3id.org/japan-xapi/extensions/course-of-study-code']`       | recommended | Core Profileで定義された学習指導要領コード拡張。                      |
+| **教科（Context Extension）**              | `$.context.extensions['https://w3id.org/japan-xapi/extensions/subject']`                     | recommended | Core Profileで定義された教科Extensionを使用する。                    |
+| **学年（Context Extension）**              | `$.context.extensions['https://w3id.org/japan-xapi/extensions/grade']`                       | recommended | Core Profileで定義された学年Extensionを使用する。                    |
+| **学習指導要領コード（Context Extension）** | `$.context.extensions['https://w3id.org/japan-xapi/extensions/course-of-study-code']`       | recommended | Core Profileで定義された学習指導要領コードExtension。                      |
 | **単元名（Context拡張）**              | `$.context.extensions['https://w3id.org/japan-xapi/extensions/unit']`                        | recommended | Core Profileで定義された単元名拡張。                                      |
 | **難易度（Context拡張）**              | `$.context.extensions['https://w3id.org/japan-xapi/extensions/difficulty']`                  | optional    | Core Profileで定義された難易度拡張。                                      |
 | **評価タイプ**                       | `$.context.extensions['https://w3id.org/japan-xapi/extensions/assessment-type']`             | recommended | 診断的(diagnostic)、形成的(formative)、総括的(summative)のいずれか。  |
@@ -243,18 +262,18 @@ CBT/デジタルドリルにおける主なユースケースは、学習者が�
 | 項目                                 | Location (JSONPath)                                                                          | Presence    | 説明(scopeNote)                                                      |
 | :----------------------------------- | :------------------------------------------------------------------------------------------- | :---------- | :------------------------------------------------------------------- |
 | **コンテンツの日本語表示名**         | `$.object.definition.name.ja-JP`                                                             | recommended |                                                                      |
-| **教科（Activity拡張）**             | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/subject']`           | recommended | Core Profileで定義された教科Extensionを使用する。                   |
-| **学年（Activity拡張）**             | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/grade']`             | recommended | Core Profileで定義された学年Extensionを使用する。                   |
-| **学習指導要領コード（Activity拡張）** | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/course-of-study-code']` | recommended | Core Profileで定義された学習指導要領コード拡張。                     |
-| **単元名（Activity拡張）**             | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/unit']`              | recommended | Core Profileで定義された単元名拡張。                                      |
-| **コンテンツの種類**                 | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/content-type']`      | recommended | hint(ヒント), result(結果), explanation(解説) 等                     |
+| **教科（Activity Extension）**             | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/subject']`           | recommended | Core Profileで定義された教科Extensionを使用する。                   |
+| **学年（Activity Extension）**             | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/grade']`             | recommended | Core Profileで定義された学年Extensionを使用する。                   |
+| **学習指導要領コード（Activity Extension）** | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/course-of-study-code']` | recommended | Core Profileで定義された学習指導要領コードExtension。                     |
+| **単元名（Activity Extension）**             | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/unit']`              | recommended | Core Profileで定義された単元名Extension。                                      |
+| **コンテンツの種類**                 | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/content-type']`      | recommended | hint（ヒント）、result（結果）、explanation（解説）のいずれか。Core Profileで定義。 |
 | **問題の趣旨**                       | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/purpose-of-question']` | recommended | 学習指導要領より細粒度の学習目標を記録。                             |
 | **出題順序**                         | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/question-order']`    | recommended | デジタルドリルやCBTにおける問題の出題順序。                          |
-| **教科（Context拡張）**              | `$.context.extensions['https://w3id.org/japan-xapi/extensions/subject']`                     | recommended | Core Profileで定義された教科Extensionを使用する。                   |
-| **学年（Context拡張）**              | `$.context.extensions['https://w3id.org/japan-xapi/extensions/grade']`                       | recommended | Core Profileで定義された学年Extensionを使用する。                   |
-| **学習指導要領コード（Context拡張）** | `$.context.extensions['https://w3id.org/japan-xapi/extensions/course-of-study-code']`       | recommended | Core Profileで定義された学習指導要領コード拡張。                     |
-| **単元名（Context拡張）**              | `$.context.extensions['https://w3id.org/japan-xapi/extensions/unit']`                        | recommended | Core Profileで定義された単元名拡張。                                      |
-| **難易度（Context拡張）**              | `$.context.extensions['https://w3id.org/japan-xapi/extensions/difficulty']`                  | optional    | Core Profileで定義された難易度拡張。                                      |
+| **教科（Context Extension）**              | `$.context.extensions['https://w3id.org/japan-xapi/extensions/subject']`                     | recommended | Core Profileで定義された教科Extensionを使用する。                   |
+| **学年（Context Extension）**              | `$.context.extensions['https://w3id.org/japan-xapi/extensions/grade']`                       | recommended | Core Profileで定義された学年Extensionを使用する。                   |
+| **学習指導要領コード（Context Extension）** | `$.context.extensions['https://w3id.org/japan-xapi/extensions/course-of-study-code']`       | recommended | Core Profileで定義された学習指導要領コードExtension。                     |
+| **単元名（Context Extension）**              | `$.context.extensions['https://w3id.org/japan-xapi/extensions/unit']`                        | recommended | Core Profileで定義された単元名Extension。                                      |
+| **難易度（Context Extension）**              | `$.context.extensions['https://w3id.org/japan-xapi/extensions/difficulty']`                  | optional    | Core Profileで定義された難易度Extension。                                      |
 | **評価タイプ**                       | `$.context.extensions['https://w3id.org/japan-xapi/extensions/assessment-type']`             | recommended | 診断的(diagnostic)、形成的(formative)、総括的(summative)のいずれか。 |
 | **Assessment実施グループID**         | `$.context.contextActivities.grouping[*].id`                                                 | recommended | ある一回のAssessmentの取り組みに対して同一のIRIを記述。              |
 | **親アクティビティID**               | `$.context.contextActivities.parent[*].id`                                                   | recommended | 関連する問題や評価のID                                               |
@@ -284,21 +303,21 @@ CBT/デジタルドリルにおける主なユースケースは、学習者が�
 | 項目                                 | Location (JSONPath)                                                                          | Presence    | 説明(scopeNote)                                                             |
 | :----------------------------------- | :------------------------------------------------------------------------------------------- | :---------- | :-------------------------------------------------------------------------- |
 | **Assessment名**                     | `$.object.definition.name.ja-JP`                                                             | recommended |                                                                             |
-| **教科（Activity拡張）**             | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/subject']`           | recommended | Core Profileで定義された教科Extension。                                    |
-| **学年（Activity拡張）**             | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/grade']`             | recommended | Core Profileで定義された学年Extension。                                    |
-| **学習指導要領コード（Activity拡張）** | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/course-of-study-code']` | recommended | Core Profileで定義。                                                        |
-| **単元名（Activity拡張）**             | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/unit']`              | recommended | Core Profileで定義された単元名拡張。                                      |
+| **教科（Activity Extension）**             | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/subject']`           | recommended | Core Profileで定義された教科Extension。                                    |
+| **学年（Activity Extension）**             | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/grade']`             | recommended | Core Profileで定義された学年Extension。                                    |
+| **学習指導要領コード（Activity Extension）** | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/course-of-study-code']` | recommended | Core Profileで定義。                                                        |
+| **単元名（Activity Extension）**             | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/unit']`              | recommended | Core Profileで定義された単元名Extension。                                      |
 | **得点率**                           | `$.result.score.scaled`                                                                      | included    | 0.0から1.0の実数。                                                          |
 | **素点**                             | `$.result.score.raw`                                                                         | included    |                                                                             |
 | **最大点**                           | `$.result.score.max`                                                                         | included    |                                                                             |
 | **最小点**                           | `$.result.score.min`                                                                         | optional    |                                                                             | 
 | **完了フラグ**                       | `$.result.success`                                                                           | recommended | 最後まで完了した場合はtrue、途中終了はfalse                                 |
 | **所要時間**                         | `$.result.duration`                                                                          | recommended | ISO 8601期間形式 (例: PT1H30M)                                              |
-| **教科（Context拡張）**              | `$.context.extensions['https://w3id.org/japan-xapi/extensions/subject']`                     | recommended | Core Profileで定義された教科Extension。                                    |
-| **学年（Context拡張）**              | `$.context.extensions['https://w3id.org/japan-xapi/extensions/grade']`                       | recommended | Core Profileで定義された学年Extension。                                    |
-| **学習指導要領コード（Context拡張）** | `$.context.extensions['https://w3id.org/japan-xapi/extensions/course-of-study-code']`       | recommended | Core Profileで定義。                                                        |
-| **単元名（Context拡張）**              | `$.context.extensions['https://w3id.org/japan-xapi/extensions/unit']`                        | recommended | Core Profileで定義された単元名拡張。                                      |
-| **難易度（Context拡張）**              | `$.context.extensions['https://w3id.org/japan-xapi/extensions/difficulty']`                  | optional    | Core Profileで定義された難易度拡張。                                      |
+| **教科（Context Extension）**              | `$.context.extensions['https://w3id.org/japan-xapi/extensions/subject']`                     | recommended | Core Profileで定義された教科Extension。                                    |
+| **学年（Context Extension）**              | `$.context.extensions['https://w3id.org/japan-xapi/extensions/grade']`                       | recommended | Core Profileで定義された学年Extension。                                    |
+| **学習指導要領コード（Context Extension）** | `$.context.extensions['https://w3id.org/japan-xapi/extensions/course-of-study-code']`       | recommended | Core Profileで定義。                                                        |
+| **単元名（Context Extension）**              | `$.context.extensions['https://w3id.org/japan-xapi/extensions/unit']`                        | recommended | Core Profileで定義された単元名Extension。                                      |
+| **難易度（Context Extension）**              | `$.context.extensions['https://w3id.org/japan-xapi/extensions/difficulty']`                  | optional    | Core Profileで定義された難易度Extension。                                      |
 | **評価タイプ**                       | `$.context.extensions['https://w3id.org/japan-xapi/extensions/assessment-type']`             | recommended | 診断的(diagnostic)、形成的(formative)、総括的(summative)。                  |
 | **Assessment実施グループID**         | `$.context.contextActivities.grouping[*].id`                                                 | recommended | ある一回のAssessmentの取り組みに対して同一のIRIを記述。                     |
 | **活動発生日時**                     | `$.timestamp`                                                                                | included    |                                                                             |
