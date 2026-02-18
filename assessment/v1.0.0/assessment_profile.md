@@ -242,7 +242,7 @@ CBT/デジタルドリルにおける主なユースケースは、学習者が�
 
 #### 4.3.3.1　基本仕様
 
-- 学習コンテンツやページの閲覧を記録するためのテンプレート。
+- 学習コンテンツやページの参照を記録するためのテンプレート。
 - 識別情報
 
 | 項目 | 値 |
@@ -319,7 +319,7 @@ CBT/デジタルドリルにおける主なユースケースは、学習者が�
 | **単元名（Context Extension）**              | `$.context.extensions['https://w3id.org/japan-xapi/extensions/unit']`                        | recommended | Core Profileで定義された単元名Extension。                                      |
 | **難易度（Context Extension）**              | `$.context.extensions['https://w3id.org/japan-xapi/extensions/difficulty']`                  | optional    | Core Profileで定義された難易度Extension。                                      |
 | **評価タイプ**                       | `$.context.extensions['https://w3id.org/japan-xapi/extensions/assessment-type']`             | recommended | 診断的(diagnostic)、形成的(formative)、総括的(summative)。                  |
-| **Assessment実施グループID**         | `$.context.contextActivities.grouping[*].id`                                                 | recommended | ある一回のAssessmentの取り組みに対して同一のIO。                            |
+| **Assessment実施グループID**         | `$.context.contextActivities.grouping[*].id`                                                 | recommended | ある一回のAssessmentの取り組みに対して同一のIRIを記述。                     |
 | **活動発生日時**                     | `$.timestamp`                                                                                | included    |                                                                             |
 
 > [!NOTE]
