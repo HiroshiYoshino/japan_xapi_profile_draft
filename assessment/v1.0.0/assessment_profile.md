@@ -108,7 +108,7 @@ CBT/デジタルドリルにおける主なユースケースは、学習者が�
 
 **本プロジェクトの成果**
 
-- 本プロファイルでは、アセスメント開始、個々の問題への回答、アセスメント終了といった、CBT/デジタルドリルの基本的なワークフローを記録するStatementTemplateを定義した。これにより、学習者の解答状況、得点、所要時間などをきめ細かく追跡し、個別学習支援や学習成果の評測に活用することが可能になる。一方で、現在の仕様は、設問に対するシンプルな回答行動・結果の記録に主眼を置いており、アダプティブ・ラーニングにおける動的な出題制御（出題エンジンの挙動）やIRT(項目反応理論)の運用を考慮しての回答記録の取り扱いまではカバーしていない。また、非線形な回答順序に関するパターン定義は対象外としている。
+- 本プロファイルでは、アセスメント開始、個々の問題への回答、アセスメント終了といった、CBT/デジタルドリルの基本的なワークフローを記録するStatementTemplateを定義した。これにより、学習者の解答状況、得点、所要時間などをきめ細かく追跡し、個別学習支援や学習成果の把握・評価に活用することが可能になる。一方で、現在の仕様は、設問に対するシンプルな回答行動・結果の記録に主眼を置いており、アダプティブ・ラーニングにおける動的な出題制御（出題エンジンの挙動）やIRT(項目反応理論)の運用を考慮しての回答記録の取り扱いまではカバーしていない。また、非線形な回答順序に関するパターン定義は対象外としている。
 
 **今後の課題（作業中）**
 
@@ -311,7 +311,7 @@ CBT/デジタルドリルにおける主なユースケースは、学習者が�
 | **素点**                             | `$.result.score.raw`                                                                         | included    |                                                                             |
 | **最大点**                           | `$.result.score.max`                                                                         | included    |                                                                             |
 | **最小点**                           | `$.result.score.min`                                                                         | optional    |                                                                             | 
-| **完了フラグ**                       | `$.result.success`                                                                           | recommended | 最後まで完了した場合はtrue、途中終了はfalse                                 |
+| **完了フラグ**                       | `$.result.completion`                                                                        | recommended | 学習者がAssessmentを最後まで完了した場合はtrue、途中終了しており採点者やシステムが完了判定した場合はfalse                                 |
 | **所要時間**                         | `$.result.duration`                                                                          | recommended | ISO 8601期間形式 (例: PT1H30M)                                              |
 | **教科（Context Extension）**              | `$.context.extensions['https://w3id.org/japan-xapi/extensions/subject']`                     | recommended | Core Profileで定義された教科Extension。                                    |
 | **学年（Context Extension）**              | `$.context.extensions['https://w3id.org/japan-xapi/extensions/grade']`                       | recommended | Core Profileで定義された学年Extension。                                    |
