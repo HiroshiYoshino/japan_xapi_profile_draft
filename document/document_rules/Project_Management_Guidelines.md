@@ -156,11 +156,11 @@ https://w3id.org/japan-xapi/extensions/[extension-id]
 Profile の JSON-LD ファイルは、**バージョンを含む IRI**（versioned）を使用する：
 
 ```
-https://w3id.org/japan-xapi/profiles/core/v1.0.0/profile.jsonld
-https://w3id.org/japan-xapi/profiles/ebook/v1.0.0/profile.jsonld
-https://w3id.org/japan-xapi/profiles/lms/v1.0.0/profile.jsonld
-https://w3id.org/japan-xapi/profiles/cbt/v1.0.0/profile.jsonld
-https://w3id.org/japan-xapi/profiles/group-lst/v1.0.0/profile.jsonld
+https://w3id.org/japan-xapi/profiles/core/v1.0.0/core_profile.jsonld
+https://w3id.org/japan-xapi/profiles/ebook/v1.0.0/ebook_profile.jsonld
+https://w3id.org/japan-xapi/profiles/lms/v1.0.0/lms_profile.jsonld
+https://w3id.org/japan-xapi/profiles/cbt/v1.0.0/cbt_profile.jsonld
+https://w3id.org/japan-xapi/profiles/group-lst/v1.0.0/group-lst_profile.jsonld
 ```
 
 **理由**：
@@ -390,41 +390,41 @@ japan-xapi-profiles/ (ルート)
 ├── core/                               # Core プロファイル（共通の用語定義）
 │   ├── v1.0.0/
 │   │   ├── core_profile.md             # Markdown ドキュメント
-│   │   └── profile.jsonld              # JSON-LD プロファイル定義
+│   │   └── core_profile.jsonld         # JSON-LD プロファイル定義
 │   ├── v1.0.1/
 │   │   ├── core_profile.md
-│   │   └── profile.jsonld
+│   │   └── core_profile.jsonld
 │   ├── CHANGELOG.md                    # バージョン履歴
 │   └── README.md                       # プロファイル概要
 │
 ├── ebook/                              # eBook プロファイル（電子書籍）
 │   ├── v1.0.0/
 │   │   ├── ebook_profile.md            # Markdown ドキュメント
-│   │   └── profile.jsonld              # JSON-LD プロファイル定義
+│   │   └── ebook_profile.jsonld        # JSON-LD プロファイル定義
 │   ├── v1.1.0/
 │   │   ├── ebook_profile.md
-│   │   └── profile.jsonld
+│   │   └── ebook_profile.jsonld
 │   ├── CHANGELOG.md
 │   └── README.md
 │
 ├── lms/                                # LMS プロファイル（学習管理システム）
 │   ├── v1.0.0/
 │   │   ├── lms_profile.md
-│   │   └── profile.jsonld
+│   │   └── lms_profile.jsonld
 │   ├── CHANGELOG.md
 │   └── README.md
 │
 ├── cbt/                                # CBT プロファイル（デジタルドリル）
 │   ├── v1.0.0/
 │   │   ├── cbt_profile.md
-│   │   └── profile.jsonld
+│   │   └── cbt_profile.jsonld
 │   ├── CHANGELOG.md
 │   └── README.md
 │
 ├── group-lst/                          # Group Learning Support Tool プロファイル
 │   ├── v1.0.0/
 │   │   ├── group-lst_profile.md
-│   │   └── profile.jsonld
+│   │   └── group-lst_profile.jsonld
 │   ├── CHANGELOG.md
 │   └── README.md
 │
@@ -455,7 +455,7 @@ japan-xapi-profiles/ (ルート)
 
 **必須ファイル**：
 - `v[x.y.z]/core_profile.md`：Markdown ドキュメント
-- `v[x.y.z]/profile.jsonld`：JSON-LD 定義
+- `v[x.y.z]/core_profile.jsonld`：JSON-LD 定義
 - `README.md`：プロファイル概要
 - `CHANGELOG.md`：変更履歴
 
@@ -470,7 +470,7 @@ japan-xapi-profiles/ (ルート)
 
 **必須ファイル**：
 - `v[x.y.z]/[domain]_profile.md`：Markdown ドキュメント
-- `v[x.y.z]/profile.jsonld`：JSON-LD 定義
+- `v[x.y.z]/[domain]_profile.jsonld`：JSON-LD 定義
 - `README.md`：プロファイル概要
 - `CHANGELOG.md`：変更履歴
 
@@ -520,7 +520,8 @@ japan-xapi-profiles/ (ルート)
 - `core_profile.md`（Core の場合）
 
 **JSON-LD 定義**：
-- `profile.jsonld`（統一）
+- `[domain]_profile.jsonld`（例：`ebook_profile.jsonld`）
+- `core_profile.jsonld`（Core の場合）
 
 **その他**：
 - `README.md`：プロファイル概要
@@ -545,7 +546,7 @@ v1.0.0（2026-04-01）
 
 ## ドキュメント
 - [Markdown ドキュメント](v1.0.0/[domain]_profile.md)
-- [JSON-LD 定義](v1.0.0/profile.jsonld)
+- [JSON-LD 定義](v1.0.0/[domain]_profile.jsonld)
 
 ## 依存関係
 - Core Profile v1.x

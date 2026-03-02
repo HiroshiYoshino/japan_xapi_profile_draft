@@ -87,8 +87,8 @@
 | **オブジェクトのオブジェクトタイプ** | `$.object.objectType`                      | included    |
 | **オブジェクトID**                 | `$.object.id`                              | included    |
 | **オブジェクト定義のタイプ**       | `$.object.definition.type`                 | included    |
-| **オブジェクト定義の名称(日本語)** | `$.object.definition.name['ja-JP']`        | recommended |
-| **オブジェクト定義の説明(日本語)** | `$.object.definition.description['ja-JP']` | recommended |
+| **オブジェクト定義の名称(日本語)** | `$.object.definition.name.ja-JP`        | recommended |
+| **オブジェクト定義の説明(日本語)** | `$.object.definition.description.ja-JP` | recommended |
 | **コンテキスト**                   | `$.context`                                | included    |
 | **コンテキストの言語**             | `$.context.language`                       | included    |
 | **コンテキストのプラットフォーム** | `$.context.platform`                       | included    |
@@ -192,7 +192,7 @@
 1. $.object.id
    1. included
    2. [説明：例：開始された[ドメイン]を識別するIRIまたはURLを設定]
-2. $.object.definition.name['ja-JP']
+2. $.object.definition.name.ja-JP
    1. recommended
    2. [説明：例：オブジェクトの日本語表示名]
 3. $.object.definition.extensions['https://w3id.org/japan-xapi/extensions/[extension-id]']
@@ -209,7 +209,7 @@
 | 項目     | 説明 | Location (JSONPath)                                      | Presence    |
 | :------- | :--- | :------------------------------------------------------- | :---------- |
 | **[項目名]** | [詳細説明]                                              | `$.object.id`                                                | included    |
-| **[項目名]** | [詳細説明]                                              | `$.object.definition.name['ja-JP']`                          | recommended |
+| **[項目名]** | [詳細説明]                                              | `$.object.definition.name.ja-JP`                          | recommended |
 | **[項目名]（Activity拡張）** | [詳細説明]<br>Core Profile参照 / Domain固有 | `$.object.definition.extensions['https://w3id.org/...']`     | recommended |
 | **[項目名]（Context拡張）** | [詳細説明]<br>Core Profile参照 / Domain固有  | `$.context.extensions['https://w3id.org/...']`               | recommended |
 

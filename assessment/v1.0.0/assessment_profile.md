@@ -5,6 +5,12 @@
 　本ドキュメントは、日本の教育DX事業者が共有して利用するスタディ・ログ（xAPI形式）の仕様策定に向け、ICT CONNECT 21ワーキンググループの配下に設置されたxAPIサブワーキンググループの1つであるデジタルドリル/CBT TFにおける学習ログを対象として取りまとめた **Japan xAPI Assessment Profile** 標準仕様である。  
 　本仕様は、デジタルドリル/CBT分野に記載されている特性を踏まえ、システム上で発生するアセスメント実施や解答に関する学習ログを体系的に記録するための仕様である。
 
+### 1.1.1　共通方針
+
+　本プロファイルは、各コンテンツ事業者に対して本規定どおりの出力を強制するものではなく、出力方法の一つの方向性を示す「推奨」として位置づける。  
+　したがって、本プロファイルに記載された全項目への一律の準拠を求めるものではない。コンテンツの特性に応じて、記載したログを出力しない場合や一部項目を満たさない場合も許容される。  
+　なお、本プロファイルは xAPI 1.0.3 をベースとする。
+
 ## 1.2　目的
 
 　本ドキュメントは、CBT/デジタルドリルにおける学習ログについて、関係する事業者間で共通の理解のもとに取り扱うことを可能とするため、Assessment Profileとしての考え方および記述の枠組みを整理し、共有することを目的とする。
@@ -71,7 +77,7 @@
 | 項目                                 | Location (JSONPath)                        | Presence    |
 | :----------------------------------- | :----------------------------------------- | :---------- |
 | **ステートメントID**                 | `$.id`                                     | included    |
-| **タイムスタンプ**                   | `$.timestamp`                              | included    |
+| **タイムスタンプ**                   | `$.timestamp`                              | recommended |
 | **アクター**                         | `$.actor`                                  | included    |
 | **アクターのオブジェクトタイプ**     | `$.actor.objectType`                       | included    |
 | **アクターのアカウントホームページ** | `$.actor.account.homePage`                 | included    |
@@ -80,12 +86,14 @@
 | **オブジェクトのオブジェクトタイプ** | `$.object.objectType`                      | included    |
 | **オブジェクトID**                   | `$.object.id`                              | included    |
 | **オブジェクト定義のタイプ**         | `$.object.definition.type`                 | included    |
-| **オブジェクト定義の名称(日本語)**   | `$.object.definition.name['ja-JP']`        | recommended |
-| **オブジェクト定義の説明(日本語)**   | `$.object.definition.description['ja-JP']` | recommended |
+| **オブジェクト定義の名称(日本語)**   | `$.object.definition.name.ja-JP`        | recommended |
+| **オブジェクト定義の説明(日本語)**   | `$.object.definition.description.ja-JP` | recommended |
 | **コンテキスト**                     | `$.context`                                | included    |
 | **コンテキストの言語**               | `$.context.language`                       | included    |
 | **コンテキストのプラットフォーム**   | `$.context.platform`                       | included    |
 | **プロファイルバージョン**           | `$.version`                                | included    |
+
+　補足として、タイムスタンプは推奨項目とし、各コンテンツ事業者の任意とする。タイムスタンプを出力する場合は、ADL仕様に準拠し、ミリ秒を含む形式で実装する（取得できない場合は0埋め等で対応する）。
 
 # 3. CBT/デジタルドリルに関するユースケース
 
@@ -176,7 +184,7 @@ CBT/デジタルドリルにおける主なユースケースは、学習者が�
 | **難易度（文脈のメタ情報）**              | `$.context.extensions['https://w3id.org/japan-xapi/extensions/difficulty']`                  | optional    | Core Profileで定義された難易度拡張。                                      |
 | **評価タイプ**                       | `$.context.extensions['https://w3id.org/japan-xapi/extensions/assessment-type']`             | recommended | 診断的(diagnostic)、形成的(formative)、総括的(summative)のいずれかを指定。      |
 | **Assessment実施グループID**         | `$.context.contextActivities.grouping[*].id`                                                 | recommended | ある一回のAssessmentの取り組みに対して同一のIRIを記述。                         |
-| **活動発生日時**                     | `$.timestamp`                                                                                | included    |                                                                                 |
+| **活動発生日時**                     | `$.timestamp`                                                                                | recommended |                                                                                 |
 
 ### 4.3.2　問題への回答
 
@@ -221,7 +229,7 @@ CBT/デジタルドリルにおける主なユースケースは、学習者が�
 | **難易度（文脈のメタ情報）**              | `$.context.extensions['https://w3id.org/japan-xapi/extensions/difficulty']`                  | optional    | Core Profileで定義された難易度拡張。                                      |
 | **評価タイプ**                       | `$.context.extensions['https://w3id.org/japan-xapi/extensions/assessment-type']`             | recommended | 診断的(diagnostic)、形成的(formative)、総括的(summative)のいずれか。  |
 | **Assessment実施グループID**         | `$.context.contextActivities.grouping[*].id`                                                 | recommended | ある一回のAssessmentの取り組みに対して同一のIRIを記述。               |
-| **活動発生日時**                     | `$.timestamp`                                                                                | included    |                                                                       |  
+| **活動発生日時**                     | `$.timestamp`                                                                                | recommended |                                                                       |  
 > [!NOTE]
 > - 問題に得点や部分点がある場合は、その得点情報を$.result.scoreに記録する。
 >   - 例1:一つの問題に回答欄が一つあり問題の配点が5点の場合、maxを5、rawを5(正答)または0(誤答)、scaledを1(正答)または0(誤答)とする。
@@ -277,7 +285,7 @@ CBT/デジタルドリルにおける主なユースケースは、学習者が�
 | **評価タイプ**                       | `$.context.extensions['https://w3id.org/japan-xapi/extensions/assessment-type']`             | recommended | 診断的(diagnostic)、形成的(formative)、総括的(summative)のいずれか。 |
 | **Assessment実施グループID**         | `$.context.contextActivities.grouping[*].id`                                                 | recommended | ある一回のAssessmentの取り組みに対して同一のIRIを記述。              |
 | **親アクティビティID**               | `$.context.contextActivities.parent[*].id`                                                   | recommended | 関連する問題や評価のID                                               |
-| **活動発生日時**                     | `$.timestamp`                                                                                | included    |                                                                      |
+| **活動発生日時**                     | `$.timestamp`                                                                                | recommended |                                                                      |
 
 ### 4.3.4　Assessmentの終了
 
@@ -320,7 +328,7 @@ CBT/デジタルドリルにおける主なユースケースは、学習者が�
 | **難易度（文脈のメタ情報）**              | `$.context.extensions['https://w3id.org/japan-xapi/extensions/difficulty']`                  | optional    | Core Profileで定義された難易度Extension。                                      |
 | **評価タイプ**                       | `$.context.extensions['https://w3id.org/japan-xapi/extensions/assessment-type']`             | recommended | 診断的(diagnostic)、形成的(formative)、総括的(summative)。                  |
 | **Assessment実施グループID**         | `$.context.contextActivities.grouping[*].id`                                                 | recommended | ある一回のAssessmentの取り組みに対して同一のIRIを記述。                     |
-| **活動発生日時**                     | `$.timestamp`                                                                                | included    |                                                                             |
+| **活動発生日時**                     | `$.timestamp`                                                                                | recommended |                                                                             |
 
 > [!NOTE]
 > - $.result.score.scaledは、(raw-min)/(max-min) の計算結果とする。

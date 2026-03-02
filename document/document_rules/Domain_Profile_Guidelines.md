@@ -127,8 +127,8 @@ Japan xAPI Profileは以下の階層構造を持つ：
 | **オブジェクトのオブジェクトタイプ** | `$.object.objectType`                      | included    |
 | **オブジェクトID**                 | `$.object.id`                              | included    |
 | **オブジェクト定義のタイプ**       | `$.object.definition.type`                 | included    |
-| **オブジェクト定義の名称(日本語)** | `$.object.definition.name['ja-JP']`        | recommended |
-| **オブジェクト定義の説明(日本語)** | `$.object.definition.description['ja-JP']` | recommended |
+| **オブジェクト定義の名称(日本語)** | `$.object.definition.name.ja-JP`        | recommended |
+| **オブジェクト定義の説明(日本語)** | `$.object.definition.description.ja-JP` | recommended |
 | **コンテキスト**                   | `$.context`                                | included    |
 | **コンテキストの言語**             | `$.context.language`                       | included    |
 | **コンテキストのプラットフォーム** | `$.context.platform`                       | included    |
@@ -607,7 +607,7 @@ Rules で「([Domain名] Domain固有)」と記載
 
 ### 11.1 Domain Profile の JSON-LD 構造
 
-#### ファイル: [domain]/v1.0.0/profile.jsonld
+#### ファイル: [domain]/v1.0.0/[domain]_profile.jsonld
 
 ```json
 {

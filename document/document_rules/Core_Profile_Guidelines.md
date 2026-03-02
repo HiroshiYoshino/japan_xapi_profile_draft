@@ -474,7 +474,7 @@ Core Profile では以下の 11 個の拡張フィールドを定義し、各 Do
 
 ### 6.1 Core Profile の JSON-LD 構造
 
-#### ファイル: core/v1.0.0/profile.jsonld
+#### ファイル: core/v1.0.0/core_profile.jsonld
 
 ```json
 {
