@@ -2,14 +2,17 @@
 
 ## 1.1　位置づけ
 
-　本ドキュメントは、日本の教育DX事業者が共有して利用するスタディ・ログ（xAPI形式）の仕様策定に向け、ICT CONNECT 21ワーキンググループの配下に設置されたxAPIサブワーキンググループの1つであるグループ学習支援ツールTFにおける学習ログを対象として取りまとめた **Japan xAPI Group Learning Support Tool Profile** 標準仕様である。  
+　本ドキュメントは、日本の教育DX事業者が共有して利用するスタディ・ログ（xAPI形式）の仕様策定に向け、ICT CONNECT 21ワーキンググループの配下に設置されたxAPIサブワーキンググループの1つであるグループ学習支援ツールTFにおける学習ログを対象として取りまとめた **xAPI Japan Profiles Group Learning Support Tool Profile** 標準仕様である。  
 　本仕様は、グループ学習支援ツール分野に記載されている特性を踏まえ、グループ学習における個人の操作や協働的な学習活動（議論、共同編集等）に関する学習ログを体系的に記録するための仕様である。
 
 ### 1.1.1　共通方針
 
-　本プロファイルは、各コンテンツ事業者に対して本規定どおりの出力を強制するものではなく、出力方法の一つの方向性を示す「推奨」として位置づける。  
+　本プロファイルは、各コンテンツ事業者に対して本規定どおりの出力を強制するものではない。  
+　xAPIプロファイルの思想自体が、そのような強制力を持たせるものではなく、表現の共通化を支えるための枠組みである。  
+　本プロファイルは、出力方法の方向性を示す「表現のための資産」として位置づけ、「推奨」として扱う。  
 　したがって、本プロファイルに記載された全項目への一律の準拠を求めるものではない。コンテンツの特性に応じて、記載したログを出力しない場合や一部項目を満たさない場合も許容される。  
-　なお、本プロファイルは xAPI 1.0.3 をベースとする。
+　なお、本プロファイルは xAPI 1.0.3 をベースとする。  
+　学習eポータルと連携する場合は、システム間の相互運用性を確保する観点から、「初等中等教育におけるシステム間連携のための相互運用標準モデル Version 5.00」も参照する。
 
 ## 1.2　目的
 
@@ -18,24 +21,19 @@
 ## 1.3　前提条件
 
 　本ドキュメントにおける各ユースケースは、xAPIプロファイル仕様で定義されているStatementTemplateおよびStatementTemplateRulesの構造および考え方に準拠して記載する。  
-　本ドキュメントに記載されるStatementTemplateで使用される語彙（Verb、ActivityType、Extension等）は以下のいずれかに整理される。(1) SWG独自に定義した語彙を使用する場合、Core Profile内のConceptsに定義されている。(2) ADLや他の標準で定義済みの語彙を使用する場合、それらを直接参照し、Domain Profileで再定義しない。Domain Profile（本プロファイルはDomain Profileの1つ）としてGroup Learning Support Tool Profileは Statement Templateおよび Rules の定義に集中し、語彙定義はCore Profileに委譲する。  
+　本仕様書の記述は、特定製品を前提とせず、現実的な範囲の「架空ツール」を想定して行う。この前提により、既存システムとの部分的不一致や未確定要素に起因する議論停滞を回避する。  
+　本ドキュメントに記載されるStatementTemplateで使用される語彙（Verb、ActivityType、Extension等）は以下のいずれかに整理される。(1) 必要に応じて本プロファイル内のConceptsで定義する。(2) ADLや他の標準で定義済みの語彙を直接参照する。なお、Group Learning Support Tool Profile v1.0.0 ではConceptsの独自記載は行わない。  
 　各ユースケースに付随するStatementTemplate要素表には、StatementTemplateを構成する要素を示している。ただし、actorについては全ユースケース共通でAgentとするため、各ユースケースの規範表への個別の記載は行わないものとする。  
-　本ドキュメントは、グループ学習支援ツールにおける学習ログの標準的な解釈および実装方針を読み手が理解しやすい形で示すことを主目的とした仕様書である。このため、xAPIプロファイル仕様上は必須である項目のうち、機械処理やプロファイル登録といった運用段階において主に必要となる項目については、本書の目的に照らし記載を省略する。各項目の省略理由は下記に示すとおりである。
+　本ドキュメントは、グループ学習支援ツールにおける学習ログの標準的な解釈および実装方針を読み手が理解しやすい形で示すことを主目的とした仕様書である。このため、xAPIプロファイル仕様上は必須である項目のうち、機械処理やプロファイル登録といった運用段階において主に必要となる項目については、本書の目的に照らし記載を省略する。省略理由は下記に示すとおりである。
 
-- idに期待されるURI
-  - 省略理由：idはStatementTemplateをグローバルに一意に識別するためのURI を指定する項目であり、プロファイルの公開形態、管理主体、バージョニング方針が確定した段階で設計されるべきものである。本ドキュメントは標準仕様（案）としての整理および合意形成を目的としているため、現時点では具体的なURIの定義は行わない。
 - typeに期待される固定値StatementTemplate
   - 省略理由：typeに指定される固定値StatementTemplateは、JSON-LD形式における機械可読性を担保するための項目である。本ドキュメントでは、読み手による理解を前提とした仕様書として、StatementTemplateの構造および位置づけを章構成および見出しによって明示しているため、当該項目は省略する。
-- inSchemeに期待されるURI
-  - 省略理由：inSchemeは、当該StatementTemplateが属するプロファイルおよびバージョンをURIにより示すための項目である。本ドキュメントでは、プロファイルの名称およびバージョン管理を文書構成および章立てにより管理していることから、inSchemeによる明示的な指定は行わない
-- prefLabel
-  - 省略理由：prefLabelはStatementTemplateに対する人可読な名称を付与するための項目である。本ドキュメントでは、各ユースケースを章・節の見出し（項目名）として明示しており、これをもって当該StatementTemplateを識別可能とするため、prefLabel の記載は省略する。
 
-　なお、これらの項目については、将来的にプロファイルの登録や機械可読な形式での提供が必要となる場合に、改めて検討することとする。
+　なお、この項目については、将来的にプロファイルの登録や機械可読な形式での提供が必要となる場合に、改めて検討することとする。
 
 ## 1.4　定義範囲
 
-　本ドキュメントは、Japan xAPI Group Learning Support Tool Profileを構成する要素のうち、メタ情報、各操作行動に対応するStatementTemplateおよびStatementのRulesを定義することを目的とする。ただし、グループ学習活動が非線形である特性を踏まえ、xAPIプロファイルにおける patternsは定義の対象外とする。  
+　本ドキュメントは、xAPI Japan Profiles Group Learning Support Tool Profileを構成する要素のうち、メタ情報、各操作行動に対応するStatementTemplateおよびStatementのRulesを定義することを目的とする。ただし、グループ学習活動が非線形である特性を踏まえ、xAPIプロファイルにおけるpatternsは定義の対象外とする。  
 　本ドキュメントは、実装者がJSON形式のプロファイル（StatementTemplateを含む）を理解し、xAPI Statementを正しく生成するための実装補助資料である。定義された各ユースケースの構造やサンプルは、プロファイルビューアーにJSONファイルを読み込ませることで直接確認することができる。
 
 ## 1.5　本ドキュメントの構成について
@@ -59,10 +57,10 @@
 
 | 項目                     | 説明                                   | 値                                                                   |
 | :----------------------- | :------------------------------------- | :------------------------------------------------------------------- |
-| **id**                   | プロファイルIRI                        | `https://w3id.org/japan-xapi/profiles/group-lst`                     |
+| **id**                   | プロファイルIRI                        | `https://w3id.org/xapi-japan-profiles/group-lst/v1.0.0`              |
 | **type**                 | オブジェクトタイプ                     | `Profile`                                                            |
 | **conformsTo**           | 準拠するxAPI Profile仕様               | `https://w3id.org/xapi/profiles#1.0`                                 |
-| プロファイル名 prefLabel | プロファイルを識別する名称             | Japan xAPI Group Learning Support Tool Profile                       |
+| プロファイル名 prefLabel | プロファイルを識別する名称             | xAPI Japan Profiles Group Learning Support Tool Profile              |
 | バージョン version       | プロファイルの改訂番号やリリース状態   | v1.0.0                                                               |
 | 作成者/管理者 author     | プロファイルの作成者や責任者           | ICT CONNECT 21 xAPI SWG                                              |
 | 作成日/更新日 versions   | 文書化日または改訂日                   | 2026-04-01                                                           |
@@ -107,7 +105,6 @@
 
 主な学習活動の例：
 
-- 自分や自分たちの考えをテキストやオブジェクト等で表現すること
 - 友達の考えに対して「いいね」を送るなど、反応すること
 - 友達の考えに対してコメントしたりフィードバックしたりすること
 
@@ -115,13 +112,14 @@
 
 **本プロジェクトの成果**
 
-- 本プロファイルでは、グループ学習支援ツール内での個人の考えの作成・編集、他者への反応（いいね、コメント等）、グループでの共同編集といった操作ログを記録するStatementTemplateを定義した。これにより、グループ学習における個人の貢献度合いや相互作用の状況を追跡し、協働学習の支援や評価に活用することが可能になる。一方で、複数人が同時多発的に操作を行う同期型協働学習においては、"誰の操作によって状態が変化したか" の因果関係が複雑になるが、本プロファイルでは個々の操作ログの記録に留め、状態同期の完全な再現まではスコープとしていない。また、非線形な活動であるためパターン定義は対象外としている。
+- 本プロファイルでは、グループ学習支援ツール内における他者への反応（いいね、コメント等）を記録するStatementTemplateを定義した。これにより、グループ学習における個人の貢献度や相互作用の状況を追跡し、協働学習の支援や評価に活用できる。なお、本版では他者への反応に関する操作ログの記録を主な対象とし、自分や自分たちの考えをテキストやオブジェクト等で表現する活動の記録は、今後の拡張対象とする。
 
-**今後の課題（作業中）**
+**今後の課題**
 
 - **協働の質の分析**: 単なる操作ログだけでなく、「対話の構造」や「役割分担」といった、協働学習の質を分析するための上位レイヤーのコンテキスト情報の定義。
 - **同期状態の表現**: タイムライン上での他者との相互作用（ターンテイク等）を分析しやすくするための、グループIDやセッションIDの厳密な運用ルールの策定。
-- **評価ルーブリックとの連動**: グループでの協働過程を、教職員が設定した評価ルーブリックと関連付けて記録するための、評価基準のメタデータ定義。
+- **評価ルーブリックとの連動**: グループでの協働過程を、教職員や学習者が設定した評価ルーブリックと関連付けて記録するための、評価基準のメタデータ定義。
+- **自分・自分たちの考えの表現の記録**: 個人またはグループが考えを文章・図表・成果物等で表現する活動を対象に、オブジェクト種別、更新履歴、共同編集の関係性を一貫して記録できるStatementTemplateおよび運用ルールの整備。
 
 # 4.　StatementTemplate
 
@@ -147,43 +145,17 @@
 
 ## 4.3　StatementTemplate一覧
 
-### 4.3.1　ツールの起動
-
-#### 4.3.1.1　基本仕様
-
-- グループ学習支援ツールがシステムとして起動されたことを記録するためのテンプレート。
-- 識別情報
-
-| 項目     | 値                                                           |
-| :------- | :------------------------------------------------------------ |
-| id       | https://w3id.org/japan-xapi/templates/group-lst/launched#tool |
-| inScheme | https://w3id.org/japan-xapi/profiles/group-lst/v1.0.0         |
-| prefLabel | ツールの起動                                                |
-
-- 判定条件
-
-| 項目              | 値                                                          |
-| :---------------- | :--------------------------------------------------------- |
-| verb              | https://w3id.org/xapi/adl/verbs/launched                  |
-| objectActivityType | https://w3id.org/japan-xapi/activity-types/group-lst/tool |
-
-#### 4.3.1.2　記述規則（Rules）
-
-| 項目     | 説明                               | Location (JSONPath) | Presence |
-| :------- | :--------------------------------- | :------------------ | :------- |
-| **ツールID** | 起動したツールを識別するIRIまたはURL。 | `$.object.id`       | included |
-
 ### 4.3.2　ツール内でのコンテンツ利用開始
 
 #### 4.3.2.1　基本仕様
 
-- ツール内の特定コンテンツ（スライド等）の利用を開始したことを記録するためのテンプレート。
+- ツール内の特定コンテンツの利用を開始したことを記録するためのテンプレート。
 - 識別情報
 
 | 項目     | 値                                                               |
 | :------- | :--------------------------------------------------------------- |
-| id       | https://w3id.org/japan-xapi/templates/group-lst/launched#content |
-| inScheme | https://w3id.org/japan-xapi/profiles/group-lst/v1.0.0            |
+| id       | https://w3id.org/xapi-japan-profiles/group-lst/templates/v1.0.0/launched |
+| inScheme | https://w3id.org/xapi-japan-profiles/group-lst/v1.0.0            |
 | prefLabel | ツール内でのコンテンツ利用開始                               |
 
 - 判定条件
@@ -195,37 +167,7 @@
 
 #### 4.3.2.2　記述規則（Rules）
 
-| 項目     | 説明                               | Location (JSONPath) | Presence |
-| :------- | :--------------------------------- | :------------------ | :------- |
-| **動詞の表示名(英語)** | launched                         | `$.verb.display.en` | included |
-| **オブジェクトのオブジェクトタイプ** | Slide等のコンテンツ           | `$.object.objectType` | included |
-| **オブジェクトID** | コンテンツを一意に識別するID                    | `$.object.id` | included |
-
-### 4.3.3　オブジェクトの作成
-
-#### 4.3.3.1　基本仕様
-
-- コンテンツ内でテキストや図形を作成したことを記録するためのテンプレート。
-- 識別情報
-
-| 項目     | 値                                                              |
-| :------- | :-------------------------------------------------------------- |
-| id       | https://w3id.org/japan-xapi/templates/group-lst/created#object |
-| inScheme | https://w3id.org/japan-xapi/profiles/group-lst/v1.0.0          |
-| prefLabel | オブジェクトの作成                                          |
-
-- 判定条件
-
-| 項目              | 値                                          |
-| :---------------- | :-------------------------------------------- |
-| verb              | https://w3id.org/xapi/adl/verbs/created |
-| objectActivityType | http://id.tincanapi.com/activitytype/slide    |
-
-#### 4.3.3.2　記述規則（Rules）
-
-| 項目     | 説明                                       | Location (JSONPath)                                                                            | Presence    |
-| :------- | :----------------------------------------- | :--------------------------------------------------------------------------------------------- | :---------- |
-| **オブジェクト種類** | 作成されたオブジェクトの種類（text, shape等）。 | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/scrapbook-item-type']` | recommended |
+共通記述規則に準拠する。
 
 ### 4.3.4　議論スレッドの作成
 
@@ -236,8 +178,8 @@
 
 | 項目     | 値                                                                  |
 | :------- | :------------------------------------------------------------------ |
-| id       | https://w3id.org/japan-xapi/templates/group-lst/created#thread |
-| inScheme | https://w3id.org/japan-xapi/profiles/group-lst/v1.0.0              |
+| id       | https://w3id.org/xapi-japan-profiles/group-lst/templates/v1.0.0/created-thread |
+| inScheme | https://w3id.org/xapi-japan-profiles/group-lst/v1.0.0              |
 | prefLabel | 議論スレッドの作成                                             |
 
 - 判定条件
@@ -249,11 +191,7 @@
 
 #### 4.3.4.2　記述規則（Rules）
 
-| 項目     | 説明                               | Location (JSONPath) | Presence |
-| :------- | :--------------------------------- | :------------------ | :------- |
-| **動詞の表示名(英語)** | created                          | `$.verb.display.en` | included |
-| **オブジェクトのオブジェクトタイプ** | Discussion等のスレッド        | `$.object.objectType` | included |
-| **オブジェクトID** | スレッドを一意に識別するID                      | `$.object.id` | included |
+共通記述規則に準拠する。
 
 ### 4.3.5　スレッドへの書き込み
 
@@ -264,8 +202,8 @@
 
 | 項目     | 値                                                                 |
 | :------- | :----------------------------------------------------------------- |
-| id       | https://w3id.org/japan-xapi/templates/group-lst/replied |
-| inScheme | https://w3id.org/japan-xapi/profiles/group-lst/v1.0.0             |
+| id       | https://w3id.org/xapi-japan-profiles/group-lst/templates/v1.0.0/replied |
+| inScheme | https://w3id.org/xapi-japan-profiles/group-lst/v1.0.0             |
 | prefLabel | スレッドへの書き込み                                          |
 
 - 判定条件
@@ -273,14 +211,11 @@
 | 項目              | 値                                              |
 | :---------------- | :---------------------------------------------- |
 | verb              | http://id.tincanapi.com/verb/replied            |
+| objectActivityType | http://id.tincanapi.com/activitytype/discussion |
 
 #### 4.3.5.2　記述規則（Rules）
 
-| 項目     | 説明                               | Location (JSONPath) | Presence |
-| :------- | :--------------------------------- | :------------------ | :------- |
-| **動詞の表示名(英語)** | replied                          | `$.verb.display.en` | included |
-| **オブジェクトのオブジェクトタイプ** | Discussion等のスレッド        | `$.object.objectType` | included |
-| **オブジェクトID** | スレッドを一意に識別するID                      | `$.object.id` | included |
+共通記述規則に準拠する。
 
 ### 4.3.6　スタンプ送信
 
@@ -291,8 +226,8 @@
 
 | 項目     | 値                                                      |
 | :------- | :------------------------------------------------------- |
-| id       | https://w3id.org/japan-xapi/templates/group-lst/voted-up |
-| inScheme | https://w3id.org/japan-xapi/profiles/group-lst/v1.0.0      |
+| id       | https://w3id.org/xapi-japan-profiles/group-lst/templates/v1.0.0/voted-up |
+| inScheme | https://w3id.org/xapi-japan-profiles/group-lst/v1.0.0      |
 | prefLabel | スタンプ送信                                         |
 
 - 判定条件
@@ -303,8 +238,4 @@
 
 #### 4.3.6.2　記述規則（Rules）
 
-| 項目     | 説明                               | Location (JSONPath) | Presence |
-| :------- | :--------------------------------- | :------------------ | :------- |
-| **動詞の表示名(英語)** | voted-up                         | `$.verb.display.en` | included |
-| **オブジェクトのオブジェクトタイプ** | Comment等のコンテンツ         | `$.object.objectType` | included |
-| **オブジェクトID** | コンテンツを一意に識別するID                    | `$.object.id` | included |
+共通記述規則に準拠する。

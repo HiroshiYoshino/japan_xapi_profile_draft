@@ -2,47 +2,47 @@
 
 ## 1.1　位置づけ
 
-　本ドキュメントは、日本の教育DX事業者が共有して利用するスタディ・ログ（xAPI形式）の仕様策定に向け、ICT CONNECT 21ワーキンググループの配下に設置されたxAPIサブワーキンググループの1つであるLMS TFにおける学習ログを対象として取りまとめた **Japan xAPI LMS Profile** 標準仕様である。  
-　本仕様は、学習管理システム（LMS）分野に記載されている特性を踏まえ、学習課題の配布、提出、評価などのプロセスに関する学習ログを体系的に記録するための仕様である。
+　本ドキュメントは、日本の教育DX事業者が共有して利用するスタディ・ログ（xAPI形式）の仕様策定に向け、ICT CONNECT 21ワーキンググループの配下に設置されたxAPIサブワーキンググループの1つであるLMS TFにおける学習ログを対象として取りまとめた **xAPI Japan Profiles LMS Profile** 標準仕様である。  
+	本仕様は、学習管理システム（LMS）分野に記載されている特性を踏まえ、学習課題の配布、提出、評価などのプロセスに関する学習ログを体系的に記録するための仕様である。
 
 ### 1.1.1　共通方針
 
-　本プロファイルは、各コンテンツ事業者に対して本規定どおりの出力を強制するものではなく、出力方法の一つの方向性を示す「推奨」として位置づける。  
+　本プロファイルは、各コンテンツ事業者に対して本規定どおりの出力を強制するものではない。  
+　xAPIプロファイルの思想自体が、そのような強制力を持たせるものではなく、表現の共通化を支えるための枠組みである。  
+　本プロファイルは、出力方法の方向性を示す「表現のための資産」として位置づけ、「推奨」として扱う。  
 　したがって、本プロファイルに記載された全項目への一律の準拠を求めるものではない。コンテンツの特性に応じて、記載したログを出力しない場合や一部項目を満たさない場合も許容される。  
-　なお、本プロファイルは xAPI 1.0.3 をベースとする。
+　なお、本プロファイルは xAPI 1.0.3 をベースとする。  
+　学習eポータルと連携する場合は、システム間の相互運用性を確保する観点から、「初等中等教育におけるシステム間連携のための相互運用標準モデル Version 5.00」も参照する。
 
 ## 1.2　目的
 
-　本ドキュメントは、LMSにおける学習ログについて、関係する事業者間で共通の理解のもとに取り扱うことを可能とするため、LMS Profileとしての考え方および記述の枠組みを整理し、共有することを目的とする。
+	本ドキュメントは、LMSにおける学習ログについて、関係する事業者間で共通の理解のもとに取り扱うことを可能とするため、LMS Profileとしての考え方および記述の枠組みを整理し、共有することを目的とする。
 
 ## 1.3　前提条件
 
-　本ドキュメントにおける各ユースケースは、xAPIプロファイル仕様で定義されているStatementTemplateおよびStatementTemplateRulesの構造および考え方に準拠して記載する。  
-　本ドキュメントに記載されるStatementTemplateで使用される語彙（Verb、ActivityType、Extension等）は以下のいずれかに整理される。(1) SWG独自に定義した語彙を使用する場合、Core Profile内のConceptsに定義されている。(2) ADLや他の標準で定義済みの語彙を使用する場合、それらを直接参照し、Domain Profileで再定義しない。Domain Profile（本プロファイルはDomain Profileの1つ）としてLMS Profileは Statement Templateおよび Rules の定義に集中し、語彙定義はCore Profileに委譲する。  
-　各ユースケースに付随するStatementTemplate要素表には、StatementTemplateを構成する要素を示している。ただし、actorについては全ユースケース共通でAgentとするため、各ユースケースの規範表への個別の記載は行わないものとする。  
-　本ドキュメントは、LMSにおける学習ログの標準的な解釈および実装方針を読み手が理解しやすい形で示すことを主目的とした仕様書である。このため、xAPIプロファイル仕様上は必須である項目のうち、機械処理やプロファイル登録といった運用段階において主に必要となる項目については、本書の目的に照らし記載を省略する。各項目の省略理由は下記に示すとおりである。
+	本ドキュメントにおける各ユースケースは、xAPIプロファイル仕様で定義されているStatementTemplateおよびStatementTemplateRulesの構造および考え方に準拠して記載する。  
+　本仕様書の記述は、特定製品を前提とせず、現実的な範囲の「架空ツール」を想定して行う。この前提により、既存システムとの部分的不一致や未確定要素に起因する議論停滞を回避する。  
+	本ドキュメントに記載される語彙（Verb、ActivityType、Extension等）は、(1) 本プロファイル内のConceptsで定義する語彙、または (2) ADLや他の標準で定義済みの語彙を直接参照する語彙として整理する。  
+	各ユースケースに付随するStatementTemplate要素表には、StatementTemplateを構成する要素を示している。ただし、actorについては全ユースケース共通でAgentとするため、各ユースケースの規範表への個別の記載は行わないものとする。  
+	本ドキュメントは、LMSにおける学習ログの標準的な解釈および実装方針を読み手が理解しやすい形で示すことを主目的とした仕様書である。このため、xAPIプロファイル仕様上は必須である項目のうち、機械処理やプロファイル登録といった運用段階において主に必要となる項目については、本書の目的に照らし記載を省略する。省略理由は下記に示すとおりである。
 
-- idに期待されるURI
-  - 省略理由：idはStatementTemplateをグローバルに一意に識別するためのURI を指定する項目であり、プロファイルの公開形態、管理主体、バージョニング方針が確定した段階で設計されるべきものである。本ドキュメントは標準仕様（案）としての整理および合意形成を目的としているため、現時点では具体的なURIの定義は行わない。
 - typeに期待される固定値StatementTemplate
   - 省略理由：typeに指定される固定値StatementTemplateは、JSON-LD形式における機械可読性を担保するための項目である。本ドキュメントでは、読み手による理解を前提とした仕様書として、StatementTemplateの構造および位置づけを章構成および見出しによって明示しているため、当該項目は省略する。
-- inSchemeに期待されるURI
-  - 省略理由：inSchemeは、当該StatementTemplateが属するプロファイルおよびバージョンをURIにより示すための項目である。本ドキュメントでは、プロファイルの名称およびバージョン管理を文書構成および章立てにより管理していることから、inSchemeによる明示的な指定は行わない
-- prefLabel
-  - 省略理由：prefLabelはStatementTemplateに対する人可読な名称を付与するための項目である。本ドキュメントでは、各ユースケースを章・節の見出し（項目名）として明示しており、これをもって当該StatementTemplateを識別可能とするため、prefLabel の記載は省略する。
 
-　なお、これらの項目については、将来的にプロファイルの登録や機械可読な形式での提供が必要となる場合に、改めて検討することとする。
+	なお、この項目については、将来的にプロファイルの登録や機械可読な形式での提供が必要となる場合に、改めて検討することとする。
 
 ## 1.4　定義範囲
 
-　本ドキュメントは、Japan xAPI LMS Profileを構成する要素のうち、メタ情報、各操作行動に対応するStatementTemplateおよびStatementのRulesを定義することを目的とする。ただし、LMSにおける学習行動が非線形である特性を踏まえ、xAPIプロファイルにおける patternsは定義の対象外とする。  
-　本ドキュメントは、実装者がJSON形式のプロファイル（StatementTemplateを含む）を理解し、xAPI Statementを正しく生成するための実装補助資料である。定義された各ユースケースの構造やサンプルは、プロファイルビューアーにJSONファイルを読み込ませることで直接確認することができる。
+　本ドキュメントは、xAPI Japan Profiles LMS Profileを構成する要素のうち、メタ情報、Concepts、各操作行動に対応するStatementTemplateおよびStatementのRulesを定義することを目的とする。ただし、LMSにおける学習行動が非線形である特性を踏まえ、xAPIプロファイルにおけるpatternsは定義の対象外とする。  
+	本ドキュメントは、実装者がJSON形式のプロファイル（StatementTemplateを含む）を理解し、xAPI Statementを正しく生成するための実装補助資料である。定義された各ユースケースの構造やサンプルは、プロファイルビューアーにJSONファイルを読み込ませることで直接確認することができる。
 
 ## 1.5　本ドキュメントの構成について
 
-　本紙は、xAPIプロファイル仕様に基づき、LMS学習ログに関する標準的な解釈および実装方針を示すことを目的とする。本紙は、以下の要素を含む。
+	本紙は、xAPIプロファイル仕様に基づき、LMS学習ログに関する標準的な解釈および実装方針を示すことを目的とする。本紙は、以下の要素を含む。
 
 - メタ情報：プロファイル全体のメタ情報およびバージョン管理
+- Concepts：ActivityType、Extensionsの定義
+- 学習課題に関するユースケース：LMSにおける学習課題の特性整理
 - StatementTemplate：各ユースケースに対応するStatementTemplateの構造および必須要素
 - Rules：StatementTemplateの検証規則
 
@@ -50,19 +50,19 @@
 
 ## 2.1　本章の位置づけ
 
-　本章では、本プロファイルを識別・管理するために必要なメタ情報を示す。  
-　メタ情報は、プロファイル全体の情報として参照される項目である。
+	本章では、本プロファイルを識別・管理するために必要なメタ情報を示す。  
+	メタ情報は、プロファイル全体の情報として参照される項目である。
 
 ## 2.2　構成要素
 
-　プロファイルのメタ情報を構成する要素を示す。
+	プロファイルのメタ情報を構成する要素を示す。
 
 | 項目                     | 説明                                   | 値                                                    |
 | :----------------------- | :------------------------------------- | :---------------------------------------------------- |
-| **id**                   | プロファイルIRI                        | `https://w3id.org/japan-xapi/profiles/lms`            |
+| **id**                   | プロファイルIRI                        | `https://w3id.org/xapi-japan-profiles/lms/v1.0.0`    |
 | **type**                 | オブジェクトタイプ                     | `Profile`                                             |
 | **conformsTo**           | 準拠するxAPI Profile仕様               | `https://w3id.org/xapi/profiles#1.0`                  |
-| プロファイル名 prefLabel | プロファイルを識別する名称             | Japan xAPI LMS Profile                                |
+| プロファイル名 prefLabel | プロファイルを識別する名称             | xAPI Japan Profiles LMS Profile                       |
 | バージョン version       | プロファイルの改訂番号やリリース状態   | v1.0.0                                                |
 | 作成者/管理者 author     | プロファイルの作成者や責任者           | ICT CONNECT 21 xAPI SWG                               |
 | 作成日/更新日 versions   | 文書化日または改訂日                   | 2026-04-01                                            |
@@ -72,7 +72,7 @@
 
 ## 2.3　共通記述規則
 
-　本プロファイルで定義するすべてのStatementTemplateに対して、以下のRulesを適用する。
+	本プロファイルで定義するすべてのStatementTemplateに対して、以下のRulesを適用する。
 
 | 項目                               | Location (JSONPath)                        | Presence    |
 | :--------------------------------- | :----------------------------------------- | :---------- |
@@ -86,27 +86,150 @@
 | **オブジェクトのオブジェクトタイプ** | `$.object.objectType`                      | included    |
 | **オブジェクトID**                 | `$.object.id`                              | included    |
 | **オブジェクト定義のタイプ**       | `$.object.definition.type`                 | included    |
-| **オブジェクト定義の名称(日本語)** | `$.object.definition.name.ja-JP`        | recommended |
-| **オブジェクト定義の説明(日本語)** | `$.object.definition.description.ja-JP` | recommended |
+| **オブジェクト定義の名称(日本語)** | `$.object.definition.name.ja-JP`           | recommended |
+| **オブジェクト定義の説明(日本語)** | `$.object.definition.description.ja-JP`    | recommended |
 | **コンテキスト**                   | `$.context`                                | included    |
 | **コンテキストの言語**             | `$.context.language`                       | included    |
 | **コンテキストのプラットフォーム** | `$.context.platform`                       | included    |
 | **プロファイルバージョン**         | `$.version`                                | included    |
 
-　補足として、タイムスタンプは推奨項目とし、各コンテンツ事業者の任意とする。タイムスタンプを出力する場合は、ADL仕様に準拠し、ミリ秒を含む形式で実装する（取得できない場合は0埋め等で対応する）。
+	補足として、タイムスタンプは推奨項目とし、各コンテンツ事業者の任意とする。タイムスタンプを出力する場合は、ADL仕様に準拠し、ミリ秒を含む形式で実装する（取得できない場合は0埋め等で対応する）。
 
-# 3. 学習課題に関するユースケース
+# 3.　Concepts
+
 ## 3.1　本章の位置づけ
 
-　本章では、LMS における学習課題に関する活動の特性を述べ、本プロファイルで定義するStatementTemplateの背景にある考え方を示す。
+	本章では、LMS Profileにおいて使用する共通語彙（Concepts）を定義する。
 
-## 3.2　学習課題の特性と主な活動
-「学習課題」を次の通り定義する。
-「学習課題」とは以下のいずれかのObjectである。
-**① ”教職員”が”児童生徒”に対して行った学習活動の指示の内容を表すもの**
-**② ”児童生徒”が”自身”に対して行った学習活動の指示の内容を表すもの**
+## 3.2　対象
 
-ここでの学習活動とは、それが児童生徒の学びに資すると教職員または児童生徒が考えるものすべてを指す。
+	Conceptsの対象は、ActivityType、Extensionsの2項目とする。
+
+## 3.3　ActivityType
+
+### 3.3.1　ActivityTypeの定義
+
+	ActivityTypeは、Statementにおいてobjectとして参照されるActivityが、どのような種類のリソースであるかを示す概念である。また、StatementTemplateのobjectTypeがActivityに指定される際に参照される。
+
+### 3.3.2　LMSにおけるActivityType一覧
+
+| 名称 | id |
+| :--- | :--- |
+| school-assignment | `http://id.tincanapi.com/activitytype/school-assignment` |
+
+## 3.4　Extensions
+
+### 3.4.1　Extensionsの定義
+
+	Extensions（拡張）は、xAPIの標準データモデルだけでは表現しきれない、学習行動に関する詳細な文脈や具体的なメタデータを付与するために利用される。
+
+### 3.4.2　本プロファイルで定義するExtension一覧
+
+#### 3.4.2.1　Assignment modules（課題の構成要素）
+
+- IRI: `https://w3id.org/japan-xapi/lms/extensions/modules`
+- Type: ActivityExtension
+- Definition: 学習課題を構成する子課題のオブジェクト。各要素は `id`、`name`、`description`、`subject`、`unit` を含み得る。
+
+Schema:
+
+```json
+{
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "id": { "type": "string", "format": "uri" },
+      "name": {
+        "type": "object",
+        "properties": {
+          "ja-JP": { "type": "string" }
+        }
+      },
+      "description": {
+        "type": "object",
+        "properties": {
+          "ja-JP": { "type": "string" }
+        }
+      },
+      "subject": { "type": "string" },
+      "unit": { "type": "string" }
+    }
+  }
+}
+```
+
+#### 3.4.2.2　Due date（実施期限）
+
+- IRI: `https://w3id.org/japan-xapi/lms/extensions/due-date`
+- Type: ContextExtension
+- Definition: 実施期限を表すオブジェクト。`start`（開始日）と`end`（終了日）の要素を持つ。日付形式はISO 8601に従う。
+
+Schema:
+
+```json
+{
+  "type": "object",
+  "items": {
+    "type": "object",
+    "properties": {
+      "start": { "type": "string" },
+      "end": { "type": "string" }
+    }
+  }
+}
+```
+
+#### 3.4.2.3　range（配布対象）
+
+- IRI: `https://w3id.org/japan-xapi/lms/extensions/range`
+- Type: ContextExtension
+- Definition: 配布対象を表すオブジェクト。`school`（学校）、`grade`（学年）、`class`（クラス）、`student`（児童生徒）を配列として含み得る。
+- ScopeNote: 児童生徒を要素として、学校・学年・クラスはその集合を意味する。rangeにおける1つの要素内では、`クラス ⊂ 学年` かつ `学年 ⊂ 学校` でなければならず、学校またはクラスにおいて互いに素である複数の集合を指定した場合、その部分集合である要素を記述してはならない。
+
+Schema:
+
+```json
+{
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "school": {
+        "type": "array",
+        "items": { "type": "string" }
+      },
+      "grade": {
+        "type": "array",
+        "items": { "type": "string" }
+      },
+      "class": {
+        "type": "array",
+        "items": { "type": "string" }
+      },
+      "student": {
+        "type": "array",
+        "items": { "type": "string" }
+      }
+    }
+  }
+}
+```
+
+# 4.　学習課題に関するユースケース
+
+## 4.1　本章の位置づけ
+
+	本章では、LMSにおける学習課題に関する活動の特性を述べ、本プロファイルで定義するStatementTemplateの背景にある考え方を示す。
+
+## 4.2　学習課題の特性と主な活動
+
+	「学習課題」を次の通り定義する。  
+	「学習課題」とは以下のいずれかのObjectである。  
+	**① ”教職員”が”児童生徒”に対して行った学習活動の指示の内容を表すもの**  
+	**② ”児童生徒”が”自身”に対して行った学習活動の指示の内容を表すもの**
+
+	ここでの学習活動とは、それが児童生徒の学びに資すると教職員または児童生徒が考えるものすべてを指す。
 
 学習活動の例
 
@@ -129,29 +252,29 @@
 
 学習課題は、学習活動要素と指示要素に分けられる。
 
-学習活動要素：誰が、いつ、何を学ぶか。（＋その結果がどうであったか）
+学習活動要素：誰が、いつ、何を学ぶか。（＋その結果がどうであったか）  
 指示要素：いつまでに、どこからどこまでを、超えるべき基準値は何か。
 
-## 3.3　本プロジェクトの成果と今後の課題
+## 4.3　本プロジェクトの成果と今後の課題
 
 **本プロジェクトの成果**
 
 - 本プロファイルでは、学習課題の作成、配布、提出、評価といったLMSの基本的なワークフロー、および個々の学習活動への取り組み状況を記録するStatementTemplateを定義した。これにより、教職員が児童生徒に指示した学習課題の実施状況を追跡することが可能になり、学習支援や学習履歴の蓄積に活用できる。一方で、コース学習のような長期間にわたる学習活動や、非線形な学習パス（個別最適な学習における自由進度学習など）の複雑なパターン定義は、今回のバージョンでは対象外としている。
 
-**今後の課題（作業中）**
+**今後の課題**
 
 - **複雑な学習パスへの対応**：自由進度学習やアダプティブ・ラーニングなど、学習者の進度に応じた個別最適な学習経路を記録・追跡するための拡張。
 - **学習成果と学習活動の連動分析**：学習課題の実施状況と最終的な学習成果（テスト成績等）の因果関係を分析するための、メタデータの標準化。
 - **協働学習への対応**：グループ学習支援ツールとの連動時に、個人の学習課題とグループ活動を統合的に記録・管理するための仕様。
 - **長期にわたる学習データの集約**：複数のCo-Curricularプログラムやキャリア学習など、複数年度かつ複数領域にわたる学習課題の統合的な履歴管理。
 
-# 4.　StatementTemplate
+# 5.　StatementTemplate
 
-## 4.1　本章の位置づけ
+## 5.1　本章の位置づけ
 
-　本章では、LMS Profileにおける各操作のデータ構造を定義する。各テンプレートは以下の「基本仕様」および「記述規則」の構成で記述される。
+	本章では、LMS Profileにおける各操作のデータ構造を定義する。各テンプレートは以下の「基本仕様」および「記述規則」の構成で記述される。
 
-## 4.2　前提条件
+## 5.2　前提条件
 
 - 基本仕様
   - 冒頭にdefinitionの位置づけとして、Templateの目的やどのような操作を記録するためのものかを定義する。
@@ -167,28 +290,25 @@
 - Markdownテーブルの構成
   - 各Templateの末尾には、システム設計・実装時に参照しやすいよう、記述規則（Rules）を一覧化したテーブルを配置する。
 
-## 4.3　StatementTemplate一覧
+## 5.3　StatementTemplate一覧
 
-### 4.3.1　学習課題の作成
+### 5.3.1　学習課題の作成
 
-#### 4.3.1.1　基本仕様
+#### 5.3.1.1　基本仕様
 
 - 学習課題を作成したことを記録するためのテンプレート。
-- 識別情報
 
 | 項目     | 値                                                          |
-| :------- | :----------------------------------------------------------- |
-| id       | https://w3id.org/japan-xapi/templates/lms/created |
-| inScheme | https://w3id.org/japan-xapi/profiles/lms/v1.0.0              |
-| prefLabel | 学習課題の作成                                              |
+| :------- | :---------------------------------------------------------- |
+| id       | https://w3id.org/xapi-japan-profiles/lms/templates/v1.0.0/created |
+| inScheme | https://w3id.org/xapi-japan-profiles/lms/v1.0.0            |
+| prefLabel | 学習課題の作成                                             |
 
-- 判定条件
+| 項目              | 値                                      |
+| :---------------- | :-------------------------------------- |
+| verb              | https://w3id.org/xapi/adl/verbs/created |
 
-| 項目              | 値                                                     |
-| :---------------- | :---------------------------------------------------- |
-| verb              | https://w3id.org/xapi/adl/verbs/created               |
-
-#### 4.3.1.2　記述規則（Rules）
+#### 5.3.1.2　記述規則（Rules）
 
 | 項目     | 説明                                       | Location (JSONPath)                                                                | Presence    |
 | :------- | :----------------------------------------- | :--------------------------------------------------------------------------------- | :---------- |
@@ -197,222 +317,167 @@
 | **教科** | Core Profileで定義された教科Extensionを使用する。 | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/subject']` | recommended |
 | **学年** | Core Profileで定義された学年Extensionを使用する。 | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/grade']`   | recommended |
 
-### 4.3.2　学習課題の配布
+### 5.3.2　学習課題の配布
 
-#### 4.3.2.1　基本仕様
+#### 5.3.2.1　基本仕様
 
 - 学習課題を児童生徒に配布したことを記録するためのテンプレート。
-- 識別情報
 
 | 項目     | 値                                                         |
-| :------- | :---------------------------------------------------------- |
-| id       | https://w3id.org/japan-xapi/templates/lms/shared |
-| inScheme | https://w3id.org/japan-xapi/profiles/lms/v1.0.0             |
-| prefLabel | 学習課題の配布                                             |
+| :------- | :--------------------------------------------------------- |
+| id       | https://w3id.org/xapi-japan-profiles/lms/templates/v1.0.0/shared |
+| inScheme | https://w3id.org/xapi-japan-profiles/lms/v1.0.0           |
+| prefLabel | 学習課題の配布                                            |
 
-- 判定条件
+| 項目              | 値                             |
+| :---------------- | :----------------------------- |
+| verb              | http://adlnet.gov/expapi/verbs/shared |
 
-| 項目              | 値                                                     |
-| :---------------- | :---------------------------------------------------- |
-| verb              | http://adlnet.gov/expapi/verbs/shared                 |
+#### 5.3.2.2　記述規則（Rules）
 
-#### 4.3.2.2　記述規則（Rules）
+共通記述規則に準拠する。
 
-| 項目     | 説明                               | Location (JSONPath) | Presence |
-| :------- | :--------------------------------- | :------------------ | :------- |
-| **動詞の表示名(英語)** | shared                           | `$.verb.display.en` | included |
-| **オブジェクトのオブジェクトタイプ** | Assignment等の学習課題        | `$.object.objectType` | included |
-| **オブジェクトID** | 学習課題を一意に識別するID                      | `$.object.id` | included |
+### 5.3.3　学習課題の実施開始
 
-### 4.3.3　学習課題の実施開始
-
-#### 4.3.3.1　基本仕様
+#### 5.3.3.1　基本仕様
 
 - 学習課題を開始したことを記録するためのテンプレート。
-- 識別情報
 
 | 項目     | 値                                                           |
-| :------- | :------------------------------------------------------------ |
-| id       | https://w3id.org/japan-xapi/templates/lms/launched |
-| inScheme | https://w3id.org/japan-xapi/profiles/lms/v1.0.0               |
-| prefLabel | 学習課題の実施開始                                           |
+| :------- | :----------------------------------------------------------- |
+| id       | https://w3id.org/xapi-japan-profiles/lms/templates/v1.0.0/launched |
+| inScheme | https://w3id.org/xapi-japan-profiles/lms/v1.0.0             |
+| prefLabel | 学習課題の実施開始                                          |
 
-- 判定条件
+| 項目              | 値                                |
+| :---------------- | :-------------------------------- |
+| verb              | http://adlnet.gov/expapi/verbs/launched |
 
-| 項目              | 値                                                     |
-| :---------------- | :---------------------------------------------------- |
-| verb              | http://adlnet.gov/expapi/verbs/launched               |
+#### 5.3.3.2　記述規則（Rules）
 
-#### 4.3.3.2　記述規則（Rules）
+共通記述規則に準拠する。
 
-| 項目     | 説明                               | Location (JSONPath) | Presence |
-| :------- | :--------------------------------- | :------------------ | :------- |
-| **動詞の表示名(英語)** | launched                         | `$.verb.display.en` | included |
-| **オブジェクトのオブジェクトタイプ** | Assignment等の学習課題        | `$.object.objectType` | included |
-| **オブジェクトID** | 学習課題を一意に識別するID                      | `$.object.id` | included |
+### 5.3.4　学習課題の完了
 
-### 4.3.4　学習課題の完了
-
-#### 4.3.4.1　基本仕様
+#### 5.3.4.1　基本仕様
 
 - 学習課題を完了したことを記録するためのテンプレート。
-- 識別情報
 
 | 項目     | 値                                                            |
-| :------- | :------------------------------------------------------------- |
-| id       | https://w3id.org/japan-xapi/templates/lms/completed |
-| inScheme | https://w3id.org/japan-xapi/profiles/lms/v1.0.0                |
-| prefLabel | 学習課題の完了                                                |
+| :------- | :------------------------------------------------------------ |
+| id       | https://w3id.org/xapi-japan-profiles/lms/templates/v1.0.0/completed |
+| inScheme | https://w3id.org/xapi-japan-profiles/lms/v1.0.0              |
+| prefLabel | 学習課題の完了                                               |
 
-- 判定条件
+| 項目              | 値                                 |
+| :---------------- | :--------------------------------- |
+| verb              | http://adlnet.gov/expapi/verbs/completed |
 
-| 項目              | 値                                                     |
-| :---------------- | :---------------------------------------------------- |
-| verb              | http://adlnet.gov/expapi/verbs/completed              |
+#### 5.3.4.2　記述規則（Rules）
 
-#### 4.3.4.2　記述規則（Rules）
+共通記述規則に準拠する。
 
-| 項目     | 説明                               | Location (JSONPath) | Presence |
-| :------- | :--------------------------------- | :------------------ | :------- |
-| **動詞の表示名(英語)** | completed                        | `$.verb.display.en` | included |
-| **オブジェクトのオブジェクトタイプ** | Assignment等の学習課題        | `$.object.objectType` | included |
-| **オブジェクトID** | 学習課題を一意に識別するID                      | `$.object.id` | included |
+### 5.3.5　学習課題へのフィードバック
 
-### 4.3.5　学習課題へのフィードバック
-
-#### 4.3.5.1　基本仕様
+#### 5.3.5.1　基本仕様
 
 - 教職員が児童生徒の学習課題成果にコメントなどのフィードバックを行ったことを表すステートメント。
-- 識別情報
 
 | 項目     | 値                                                            |
-| :------- | :------------------------------------------------------------- |
-| id       | https://w3id.org/japan-xapi/templates/lms/responded |
-| inScheme | https://w3id.org/japan-xapi/profiles/lms/v1.0.0                |
-| prefLabel | 学習課題へのフィードバック                                    |
+| :------- | :------------------------------------------------------------ |
+| id       | https://w3id.org/xapi-japan-profiles/lms/templates/v1.0.0/responded |
+| inScheme | https://w3id.org/xapi-japan-profiles/lms/v1.0.0              |
+| prefLabel | 学習課題へのフィードバック                                   |
 
-- 判定条件
+| 項目              | 値                                 |
+| :---------------- | :--------------------------------- |
+| verb              | http://adlnet.gov/expapi/verbs/responded |
 
-| 項目              | 値                                                     |
-| :---------------- | :---------------------------------------------------- |
-| verb              | http://adlnet.gov/expapi/verbs/responded              |
+#### 5.3.5.2　記述規則（Rules）
 
-#### 4.3.5.2　記述規則（Rules）
-
-共通記述規則に準拠する。ただし、result.response および result.completion は、本仕様において任意（MAY）の項目であるため、本記述規則による制約を課さない。
+共通記述規則に準拠する。ただし、`result.response` および `result.completion` は、本仕様において任意（MAY）の項目であるため、本記述規則による制約を課さない。
 
 | 項目     | 説明                               | Location (JSONPath) | Presence |
 | :------- | :--------------------------------- | :------------------ | :------- |
-| **動詞の表示名(英語)** | responded                        | `$.verb.display.en` | included |
-| **オブジェクトのオブジェクトタイプ** | Assignment等の学習課題        | `$.object.objectType` | included |
-| **オブジェクトID** | 学習課題を一意に識別するID                      | `$.object.id` | included |
 | **フィードバック内容** | 後ろに続く結果オブジェクトに含められる。    | `$.result.response` | optional |
 | **完了フラグ** | フィードバック後の完了状態                          | `$.result.completion` | optional |
 
-### 4.3.6　学習課題を閲覧する
+### 5.3.6　学習課題を閲覧する
 
-#### 4.3.6.1　基本仕様
+#### 5.3.6.1　基本仕様
 
 - 児童生徒が学習課題を閲覧したことを記録するためのテンプレート。
-- 識別情報
 
 | 項目     | 値                                                         |
-| :------- | :---------------------------------------------------------- |
-| id       | https://w3id.org/japan-xapi/templates/lms/viewed |
-| inScheme | https://w3id.org/japan-xapi/profiles/lms/v1.0.0             |
-| prefLabel | 学習課題を閲覧する                                         |
+| :------- | :--------------------------------------------------------- |
+| id       | https://w3id.org/xapi-japan-profiles/lms/templates/v1.0.0/viewed |
+| inScheme | https://w3id.org/xapi-japan-profiles/lms/v1.0.0           |
+| prefLabel | 学習課題を閲覧する                                        |
 
-- 判定条件
+| 項目              | 値                              |
+| :---------------- | :------------------------------ |
+| verb              | http://id.tincanapi.com/verb/viewed |
 
-| 項目              | 値                                                     |
-| :---------------- | :---------------------------------------------------- |
-| verb              | http://id.tincanapi.com/verb/viewed                   |
+#### 5.3.6.2　記述規則（Rules）
 
-#### 4.3.6.2　記述規則（Rules）
+共通記述規則に準拠する。
 
-| 項目     | 説明                               | Location (JSONPath) | Presence |
-| :------- | :--------------------------------- | :------------------ | :------- |
-| **動詞の表示名(英語)** | viewed                           | `$.verb.display.en` | included |
-| **オブジェクトのオブジェクトタイプ** | Assignment等の学習課題        | `$.object.objectType` | included |
-| **オブジェクトID** | 学習課題を一意に識別するID                      | `$.object.id` | included |
+### 5.3.7　学習課題を異常終了する
 
-### 4.3.7　学習課題を異常終了する
-
-#### 4.3.7.1　基本仕様
+#### 5.3.7.1　基本仕様
 
 - 児童生徒が学習課題を異常終了（放棄）したことを記録するためのテンプレート。
-- 識別情報
 
 | 項目     | 値                                                            |
-| :------- | :------------------------------------------------------------- |
-| id       | https://w3id.org/japan-xapi/templates/lms/abandoned |
-| inScheme | https://w3id.org/japan-xapi/profiles/lms/v1.0.0                |
-| prefLabel | 学習課題を異常終了する                                        |
+| :------- | :------------------------------------------------------------ |
+| id       | https://w3id.org/xapi-japan-profiles/lms/templates/v1.0.0/abandoned |
+| inScheme | https://w3id.org/xapi-japan-profiles/lms/v1.0.0              |
+| prefLabel | 学習課題を異常終了する                                       |
 
-- 判定条件
+| 項目              | 値                                       |
+| :---------------- | :--------------------------------------- |
+| verb              | https://w3id.org/xapi/adl/verbs/abandoned |
 
-| 項目              | 値                                                     |
-| :---------------- | :---------------------------------------------------- |
-| verb              | https://w3id.org/xapi/adl/verbs/abandoned             |
+#### 5.3.7.2　記述規則（Rules）
 
-#### 4.3.7.2　記述規則（Rules）
+共通記述規則に準拠する。
 
-| 項目     | 説明                               | Location (JSONPath) | Presence |
-| :------- | :--------------------------------- | :------------------ | :------- |
-| **動詞の表示名(英語)** | abandoned                        | `$.verb.display.en` | included |
-| **オブジェクトのオブジェクトタイプ** | Assignment等の学習課題        | `$.object.objectType` | included |
-| **オブジェクトID** | 学習課題を一意に識別するID                      | `$.object.id` | included |
+### 5.3.8　学習課題の実施状況を初期化する
 
-### 4.3.8　学習課題の実施状況を初期化する
-
-#### 4.3.8.1　基本仕様
+#### 5.3.8.1　基本仕様
 
 - 学習課題の実施状況が初期化されたことを記録するためのテンプレート。
-- 識別情報
 
 | 項目     | 値                                                              |
 | :------- | :--------------------------------------------------------------- |
-| id       | https://w3id.org/japan-xapi/templates/lms/initialized |
-| inScheme | https://w3id.org/japan-xapi/profiles/lms/v1.0.0                  |
-| prefLabel | 学習課題の実施状況を初期化する                                  |
+| id       | https://w3id.org/xapi-japan-profiles/lms/templates/v1.0.0/initialized |
+| inScheme | https://w3id.org/xapi-japan-profiles/lms/v1.0.0                 |
+| prefLabel | 学習課題の実施状況を初期化する                                 |
 
-- 判定条件
+| 項目              | 値                                  |
+| :---------------- | :---------------------------------- |
+| verb              | http://adlnet.gov/expapi/verbs/initialized |
 
-| 項目              | 値                                                     |
-| :---------------- | :---------------------------------------------------- |
-| verb              | http://adlnet.gov/expapi/verbs/initialized            |
+#### 5.3.8.2　記述規則（Rules）
 
-#### 4.3.8.2　記述規則（Rules）
+共通記述規則に準拠する。
 
-| 項目     | 説明                               | Location (JSONPath) | Presence |
-| :------- | :--------------------------------- | :------------------ | :------- |
-| **動詞の表示名(英語)** | initialized                      | `$.verb.display.en` | included |
-| **オブジェクトのオブジェクトタイプ** | Assignment等の学習課題        | `$.object.objectType` | included |
-| **オブジェクトID** | 学習課題を一意に識別するID                      | `$.object.id` | included |
+### 5.3.9　学習課題を免除する
 
-### 4.3.9　学習課題を免除する
-
-#### 4.3.9.1　基本仕様
+#### 5.3.9.1　基本仕様
 
 - 教職員が児童生徒の学習課題を免除したことを記録するためのテンプレート。
-- 識別情報
 
 | 項目     | 値                                                         |
-| :------- | :---------------------------------------------------------- |
-| id       | https://w3id.org/japan-xapi/templates/lms/waived |
-| inScheme | https://w3id.org/japan-xapi/profiles/lms/v1.0.0             |
-| prefLabel | 学習課題を免除する                                         |
+| :------- | :--------------------------------------------------------- |
+| id       | https://w3id.org/xapi-japan-profiles/lms/templates/v1.0.0/waived |
+| inScheme | https://w3id.org/xapi-japan-profiles/lms/v1.0.0           |
+| prefLabel | 学習課題を免除する                                        |
 
-- 判定条件
+| 項目              | 値                                    |
+| :---------------- | :------------------------------------ |
+| verb              | https://w3id.org/xapi/adl/verbs/waived |
 
-| 項目              | 値                                                     |
-| :---------------- | :---------------------------------------------------- |
-| verb              | https://w3id.org/xapi/adl/verbs/waived                |
+#### 5.3.9.2　記述規則（Rules）
 
-#### 4.3.9.2　記述規則（Rules）
-
-| 項目     | 説明                               | Location (JSONPath) | Presence |
-| :------- | :--------------------------------- | :------------------ | :------- |
-| **動詞の表示名(英語)** | waived                           | `$.verb.display.en` | included |
-| **オブジェクトのオブジェクトタイプ** | Assignment等の学習課題        | `$.object.objectType` | included |
-| **オブジェクトID** | 学習課題を一意に識別するID                      | `$.object.id` | included |
+共通記述規則に準拠する。

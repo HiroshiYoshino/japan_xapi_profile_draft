@@ -13,11 +13,11 @@ xAPI サブワーキンググループ
 3. [位置づけ](#位置づけ)
 4. [基礎資料](#基礎資料)
 5. [プロファイルドキュメントの概要](#プロファイルドキュメントの概要)
-   - [5.1 Japan xAPI Core Profile](#51-japan-xapi-core-profile)
-   - [5.2 Japan xAPI LMS Profile](#52-japan-xapi-lms-profile)
-   - [5.3 Japan xAPI Assessment Profile](#53-japan-xapi-cbt-profile)
-   - [5.4 Japan xAPI eBook Profile](#54-japan-xapi-ebook-profile)
-   - [5.5 Japan xAPI Group Learning Support Tool Profile](#55-japan-xapi-group-learning-support-tool-profile)
+  - [5.1 Core Profile](#51-core-profile)
+  - [5.2 LMS Profile](#52-lms-profile)
+  - [5.3 Assessment Profile](#53-assessment-profile)
+  - [5.4 ebook Profile](#54-ebook-profile)
+  - [5.5 Group Learning Support Tool Profile](#55-group-learning-support-tool-profile)
 6. [今後の課題](#今後の課題)
 7. [メンバー](#メンバー)
 8. [付録](#付録)
@@ -38,11 +38,11 @@ xAPI サブワーキンググループ
 
 本報告は上記の背景を踏まえ、日本における教育DX事業者が参加して策定した以下のxAPI Profile仕様を示すことを目的とする。
 
-- 日本国内で流通するスタディ・ログが準拠すべき共通仕様 (Japan xAPI Core Profile)
-- LMS (学習eポータル/学習管理システム) が出力するスタディ・ログが準拠すべき仕様 (Japan xAPI LMS Profile)
-- CBT (Computer Based Testing) およびデジタルドリルが出力するスタディ・ログが準拠すべき仕様 (Japan xAPI Assessment Profile)
-- 電子書籍 (eBook) が出力するスタディ・ログが準拠すべき仕様 (Japan xAPI eBook Profile)
-- グループ学習支援ツールが出力するスタディ・ログが準拠すべき仕様 (Japan xAPI Group Learning Support Tool Profile)
+- 日本国内で流通するスタディ・ログが準拠すべき共通仕様 (Core Profile)
+- LMS (学習eポータル/学習管理システム) が出力するスタディ・ログが準拠すべき仕様 (LMS Profile)
+- CBT (Computer Based Testing) およびデジタルドリルが出力するスタディ・ログが準拠すべき仕様 (Assessment Profile)
+- 電子書籍型デジタル教材 (ebook) が出力するスタディ・ログが準拠すべき仕様 (ebook Profile)
+- グループ学習支援ツールが出力するスタディ・ログが準拠すべき仕様 (Group Learning Support Tool Profile)
 
 ## 3. 位置づけ
 
@@ -50,11 +50,16 @@ xAPI は、アメリカADL (Advanced Distributed Learning) が策定したスタ
 
 学習活動には様々な種類があり、その種類ごとにスタディ・ログに含むべき内容（Verb等）が異なるため、学習活動ごとに「どのようにProfileを書くべきか」という仕様を集約した xAPI Profile が策定されている。本報告書で定義するプロファイル群は、xAPI Profile Specification に準拠しつつ、日本の初等中等教育の実情に合わせて策定されたものである。
 
-特に、全ドメインで共通して利用される語彙やルールを定義した「Core Profile」を基盤とし、その上に各ドメイン（LMS, Assessment, eBook, Group Learning Support Tool）ごとの詳細な仕様を定義する階層構造をとっている。これにより、ドメイン横断的なデータ分析の可能性を担保している。
+本報告書で定義するプロファイル群は、全体として xAPI Profile Specification に準拠する。各ドメイン（LMS, Assessment, ebook, Group Learning Support Tool）については、ドメイン特性に応じた StatementTemplate を中心に定義する階層構造をとっている。
+各ドメインプロファイルにおけるConceptsの記載は、ドメイン特性に応じて必要に応じて行う方針とする。また、共通記述規則として定義した項目は、個別StatementTemplateのRulesへ重複記載しない。
 
-また、本プロファイル群は、各コンテンツ事業者に対して本規定どおりの出力を強制するものではなく、出力方法の一つの方向性を示す「推奨」として位置づける。したがって、本プロファイル群に記載された全項目への一律の準拠を求めるものではない。コンテンツの特性に応じて、記載したログを出力しない場合や一部項目を満たさない場合も許容される。
+また、本プロファイル群は、各コンテンツ事業者に対して本規定どおりの出力を強制するものではない。xAPIプロファイルの思想自体が、そのような強制力を持たせるものではなく、表現の共通化を支えるための枠組みである。本プロファイル群は、出力方法の方向性を示す「表現のための資産」として位置づけ、「推奨」として扱う。したがって、本プロファイル群に記載された全項目への一律の準拠を求めるものではない。コンテンツの特性に応じて、記載したログを出力しない場合や一部項目を満たさない場合も許容される。
 
 なお、本プロファイル群は、全体として xAPI 1.0.3 をベースとしている。
+
+学習eポータルと連携する場合は、システム間の相互運用性を確保する観点から、「初等中等教育におけるシステム間連携のための相互運用標準モデル Version 5.00」も参照する。
+
+また、各仕様書の記述は特定製品を前提とせず、現実的な範囲の「架空ツール」を想定して行う。この前提により、既存システムとの部分的不一致や未確定要素に起因する議論停滞を回避する。
 
 タイムスタンプについては、学習活動の発生時点を示す情報として記録が望ましい。一方で、本プロファイル群ではMUSTとはせず、各コンテンツ事業者の任意とする。タイムスタンプを出力する場合は、ADL仕様に準拠し、ミリ秒を含む形式で実装する（時刻やミリ秒を取得できない場合は0埋め等で対応する）。
 
@@ -63,8 +68,10 @@ xAPI は、アメリカADL (Advanced Distributed Learning) が策定したスタ
 本報告の内容策定にあたり、以下のドキュメントおよび仕様を参照した。
 
 - [xAPI Profile Specification](https://adlnet.github.io/xapi-profiles/xapi-profiles-structure.html)
+- [xAPI-Spec](https://github.com/adlnet/xAPI-Spec)
 - [ADL xAPI Profile Server](https://github.com/adlnet/xapi-authored-profiles/tree/master/Profile_Server_Profiles)
 - [文部科学省 教育データ標準](https://www.mext.go.jp/a_menu/other/data_00001.htm)
+- [初等中等教育におけるシステム間連携のための相互運用標準モデル](https://ictconnect21.jp/document/eportal/#standard)
 - 内閣府 戦略的イノベーション創造プログラム「相互運用性を確保したペダゴジカル情報プラットフォームの研究開発・実用化検討」のための xAPI プロファイル利用に関する仕様
 - 文部科学省 令和5年度教育データの利活用推進事業 報告書「CBTシステム(MEXCBT)の拡充・活用推進、教育データの利活用推進事業」〜xAPIの標準化に関する調査研究事業〜事業報告書
 - 文部科学省 令和5年度教育データの利活用推進事業 プロファイルサーバー/京都大学緒方研究所プロファイルサーバー
@@ -75,142 +82,22 @@ xAPI は、アメリカADL (Advanced Distributed Learning) が策定したスタ
 
 ## 5. プロファイルドキュメントの概要
 
-### 5.1 Japan xAPI Core Profile
+### 5.1 Core Profile
 
 #### 5.1.1 概要
 
-Japan xAPI Core Profile（以下、Core Profile）は、日本の初等中等教育における学習ログの基盤となる共通語彙（Concepts）および共通ルールを定義したプロファイルである。全体アーキテクチャにおける **Core Concept Profile** としての役割を果たし、各ドメインプロファイル（Assessment, eBook, LMS, Group-LST等）で共通利用されるConceptsを体系的に定義する。
+Core Profileは、全体アーキテクチャにおける **Core Concept Profile** として、将来的にドメイン横断で活用する共通要素を整理するための位置づけを持つ。
 
-Core Profileは **Concept（概念定義）** を主とし、Statement Template は原則として定義しない。各ドメインの具体的な学習活動パターンは、それぞれのドメインプロファイルで定義される。
+ただし、v1.0.0 時点では Core の位置づけ・収載内容について十分な合意形成には至っておらず、学年・教科・学習指導要領コード・単元メタデータ等をどの粒度で Core に集約するかは継続議論としている。メタデータ以外（例：verbs などの日本独自仕様）についても本バージョンではスコープ外である。
 
-主に以下の要素を提供する。
+このため、本バージョンでは「Core が未整備でも公開可能」と判断し、当面必要となる拡張項目は各ドメインプロファイル側で定義・運用する方針を採る。
 
-- **共通語彙 (Concepts)**:
-    - **Extensions**: `grade` (学年), `subject` (教科), `course-of-study-code` (学習指導要領コード), `unit` (単元名), `difficulty` (難易度), `due-date` (期限日) など、複数のドメインで共通して利用される拡張語彙。
 
-#### 5.1.2 プロファイルの位置づけと役割
-
-Core Profileは、以下の階層構造において基盤を提供する：
-
-```
-┌─────────────────────────────────────┐
-│     Japan xAPI Core Profile         │
-│   (共通語彙・共通Extension定義)      │
-└────────────┬────────────────────────┘
-             │ 参照
-    ┌────────┼────────┬────────┐
-    │        │        │        │
-┌───▼───┐ ┌─▼──┐ ┌──▼───┐ ┌──▼────────┐
-│  LMS  │ │eBook│ │ CBT  │ │ Group-LST │
-│Profile│ │Profile│ │Profile│ │  Profile  │
-└───────┘ └─────┘ └──────┘ └───────────┘
-```
-
-この構造により、ドメイン間でのデータの一貫性と相互運用性を確保している。
-
-#### 5.1.3 定義されるExtension一覧
-
-Core Profileでは、学校教育の粒度（大きな枠組みから細かい要素）に従って、以下の11のExtensionを定義している：
-
-| Extension名 | Activity | Context | 主な使用ドメイン | データ型 | 説明 |
-|:---|:---:|:---:|:---|:---|:---|
-| **grade** (学年) | ✓ | ✓ | 全ドメイン | array | 対象学年（文部科学省教育データ標準推奨） |
-| **subject** (教科) | ✓ | ✓ | 全ドメイン | array | 学習対象の教科名 |
-| **course-of-study-code** (学習指導要領コード) | ✓ | ✓ | LMS, Assessment | array | 文部科学省学習指導要領に基づく学習項目コード |
-| **unit** (単元名) | ✓ | ✓ | 全ドメイン | array | 学習課題やコンテンツが属する単元名 |
-| **purpose-of-question** (問題の趣旨) | ✓ | - | Assessment | array | 学習指導要領コードより細粒度の学習目標 |
-| **content-type** (コンテンツの種類) | ✓ | - | Assessment | string (enum) | hint/result/explanationの種別 |
-| **question-order** (問題の出題順序) | ✓ | - | Assessment | integer | デジタルドリル・CBTにおける出題順序 |
-| **difficulty** (難易度) | - | ✓ | Assessment等 | string | 学習コンテンツの難易度レベル |
-| **assessment-type** (評価のタイプ) | - | ✓ | Assessment | string (enum) | diagnostic/formative/summativeの種別 |
-| **scrapbook-item-type** (アイテムタイプ) | ✓ | - | Group-LST | string | スクラップブック要素の種類 |
-| **due-date** (期限日) | - | ✓ | LMS | date-time | 課題等の実施期限日（ISO 8601形式） |
-
-#### 5.1.4 ActivityExtensionとContextExtensionの使い分け
-
-Core Profileでは、同じ概念（例：subject, grade, unit）が ActivityExtension と ContextExtension の両方で使用できるように設計されている。各Extensionには詳細なScope Noteが付与され、用途を明確化している：
-
-- **ActivityExtension**: オブジェクト（コンテンツ・課題）自体の属性を示す
-  - 配置先：`$.object.definition.extensions`
-  - 例：この課題が対象とする教科・学年
-
-- **ContextExtension**: 学習活動が行われた状況や環境を示す
-  - 配置先：`$.context.extensions`
-  - 例：学習活動が行われた教科・学年のコンテキスト
-
-この設計により、同じStatement内で「課題の対象学年」と「学習者の現在学年」を区別して記録することが可能になっている。
-
-#### 5.1.5 データ型の統一と標準化
-
-本プロジェクトでは、以下のデータ型標準化を実施した：
-
-1. **配列型の統一**: subject, grade, unit, course-of-study-code は、単一値の場合も要素数1の配列として記録
-   - 理由：複数の教科・単元にまたがる学習活動への拡張性確保
-   - 例：`"subject": ["算数"]`（`"subject": "算数"` ではない）
-
-2. **enum型の導入**: content-type と assessment-type は、許可された値のみを持つ文字列型
-   - content-type: `"hint"`, `"result"`, `"explanation"`
-   - assessment-type: `"diagnostic"`, `"formative"`, `"summative"`
-
-3. **ISO 8601準拠**: due-date は国際標準の日時形式
-   - 例：`"2025-11-15T23:59:59Z"`
-
-#### 5.1.6 文部科学省教育データ標準との連携
-
-Core Profileで定義される以下のExtensionは、文部科学省が策定する教育データ標準との整合性を考慮している：
-
-- **subject (教科)**: 教育データ標準の教科名コード表に準拠することを推奨
-- **grade (学年)**: 教育データ標準（主体情報）の「学年」項目の要素名を推奨
-- **course-of-study-code (学習指導要領コード)**: 文部科学省学習指導要領コードを使用
-
-なお、これらは運用上の整合性を高めるための参照方針であり、コード体系の選定自体は本SWGのスコープ外である。また、教科コードについては改訂対応や正式な位置づけに関する課題が残るため、詳細な取り扱いは「6.1 コンテンツメタデータの記載方針」に基づき継続検討とする。
-
-この連携により、学習ログと既存の教育データとの統合分析が容易になる。
-
-#### 5.1.7 ドメインプロファイルとの関係
-
-各ドメインプロファイルは、Core Profileで定義されたExtensionを以下のように利用している：
-
-**LMS Profile**:
-- course-of-study-code, unit, subject, grade, due-date を使用
-- 課題配布・提出・評価のコンテキストで活用
-
-**Assessment Profile**:
-- purpose-of-question, question-order, content-type, assessment-type を含む8つのExtensionを使用
-- CBT/デジタルドリルの詳細な記録に対応
-
-**eBook Profile**:
-- Core ProfileのExtensionは使用せず、ドメイン固有のExtensionのみ定義
-- 電子書籍特有の操作（ページ、しおり、注釈等）に特化
-
-**Group-LST Profile**:
-- scrapbook-item-type のみを使用
-- 協働学習ツール特有のオブジェクト管理に活用
-
-#### 5.1.8 実装時の推奨事項
-
-Core Profile準拠のStatementを実装する際は、以下の点に留意することを推奨する：
-
-1. **Extension配置の明確化**: ActivityとContextで用途を明確に区別する
-2. **配列型の一貫性**: 単一値でも配列として記録し、将来の拡張性を確保
-3. **標準コードの活用**: 教育データ標準や学習指導要領コードを積極的に使用
-4. **バージョン管理**: `$.version` プロパティでxAPIバージョンを明記
-5. **タイムスタンプの扱い**: `$.timestamp` は推奨項目として扱い、出力する場合はADL仕様に準拠してミリ秒を含む形式で実装する（取得できない場合は0埋め等で対応）
-
-#### 5.1.9 今後の展望
-
-Core Profileは、今後も以下の観点から継続的に改善を図る予定である：
-
-- 実装事例に基づくベストプラクティスの文書化
-- Extension利用状況のモニタリングと必要に応じた追加・改訂
-- 教育データ標準の更新に伴うマッピングのメンテナンス
-- 新たなドメインプロファイル追加時の共通語彙の拡充
-
-### 5.2 Japan xAPI LMS Profile
+### 5.2 LMS Profile
 
 **概要**
 
-Japan xAPI LMS Profile は、学習管理システム（LMS）および学習eポータル上での学習プロセスを記録するためのプロファイルである。
+LMS Profile は、学習管理システム（LMS）および学習eポータル上での学習プロセスを記録するためのプロファイルである。
 主に以下の学習活動を対象としている。
 
 - **学習課題の作成・配布**: 教員による課題（Assessment）の作成 (`created`) および児童生徒への配布 (`shared`)。
@@ -221,54 +108,53 @@ Japan xAPI LMS Profile は、学習管理システム（LMS）および学習e�
 
 - 本プロファイルでは、学習課題の作成、配布、提出、評価といったLMSの基本的なワークフロー、および個々の学習活動への取り組み状況を記録するStatementTemplateを定義した。これにより、教職員が児童生徒に指示した学習課題の実施状況を追跡することが可能になり、学習支援や学習履歴の蓄積に活用できる。一方で、コース学習のような長期間にわたる学習活動や、非線形な学習パス（個別最適な学習における自由進度学習など）の複雑なパターン定義は、今回のバージョンでは対象外としている。
 
-### 5.3 Japan xAPI Assessment Profile
+### 5.3 Assessment Profile
 
 **概要**
 
-Japan xAPI Assessment Profile は、デジタルドリルやCBT（Computer Based Testing）システムにおけるアセスメント実施ログを記録するためのプロファイルである。
+Assessment Profile は、デジタルドリルやCBT（Computer Based Testing）システムにおけるアセスメント実施ログを記録するためのプロファイルである。
 以下の操作を対象とする。
 
 - **アセスメントの開始**: 学習者がドリルやテストを開始し、一連の問題に取り組み始める(`attempted`)。
 - **問題への回答**: 学習者がドリルやテストの個々の問題に対して回答を行う。(`answered`)
-  - 得点情報（素点、最大点、正規化スコア）、回答内容、所要時間、出題順序などを詳細に記録する。
+  - 得点情報（素点、最大点、正規化スコア）、回答内容、所要時間などを詳細に記録する。
 - **コンテンツの参照**: 問題に取り組む中で、ヒントのような回答に関わるコンテンツを参照する。また、ドリルやテストの終了後、結果や解説を参照する。(`viewed`)
 - **アセスメントの終了**: 学習者がドリルやテストを終了する。(`completed`)
 
 
 **本プロジェクトの成果**
 
-- 本プロファイルでは、CBT・デジタルドリルの試験開始から問題回答、結果参照にいたるまでのアセスメント実施プロセスを体系的に記録するStatementTemplateを定義した。特に問題への回答時に、得点情報（素点、最大点、正規化スコア）、回答内容、所要時間、出題順序などを詳細に記録することにより、学習者の達成度や学習パターンの詳細な追跡が可能になり、学習支援や評価に活用できる。一方で、アダプティブ・ラーニングにおける動的な出題制御（出題エンジンの挙動）やIRT(項目反応理論)の運用を考慮しての回答記録の取り扱いまではカバーしていない。また、LMS同様、非線形な回答順序に関するパターン定義は対象外としている。
+- 本プロファイルでは、CBT・デジタルドリルの試験開始から問題回答、結果参照にいたるまでのアセスメント実施プロセスを体系的に記録するStatementTemplateを定義した。特に問題への回答時に、得点情報（素点、最大点、正規化スコア）、回答内容、所要時間などを詳細に記録することにより、学習者の達成度や学習パターンの詳細な追跡が可能になり、学習支援や評価に活用できる。一方で、アダプティブ・ラーニングにおける動的な出題制御（出題エンジンの挙動）やIRT(項目反応理論)の運用を考慮しての回答記録の取り扱いまではカバーしていない。また、LMS同様、非線形な回答順序に関するパターン定義は対象外としている。
 
-### 5.4 Japan xAPI eBook Profile
-
-**概要**
-
-Japan xAPI eBook Profile は、デジタル教科書や教材ビューア上での閲覧行動を記録するためのプロファイルである。
-以下の操作を対象とする。
-
-- **ビューア/コンテンツの起動**: ビューア自体の起動 (`launched`) および特定書籍の閲覧開始 (`open`)。
-- **ページ操作**: ページめくり等の進行 (`progressed`)。
-- **インタラクション**: 拡大・縮小、設定変更 (`interacted`)。
-- **注釈・書き込み**: マーカーやメモの作成 (`noted`)。
-
-**本プロジェクトの成果**
-
-- 本プロファイルでは、電子書籍プラットフォーム上で発生するプラットフォーム関連操作（起動・終了）、コンテンツ表示関連操作（ページ移動、目次移動）、読書行為（読書時間の記録）、注釈機能（しおり、ハイライト等）を体系的に記録するStatementTemplateを定義した。これにより、学習者の読書行動をきめ細かく追跡し、学習支援やプラットフォーム改善に活用することが可能になる。一方で、電子書籍の閲覧行動は極めて非線形であり、特定の「正解ルート」が存在しないため、行動パターンの定義（xAPI Patterns）は今回対象外とした。また、視線追跡などの生体情報との連携は含んでいない。
-
-### 5.5 Japan xAPI Group Learning Support Tool Profile
+### 5.4 ebook Profile
 
 **概要**
 
-Japan xAPI Group Learning Support Tool Profile は、協働学習（グループワーク）支援ツールにおける相互作用を記録するためのプロファイルである。
+ebook Profile は、電子書籍型デジタル教材上での閲覧行動を記録するためのプロファイルである。
 以下の操作を対象とする。
 
-- **ツール/コンテンツ利用**: ツールの起動、スライド等の共有コンテンツ利用開始。
-- **オブジェクト作成**: 共有ホワイトボード等へのテキスト・図形配置 (`created`)。
-- **議論・コミュニケーション**: 議論スレッドの作成 (`create`)、返信 (`replied`)、スタンプ/いいね (`voted-up`)。
+- **プラットフォーム関連操作**: 起動 (`launched`) / 終了 (`terminated`)。
+- **コンテンツ表示関連操作**: 紙面の表示 (`open`) / 非表示 (`close`)。
+- **読書行為**: ページ移動 (`viewed`)。
+- **注釈機能**: しおり (`bookmarked`)、書き込み (`annotated`)、削除 (`delete`)。
 
 **本プロジェクトの成果**
 
-- 本プロファイルでは、グループ学習支援ツール内での個人の考えの作成・編集、他者への反応（いいね、コメント等）、グループでの共同編集といった操作ログを記録するStatementTemplateを定義した。これにより、グループ学習における個人の貢献度合いや相互作用の状況を追跡し、協働学習の支援や評価に活用することが可能になる。一方で、複数人が同時多発的に操作を行う同期型協働学習においては、"誰の操作によって状態が変化したか" の因果関係が複雑になるが、本プロファイルでは個々の操作ログの記録に留め、状態同期の完全な再現まではスコープとしていない。また、非線形な活動であるためパターン定義は対象外である。
+- 本プロファイルでは、電子書籍型デジタル教材プラットフォーム上で発生するプラットフォーム関連操作（起動・終了）、コンテンツ表示関連操作（表示・非表示）、読書行為（ページ移動）、注釈機能（しおり、書き込み、削除）を体系的に記録するStatementTemplateを定義した。これにより、学習者の読書行動をきめ細かく追跡し、学習支援やプラットフォーム改善に活用することが可能になる。一方で、電子書籍型デジタル教材の閲覧行動は極めて非線形であり、特定の「正解ルート」が存在しないため、行動パターンの定義（xAPI Patterns）は今回対象外とした。また、視線追跡などの生体情報との連携は含んでいない。
+
+### 5.5 Group Learning Support Tool Profile
+
+**概要**
+
+Group Learning Support Tool Profile は、協働学習（グループワーク）支援ツールにおける相互作用を記録するためのプロファイルである。
+以下の操作を対象とする。
+
+- **ツール/コンテンツ利用**: スライドの共有コンテンツ利用開始。
+- **議論・コミュニケーション**: 議論スレッドの作成 (`created`)、返信 (`replied`)、スタンプ/いいね (`voted-up`)。
+
+**本プロジェクトの成果**
+
+- 本プロファイルでは、グループ学習支援ツール内における他者への反応（いいね、コメント等）を記録するStatementTemplateを定義した。これにより、グループ学習における個人の貢献度や相互作用の状況を追跡し、協働学習の支援や評価に活用できる。なお、本版では他者への反応に関する操作ログの記録を主な対象とし、自分や自分たちの考えをテキストやオブジェクト等で表現する活動の記録は、今後の拡張対象とする。
 
 
 ## 6. 今後の課題
@@ -291,6 +177,8 @@ Japan xAPI Group Learning Support Tool Profile は、協働学習（グループ
 
 今後は、事業者実装への影響を評価しながら継続的に議論し、メタデータの記載方法を日本の標準規格としての位置づけを踏まえて、Coreプロファイルで整理する。
 
+また、`question-order`（問題の出題順序）、`content-order`、`content-index`（コンテンツ順序）については、現時点ではプロファイル規定外とし、実装依存として扱う。
+
 ### 6.2 verb共通化の進め方
 
 起動・終了等のverb共通化については、各タスクフォースで検討を行った。  
@@ -308,7 +196,33 @@ actorは、原則としてADL仕様に則り、各コンテンツ事業者が保
 
 ## 7. メンバー
 
-（記載予定）
+| 所属 | 氏名 |
+| :-- | :-- |
+| 上智大学 | 田村恭久（座長） |
+| BPS株式会社 | 原山唱一 |
+| BPS株式会社 | 榊原寛 |
+| NTTドコモビジネス株式会社 | 河内卓哉 |
+| ラインズ株式会社 | 谷酒雄一郎 |
+| 株式会社ACCESS | 仮屋園都萌 |
+| 株式会社ACCESS | 生路茂太 |
+| 株式会社Libry | 後藤匠 |
+| 株式会社エーティーエルシステムズ | 深澤裕史 |
+| 株式会社エーティーエルシステムズ | 内海崇史 |
+| 株式会社コードタクト | 江添光城 |
+| 株式会社ジンジャーアップ | 前田宏 |
+| 株式会社ジンジャーアップ | 植田篤司 |
+| 株式会社すららネット | 倉本寛之 |
+| 株式会社すららネット | 豊島健太郎 |
+| 株式会社ソフトウエア・サイエンス | 酒井昭成 |
+| 株式会社タオ | 北野修司 |
+| 株式会社内田洋行 | 芳野寛史 |
+| 株式会社内田洋行 | 堀越泉 |
+| 京都大学 | 緒方広明 |
+| 京都大学 | Chia-Yu HSU |
+| 京都大学 | Chen, Yu-Tung |
+| 熊本大学 | 山下徹 |
+| 高知工科大学 | 妻鳥貴彦 |
+| 明星大学 | 河原弘幸 |
 
 ## 8. 付録
 
@@ -321,6 +235,7 @@ actorは、原則としてADL仕様に則り、各コンテンツ事業者が保
 #### URLリダイレクション (w3id.org) の設定
 
 プロファイルのIRIは、特定のサーバーや組織に依存しない永続的なID（PURL）として設計されている。`w3id.org` によって定義されたIRIが常に最新の（あるいは指定バージョンの）仕様書の実体にリダイレクトされるよう設定を行う。
+本報告書のプロファイル群では、`https://w3id.org/xapi-japan-profiles/{domain}/v1.0.0/...` を基本パターンとして運用する。
 
 ### 付.2 既存verbのIRIと定義
 
@@ -342,10 +257,7 @@ actorは、原則としてADL仕様に則り、各コンテンツ事業者が保
 | http://adlnet.gov/expapi/verbs/answered | Indicates the actor replied to a question, where the object is generally an activity representing the question. The text of the answer will often be included in the response inside result. | アクターが質問に回答したことを示す。オブジェクトは通常その質問を表すアクティビティである。回答テキストは多くの場合、result内のresponseに含まれる。 |
 | http://adlnet.gov/expapi/verbs/attempted | Indicates the actor made an effort to access the object. An attempt statement without additional activities could be considered incomplete in some cases. | アクターがオブジェクトへのアクセスを試みたことを示す。追加のアクティビティを伴わないattemptedステートメントは場合によっては不完全と見なされることがある。 |
 | http://adlnet.gov/expapi/verbs/completed | Indicates the actor finished or concluded the activity normally. | アクターが活動を正常に完了した、または完了に至ったことを示す。 |
-| http://adlnet.gov/expapi/verbs/initialized | Indicates the activity provider has determined that the actor successfully started an activity. | アクティビティ提供者がアクターが活動を正常に開始したと判断したことを示す。 |
-| http://adlnet.gov/expapi/verbs/interacted | Indicates the actor engaged with a physical or virtual object. | アクターが物理的または仮想のオブジェクトとやり取りしたことを示す。 |
 | http://adlnet.gov/expapi/verbs/launched | Indicates the actor attempted to start an activity. | アクターが活動の開始を試みたことを示す。 |
-| http://adlnet.gov/expapi/verbs/progressed | Indicates a value of how much of an actor has advanced or moved through an activity. | アクターが活動内でどの程度進んだかの値を示す。 |
 | http://adlnet.gov/expapi/verbs/responded | Used to indicate a user responding to a help or chat request | ヘルプまたはチャットの要求に対してユーザーが応答したことを示すために使用される。 |
 | http://adlnet.gov/expapi/verbs/shared | Indicates the actor's intent to openly provide access to an object of common interest to other actors or groups. | アクターが他のアクターまたはグループに共通の関心対象へのアクセスを公開する意図を示す。 |
 | http://adlnet.gov/expapi/verbs/terminated | Indicates that the actor successfully ended an activity. | アクターが活動を正常に終了したことを示す。 |
@@ -362,9 +274,8 @@ actorは、原則としてADL仕様に則り、各コンテンツ事業者が保
 
 | IRI | Definition (EN) | 日本語訳 |
 | :-- | :-- | :-- |
+| https://w3id.org/xapi/adb/verbs/annotated | Indicates that the actor has annotated the object. | アクターがオブジェクトに注釈を付与したことを示す。 |
 | https://w3id.org/xapi/adb/verbs/bookmarked | Persisting the current location (page) where the reader stopped the eBook activity. | 読者が電子書籍アクティビティを中断した現在位置（ページ）を保持する。 |
-| https://w3id.org/xapi/adb/verbs/noted | Add annotation or notes to selected text within an eBook or highlight. | 電子書籍内の選択テキストに注釈やメモを追加する、またはハイライトする。 |
-| https://w3id.org/xapi/adb/verbs/read | Indicates that the actor has read the object. | アクターがオブジェクトを読んだことを示す。 |
 | https://w3id.org/xapi/adl/verbs/abandoned | Indicates the activity provider has determined that the session was abnormally terminated either by an actor or due to a system failure. | アクティビティ提供者が、アクターまたはシステム障害によりセッションが異常終了したと判断したことを示す。 |
 | https://w3id.org/xapi/adl/verbs/created | Indicates the actor has created an object. | アクターがオブジェクトを作成したことを示す。 |
 | https://w3id.org/xapi/adl/verbs/waived | Indicates that the learning activity requirements were met by means other than completing the activity. A waived statement is used to indicate that the activity may be skipped by the actor. | 学習アクティビティ要件が完了以外の手段で満たされたことを示す。waivedステートメントは、アクターがアクティビティをスキップできることを示すために使用される。 |

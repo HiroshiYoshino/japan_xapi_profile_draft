@@ -1,4 +1,4 @@
-# Japan xAPI Domain Profile テンプレート
+# xAPI Japan Profiles Domain Profile テンプレート
 
 > **注意**: このテンプレートは、新しいDomain Profileを作成する際の雛形です。  
 > `[ドメイン名]`、`[domain]`、`[Domain]` 等のプレースホルダーを実際の値に置き換えて使用してください。
@@ -9,8 +9,17 @@
 
 ## 1.1　位置づけ
 
-　本ドキュメントは、日本の教育DX事業者が共有して利用するスタディ・ログ（xAPI形式）の仕様策定に向け、ICT CONNECT 21ワーキンググループの配下に設置されたxAPIサブワーキンググループの1つである[ドメイン名]TFにおける学習ログを対象として取りまとめた **Japan xAPI [Domain] Profile** 標準仕様である。  
+　本ドキュメントは、日本の教育DX事業者が共有して利用するスタディ・ログ（xAPI形式）の仕様策定に向け、ICT CONNECT 21ワーキンググループの配下に設置されたxAPIサブワーキンググループの1つである[ドメイン名]TFにおける学習ログを対象として取りまとめた **xAPI Japan Profiles [Domain] Profile** 標準仕様である。  
 　本仕様は、[ドメイン名]分野に記載されている特性を踏まえ、[対象システム・環境]上で発生する[主な活動内容]に関する学習ログを体系的に記録するための仕様である。
+
+### 1.1.1　共通方針
+
+　本プロファイルは、各コンテンツ事業者に対して本規定どおりの出力を強制するものではない。  
+　xAPIプロファイルの思想自体が、そのような強制力を持たせるものではなく、表現の共通化を支えるための枠組みである。  
+　本プロファイルは、出力方法の方向性を示す「表現のための資産」として位置づけ、「推奨」として扱う。  
+　したがって、本プロファイルに記載された全項目への一律の準拠を求めるものではない。コンテンツの特性に応じて、記載したログを出力しない場合や一部項目を満たさない場合も許容される。  
+　なお、本プロファイルは xAPI 1.0.3 をベースとする。  
+　学習eポータルと連携する場合は、システム間の相互運用性を確保する観点から、「初等中等教育におけるシステム間連携のための相互運用標準モデル Version 5.00」も参照する。
 
 ## 1.2　目的
 
@@ -19,24 +28,19 @@
 ## 1.3　前提条件
 
 　本ドキュメントにおける各ユースケースは、xAPIプロファイル仕様で定義されているStatementTemplateおよびStatementTemplateRulesの構造および考え方に準拠して記載する。  
-　本ドキュメントに記載されるStatementTemplateで使用される語彙（Verb、ActivityType、Extension等）は以下のいずれかに整理される。(1) SWG独自に定義した語彙を使用する場合、Core Profile内のConceptsに定義されている。(2) ADLや他の標準で定義済みの語彙を使用する場合、それらを直接参照し、Domain Profileで再定義しない。Domain Profile（本プロファイルはDomain Profileの1つ）として[Domain] Profileは Statement Templateおよび Rules の定義に集中し、語彙定義はCore Profileに委譲する。  
+　本仕様書の記述は、特定製品を前提とせず、現実的な範囲の「架空ツール」を想定して行う。この前提により、既存システムとの部分的不一致や未確定要素に起因する議論停滞を回避する。  
+　本ドキュメントに記載される語彙（Verb、ActivityType、Extension等）は以下のいずれかに整理される。(1) 本プロファイル内のConceptsに定義した語彙を使用する。(2) ADLや他の標準で定義済みの語彙を直接参照する。Domain Profile（本プロファイルはDomain Profileの1つ）として[Domain] Profileは Statement Templateおよび Rules の定義を中心に記述し、Conceptsは必要に応じて記載する。  
 　各ユースケースに付随するStatementTemplate要素表には、StatementTemplateを構成する要素を示している。ただし、actorについては全ユースケース共通でAgentとするため、各ユースケースの規範表への個別の記載は行わないものとする。  
-　本ドキュメントは、[ドメイン名]における学習ログの標準的な解釈および実装方針を読み手が理解しやすい形で示すことを主目的とした仕様書である。このため、xAPIプロファイル仕様上は必須である項目のうち、機械処理やプロファイル登録といった運用段階において主に必要となる項目については、本書の目的に照らし記載を省略する。各項目の省略理由は下記に示すとおりである。
+　本ドキュメントは、[ドメイン名]における学習ログの標準的な解釈および実装方針を読み手が理解しやすい形で示すことを主目的とした仕様書である。このため、xAPIプロファイル仕様上は必須である項目のうち、機械処理やプロファイル登録といった運用段階において主に必要となる項目については、本書の目的に照らし記載を省略する。省略理由は下記に示すとおりである。
 
-- idに期待されるURI
-  - 省略理由：idはStatementTemplateをグローバルに一意に識別するためのURI を指定する項目であり、プロファイルの公開形態、管理主体、バージョニング方針が確定した段階で設計されるべきものである。本ドキュメントは標準仕様（案）としての整理および合意形成を目的としているため、現時点では具体的なURIの定義は行わない。
 - typeに期待される固定値StatementTemplate
   - 省略理由：typeに指定される固定値StatementTemplateは、JSON-LD形式における機械可読性を担保するための項目である。本ドキュメントでは、読み手による理解を前提とした仕様書として、StatementTemplateの構造および位置づけを章構成および見出しによって明示しているため、当該項目は省略する。
-- inSchemaに期待されるURI
-  - 省略理由：inSchemaは、当該StatementTemplateが属するプロファイルおよびバージョンをURIにより示すための項目である。本ドキュメントでは、プロファイルの名称およびバージョン管理を文書構成および章立てにより管理していることから、inSchemaによる明示的な指定は行わない
-- prefLabel
-  - 省略理由：prefLabelはStatementTemplateに対する人可読な名称を付与するための項目である。本ドキュメントでは、各ユースケースを章・節の見出し（項目名）として明示しており、これをもって当該StatementTemplateを識別可能とするため、prefLabel の記載は省略する。
 
-　なお、これらの項目については、将来的にプロファイルの登録や機械可読な形式での提供が必要となる場合に、改めて検討することとする。
+　なお、この項目については、将来的にプロファイルの登録や機械可読な形式での提供が必要となる場合に、改めて検討することとする。
 
 ## 1.4　定義範囲
 
-　本ドキュメントは、Japan xAPI [Domain] Profileを構成する要素のうち、メタ情報、各操作行動に対応するStatementTemplateおよびStatementのRulesを定義することを目的とする。ただし、[ドメイン名]における学習行動が非線形である特性を踏まえ、xAPIプロファイルにおける patternsは定義の対象外とする。  
+　本ドキュメントは、xAPI Japan Profiles [Domain] Profileを構成する要素のうち、メタ情報、（必要に応じた）Concepts、各操作行動に対応するStatementTemplateおよびStatementのRulesを定義することを目的とする。ただし、[ドメイン名]における学習行動が非線形である特性を踏まえ、xAPIプロファイルにおける patternsは定義の対象外とする。  
 　本ドキュメントは、実装者がJSON形式のプロファイル（StatementTemplateを含む）を理解し、xAPI Statementを正しく生成するための実装補助資料である。定義された各ユースケースの構造やサンプルは、プロファイルビューアーにJSONファイルを読み込ませることで直接確認することができる。
 
 ## 1.5　本ドキュメントの構成について
@@ -44,6 +48,7 @@
 　本紙は、xAPIプロファイル仕様に基づき、[ドメイン名]学習ログに関する標準的な解釈および実装方針を示すことを目的とする。本紙は、以下の要素を含む。
 
 - メタ情報：プロファイル全体のメタ情報およびバージョン管理
+- Concepts：必要に応じたVerb、ActivityType、Extensionsの定義
 - StatementTemplate：各ユースケースに対応するStatementTemplateの構造および必須要素
 - Rules：StatementTemplateの検証規則
 
@@ -60,10 +65,10 @@
 
 | 項目                     | 説明                                   | 値                                                           |
 | :----------------------- | :------------------------------------- | :----------------------------------------------------------- |
-| **id**                   | プロファイルIRI                        | `https://w3id.org/japan-xapi/profiles/[domain]`              |
+| **id**                   | プロファイルIRI                        | `https://w3id.org/xapi-japan-profiles/[domain]/v1.0.0`       |
 | **type**                 | オブジェクトタイプ                     | `Profile`                                                    |
 | **conformsTo**           | 準拠するxAPI Profile仕様               | `https://w3id.org/xapi/profiles#1.0`                         |
-| プロファイル名 prefLabel | プロファイルを識別する名称             | Japan xAPI [Domain] Profile                                  |
+| プロファイル名 prefLabel | プロファイルを識別する名称             | xAPI Japan Profiles [Domain] Profile                         |
 | バージョン version       | プロファイルの改訂番号やリリース状態   | v1.0.0                                                       |
 | 作成者/管理者 author     | プロファイルの作成者や責任者           | ICT CONNECT 21 xAPI SWG                                      |
 | 作成日/更新日 versions   | 文書化日または改訂日                   | 2026-04-01                                                   |
@@ -164,8 +169,8 @@
 
 | 項目     | 値                                                             |
 | :------- | :--------------------------------------------------------------- |
-| id       | https://w3id.org/japan-xapi/templates/[domain]/[template-id]   |
-| inScheme | https://w3id.org/japan-xapi/profiles/[domain]/v1.0.0            |
+| id       | https://w3id.org/xapi-japan-profiles/[domain]/templates/v1.0.0/[template-id] |
+| inScheme | https://w3id.org/xapi-japan-profiles/[domain]/v1.0.0            |
 | prefLabel | [操作名]                                                      |
 
 - 判定条件
@@ -185,6 +190,7 @@
 > - 各Ruleは番号付きリストで記述する
 > - JSONPathは `$.` で始まり、Extensions は IRI をクォーテーションで囲む
 > - Presenceは included / recommended / optional のいずれか
+> - 共通記述規則（2.3）に記載済みの項目は、個別TemplateのRulesに重複記載しない
 > - Core Profile参照の場合は「(Core Profile参照)」と明記
 > - Domain固有の場合は「([Domain名] Domain固有)」と明記
 > - 補足がある場合は [!NOTE] ブロックで記述する
@@ -227,8 +233,8 @@
 
 | 項目     | 値                                                              |
 | :------- | :--------------------------------------------------------------- |
-| id       | https://w3id.org/japan-xapi/templates/[domain]/[template-id-2] |
-| inScheme | https://w3id.org/japan-xapi/profiles/[domain]/v1.0.0            |
+| id       | https://w3id.org/xapi-japan-profiles/[domain]/templates/v1.0.0/[template-id-2] |
+| inScheme | https://w3id.org/xapi-japan-profiles/[domain]/v1.0.0            |
 | prefLabel | [操作名2]                                                     |
 
 - 判定条件

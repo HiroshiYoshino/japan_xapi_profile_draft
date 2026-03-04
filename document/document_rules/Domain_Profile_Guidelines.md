@@ -2,9 +2,16 @@
 
 ## 1. 概要
 
-本ドキュメントは、Japan xAPI Profile における Domain Profile（CBT, LMS, eBook, Group Learning Support Tool等）の記述方式を統一するためのガイドラインである。
+本ドキュメントは、xAPI Japan Profiles における Domain Profile（Assessment, LMS, ebook, Group Learning Support Tool等）の記述方式を統一するためのガイドラインである。
 
 各 Domain Profile が Statement Template および Rules を定義する際に、本ガイドラインに従うことで、プロファイル間での解釈の一貫性を確保し、実装者による混乱を低減する。
+
+### 1.1 Profileの名称
+
+- xAPI Japan Profiles LMS Profile
+- xAPI Japan Profiles ebook Profile
+- xAPI Japan Profiles Assessment Profile
+- xAPI Japan Profiles Group Learning Support Tool Profile
 
 ---
 
@@ -12,7 +19,7 @@
 
 ### 2.1 全体アーキテクチャにおける役割
 
-Japan xAPI Profileは以下の階層構造を持つ：
+xAPI Japan Profilesは以下の階層構造を持つ：
 
 - **Core Concept Profile（語彙の核）**
   - 日本独自 Concept（verbs / activityTypes / extensions 等）を定義
@@ -20,14 +27,14 @@ Japan xAPI Profileは以下の階層構造を持つ：
   - Pattern / Template は Core には原則置かない
   - ルールは Domain 側へ
 
-- **Domain Template Profile（ebook / cbt / lms / group-lst …）**
+- **Domain Template Profile（ebook / assessment / lms / group-lst …）**
   - 各TFのプロファイルを、「Domain Template Profile」と呼ぶ
   - Statement Templates / Patterns を中心に定義
   - verb/activityType は Core または既存（ADL 等）を参照（再定義しない）
   - 参考：[xAPI Profiles Structure](https://adlnet.github.io/xapi-profiles/xapi-profiles-structure.html)
 
 - **Catalog / Registry（運用補助）**
-  - Profile 間の依存・互換（例：ebook 1.0.0 は core 1.x を前提）
+   - Profile 間の依存・互換（例：assessment 1.0.0 は core 1.x を前提）
   - IRI 一覧、命名規則、廃止（deprecate）情報
   - ※仕様上必須ではないが、複数Profile運用で極めて有効
 
@@ -35,9 +42,10 @@ Japan xAPI Profileは以下の階層構造を持つ：
 
 - **役割**: どのVerbを、どんな条件で使うかを「規定」する場所
 - **特徴**:
-  - templates がメイン（concepts は空）
+   - templates がメイン（必要に応じて concepts を記載）
   - ADLやCoreのVerbを参照する
   - 各Domainプロファイルで共通のlaunchedなども各Domainプロファイルに記述する
+   - DomainごとにConcepts有無の差分は許容する（例：LMS/ebookは記載、Assessment/Group-LSTは未記載）
 
 ---
 
@@ -55,7 +63,7 @@ Japan xAPI Profileは以下の階層構造を持つ：
 
 **記述例：**
 ```markdown
-本ドキュメントは、日本の教育DX事業者が共有して利用するスタディ・ログ（xAPI形式）の仕様策定に向け、ICT CONNECT 21ワーキンググループの配下に設置されたxAPIサブワーキンググループの1つである[ドメイン名]TFにおける学習ログを対象として取りまとめた **Japan xAPI [Domain] Profile** 標準仕様である。
+本ドキュメントは、日本の教育DX事業者が共有して利用するスタディ・ログ（xAPI形式）の仕様策定に向け、ICT CONNECT 21ワーキンググループの配下に設置されたxAPIサブワーキンググループの1つである[ドメイン名]TFにおける学習ログを対象として取りまとめた **xAPI Japan Profiles [Domain] Profile** 標準仕様である。
 ```
 
 ##### 1.2 目的
@@ -64,7 +72,7 @@ Japan xAPI Profileは以下の階層構造を持つ：
 ##### 1.3 前提条件
 - xAPIプロファイル仕様への準拠を明記
 - Core Profileへの語彙定義委譲を説明
-- 省略する項目（id, type, inSchema, prefLabel）とその理由を記載
+- 省略する項目（type）とその理由を記載
 
 **統一記述（必須）：**
 ```markdown
@@ -73,11 +81,8 @@ Japan xAPI Profileは以下の階層構造を持つ：
 各ユースケースに付随するStatementTemplate要素表には、StatementTemplateを構成する要素を示している。ただし、actorについては全ユースケース共通でAgentとするため、各ユースケースの規範表への個別の記載は行わないものとする。
 ```
 
-省略項目の理由（4項目すべて記載）：
-- **idに期待されるURI**: プロファイル公開形態確定後に設計されるべき
+省略項目の理由（typeのみ記載）：
 - **typeに期待される固定値StatementTemplate**: 章構成で明示済み
-- **inSchemaに期待されるURI**: 文書構成で管理済み
-- **prefLabel**: 見出しで識別可能
 
 ##### 1.4 定義範囲
 - メタ情報、StatementTemplate、Rulesを定義対象とすることを明記
@@ -98,10 +103,10 @@ Japan xAPI Profileは以下の階層構造を持つ：
 
 | 項目                     | 説明                                   | 値の例                                                       |
 | :----------------------- | :------------------------------------- | :----------------------------------------------------------- |
-| **id**                   | プロファイルIRI                        | `https://w3id.org/japan-xapi/profiles/[domain]`              |
+| **id**                   | プロファイルIRI                        | `https://w3id.org/xapi-japan-profiles/[domain]/v1.0.0`       |
 | **type**                 | オブジェクトタイプ                     | `Profile`                                                    |
 | **conformsTo**           | 準拠するxAPI Profile仕様               | `https://w3id.org/xapi/profiles#1.0`                         |
-| プロファイル名 prefLabel | プロファイルを識別する名称             | Japan xAPI [Domain] Profile                                  |
+| プロファイル名 prefLabel | プロファイルを識別する名称             | xAPI Japan Profiles [Domain] Profile                         |
 | バージョン version       | プロファイルの改訂番号やリリース状態   | v1.0.0                                                       |
 | 作成者/管理者 author     | プロファイルの作成者や責任者           | ICT CONNECT 21 xAPI SWG                                      |
 | 作成日/更新日 versions   | 文書化日または改訂日                   | 2026-04-01                                                   |
@@ -134,7 +139,12 @@ Japan xAPI Profileは以下の階層構造を持つ：
 | **コンテキストのプラットフォーム** | `$.context.platform`                       | included    |
 | **プロファイルバージョン**         | `$.version`                                | included    |
 
-#### 3. ユースケース（ドメイン固有）
+#### 3. Concepts（任意）
+
+- Core以外のDomain Profileでは、必要に応じてConcepts（Verb / ActivityType / Extensions）を記載する
+- 当該ドメインでConcept定義が不要な場合は、Concepts章を省略してよい
+
+#### 4. ユースケース（ドメイン固有）
 
 Domain Profile は以下の3.1～3.3の構成で記述する。
 
@@ -158,7 +168,7 @@ Domain Profile は以下の3.1～3.3の構成で記述する。
 - 複数項目記載を推奨（3～4項目程度）
 - 各項目は簡潔に1行で説明した後、詳細があれば続ける
 
-#### 4. StatementTemplate
+#### 5. StatementTemplate
 
 ##### 4.1 本章の位置づけ
 - StatementTemplateの役割を説明
@@ -172,6 +182,13 @@ Domain Profile は以下の3.1～3.3の構成で記述する。
 ---
 
 ## 4. StatementTemplate の記述方式
+
+### 4.0 IRI パターン（v1.0.0）
+
+- `https://w3id.org/xapi-japan-profiles/[domain]/v1.0.0`
+- `https://w3id.org/xapi-japan-profiles/[domain]/templates/v1.0.0/[template-id]`
+- `https://w3id.org/xapi-japan-profiles/[domain]/verbs/[verb-id]`
+- `https://w3id.org/xapi-japan-profiles/[domain]/activitytypes/[activity-id]`
 
 ### 4.1 基本構成
 
@@ -191,8 +208,8 @@ Domain Profile は以下の3.1～3.3の構成で記述する。
 
 | 項目     | 値                                                             |
 | :------- | :--------------------------------------------------------------- |
-| id       | https://w3id.org/japan-xapi/templates/[domain]/[template-name] |
-| inScheme | https://w3id.org/japan-xapi/profiles/[domain]/v1.0.0            |
+| id       | https://w3id.org/xapi-japan-profiles/[domain]/templates/v1.0.0/[template-name] |
+| inScheme | https://w3id.org/xapi-japan-profiles/[domain]/v1.0.0            |
 | prefLabel | [テンプレート名]                                              |
 
 - 判定条件
@@ -205,6 +222,7 @@ Domain Profile は以下の3.1～3.3の構成で記述する。
 
 #### X.X.X.2　記述規則（Rules）
 - Statement内の各プロパティに対する制約を番号付きリストで記述
+- 共通記述規則（2.3）に記載済みの項目は、個別TemplateのRulesに重複記載しない
 
 **記述形式：**
 ```markdown
@@ -230,9 +248,9 @@ Domain Profile は以下の3.1～3.3の構成で記述する。
 
 | Domain | 粒度 | 理由 |
 |---|---|---|
-| **CBT** | 細粒度（9-16項目/テンプレート） | 得点・正誤情報が重要 |
+| **Assessment** | 細粒度（9-16項目/テンプレート） | 得点・正誤情報が重要 |
 | **LMS** | 中程度（4-8項目/テンプレート） | 課題配布・評価プロセスが重要 |
-| **eBook** | 簡潔（1-4項目/テンプレート） | ページ閲覧・操作ログが重要 |
+| **ebook** | 簡潔（1-4項目/テンプレート） | ページ閲覧・操作ログが重要 |
 | **Group-LST** | 簡潔～中程度（0-5項目/テンプレート） | 協働操作ログが重要 |
 
 **粒度の統一は必須ではない**。各ドメインの特性に合わせて調整可能。
@@ -313,7 +331,7 @@ Domain Profile は以下の3.1～3.3の構成で記述する。
 
 3. $.context.extensions['https://w3id.org/japan-xapi/extensions/ebook/launch-reason']
    1. recommended
-   2. ビューア起動の理由 (Context拡張, eBook Domain固有)
+   2. ビューア起動の理由 (Context拡張, ebook Domain固有)
 ```
 
 ---
@@ -395,7 +413,7 @@ Domain Profile で使用する語彙は以下の3つに分類される：
 - Domain Profile では条件付きで「既存標準参照」と表記
 
 **（3） Domain 固有語彙** → Domain Profile のみで定義
-- 特定 Domain でのみ必要な Extension（例：eBook の launch-reason）
+- 特定 Domain でのみ必要な Extension（例：ebook の launch-reason）
 - Domain Profile では「Domain固有」と表記
 
 ### 7.2 記述パターン
@@ -447,7 +465,7 @@ Domain Profile で使用する語彙は以下の3つに分類される：
 ```
 1. $.context.extensions['https://w3id.org/japan-xapi/extensions/ebook/launch-reason']
    1. recommended
-   2. ビューア起動の理由 (eBook Domain固有)
+   2. ビューア起動の理由 (ebook Domain固有)
 ```
 
 ### 7.3 新規語彙の検討フロー
@@ -612,12 +630,12 @@ Rules で「([Domain名] Domain固有)」と記載
 ```json
 {
   "@context": "https://w3id.org/xapi/profiles/context",
-  "id": "https://w3id.org/japan-xapi/profiles/[domain]",
+   "id": "https://w3id.org/xapi-japan-profiles/[domain]/v1.0.0",
   "type": "Profile",
-  "prefLabel": { "ja": "Japan xAPI [Domain] Profile" },
+   "prefLabel": { "ja": "xAPI Japan Profiles [Domain] Profile" },
   "versions": [
     {
-      "id": "https://w3id.org/japan-xapi/profiles/[domain]/v1.0.0",
+         "id": "https://w3id.org/xapi-japan-profiles/[domain]/v1.0.0",
       "generatedAtTime": "2026-04-01"
     }
   ],
@@ -631,8 +649,8 @@ Rules で「([Domain名] Domain固有)」と記載
   // ▼【重要】ここで「既存Verb」と「Core定義Verb」を組み合わせてルールを作る
   "templates": [
     {
-      "id": "https://w3id.org/japan-xapi/templates/[domain]/[template-name]",
-      "inScheme": "https://w3id.org/japan-xapi/profiles/[domain]/v1.0.0",
+         "id": "https://w3id.org/xapi-japan-profiles/[domain]/templates/v1.0.0/[template-name]",
+         "inScheme": "https://w3id.org/xapi-japan-profiles/[domain]/v1.0.0",
       "prefLabel": { "ja": "[テンプレート名]" },
       "definition": {
         "ja": "[テンプレートの説明]"
@@ -673,7 +691,7 @@ Rules で「([Domain名] Domain固有)」と記載
 
 - [xAPI Profile Specification](https://github.com/adlnet/xapi-profiles)
 - [xAPI Profiles Structure](https://adlnet.github.io/xapi-profiles/xapi-profiles-structure.html)
-- Japan xAPI Core Profile Guidelines
+- Core_Profile_Guidelines.md
 - 全体アーキテクチャ.md（統合済み）
 - Domain_Profile_Rules_Guidelines.md（統合済み）
 

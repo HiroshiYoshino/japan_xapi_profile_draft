@@ -1,8 +1,8 @@
-# Japan xAPI Profile プロジェクト管理ガイドライン
+# xAPI Japan Profiles プロジェクト管理ガイドライン
 
 ## 1. 概要
 
-本ドキュメントは、Japan xAPI Profile プロジェクト全体の運用・管理に関するガイドラインである。以下の3つの要素を統合的に定義する：
+本ドキュメントは、xAPI Japan Profiles プロジェクト全体の運用・管理に関するガイドラインである。以下の3つの要素を統合的に定義する：
 
 1. **IRI 設計規則**：語彙やプロファイルの識別子（IRI）の設計方針
 2. **バージョン管理規則**：セマンティックバージョニングに基づくバージョン管理方針
@@ -16,7 +16,7 @@
 
 ### 2.1 基本方針
 
-Japan xAPI Profile における IRI（Internationalized Resource Identifier）は、以下の基本方針に従って設計する：
+xAPI Japan Profiles における IRI（Internationalized Resource Identifier）は、以下の基本方針に従って設計する：
 
 - **永続性**：一度公開した IRI は変更しない
 - **一意性**：グローバルに一意な識別子を使用
@@ -99,8 +99,8 @@ IRI 形式は Extension のタイプによらず統一される：
 - 例（両方兼用）：`https://w3id.org/japan-xapi/extensions/subject`
 
 **Domain 固有 Extension:**
-- IRI 形式：`https://w3id.org/japan-xapi/extensions/[domain]/[extension-id]`
-- 例：`https://w3id.org/japan-xapi/extensions/ebook/launch-reason`
+- IRI 形式：`https://w3id.org/japan-xapi/[domain]/extensions/[extension-id]`
+- 例：`https://w3id.org/japan-xapi/ebook/extensions/launch-reason`
 
 #### 2.4.2 Extension のタイプ
 
@@ -157,10 +157,10 @@ Profile の JSON-LD ファイルは、**バージョンを含む IRI**（version
 
 ```
 https://w3id.org/japan-xapi/profiles/core/v1.0.0/core_profile.jsonld
-https://w3id.org/japan-xapi/profiles/ebook/v1.0.0/ebook_profile.jsonld
-https://w3id.org/japan-xapi/profiles/lms/v1.0.0/lms_profile.jsonld
-https://w3id.org/japan-xapi/profiles/cbt/v1.0.0/cbt_profile.jsonld
-https://w3id.org/japan-xapi/profiles/group-lst/v1.0.0/group-lst_profile.jsonld
+https://w3id.org/xapi-japan-profiles/ebook/v1.0.0/ebook_profile.jsonld
+https://w3id.org/xapi-japan-profiles/lms/v1.0.0/lms_profile.jsonld
+https://w3id.org/xapi-japan-profiles/assessment/v1.0.0/assessment_profile.jsonld
+https://w3id.org/xapi-japan-profiles/group-lst/v1.0.0/group-lst_profile.jsonld
 ```
 
 **理由**：
@@ -189,7 +189,7 @@ https://w3id.org/japan-xapi/profiles/group-lst/v1.0.0/group-lst_profile.jsonld
 
 ### 3.1 基本方針
 
-Japan xAPI Profile は、**セマンティックバージョニング**（Semantic Versioning）の考え方に準拠する。
+xAPI Japan Profiles は、**セマンティックバージョニング**（Semantic Versioning）の考え方に準拠する。
 
 **バージョン形式**：`MAJOR.MINOR.PATCH`（例：`v1.0.0`）
 
@@ -332,12 +332,12 @@ Japan xAPI Profile は、**セマンティックバージョニング**（Semant
 ```json
 "versions": [
   {
-    "id": "https://w3id.org/japan-xapi/profiles/[domain]/v1.1.0",
+   "id": "https://w3id.org/xapi-japan-profiles/[domain]/v1.1.0",
     "generatedAtTime": "2026-06-01",
-    "wasRevisionOf": "https://w3id.org/japan-xapi/profiles/[domain]/v1.0.0"
+   "wasRevisionOf": "https://w3id.org/xapi-japan-profiles/[domain]/v1.0.0"
   },
   {
-    "id": "https://w3id.org/japan-xapi/profiles/[domain]/v1.0.0",
+   "id": "https://w3id.org/xapi-japan-profiles/[domain]/v1.0.0",
     "generatedAtTime": "2026-04-01"
   }
 ]
@@ -383,7 +383,7 @@ Japan xAPI Profile は、**セマンティックバージョニング**（Semant
 
 ### 4.1 基本構造
 
-Japan xAPI Profile のリポジトリは、以下の構造に従う：
+xAPI Japan Profiles のリポジトリは、以下の構造に従う：
 
 ```
 japan-xapi-profiles/ (ルート)
@@ -397,7 +397,7 @@ japan-xapi-profiles/ (ルート)
 │   ├── CHANGELOG.md                    # バージョン履歴
 │   └── README.md                       # プロファイル概要
 │
-├── ebook/                              # eBook プロファイル（電子書籍）
+├── ebook/                              # ebook プロファイル（電子書籍型デジタル教材）
 │   ├── v1.0.0/
 │   │   ├── ebook_profile.md            # Markdown ドキュメント
 │   │   └── ebook_profile.jsonld        # JSON-LD プロファイル定義
@@ -414,10 +414,10 @@ japan-xapi-profiles/ (ルート)
 │   ├── CHANGELOG.md
 │   └── README.md
 │
-├── cbt/                                # CBT プロファイル（デジタルドリル）
+├── assessment/                         # Assessment プロファイル（デジタルドリル/CBT）
 │   ├── v1.0.0/
-│   │   ├── cbt_profile.md
-│   │   └── cbt_profile.jsonld
+│   │   ├── assessment_profile.md
+│   │   └── assessment_profile.jsonld
 │   ├── CHANGELOG.md
 │   └── README.md
 │
@@ -459,7 +459,7 @@ japan-xapi-profiles/ (ルート)
 - `README.md`：プロファイル概要
 - `CHANGELOG.md`：変更履歴
 
-#### 4.2.2 Domain プロファイル（ebook/, lms/, cbt/, group-lst/）
+#### 4.2.2 Domain プロファイル（ebook/, lms/, assessment/, group-lst/）
 
 **役割**：Statement Template と Pattern を定義
 
@@ -568,11 +568,11 @@ Catalog は、複数のプロファイル間の関係を管理するためのメ
 ```json
 {
   "@context": "https://w3id.org/xapi/profiles/context",
-  "id": "https://w3id.org/japan-xapi/catalog/v1",
+   "id": "https://w3id.org/xapi-japan-profiles/catalog/v1",
   "type": "ConceptScheme",
   "title": {
-    "ja": "Japan xAPI Profile Catalog",
-    "en": "Japan xAPI Profile Catalog"
+   "ja": "xAPI Japan Profiles Catalog",
+   "en": "xAPI Japan Profiles Catalog"
   },
   "profiles": [
     {
@@ -581,7 +581,7 @@ Catalog は、複数のプロファイル間の関係を管理するためのメ
       "versions": ["v1.0.0", "v1.0.1"]
     },
     {
-      "id": "https://w3id.org/japan-xapi/profiles/ebook",
+      "id": "https://w3id.org/xapi-japan-profiles/ebook",
       "currentVersion": "v1.0.0",
       "versions": ["v1.0.0", "v1.1.0"],
       "dependencies": [
@@ -592,7 +592,7 @@ Catalog は、複数のプロファイル間の関係を管理するためのメ
       ]
     },
     {
-      "id": "https://w3id.org/japan-xapi/profiles/lms",
+      "id": "https://w3id.org/xapi-japan-profiles/lms",
       "currentVersion": "v1.0.0",
       "versions": ["v1.0.0"],
       "dependencies": [

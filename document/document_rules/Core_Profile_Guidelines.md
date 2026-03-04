@@ -4,7 +4,7 @@
 
 本ドキュメントは、Japan xAPI における **Core Concept Profile**（以下、Core Profile）の記述方式を定めるガイドラインである。
 
-Core Profile は、日本の初等中等教育分野において共通に使用される xAPI 語彙（Verb、ActivityType、Extension 等）を定義し、各 Domain Profile（CBT、LMS、eBook、Group Learning Support Tool 等）から参照される基盤となるプロファイルである。
+Core Profile は、日本の初等中等教育分野において共通に使用される xAPI 語彙（Verb、ActivityType、Extension 等）を定義し、各 Domain Profile（Assessment、LMS、ebook、Group Learning Support Tool 等）から参照される基盤となるプロファイルである。
 
 ---
 
@@ -20,7 +20,7 @@ Japan xAPI Profileは以下の階層構造を持つ：
   - Pattern / Template は Core には原則置かない
   - ルールは Domain 側へ
 
-- **Domain Template Profile（ebook / cbt / lms / group-lst …）**
+- **Domain Template Profile（ebook / assessment / lms / group-lst …）**
   - 各TFのプロファイルを、「Domain Template Profile」と呼ぶ
   - Statement Templates / Patterns を中心に定義
   - verb/activityType は Core または既存（ADL 等）を参照（再定義しない）
@@ -487,8 +487,8 @@ Core Profile では以下の 11 個の拡張フィールドを定義し、各 Do
     "en": "Japan xAPI Core Profile"
   },
   "definition": {
-    "ja": "日本の初等中等教育を主対象とする学習ログ（xAPI Statement）の共通語彙（Concept）を定義するコア・プロファイル。ebook/CBT/LMS等のドメイン別プロファイルは、本プロファイルのConceptおよび既存標準（例：ADL）を参照し、Statement Templateを定義する。",
-    "en": "A core profile that defines common vocabulary (Concepts) for learning logs (xAPI Statements) primarily targeting elementary and secondary education in Japan. Domain-specific profiles such as ebook/CBT/LMS reference the Concepts in this profile and existing standards (e.g., ADL) to define Statement Templates."
+    "ja": "日本の初等中等教育を主対象とする学習ログ（xAPI Statement）の共通語彙（Concept）を定義するコア・プロファイル。ebook/Assessment/LMS等のドメイン別プロファイルは、本プロファイルのConceptおよび既存標準（例：ADL）を参照し、Statement Templateを定義する。",
+    "en": "A core profile that defines common vocabulary (Concepts) for learning logs (xAPI Statements) primarily targeting elementary and secondary education in Japan. Domain-specific profiles such as ebook/Assessment/LMS reference the Concepts in this profile and existing standards (e.g., ADL) to define Statement Templates."
   },
   "versions": [
     {
