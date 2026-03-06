@@ -38,10 +38,10 @@
 
 ## 1.5　本ドキュメントの構成について
 
-本紙は、xAPIプロファイル仕様に基づき、電子書籍型デジタル教材（ebook）学習ログに関する標準的な解釈および実装方針を示すことを目的とする。本紙は、以下の要素を含む。
+　本紙は、xAPIプロファイル仕様に基づき、電子書籍型デジタル教材（ebook）学習ログに関する標準的な解釈および実装方針を示すことを目的とする。本紙は、以下の要素を含む。
 
 - メタ情報：プロファイル全体のメタ情報およびバージョン管理
-- Concepts：Verb、ActivityType、Extensionsの定義
+- Concepts：ActivityType、Extensionsの定義
 - 読書行動：電子書籍プラットフォームにおける学習行動の整理
 - StatementTemplate：各ユースケースに対応するStatementTemplateの構造および必須要素
 - Rules：StatementTemplateの検証規則
@@ -72,7 +72,7 @@
 
 ## 2.3　共通記述規則
 
-	本プロファイルで定義するすべてのStatementTemplateに対して、xAPI Profile Specification および xAPI-Spec に基づき、以下のRulesを適用する。
+　本プロファイルで定義するすべてのStatementTemplateに対して、xAPI Profile Specification および xAPI-Spec に基づき、以下のRulesを適用する。
 
 | 項目                               | Location (JSONPath)                        | Presence    |
 | :--------------------------------- | :----------------------------------------- | :---------- |
@@ -97,42 +97,19 @@
 ## 3.1　本章の位置づけ
 
 　本章では、電子書籍型デジタル教材（ebook）向けxAPIプロファイルにおいて使用されるConceptsを定義する。Conceptsは、StatementTemplateから参照される共通定義であり、単体でxAPI Statementを構成するものではない。
+　本プロファイルでは、ADLまたはxAPI Communityにより既に定義されている語彙については、意味的な齟齬がない限りそれらをそのまま利用する。電子書籍型デジタル教材（ebook）特有の対象種別や拡張情報についてのみ、本プロファイル独自の定義を記載する。
 
 ## 3.2　対象
 
-　Conceptsの対象は、Verb、ActivityType、Extensionsの3項目とする。
+　Conceptsの対象は、ActivityType、Extensionsの2項目とする。
 
-## 3.3　前提条件
+## 3.3　ActivityType
 
-　本章に示す各Conceptの定義（definition）は、当該Conceptの見出し直下に記載するものとする。  
-　本プロファイルでは、ADLまたはxAPI Communityにより既に定義されている語彙については、意味的な齟齬がない限りそれらをそのまま利用する。電子書籍型デジタル教材（ebook）特有の操作や表現形式に依存する行為についてのみ、本プロファイル独自語彙を定義する。
-
-## 3.4　Verb
-
-### 3.4.1　Verbの定義
-
-　Verbは、学習者または利用者が電子書籍型デジタル教材（ebook）上で行った操作行動の意味を定義する概念要素である。xAPI StatementにおいてVerbは「何をしたか」を表す中核要素であり、特定の画面構成や実装方式に依存しない行為語彙を提供する。
-
-### 3.4.2　電子書籍型デジタル教材（ebook）におけるVerb一覧
-
-| 名称 | id |
-| :--- | :--- |
-| launched | `http://adlnet.gov/expapi/verbs/launched` |
-| terminated | `http://adlnet.gov/expapi/verbs/terminated` |
-| opened | `http://activitystrea.ms/open` |
-| closed | `http://activitystrea.ms/close` |
-| viewed | `http://id.tincanapi.com/verb/viewed` |
-| annotated | `https://w3id.org/xapi/adb/verbs/annotated` |
-| bookmarked | `https://w3id.org/xapi/adb/verbs/bookmarked` |
-| deleted | `http://activitystrea.ms/delete` |
-
-## 3.5　ActivityType
-
-### 3.5.1　ActivityTypeの定義
+### 3.3.1　ActivityTypeの定義
 
 　ActivityTypeは、Statementにおいてobjectとして参照されるActivityが、どのような種類のリソースであるかを示す概念である。
 
-### 3.5.2　電子書籍型デジタル教材（ebook）におけるActivityType一覧
+### 3.3.2　電子書籍型デジタル教材（ebook）におけるActivityType一覧
 
 | 名称 | id | 補足 |
 | :--- | :--- | :--- |
@@ -140,29 +117,31 @@
 | content | `https://w3id.org/xapi-japan-profiles/ebook/activitytypes/content` | 書籍全体または章節 |
 | page | `https://w3id.org/xapi-japan-profiles/ebook/activitytypes/page` | 表示ページ単位 |
 
-## 3.6　Extensions
+## 3.4　Extensions
 
-### 3.6.1　Extensionsの定義
+### 3.4.1　Extensionsの定義
 
 　Extensions（拡張）は、xAPI標準データモデルだけでは表現しきれない学習行動の文脈や詳細メタデータを付与するために利用される。
 
-### 3.6.2　電子書籍型デジタル教材（ebook）におけるExtensions一覧
+### 3.4.2　電子書籍型デジタル教材（ebook）におけるExtensions一覧
 
-| 名称 | id | type | inlineSchema |
-| :--- | :--- | :--- | :--- |
-| startPosition | `https://w3id.org/xapi-japan-profiles/ebook/extensions/startPosition` | ContextExtension | string |
-| endPosition | `https://w3id.org/xapi-japan-profiles/ebook/extensions/endPosition` | ResultExtension | string |
-| navigationMethod | `https://w3id.org/xapi-japan-profiles/ebook/extensions/navigationMethod` | ResultExtension | enum [`paging`, `index`] |
-| contentPosition | `https://w3id.org/xapi-japan-profiles/ebook/extensions/contentPosition` | ResultExtension | string |
-| bookmarkId | `https://w3id.org/xapi-japan-profiles/ebook/extensions/bookmarkId` | ContextExtension | string |
-| annotationTool | `https://w3id.org/xapi-japan-profiles/ebook/extensions/annotationTool` | ContextExtension | enum [`freehand`, `straightline`, `textinput`] |
-| targetLocation | `https://w3id.org/xapi-japan-profiles/ebook/extensions/targetLocation` | ResultExtension | string |
+| 名称 | id | type | inlineSchema | 補足 |
+| :--- | :--- | :--- | :--- | :--- |
+| startPosition | `https://w3id.org/xapi-japan-profiles/ebook/extensions/startPosition` | ContextExtension | `type: string` | ページ移動前の開始位置を表す。 |
+| endPosition | `https://w3id.org/xapi-japan-profiles/ebook/extensions/endPosition` | ResultExtension | `type: string` | 操作後の終了位置や読了位置を表す。 |
+| navigationMethod | `https://w3id.org/xapi-japan-profiles/ebook/extensions/navigationMethod` | ResultExtension | `type: string, enum: ["paging", "index"]` | ページ移動の操作方法を表す。 |
+| contentPosition | `https://w3id.org/xapi-japan-profiles/ebook/extensions/contentPosition` | ResultExtension | `type: string` | コンテンツ内の位置情報を表す。 |
+| bookmarkId | `https://w3id.org/xapi-japan-profiles/ebook/extensions/bookmarkId` | ContextExtension | `type: string` | アプリ内で一意なブックマーク識別子を表す。 |
+| annotationTool | `https://w3id.org/xapi-japan-profiles/ebook/extensions/annotationTool` | ContextExtension | `type: string, enum: ["freehand", "straightline", "textinput"]` | 注釈作成に用いたツール種別を表す。 |
+| targetLocation | `https://w3id.org/xapi-japan-profiles/ebook/extensions/targetLocation` | ResultExtension | `type: string` | 書き込み対象の座標や範囲情報を表す。 |
 
 # 4.　電子書籍（ebook）における読書行動
 
+## 4.1　本章の位置づけ
+
 　本章では、電子書籍（ebook）における読書活動の特性を述べ、本プロファイルで定義するStatementTemplateの背景にある考え方を示す。
 
-## 4.1　電子書籍プラットフォームの特性
+## 4.2　電子書籍プラットフォームの特性
 
 　電子書籍プラットフォームは、デジタル教科書環境において学習者の読書行動をきめ細かく記録する環境を提供する。本プロファイルは、以下の操作行動および読書行為を記録対象とする。
 
@@ -178,7 +157,7 @@
 **注釈機能：**
 - しおり、書き込み、削除操作
 
-## 4.2　学習ログ記録の目的
+## 4.3　学習ログ記録の目的
 
 　電子書籍プラットフォームにおいて記録される学習ログは、以下の目的で活用される。
 
@@ -215,13 +194,16 @@
 
 #### 5.3.1.1　基本仕様
 
-* 電子書籍型デジタル教材プラットフォームがシステムとして起動されたことを記録するためのテンプレート。
+- 電子書籍型デジタル教材プラットフォームがシステムとして起動されたことを記録するためのテンプレート。
+- 識別情報
 
 | 項目      | 値 |
 | :--- | :--- |
 | id | https://w3id.org/xapi-japan-profiles/ebook/templates/v1.0.0/launched |
 | inScheme | https://w3id.org/xapi-japan-profiles/ebook/v1.0.0 |
 | prefLabel | プラットフォームの起動 |
+
+- 判定条件
 
 | 項目 | 値 |
 | :--- | :--- |
@@ -236,13 +218,16 @@
 
 #### 5.3.2.1　基本仕様
 
-* 電子書籍型デジタル教材プラットフォームの利用が終了したことを記録するためのテンプレート。
+- 電子書籍型デジタル教材プラットフォームの利用が終了したことを記録するためのテンプレート。
+- 識別情報
 
 | 項目      | 値 |
 | :--- | :--- |
 | id | https://w3id.org/xapi-japan-profiles/ebook/templates/v1.0.0/terminated |
 | inScheme | https://w3id.org/xapi-japan-profiles/ebook/v1.0.0 |
 | prefLabel | プラットフォームの終了 |
+
+- 判定条件
 
 | 項目 | 値 |
 | :--- | :--- |
@@ -257,13 +242,16 @@
 
 #### 5.3.3.1　基本仕様
 
-* 紙面が画面上に表示され、学習者が閲覧可能な状態になったことを記録するためのテンプレート。
+- 紙面が画面上に表示され、学習者が閲覧可能な状態になったことを記録するためのテンプレート。
+- 識別情報
 
 | 項目      | 値 |
 | :--- | :--- |
 | id | https://w3id.org/xapi-japan-profiles/ebook/templates/v1.0.0/opened |
 | inScheme | https://w3id.org/xapi-japan-profiles/ebook/v1.0.0 |
 | prefLabel | 紙面の表示 |
+
+- 判定条件
 
 | 項目 | 値 |
 | :--- | :--- |
@@ -278,13 +266,16 @@
 
 #### 5.3.4.1　基本仕様
 
-* 紙面の表示を終了・閉じたことを記録するためのテンプレート。
+- 紙面の表示を終了・閉じたことを記録するためのテンプレート。
+- 識別情報
 
 | 項目      | 値 |
 | :--- | :--- |
 | id | https://w3id.org/xapi-japan-profiles/ebook/templates/v1.0.0/closed |
 | inScheme | https://w3id.org/xapi-japan-profiles/ebook/v1.0.0 |
 | prefLabel | 紙面の非表示 |
+
+- 判定条件
 
 | 項目 | 値 |
 | :--- | :--- |
@@ -299,13 +290,16 @@
 
 #### 5.3.5.1　基本仕様
 
-* 電子書籍型デジタル教材内でページ移動（遷移）を行い、新たな紙面を表示したことを記録するためのテンプレート。
+- 電子書籍型デジタル教材内でページ移動（遷移）を行い、新たな紙面を表示したことを記録するためのテンプレート。
+- 識別情報
 
 | 項目      | 値 |
 | :--- | :--- |
 | id | https://w3id.org/xapi-japan-profiles/ebook/templates/v1.0.0/viewed |
 | inScheme | https://w3id.org/xapi-japan-profiles/ebook/v1.0.0 |
 | prefLabel | ページ移動 |
+
+- 判定条件
 
 | 項目 | 値 |
 | :--- | :--- |
@@ -323,13 +317,16 @@
 
 #### 5.3.6.1　基本仕様
 
-* 電子書籍型デジタル教材内の特定箇所にしおり・ブックマークを作成したことを記録するためのテンプレート。
+- 電子書籍型デジタル教材内の特定箇所にしおり・ブックマークを作成したことを記録するためのテンプレート。
+- 識別情報
 
 | 項目      | 値 |
 | :--- | :--- |
 | id | https://w3id.org/xapi-japan-profiles/ebook/templates/v1.0.0/bookmarked |
 | inScheme | https://w3id.org/xapi-japan-profiles/ebook/v1.0.0 |
 | prefLabel | しおり・ブックマーク作成 |
+
+- 判定条件
 
 | 項目 | 値 |
 | :--- | :--- |
@@ -346,13 +343,16 @@
 
 #### 5.3.7.1　基本仕様
 
-* 電子書籍型デジタル教材紙面の座標情報に、線分・手書き線・文字情報を書き込む操作を記録するためのテンプレート。
+- 電子書籍型デジタル教材紙面の座標情報に、線分・手書き線・文字情報を書き込む操作を記録するためのテンプレート。
+- 識別情報
 
 | 項目      | 値 |
 | :--- | :--- |
 | id | https://w3id.org/xapi-japan-profiles/ebook/templates/v1.0.0/annotated |
 | inScheme | https://w3id.org/xapi-japan-profiles/ebook/v1.0.0 |
 | prefLabel | 書き込み作成 |
+
+- 判定条件
 
 | 項目 | 値 |
 | :--- | :--- |
@@ -370,13 +370,16 @@
 
 #### 5.3.8.1　基本仕様
 
-* 電子書籍型デジタル教材の表示ページにおいて、書き込み内容や図形、しおり等を削除したことを記録するためのテンプレート。
+- 電子書籍型デジタル教材の表示ページにおいて、書き込み内容や図形、しおり等を削除したことを記録するためのテンプレート。
+- 識別情報
 
 | 項目      | 値 |
 | :--- | :--- |
 | id | https://w3id.org/xapi-japan-profiles/ebook/templates/v1.0.0/delete |
 | inScheme | https://w3id.org/xapi-japan-profiles/ebook/v1.0.0 |
 | prefLabel | 削除 |
+
+- 判定条件
 
 | 項目 | 値 |
 | :--- | :--- |

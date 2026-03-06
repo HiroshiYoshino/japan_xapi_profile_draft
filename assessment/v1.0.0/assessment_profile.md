@@ -70,7 +70,7 @@
 
 ## 2.3　共通記述規則
 
-	本プロファイルで定義するすべてのStatementTemplateに対して、xAPI Profile Specification および xAPI-Spec に基づき、以下のRulesを適用する。
+　本プロファイルで定義するすべてのStatementTemplateに対して、xAPI Profile Specification および xAPI-Spec に基づき、以下のRulesを適用する。
 
 | 項目                               | Location (JSONPath)                        | Presence    |
 | :--------------------------------- | :----------------------------------------- | :---------- |

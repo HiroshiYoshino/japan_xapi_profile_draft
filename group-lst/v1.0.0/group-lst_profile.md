@@ -71,7 +71,7 @@
 
 ## 2.3　共通記述規則
 
-	本プロファイルで定義するすべてのStatementTemplateに対して、xAPI Profile Specification および xAPI-Spec に基づき、以下のRulesを適用する。
+　本プロファイルで定義するすべてのStatementTemplateに対して、xAPI Profile Specification および xAPI-Spec に基づき、以下のRulesを適用する。
 
 | 項目                               | Location (JSONPath)                        | Presence    |
 | :--------------------------------- | :----------------------------------------- | :---------- |
@@ -95,17 +95,17 @@
 
 ## 3.1　本章の位置づけ
 
-  本章では、Group Learning Support Tool Profileにおいて使用する共通語彙（Concepts）を定義する。
+　本章では、Group Learning Support Tool Profileにおいて使用する共通語彙（Concepts）を定義する。
 
 ## 3.2　対象
 
-  Conceptsの対象は、ActivityTypeの1項目とする。
+　Conceptsの対象は、ActivityTypeの1項目とする。
 
 ## 3.3　ActivityType
 
 ### 3.3.1　ActivityTypeの定義
 
-  ActivityTypeは、Statementにおいてobjectとして参照されるActivityが、どのような種類のリソースであるかを示す概念である。
+　ActivityTypeは、Statementにおいてobjectとして参照されるActivityが、どのような種類のリソースであるかを示す概念である。
 
 ### 3.3.2　Group Learning Support ToolにおけるActivityType一覧
 
@@ -113,7 +113,7 @@
 | :--- | :--- | :--- |
 | shared-work | `https://w3id.org/xapi-japan-profiles/group-lst/activitytypes/shared-work` | 学習者が共有し、他者が反応やコメントの対象とする成果物・投稿物 |
 
-# 4. グループ学習に関するユースケース
+# 4.　グループ学習に関するユースケース
 
 ## 4.1　本章の位置づけ
 
