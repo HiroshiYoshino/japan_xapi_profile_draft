@@ -22,7 +22,7 @@
 
 　本ドキュメントにおける各ユースケースは、xAPIプロファイル仕様で定義されているStatementTemplateおよびStatementTemplateRulesの構造および考え方に準拠して記載する。  
 　本仕様書の記述は、特定製品を前提とせず、現実的な範囲の「架空ツール」を想定して行う。この前提により、既存システムとの部分的不一致や未確定要素に起因する議論停滞を回避する。  
-　本ドキュメントに記載されるStatementTemplateで使用される語彙（Verb、ActivityType、Extension等）は以下のいずれかに整理される。(1) 必要に応じて本プロファイル内のConceptsで定義する。(2) ADLや他の標準で定義済みの語彙を直接参照する。なお、Group Learning Support Tool Profile v1.0.0 ではConceptsの独自記載は行わない。  
+　本ドキュメントに記載されるStatementTemplateで使用される語彙（Verb、ActivityType、Extension等）は以下のいずれかに整理される。(1) 必要に応じて本プロファイル内のConceptsで定義する。(2) ADLや他の標準で定義済みの語彙を直接参照する。Group Learning Support Tool Profile v1.0.0 では、共有成果物を表すActivityTypeとして `shared-work` をConceptsで定義する。  
 　各ユースケースに付随するStatementTemplate要素表には、StatementTemplateを構成する要素を示している。ただし、actorについては全ユースケース共通でAgentとするため、各ユースケースの規範表への個別の記載は行わないものとする。  
 　本ドキュメントは、グループ学習支援ツールにおける学習ログの標準的な解釈および実装方針を読み手が理解しやすい形で示すことを主目的とした仕様書である。このため、xAPIプロファイル仕様上は必須である項目のうち、機械処理やプロファイル登録といった運用段階において主に必要となる項目については、本書の目的に照らし記載を省略する。省略理由は下記に示すとおりである。
 
@@ -33,7 +33,7 @@
 
 ## 1.4　定義範囲
 
-　本ドキュメントは、xAPI Japan Profiles Group Learning Support Tool Profileを構成する要素のうち、メタ情報、各操作行動に対応するStatementTemplateおよびStatementのRulesを定義することを目的とする。ただし、グループ学習活動が非線形である特性を踏まえ、xAPIプロファイルにおけるpatternsは定義の対象外とする。  
+　本ドキュメントは、xAPI Japan Profiles Group Learning Support Tool Profileを構成する要素のうち、メタ情報、Concepts、各操作行動に対応するStatementTemplateおよびStatementのRulesを定義することを目的とする。ただし、グループ学習活動が非線形である特性を踏まえ、xAPIプロファイルにおけるpatternsは定義の対象外とする。  
 　本ドキュメントは、実装者がJSON形式のプロファイル（StatementTemplateを含む）を理解し、xAPI Statementを正しく生成するための実装補助資料である。定義された各ユースケースの構造やサンプルは、プロファイルビューアーにJSONファイルを読み込ませることで直接確認することができる。
 
 ## 1.5　本ドキュメントの構成について
@@ -41,6 +41,7 @@
 　本紙は、xAPIプロファイル仕様に基づき、グループ学習支援ツール学習ログに関する標準的な解釈および実装方針を示すことを目的とする。本紙は、以下の要素を含む。
 
 - メタ情報：プロファイル全体のメタ情報およびバージョン管理
+- Concepts：ActivityTypeの定義
 - StatementTemplate：各ユースケースに対応するStatementTemplateの構造および必須要素
 - Rules：StatementTemplateの検証規則
 
@@ -70,49 +71,68 @@
 
 ## 2.3　共通記述規則
 
-　本プロファイルで定義するすべてのStatementTemplateに対して、以下のRulesを適用する。
+	本プロファイルで定義するすべてのStatementTemplateに対して、xAPI Profile Specification および xAPI-Spec に基づき、以下のRulesを適用する。
 
 | 項目                               | Location (JSONPath)                        | Presence    |
 | :--------------------------------- | :----------------------------------------- | :---------- |
 | **ステートメントID**               | `$.id`                                     | included    |
 | **タイムスタンプ**                 | `$.timestamp`                              | recommended |
 | **アクター**                       | `$.actor`                                  | included    |
-| **アクターのオブジェクトタイプ**   | `$.actor.objectType`                       | included    |
-| **アクターのアカウントホームページ** | `$.actor.account.homePage`                 | included    |
-| **アクターのアカウント名**         | `$.actor.account.name`                     | included    |
+| **アクターのオブジェクトタイプ**   | `$.actor.objectType`                       | included（accountを用いる場合） |
+| **アクターのアカウントホームページ** | `$.actor.account.homePage`                 | included（accountを用いる場合） |
+| **アクターのアカウント名**         | `$.actor.account.name`                     | included（accountを用いる場合） |
 | **動詞の表示名(英語)**             | `$.verb.display.en`                        | included    |
 | **オブジェクトのオブジェクトタイプ** | `$.object.objectType`                      | included    |
 | **オブジェクトID**                 | `$.object.id`                              | included    |
-| **オブジェクト定義のタイプ**       | `$.object.definition.type`                 | included    |
-| **オブジェクト定義の名称(日本語)** | `$.object.definition.name.ja-JP`        | recommended |
-| **オブジェクト定義の説明(日本語)** | `$.object.definition.description.ja-JP` | recommended |
+| **オブジェクト定義のタイプ**       | `$.object.definition.type`                 | recommended    |
+| **オブジェクト定義の名称(日本語)** | `$.object.definition.name.ja-JP`           | recommended |
+| **オブジェクト定義の説明(日本語)** | `$.object.definition.description.ja-JP`    | recommended |
 | **コンテキスト**                   | `$.context`                                | included    |
-| **コンテキストの言語**             | `$.context.language`                       | included    |
-| **コンテキストのプラットフォーム** | `$.context.platform`                       | included    |
-| **プロファイルバージョン**         | `$.version`                                | included    |
 
-　補足として、タイムスタンプは推奨項目とし、各コンテンツ事業者の任意とする。タイムスタンプを出力する場合は、ADL仕様に準拠し、ミリ秒を含む形式で実装する（取得できない場合は0埋め等で対応する）。
+※ Presenceには included / excluded / recommended を用いる。本表には、全StatementTemplateに共通して指定する項目のみを記載する。表に記載していない項目は、各Templateで個別指定がない限り、共通記述規則としては未指定とする。
 
-# 3. グループ学習に関するユースケース
+# 3.　Concepts
 
 ## 3.1　本章の位置づけ
 
+  本章では、Group Learning Support Tool Profileにおいて使用する共通語彙（Concepts）を定義する。
+
+## 3.2　対象
+
+  Conceptsの対象は、ActivityTypeの1項目とする。
+
+## 3.3　ActivityType
+
+### 3.3.1　ActivityTypeの定義
+
+  ActivityTypeは、Statementにおいてobjectとして参照されるActivityが、どのような種類のリソースであるかを示す概念である。
+
+### 3.3.2　Group Learning Support ToolにおけるActivityType一覧
+
+| 名称 | id | 補足 |
+| :--- | :--- | :--- |
+| shared-work | `https://w3id.org/xapi-japan-profiles/group-lst/activitytypes/shared-work` | 学習者が共有し、他者が反応やコメントの対象とする成果物・投稿物 |
+
+# 4. グループ学習に関するユースケース
+
+## 4.1　本章の位置づけ
+
 　本章では、グループ学習における学習活動の特性を述べ、本プロファイルで定義するStatementTemplateの背景にある考え方を示す。
 
-## 3.2　グループ学習の特性と主な学習活動
+## 4.2　グループ学習の特性と主な学習活動
 
 「グループ学習」とは、個人ないし集団が行う学習活動を指す。グループ学習でありつつ、個人の学習活動も範囲とする理由として、個人の考えを作成した後にグループで交流し、また、グループで交流したことを踏まえて個人の考えを編集するといった往還が見られるためであり、厳密に弁別できないためである。
 
 主な学習活動の例：
 
-- 友達の考えに対して「いいね」を送るなど、反応すること
-- 友達の考えに対してコメントしたりフィードバックしたりすること
+- 他者が共有した成果物・投稿物に対して「いいね」を送るなど、反応すること
+- 他者が共有した成果物・投稿物に対してコメントしたりフィードバックしたりすること
 
-## 3.3　本プロジェクトの成果と今後の課題
+## 4.3　本プロジェクトの成果と今後の課題
 
 **本プロジェクトの成果**
 
-- 本プロファイルでは、グループ学習支援ツール内における他者への反応（いいね、コメント等）を記録するStatementTemplateを定義した。これにより、グループ学習における個人の貢献度や相互作用の状況を追跡し、協働学習の支援や評価に活用できる。なお、本版では他者への反応に関する操作ログの記録を主な対象とし、自分や自分たちの考えをテキストやオブジェクト等で表現する活動の記録は、今後の拡張対象とする。
+- 本プロファイルでは、グループ学習支援ツール内における他者の共有成果物・投稿物への反応（いいね、コメント等）を記録するStatementTemplateを定義した。これにより、グループ学習における個人の貢献度や相互作用の状況を追跡し、協働学習の支援や評価に活用できる。なお、本版では他者への反応に関する操作ログの記録を主な対象とし、自分や自分たちの考えをテキストやオブジェクト等で表現する活動の記録は、今後の拡張対象とする。
 
 **今後の課題**
 
@@ -121,13 +141,13 @@
 - **評価ルーブリックとの連動**: グループでの協働過程を、教職員や学習者が設定した評価ルーブリックと関連付けて記録するための、評価基準のメタデータ定義。
 - **自分・自分たちの考えの表現の記録**: 個人またはグループが考えを文章・図表・成果物等で表現する活動を対象に、オブジェクト種別、更新履歴、共同編集の関係性を一貫して記録できるStatementTemplateおよび運用ルールの整備。
 
-# 4.　StatementTemplate
+# 5.　StatementTemplate
 
-## 4.1　本章の位置づけ
+## 5.1　本章の位置づけ
 
 　本章では、Group Learning Support Tool Profileにおける各操作のデータ構造を定義する。各テンプレートは以下の「基本仕様」および「記述規則」の構成で記述される。
 
-## 4.2　前提条件
+## 5.2　前提条件
 
 - 基本仕様
   - 冒頭にdefinitionの位置づけとして、Templateの目的やどのような操作を記録するためのものかを定義する。
@@ -138,90 +158,45 @@
 - 記述規則（Rules）
   - Statement内の各プロパティに対する制約を示す。以下の要素を含む。
     - データの所在（location）: JSONPath方式で記述されるデータの位置。
-    - presence：included（必須）、recommended（推奨）、optional（任意）のいずれか1つ。
+    - presence：included（必須）、recommended（推奨）、または未指定（任意）とする。
     - ScopeNoteの内容に基づいた値の定義や運用上の注意点。
 - Markdownテーブルの構成
   - 各Templateの末尾には、システム設計・実装時に参照しやすいよう、記述規則（Rules）を一覧化したテーブルを配置する。
 
-## 4.3　StatementTemplate一覧
+## 5.3　StatementTemplate一覧
 
-### 4.3.2　ツール内でのコンテンツ利用開始
+### 5.3.1　共有成果物へのコメント
 
-#### 4.3.2.1　基本仕様
+#### 5.3.1.1　基本仕様
 
-- ツール内の特定コンテンツの利用を開始したことを記録するためのテンプレート。
-- 識別情報
-
-| 項目     | 値                                                               |
-| :------- | :--------------------------------------------------------------- |
-| id       | https://w3id.org/xapi-japan-profiles/group-lst/templates/v1.0.0/launched |
-| inScheme | https://w3id.org/xapi-japan-profiles/group-lst/v1.0.0            |
-| prefLabel | ツール内でのコンテンツ利用開始                               |
-
-- 判定条件
-
-| 項目              | 値                                         |
-| :---------------- | :----------------------------------------- |
-| verb              | https://w3id.org/xapi/adl/verbs/launched   |
-| objectActivityType | http://id.tincanapi.com/activitytype/slide |
-
-#### 4.3.2.2　記述規則（Rules）
-
-共通記述規則に準拠する。
-
-### 4.3.4　議論スレッドの作成
-
-#### 4.3.4.1　基本仕様
-
-- 議論のためのスレッドを作成したことを記録するためのテンプレート。
-- 識別情報
-
-| 項目     | 値                                                                  |
-| :------- | :------------------------------------------------------------------ |
-| id       | https://w3id.org/xapi-japan-profiles/group-lst/templates/v1.0.0/created-thread |
-| inScheme | https://w3id.org/xapi-japan-profiles/group-lst/v1.0.0              |
-| prefLabel | 議論スレッドの作成                                             |
-
-- 判定条件
-
-| 項目              | 値                                              |
-| :---------------- | :---------------------------------------------- |
-| verb              | http://activitystrea.ms/create                  |
-| objectActivityType | http://id.tincanapi.com/activitytype/discussion |
-
-#### 4.3.4.2　記述規則（Rules）
-
-共通記述規則に準拠する。
-
-### 4.3.5　スレッドへの書き込み
-
-#### 4.3.5.1　基本仕様
-
-- スレッドに対してコメント・返信を行ったことを記録するためのテンプレート。
+- 共有成果物・投稿物に対してコメント・返信を行ったことを記録するためのテンプレート。
 - 識別情報
 
 | 項目     | 値                                                                 |
 | :------- | :----------------------------------------------------------------- |
 | id       | https://w3id.org/xapi-japan-profiles/group-lst/templates/v1.0.0/replied |
 | inScheme | https://w3id.org/xapi-japan-profiles/group-lst/v1.0.0             |
-| prefLabel | スレッドへの書き込み                                          |
+| prefLabel | 共有成果物へのコメント                                          |
 
 - 判定条件
 
 | 項目              | 値                                              |
 | :---------------- | :---------------------------------------------- |
 | verb              | http://id.tincanapi.com/verb/replied            |
-| objectActivityType | http://id.tincanapi.com/activitytype/discussion |
+| objectActivityType | https://w3id.org/xapi-japan-profiles/group-lst/activitytypes/shared-work |
 
-#### 4.3.5.2　記述規則（Rules）
+#### 5.3.1.2　記述規則（Rules）
 
-共通記述規則に準拠する。
+| 項目 | Location (JSONPath) | Presence | 説明(scopeNote) |
+| :--- | :--- | :--- | :--- |
+| **親アクティビティID** | `$.context.contextActivities.parent[*].id` | recommended | コメント対象が所属する課題、演習、場、または共有先コンテナを示す。 |
+| **コメント本文** | `$.result.response` | recommended | コメント本文が取得できる場合に記録する。取得できない場合は省略可とする。 |
 
-### 4.3.6　スタンプ送信
+### 5.3.2　スタンプ送信
 
-#### 4.3.6.1　基本仕様
+#### 5.3.2.1　基本仕様
 
-- 「いいね」等のスタンプを送信したことを記録するためのテンプレート。
+- 共有成果物・投稿物に対して「いいね」等のスタンプを送信したことを記録するためのテンプレート。
 - 識別情報
 
 | 項目     | 値                                                      |
@@ -235,7 +210,10 @@
 | 項目              | 値                                          |
 | :---------------- | :------------------------------------------ |
 | verb              | http://id.tincanapi.com/verb/voted-up       |
+| objectActivityType | https://w3id.org/xapi-japan-profiles/group-lst/activitytypes/shared-work |
 
-#### 4.3.6.2　記述規則（Rules）
+#### 5.3.2.2　記述規則（Rules）
 
-共通記述規則に準拠する。
+| 項目 | Location (JSONPath) | Presence | 説明(scopeNote) |
+| :--- | :--- | :--- | :--- |
+| **親アクティビティID** | `$.context.contextActivities.parent[*].id` | recommended | リアクション対象が所属する課題、演習、場、または共有先コンテナを示す。 |

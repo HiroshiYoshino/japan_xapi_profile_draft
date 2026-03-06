@@ -72,28 +72,25 @@
 
 ## 2.3　共通記述規則
 
-　本プロファイルで定義するすべてのStatementTemplateに対して、以下のRulesを適用する。
+	本プロファイルで定義するすべてのStatementTemplateに対して、xAPI Profile Specification および xAPI-Spec に基づき、以下のRulesを適用する。
 
 | 項目                               | Location (JSONPath)                        | Presence    |
 | :--------------------------------- | :----------------------------------------- | :---------- |
 | **ステートメントID**               | `$.id`                                     | included    |
 | **タイムスタンプ**                 | `$.timestamp`                              | recommended |
 | **アクター**                       | `$.actor`                                  | included    |
-| **アクターのオブジェクトタイプ**   | `$.actor.objectType`                       | included    |
-| **アクターのアカウントホームページ** | `$.actor.account.homePage`                 | included    |
-| **アクターのアカウント名**         | `$.actor.account.name`                     | included    |
+| **アクターのオブジェクトタイプ**   | `$.actor.objectType`                       | included（accountを用いる場合） |
+| **アクターのアカウントホームページ** | `$.actor.account.homePage`                 | included（accountを用いる場合） |
+| **アクターのアカウント名**         | `$.actor.account.name`                     | included（accountを用いる場合） |
 | **動詞の表示名(英語)**             | `$.verb.display.en`                        | included    |
 | **オブジェクトのオブジェクトタイプ** | `$.object.objectType`                      | included    |
 | **オブジェクトID**                 | `$.object.id`                              | included    |
-| **オブジェクト定義のタイプ**       | `$.object.definition.type`                 | included    |
+| **オブジェクト定義のタイプ**       | `$.object.definition.type`                 | recommended    |
 | **オブジェクト定義の名称(日本語)** | `$.object.definition.name.ja-JP`           | recommended |
 | **オブジェクト定義の説明(日本語)** | `$.object.definition.description.ja-JP`    | recommended |
 | **コンテキスト**                   | `$.context`                                | included    |
-| **コンテキストの言語**             | `$.context.language`                       | included    |
-| **コンテキストのプラットフォーム** | `$.context.platform`                       | included    |
-| **プロファイルバージョン**         | `$.version`                                | included    |
 
-　補足として、タイムスタンプは推奨項目とし、各コンテンツ事業者の任意とする。タイムスタンプを出力する場合は、ADL仕様に準拠し、ミリ秒を含む形式で実装する（取得できない場合は0埋め等で対応する）。
+※ Presenceには included / excluded / recommended を用いる。本表には、全StatementTemplateに共通して指定する項目のみを記載する。表に記載していない項目は、各Templateで個別指定がない限り、共通記述規則としては未指定とする。
 
 # 3.　Concepts
 
@@ -153,13 +150,13 @@
 
 | 名称 | id | type | inlineSchema |
 | :--- | :--- | :--- | :--- |
-| startPosition | `https://w3id.org/japan-xapi/ebook/extensions/startPosition` | ContextExtension | string |
-| endPosition | `https://w3id.org/japan-xapi/ebook/extensions/endPosition` | ResultExtension | string |
-| navigationMethod | `https://w3id.org/japan-xapi/ebook/extensions/navigationMethod` | ResultExtension | enum [`paging`, `index`] |
-| contentPosition | `https://w3id.org/japan-xapi/ebook/extensions/contentPosition` | ResultExtension | string |
-| bookmarkId | `https://w3id.org/japan-xapi/ebook/extensions/bookmarkId` | ContextExtension | string |
-| annotationTool | `https://w3id.org/japan-xapi/ebook/extensions/annotationTool` | ContextExtension | enum [`freehand`, `straightline`, `textinput`] |
-| targetLocation | `https://w3id.org/japan-xapi/ebook/extensions/targetLocation` | ResultExtension | string |
+| startPosition | `https://w3id.org/xapi-japan-profiles/ebook/extensions/startPosition` | ContextExtension | string |
+| endPosition | `https://w3id.org/xapi-japan-profiles/ebook/extensions/endPosition` | ResultExtension | string |
+| navigationMethod | `https://w3id.org/xapi-japan-profiles/ebook/extensions/navigationMethod` | ResultExtension | enum [`paging`, `index`] |
+| contentPosition | `https://w3id.org/xapi-japan-profiles/ebook/extensions/contentPosition` | ResultExtension | string |
+| bookmarkId | `https://w3id.org/xapi-japan-profiles/ebook/extensions/bookmarkId` | ContextExtension | string |
+| annotationTool | `https://w3id.org/xapi-japan-profiles/ebook/extensions/annotationTool` | ContextExtension | enum [`freehand`, `straightline`, `textinput`] |
+| targetLocation | `https://w3id.org/xapi-japan-profiles/ebook/extensions/targetLocation` | ResultExtension | string |
 
 # 4.　電子書籍（ebook）における読書行動
 
@@ -207,7 +204,7 @@
 - 記述規則（Rules）
   - Statement内の各プロパティに対する制約を示す。以下の要素を含む。
     - データの所在（location）: JSONPath方式で記述されるデータの位置。
-    - presence：included（必須）、recommended（推奨）、optional（任意）のいずれか1つ。
+    - presence：included（必須）、recommended（推奨）、または未指定（任意）とする。
     - ScopeNoteの内容に基づいた値の定義や運用上の注意点。
 - Markdownテーブルの構成
   - 各Templateの末尾には、システム設計・実装時に参照しやすいよう、記述規則（Rules）を一覧化したテーブルを配置する。
@@ -319,8 +316,8 @@
 
 | 項目 | 説明 | Location | Presence |
 | :--- | :--- | :--- | :--- |
-| **移動開始位置** | ページ移動の起点位置 | `$.context.extensions['https://w3id.org/japan-xapi/ebook/extensions/startPosition']` | recommended |
-| **移動方法** | ページ移動の操作方法（`paging`/`index`） | `$.result.extensions['https://w3id.org/japan-xapi/ebook/extensions/navigationMethod']` | recommended |
+| **移動開始位置** | ページ移動の起点位置 | `$.context.extensions['https://w3id.org/xapi-japan-profiles/ebook/extensions/startPosition']` | recommended |
+| **移動方法** | ページ移動の操作方法（`paging`/`index`） | `$.result.extensions['https://w3id.org/xapi-japan-profiles/ebook/extensions/navigationMethod']` | recommended |
 
 ### 5.3.6　しおり・ブックマーク作成
 
@@ -343,7 +340,7 @@
 
 | 項目 | 説明 | Location | Presence |
 | :--- | :--- | :--- | :--- |
-| **ブックマークID** | アプリ内で一意な識別ID | `$.context.extensions['https://w3id.org/japan-xapi/ebook/extensions/bookmarkId']` | recommended |
+| **ブックマークID** | アプリ内で一意な識別ID | `$.context.extensions['https://w3id.org/xapi-japan-profiles/ebook/extensions/bookmarkId']` | recommended |
 
 ### 5.3.7　書き込み作成
 
@@ -366,8 +363,8 @@
 
 | 項目 | 説明 | Location | Presence |
 | :--- | :--- | :--- | :--- |
-| **注釈ツール種別** | 使用した注釈ツール種別 | `$.context.extensions['https://w3id.org/japan-xapi/ebook/extensions/annotationTool']` | included |
-| **目標位置** | 書き込み座標や範囲情報 | `$.result.extensions['https://w3id.org/japan-xapi/ebook/extensions/targetLocation']` | recommended |
+| **注釈ツール種別** | 使用した注釈ツール種別 | `$.context.extensions['https://w3id.org/xapi-japan-profiles/ebook/extensions/annotationTool']` | included |
+| **目標位置** | 書き込み座標や範囲情報 | `$.result.extensions['https://w3id.org/xapi-japan-profiles/ebook/extensions/targetLocation']` | recommended |
 
 ### 5.3.8　削除
 

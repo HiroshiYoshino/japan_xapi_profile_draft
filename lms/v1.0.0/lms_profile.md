@@ -72,28 +72,25 @@
 
 ## 2.3　共通記述規則
 
-	本プロファイルで定義するすべてのStatementTemplateに対して、以下のRulesを適用する。
+	本プロファイルで定義するすべてのStatementTemplateに対して、xAPI Profile Specification および xAPI-Spec に基づき、以下のRulesを適用する。
 
 | 項目                               | Location (JSONPath)                        | Presence    |
 | :--------------------------------- | :----------------------------------------- | :---------- |
 | **ステートメントID**               | `$.id`                                     | included    |
 | **タイムスタンプ**                 | `$.timestamp`                              | recommended |
 | **アクター**                       | `$.actor`                                  | included    |
-| **アクターのオブジェクトタイプ**   | `$.actor.objectType`                       | included    |
-| **アクターのアカウントホームページ** | `$.actor.account.homePage`                 | included    |
-| **アクターのアカウント名**         | `$.actor.account.name`                     | included    |
+| **アクターのオブジェクトタイプ**   | `$.actor.objectType`                       | included（accountを用いる場合） |
+| **アクターのアカウントホームページ** | `$.actor.account.homePage`                 | included（accountを用いる場合） |
+| **アクターのアカウント名**         | `$.actor.account.name`                     | included（accountを用いる場合） |
 | **動詞の表示名(英語)**             | `$.verb.display.en`                        | included    |
 | **オブジェクトのオブジェクトタイプ** | `$.object.objectType`                      | included    |
 | **オブジェクトID**                 | `$.object.id`                              | included    |
-| **オブジェクト定義のタイプ**       | `$.object.definition.type`                 | included    |
+| **オブジェクト定義のタイプ**       | `$.object.definition.type`                 | recommended    |
 | **オブジェクト定義の名称(日本語)** | `$.object.definition.name.ja-JP`           | recommended |
 | **オブジェクト定義の説明(日本語)** | `$.object.definition.description.ja-JP`    | recommended |
 | **コンテキスト**                   | `$.context`                                | included    |
-| **コンテキストの言語**             | `$.context.language`                       | included    |
-| **コンテキストのプラットフォーム** | `$.context.platform`                       | included    |
-| **プロファイルバージョン**         | `$.version`                                | included    |
 
-	補足として、タイムスタンプは推奨項目とし、各コンテンツ事業者の任意とする。タイムスタンプを出力する場合は、ADL仕様に準拠し、ミリ秒を含む形式で実装する（取得できない場合は0埋め等で対応する）。
+※ Presenceには included / excluded / recommended を用いる。本表には、全StatementTemplateに共通して指定する項目のみを記載する。表に記載していない項目は、各Templateで個別指定がない限り、共通記述規則としては未指定とする。
 
 # 3.　Concepts
 
@@ -123,98 +120,13 @@
 
 	Extensions（拡張）は、xAPIの標準データモデルだけでは表現しきれない、学習行動に関する詳細な文脈や具体的なメタデータを付与するために利用される。
 
-### 3.4.2　本プロファイルで定義するExtension一覧
+### 3.4.2　LMSにおけるExtensions一覧
 
-#### 3.4.2.1　Assignment modules（課題の構成要素）
-
-- IRI: `https://w3id.org/japan-xapi/lms/extensions/modules`
-- Type: ActivityExtension
-- Definition: 学習課題を構成する子課題のオブジェクト。各要素は `id`、`name`、`description`、`subject`、`unit` を含み得る。
-
-Schema:
-
-```json
-{
-  "type": "array",
-  "items": {
-    "type": "object",
-    "properties": {
-      "id": { "type": "string", "format": "uri" },
-      "name": {
-        "type": "object",
-        "properties": {
-          "ja-JP": { "type": "string" }
-        }
-      },
-      "description": {
-        "type": "object",
-        "properties": {
-          "ja-JP": { "type": "string" }
-        }
-      },
-      "subject": { "type": "string" },
-      "unit": { "type": "string" }
-    }
-  }
-}
-```
-
-#### 3.4.2.2　Due date（実施期限）
-
-- IRI: `https://w3id.org/japan-xapi/lms/extensions/due-date`
-- Type: ContextExtension
-- Definition: 実施期限を表すオブジェクト。`start`（開始日）と`end`（終了日）の要素を持つ。日付形式はISO 8601に従う。
-
-Schema:
-
-```json
-{
-  "type": "object",
-  "items": {
-    "type": "object",
-    "properties": {
-      "start": { "type": "string" },
-      "end": { "type": "string" }
-    }
-  }
-}
-```
-
-#### 3.4.2.3　range（配布対象）
-
-- IRI: `https://w3id.org/japan-xapi/lms/extensions/range`
-- Type: ContextExtension
-- Definition: 配布対象を表すオブジェクト。`school`（学校）、`grade`（学年）、`class`（クラス）、`student`（児童生徒）を配列として含み得る。
-- ScopeNote: 児童生徒を要素として、学校・学年・クラスはその集合を意味する。rangeにおける1つの要素内では、`クラス ⊂ 学年` かつ `学年 ⊂ 学校` でなければならず、学校またはクラスにおいて互いに素である複数の集合を指定した場合、その部分集合である要素を記述してはならない。
-
-Schema:
-
-```json
-{
-  "type": "array",
-  "items": {
-    "type": "object",
-    "properties": {
-      "school": {
-        "type": "array",
-        "items": { "type": "string" }
-      },
-      "grade": {
-        "type": "array",
-        "items": { "type": "string" }
-      },
-      "class": {
-        "type": "array",
-        "items": { "type": "string" }
-      },
-      "student": {
-        "type": "array",
-        "items": { "type": "string" }
-      }
-    }
-  }
-}
-```
+| 名称 | id | type | inlineSchema | 補足 |
+| :--- | :--- | :--- | :--- | :--- |
+| modules | `https://w3id.org/xapi-japan-profiles/lms/extensions/modules` | ActivityExtension | `type: array, items: { type: object, properties: { id: { type: string, format: "uri" }, name: { type: object, properties: { "ja-JP": { type: string } } }, description: { type: object, properties: { "ja-JP": { type: string } } }, subject: { type: string }, unit: { type: string } } }` | 学習課題を構成する子課題のオブジェクト。各要素は `id`、`name`、`description`、`subject`、`unit` を含み得る。 |
+| due-date | `https://w3id.org/xapi-japan-profiles/lms/extensions/due-date` | ContextExtension | `type: object, properties: { start: { type: string, format: "date-time" }, end: { type: string, format: "date-time" } }, required: ["end"]` | 実施期限を表すオブジェクト。`start` は任意、`end` は必須とし、日付形式は ISO 8601 に従う。 |
+| range | `https://w3id.org/xapi-japan-profiles/lms/extensions/range` | ContextExtension | `type: array, items: { type: object, properties: { school: { type: array, items: { type: string } }, grade: { type: array, items: { type: string } }, class: { type: array, items: { type: string } }, student: { type: array, items: { type: string } } } }` | 配布対象を表すオブジェクト。`school`、`grade`、`class`、`student` を配列として含み得る。1要素内では `クラス ⊂ 学年` かつ `学年 ⊂ 学校` を満たすこと。 |
 
 # 4.　学習課題に関するユースケース
 
@@ -285,7 +197,7 @@ Schema:
 - 記述規則（Rules）
   - Statement内の各プロパティに対する制約を示す。以下の要素を含む。
     - データの所在（location）: JSONPath方式で記述されるデータの位置。
-    - presence：included（必須）、recommended（推奨）、optional（任意）のいずれか1つ。
+    - presence：included（必須）、recommended（推奨）、または未指定（任意）とする。
     - ScopeNoteの内容に基づいた値の定義や運用上の注意点。
 - Markdownテーブルの構成
   - 各Templateの末尾には、システム設計・実装時に参照しやすいよう、記述規則（Rules）を一覧化したテーブルを配置する。
@@ -313,7 +225,7 @@ Schema:
 | 項目     | 説明                                       | Location (JSONPath)                                                                | Presence    |
 | :------- | :----------------------------------------- | :--------------------------------------------------------------------------------- | :---------- |
 | **単元名** | 学習課題が属する単元名。                  | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/unit']`    | recommended |
-| **期限日** | 学習課題の実施期限日。ISO 8601形式。      | `$.context.extensions['https://w3id.org/japan-xapi/extensions/due-date']`          | recommended |
+| **期限日** | 学習課題の実施期限日。ISO 8601形式。      | `$.context.extensions['https://w3id.org/xapi-japan-profiles/lms/extensions/due-date']`          | recommended |
 | **教科** | Core Profileで定義された教科Extensionを使用する。 | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/subject']` | recommended |
 | **学年** | Core Profileで定義された学年Extensionを使用する。 | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/grade']`   | recommended |
 
@@ -399,8 +311,8 @@ Schema:
 
 | 項目     | 説明                               | Location (JSONPath) | Presence |
 | :------- | :--------------------------------- | :------------------ | :------- |
-| **フィードバック内容** | 後ろに続く結果オブジェクトに含められる。    | `$.result.response` | optional |
-| **完了フラグ** | フィードバック後の完了状態                          | `$.result.completion` | optional |
+| **フィードバック内容** | 後ろに続く結果オブジェクトに含められる。    | `$.result.response` |  |
+| **完了フラグ** | フィードバック後の完了状態                          | `$.result.completion` |  |
 
 ### 5.3.6　学習課題を閲覧する
 
