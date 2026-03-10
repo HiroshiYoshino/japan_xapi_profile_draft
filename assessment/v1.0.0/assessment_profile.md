@@ -68,28 +68,6 @@
 | 目的/説明 definition     | プロファイルが対象とする学習ログや用途 | 日本の初等中等教育におけるCBT/デジタルドリル学習ログのプロファイル |
 | ドキュメントバージョン   | 文書版数                               | 2026年度版                                               |
 
-## 2.3　共通記述規則
-
-　本プロファイルで定義するすべてのStatementTemplateに対して、xAPI Profile Specification および xAPI-Spec に基づき、以下のRulesを適用する。
-
-| 項目                               | Location (JSONPath)                        | Presence    |
-| :--------------------------------- | :----------------------------------------- | :---------- |
-| **ステートメントID**               | `$.id`                                     | included    |
-| **タイムスタンプ**                 | `$.timestamp`                              | recommended |
-| **アクター**                       | `$.actor`                                  | included    |
-| **アクターのオブジェクトタイプ**   | `$.actor.objectType`                       | included（accountを用いる場合） |
-| **アクターのアカウントホームページ** | `$.actor.account.homePage`                 | included（accountを用いる場合） |
-| **アクターのアカウント名**         | `$.actor.account.name`                     | included（accountを用いる場合） |
-| **動詞の表示名(英語)**             | `$.verb.display.en`                        | included    |
-| **オブジェクトのオブジェクトタイプ** | `$.object.objectType`                      | included    |
-| **オブジェクトID**                 | `$.object.id`                              | included    |
-| **オブジェクト定義のタイプ**       | `$.object.definition.type`                 | recommended    |
-| **オブジェクト定義の名称(日本語)** | `$.object.definition.name.ja-JP`           | recommended |
-| **オブジェクト定義の説明(日本語)** | `$.object.definition.description.ja-JP`    | recommended |
-| **コンテキスト**                   | `$.context`                                | included    |
-
-※ Presenceには included / excluded / recommended を用いる。本表には、全StatementTemplateに共通して指定する項目のみを記載する。表に記載していない項目は、各Templateで個別指定がない限り、共通記述規則としては未指定とする。
-
 # 3. CBT/デジタルドリルに関するユースケース
 
 ## 3.1　本章の位置づけ
@@ -168,6 +146,9 @@ CBT/デジタルドリルにおける主なユースケースは、学習者が�
 | 項目                                 | Location (JSONPath)                                                                          | Presence    | 説明(scopeNote)                                                                 |
 | :----------------------------------- | :------------------------------------------------------------------------------------------- | :---------- | :------------------------------------------------------------------------------ |
 | **Assessment実施グループID**         | `$.context.contextActivities.grouping[*].id`                                                 | recommended | ある一回のAssessmentの取り組みに対して同一のIRIを記述。                         |
+| **タイムスタンプ**                   | `$.timestamp`                                                                                | recommended | Assessmentの取り組みを開始した日時 |
+| **オブジェクト定義の名称(日本語)**    | `$.object.definition.name.ja-JP`                                                             | recommended | Assessmentの名称 | 
+| **オブジェクト定義の説明(日本語)**    | `$.object.definition.description.ja-JP`                                                      | recommended | Assessmentの説明 |
 
 ### 4.3.2　問題への回答
 
@@ -195,10 +176,16 @@ CBT/デジタルドリルにおける主なユースケースは、学習者が�
 | **得点率**                           | `$.result.score.scaled`                                                                      | included    | (raw-min)/(max-min)                                                   |
 | **素点**                             | `$.result.score.raw`                                                                         | included    |                                                                       |
 | **最大点**                           | `$.result.score.max`                                                                         | included    |                                                                       |
-| **最小点**                           | `$.result.score.min`                                                                         | optional    |                                                                       |
+| **最小点**                           | `$.result.score.min`                                                                         |             |                                                                       |
 | **回答値**                           | `$.result.response`                                                                          | recommended |                                                                       |
 | **回答所要時間**                     | `$.result.duration`                                                                          | recommended |                                                                       |
 | **Assessment実施グループID**         | `$.context.contextActivities.grouping[*].id`                                                 | recommended | ある一回のAssessmentの取り組みに対して同一のIRIを記述。               |
+| **タイムスタンプ**                   | `$.timestamp`                                                                                | recommended | 問題への回答を行った日時 |
+| **オブジェクト定義の名称(日本語)**    | `$.object.definition.name.ja-JP`                                                             | recommended | 問題の名称 | 
+| **オブジェクト定義の説明(日本語)**    | `$.object.definition.description.ja-JP`                                                      | recommended | 問題の説明 |
+
+
+
 > [!NOTE]
 > - 問題に得点や部分点がある場合は、その得点情報を$.result.scoreに記録する。
 >   - 例1:一つの問題に回答欄が一つあり問題の配点が5点の場合、maxを5、rawを5(正答)または0(誤答)、scaledを1(正答)または0(誤答)とする。
@@ -240,6 +227,9 @@ CBT/デジタルドリルにおける主なユースケースは、学習者が�
 | :----------------------------------- | :------------------------------------------------------------------------------------------- | :---------- | :------------------------------------------------------------------- |
 | **Assessment実施グループID**         | `$.context.contextActivities.grouping[*].id`                                                 | recommended | ある一回のAssessmentの取り組みに対して同一のIRIを記述。              |
 | **親アクティビティID**               | `$.context.contextActivities.parent[*].id`                                                   | recommended | 関連する問題や評価のID                                               |
+| **タイムスタンプ**                   | `$.timestamp`                                                                                | recommended | 学習コンテンツやページの参照を行った日時 |
+| **オブジェクト定義の名称(日本語)**    | `$.object.definition.name.ja-JP`                                                             | recommended | 学習コンテンツやページの名称 | 
+| **オブジェクト定義の説明(日本語)**    | `$.object.definition.description.ja-JP`                                                      | recommended | 学習コンテンツやページの説明 |
 
 ### 4.3.4　Assessmentの終了
 
@@ -267,10 +257,13 @@ CBT/デジタルドリルにおける主なユースケースは、学習者が�
 | **得点率**                           | `$.result.score.scaled`                                                                      | included    | (raw-min)/(max-min)                                                         |
 | **素点**                             | `$.result.score.raw`                                                                         | included    |                                                                             |
 | **最大点**                           | `$.result.score.max`                                                                         | included    |                                                                             |
-| **最小点**                           | `$.result.score.min`                                                                         | optional    |                                                                             | 
+| **最小点**                           | `$.result.score.min`                                                                         |             |                                                                             | 
 | **完了フラグ**                       | `$.result.completion`                                                                        | recommended | 学習者がAssessmentを最後まで完了した場合はtrue、途中終了しており採点者やシステムが完了判定した場合はfalse                                 |
 | **所要時間**                         | `$.result.duration`                                                                          | recommended | ISO 8601期間形式 (例: PT1H30M)                                              |
 | **Assessment実施グループID**         | `$.context.contextActivities.grouping[*].id`                                                 | recommended | ある一回のAssessmentの取り組みに対して同一のIRIを記述。                     |
+| **タイムスタンプ**                   | `$.timestamp`                                                                                | recommended | Assessmentの取り組みを開始した日時 |
+| **オブジェクト定義の名称(日本語)**    | `$.object.definition.name.ja-JP`                                                             | recommended | Assessmentの名称 | 
+| **オブジェクト定義の説明(日本語)**    | `$.object.definition.description.ja-JP`                                                      | recommended | Assessmentの説明 |
 
 > [!NOTE]
 > - $.result.score.scaledは、(raw-min)/(max-min) の計算結果とする。
