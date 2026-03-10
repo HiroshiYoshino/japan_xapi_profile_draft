@@ -192,10 +192,10 @@ CBT/デジタルドリルにおける主なユースケースは、学習者が�
 
 | 項目                                 | Location (JSONPath)                                                                          | Presence    | 説明(scopeNote)                                                       |
 | :----------------------------------- | :------------------------------------------------------------------------------------------- | :---------- | :-------------------------------------------------------------------- |
-| **得点率**                           | `$.result.score.scaled`                                                                      | included    | 0.0から1.0の実数。                                                    |
+| **得点率**                           | `$.result.score.scaled`                                                                      | included    | (raw-min)/(max-min)                                                   |
 | **素点**                             | `$.result.score.raw`                                                                         | included    |                                                                       |
 | **最大点**                           | `$.result.score.max`                                                                         | included    |                                                                       |
-| **最小点**                           | `$.result.score.min`                                                                         |             |                                                                       |
+| **最小点**                           | `$.result.score.min`                                                                         | optional    |                                                                       |
 | **回答値**                           | `$.result.response`                                                                          | recommended |                                                                       |
 | **回答所要時間**                     | `$.result.duration`                                                                          | recommended |                                                                       |
 | **Assessment実施グループID**         | `$.context.contextActivities.grouping[*].id`                                                 | recommended | ある一回のAssessmentの取り組みに対して同一のIRIを記述。               |
@@ -264,10 +264,10 @@ CBT/デジタルドリルにおける主なユースケースは、学習者が�
 
 | 項目                                 | Location (JSONPath)                                                                          | Presence    | 説明(scopeNote)                                                             |
 | :----------------------------------- | :------------------------------------------------------------------------------------------- | :---------- | :-------------------------------------------------------------------------- |
-| **得点率**                           | `$.result.score.scaled`                                                                      | included    | 0.0から1.0の実数。                                                          |
+| **得点率**                           | `$.result.score.scaled`                                                                      | included    | (raw-min)/(max-min)                                                         |
 | **素点**                             | `$.result.score.raw`                                                                         | included    |                                                                             |
 | **最大点**                           | `$.result.score.max`                                                                         | included    |                                                                             |
-| **最小点**                           | `$.result.score.min`                                                                         |             |                                                                             | 
+| **最小点**                           | `$.result.score.min`                                                                         | optional    |                                                                             | 
 | **完了フラグ**                       | `$.result.completion`                                                                        | recommended | 学習者がAssessmentを最後まで完了した場合はtrue、途中終了しており採点者やシステムが完了判定した場合はfalse                                 |
 | **所要時間**                         | `$.result.duration`                                                                          | recommended | ISO 8601期間形式 (例: PT1H30M)                                              |
 | **Assessment実施グループID**         | `$.context.contextActivities.grouping[*].id`                                                 | recommended | ある一回のAssessmentの取り組みに対して同一のIRIを記述。                     |
