@@ -22,7 +22,7 @@
 
 　本ドキュメントにおける各ユースケースは、xAPIプロファイル仕様で定義されているStatementTemplateおよびStatementTemplateRulesの構造および考え方に準拠して記載する。  
 　本仕様書の記述は、特定製品を前提とせず、現実的な範囲の「架空ツール」を想定して行う。この前提により、既存システムとの部分的不一致や未確定要素に起因する議論停滞を回避する。  
-　本ドキュメントに記載されるStatementTemplateで使用される語彙（Verb、ActivityType、Extension等）は以下のいずれかに整理される。(1) 必要に応じて本プロファイル内のConceptsで定義する。(2) ADLや他の標準で定義済みの語彙を直接参照する。Group Learning Support Tool Profile v1.0.0 では、共有成果物を表すActivityTypeとして `shared-work` をConceptsで定義する。  
+　本ドキュメントに記載されるStatementTemplateで使用される語彙（Verb、ActivityType、Extension等）は以下のいずれかに整理される。(1) 必要に応じて本プロファイル内のConceptsで定義する。(2) ADLや他の標準で定義済みの語彙を直接参照する。Group Learning Support Tool Profile v1.0.0 では、Conceptsの独自定義は行わない。  
 　各ユースケースに付随するStatementTemplate要素表には、StatementTemplateを構成する要素を示している。ただし、actorについては全ユースケース共通でAgentとするため、各ユースケースの規範表への個別の記載は行わないものとする。  
 　本ドキュメントは、グループ学習支援ツールにおける学習ログの標準的な解釈および実装方針を読み手が理解しやすい形で示すことを主目的とした仕様書である。このため、xAPIプロファイル仕様上は必須である項目のうち、機械処理やプロファイル登録といった運用段階において主に必要となる項目については、本書の目的に照らし記載を省略する。省略理由は下記に示すとおりである。
 
@@ -41,7 +41,6 @@
 　本紙は、xAPIプロファイル仕様に基づき、グループ学習支援ツール学習ログに関する標準的な解釈および実装方針を示すことを目的とする。本紙は、以下の要素を含む。
 
 - メタ情報：プロファイル全体のメタ情報およびバージョン管理
-- Concepts：ActivityTypeの定義
 - StatementTemplate：各ユースケースに対応するStatementTemplateの構造および必須要素
 - Rules：StatementTemplateの検証規則
 
@@ -99,19 +98,7 @@
 
 ## 3.2　対象
 
-　Conceptsの対象は、ActivityTypeの1項目とする。
-
-## 3.3　ActivityType
-
-### 3.3.1　ActivityTypeの定義
-
-　ActivityTypeは、Statementにおいてobjectとして参照されるActivityが、どのような種類のリソースであるかを示す概念である。
-
-### 3.3.2　Group Learning Support ToolにおけるActivityType一覧
-
-| 名称 | id | 補足 |
-| :--- | :--- | :--- |
-| shared-work | `https://w3id.org/xapi-japan-profiles/group-lst/activitytypes/shared-work` | 学習者が共有し、他者が反応やコメントの対象とする成果物・投稿物 |
+　本版では、Conceptsの独自定義は行わない。
 
 # 4.　グループ学習に関するユースケース
 
@@ -154,7 +141,7 @@
   - 識別情報
     - Templateを管理上特定するための情報として3要素（id,inScheme,prefLabel）を含む。
   - 判定条件
-    - 受信したStatementがどのTemplateに該当するかを自動判別するための固定値（Verb,objectActivityType）を示す。
+    - 受信したStatementがどのTemplateに該当するかを自動判別するための固定値（Verb）を示す。
 - 記述規則（Rules）
   - Statement内の各プロパティに対する制約を示す。以下の要素を含む。
     - データの所在（location）: JSONPath方式で記述されるデータの位置。
@@ -183,7 +170,6 @@
 | 項目              | 値                                              |
 | :---------------- | :---------------------------------------------- |
 | verb              | http://id.tincanapi.com/verb/replied            |
-| objectActivityType | https://w3id.org/xapi-japan-profiles/group-lst/activitytypes/shared-work |
 
 #### 5.3.1.2　記述規則（Rules）
 
@@ -210,7 +196,6 @@
 | 項目              | 値                                          |
 | :---------------- | :------------------------------------------ |
 | verb              | http://id.tincanapi.com/verb/voted-up       |
-| objectActivityType | https://w3id.org/xapi-japan-profiles/group-lst/activitytypes/shared-work |
 
 #### 5.3.2.2　記述規則（Rules）
 
