@@ -68,27 +68,10 @@
 | 目的/説明 definition     | プロファイルが対象とする学習ログや用途 | 日本の初等中等教育におけるグループ学習支援ツールログのプロファイル |
 | ドキュメントバージョン   | 文書版数                               | 2026年度版                                                           |
 
-## 2.3　共通記述規則
+## 2.3　記述規則の記載方針
 
-　本プロファイルで定義するすべてのStatementTemplateに対して、xAPI Profile Specification および xAPI-Spec に基づき、以下のRulesを適用する。
-
-| 項目                               | Location (JSONPath)                        | Presence    |
-| :--------------------------------- | :----------------------------------------- | :---------- |
-| **ステートメントID**               | `$.id`                                     | included    |
-| **タイムスタンプ**                 | `$.timestamp`                              | recommended |
-| **アクター**                       | `$.actor`                                  | included    |
-| **アクターのオブジェクトタイプ**   | `$.actor.objectType`                       | included（accountを用いる場合） |
-| **アクターのアカウントホームページ** | `$.actor.account.homePage`                 | included（accountを用いる場合） |
-| **アクターのアカウント名**         | `$.actor.account.name`                     | included（accountを用いる場合） |
-| **動詞の表示名(英語)**             | `$.verb.display.en`                        | included    |
-| **オブジェクトのオブジェクトタイプ** | `$.object.objectType`                      | included    |
-| **オブジェクトID**                 | `$.object.id`                              | included    |
-| **オブジェクト定義のタイプ**       | `$.object.definition.type`                 | recommended    |
-| **オブジェクト定義の名称(日本語)** | `$.object.definition.name.ja-JP`           | recommended |
-| **オブジェクト定義の説明(日本語)** | `$.object.definition.description.ja-JP`    | recommended |
-| **コンテキスト**                   | `$.context`                                | included    |
-
-※ Presenceには included / excluded / recommended を用いる。本表には、全StatementTemplateに共通して指定する項目のみを記載する。表に記載していない項目は、各Templateで個別指定がない限り、共通記述規則としては未指定とする。
+　本プロファイルでは、xAPI Profile Specification および xAPI-Specで規定されている内容と同一の項目は重複して記載しない。
+　各StatementTemplateでは、Group Learning Support Tool Profileとして個別に明示する必要がある項目のみを、当該Templateの記述規則（Rules）に記載する。
 
 # 3.　Concepts
 
