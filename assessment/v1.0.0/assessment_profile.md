@@ -120,7 +120,7 @@ CBT/デジタルドリルにおける主なユースケースは、学習者が�
 - 記述規則（Rules）
   - Statement内の各プロパティに対する制約を示す。以下の要素を含む。
     - データの所在（location）: JSONPath方式で記述されるデータの位置。
-    - presence：included（必須）、recommended（推奨）、または未指定（任意）とする。
+    - presence：included（必須）、recommended（推奨）、optional（任意）とする。
     - ScopeNoteの内容に基づいた値の定義や運用上の注意点。
 - Markdownテーブルの構成
   - 各Templateの末尾には、システム設計・実装時に参照しやすいよう、記述規則（Rules）を一覧化したテーブルを配置する。
@@ -181,7 +181,7 @@ CBT/デジタルドリルにおける主なユースケースは、学習者が�
 | **得点率**                           | `$.result.score.scaled`                                                                      | included    | (raw-min)/(max-min)                                                   |
 | **素点**                             | `$.result.score.raw`                                                                         | included    |                                                                       |
 | **最大点**                           | `$.result.score.max`                                                                         | included    |                                                                       |
-| **最小点**                           | `$.result.score.min`                                                                         |             |                                                                       |
+| **最小点**                           | `$.result.score.min`                                                                         | optional    |                                                                       |
 | **回答値**                           | `$.result.response`                                                                          | recommended |                                                                       |
 | **回答所要時間**                     | `$.result.duration`                                                                          | recommended |                                                                       |
 | **Assessment実施グループID**         | `$.context.contextActivities.grouping[*].id`                                                 | recommended | ある一回のAssessmentの取り組みに対して同一のIRIを記述。               |
@@ -262,11 +262,11 @@ CBT/デジタルドリルにおける主なユースケースは、学習者が�
 | **得点率**                           | `$.result.score.scaled`                                                                      | included    | (raw-min)/(max-min)                                                         |
 | **素点**                             | `$.result.score.raw`                                                                         | included    |                                                                             |
 | **最大点**                           | `$.result.score.max`                                                                         | included    |                                                                             |
-| **最小点**                           | `$.result.score.min`                                                                         |             |                                                                             | 
+| **最小点**                           | `$.result.score.min`                                                                         | optional    |                                                                             | 
 | **完了フラグ**                       | `$.result.completion`                                                                        | recommended | 学習者がAssessmentを最後まで完了した場合はtrue、途中終了しており採点者やシステムが完了判定した場合はfalse                                 |
 | **所要時間**                         | `$.result.duration`                                                                          | recommended | ISO 8601期間形式 (例: PT1H30M)                                              |
 | **Assessment実施グループID**         | `$.context.contextActivities.grouping[*].id`                                                 | recommended | ある一回のAssessmentの取り組みに対して同一のIRIを記述。                     |
-| **タイムスタンプ**                   | `$.timestamp`                                                                                | recommended | Assessmentの取り組みを開始した日時 |
+| **タイムスタンプ**                   | `$.timestamp`                                                                                | recommended | Assessmentの取り組みを終了した日時 |
 | **オブジェクト定義の名称(日本語)**    | `$.object.definition.name.ja-JP`                                                             | recommended | Assessmentの名称 | 
 | **オブジェクト定義の説明(日本語)**    | `$.object.definition.description.ja-JP`                                                      | recommended | Assessmentの説明 |
 

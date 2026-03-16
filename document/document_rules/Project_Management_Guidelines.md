@@ -55,8 +55,8 @@ xAPI Japan Profiles における IRI（Internationalized Resource Identifier）�
 
 **既存 Verb に該当するものがない場合のみ**、w3id ドメインで新規定義する：
 
-- IRI 形式：`https://w3id.org/japan-xapi/verbs/[verb-id]`
-- 例：`https://w3id.org/japan-xapi/verbs/highlighted`
+- IRI 形式：`https://w3id.org/xapi-japan-profiles/core/verbs/[verb-id]`
+- 例：`https://w3id.org/xapi-japan-profiles/core/verbs/highlighted`
 
 **定義手順：**
 1. 既存 Verb の調査（ADL Registry、既存プロファイル等）
@@ -81,8 +81,8 @@ Verb と同様の方針を適用する：
 
 既存に該当するものがない場合のみ、新規定義する：
 
-- IRI 形式：`https://w3id.org/japan-xapi/activity-types/[type-id]`
-- 例：`https://w3id.org/japan-xapi/activity-types/group-lst/tool`
+- IRI 形式：`https://w3id.org/xapi-japan-profiles/core/activitytypes/[type-id]`
+- 例：`https://w3id.org/xapi-japan-profiles/core/activitytypes/group-lst/tool`
 
 ### 2.4 Extension の設計規則
 
@@ -93,14 +93,14 @@ Extension は原則として独自定義する。一つの Extension は「Activ
 IRI 形式は Extension のタイプによらず統一される：
 
 **Core Profile の Extension:**
-- IRI 形式：`https://w3id.org/japan-xapi/extensions/[extension-id]`
-- 例（ActivityExtension のみ）：`https://w3id.org/japan-xapi/extensions/purpose-of-question`
-- 例（ContextExtension のみ）：`https://w3id.org/japan-xapi/extensions/assessment-type`
-- 例（両方兼用）：`https://w3id.org/japan-xapi/extensions/subject`
+- IRI 形式：`https://w3id.org/xapi-japan-profiles/core/extensions/[extension-id]`
+- 例（ActivityExtension のみ）：`https://w3id.org/xapi-japan-profiles/core/extensions/purpose-of-question`
+- 例（ContextExtension のみ）：`https://w3id.org/xapi-japan-profiles/core/extensions/assessment-type`
+- 例（両方兼用）：`https://w3id.org/xapi-japan-profiles/core/extensions/subject`
 
 **Domain 固有 Extension:**
-- IRI 形式：`https://w3id.org/japan-xapi/[domain]/extensions/[extension-id]`
-- 例：`https://w3id.org/japan-xapi/ebook/extensions/launch-reason`
+- IRI 形式：`https://w3id.org/xapi-japan-profiles/[domain]/extensions/[extension-id]`
+- 例：`https://w3id.org/xapi-japan-profiles/ebook/extensions/launch-reason`
 
 #### 2.4.2 Extension のタイプ
 
@@ -141,9 +141,9 @@ IRI 形式は Extension のタイプによらず統一される：
 実際の Statement に記述する Concept IRI は、**バージョンを含まない形式**（unversioned）を使用する：
 
 ```
-https://w3id.org/japan-xapi/verbs/[verb-id]
-https://w3id.org/japan-xapi/activity-types/[type-id]
-https://w3id.org/japan-xapi/extensions/[extension-id]
+https://w3id.org/xapi-japan-profiles/core/verbs/[verb-id]
+https://w3id.org/xapi-japan-profiles/core/activitytypes/[type-id]
+https://w3id.org/xapi-japan-profiles/core/extensions/[extension-id]
 ```
 
 **理由**：
@@ -156,7 +156,7 @@ https://w3id.org/japan-xapi/extensions/[extension-id]
 Profile の JSON-LD ファイルは、**バージョンを含む IRI**（versioned）を使用する：
 
 ```
-https://w3id.org/japan-xapi/profiles/core/v1.0.0/core_profile.jsonld
+https://w3id.org/xapi-japan-profiles/core/v1.0.0/core_profile.jsonld
 https://w3id.org/xapi-japan-profiles/ebook/v1.0.0/ebook_profile.jsonld
 https://w3id.org/xapi-japan-profiles/lms/v1.0.0/lms_profile.jsonld
 https://w3id.org/xapi-japan-profiles/assessment/v1.0.0/assessment_profile.jsonld
@@ -386,7 +386,7 @@ xAPI Japan Profiles は、**セマンティックバージョニング**（Seman
 xAPI Japan Profiles のリポジトリは、以下の構造に従う：
 
 ```
-japan-xapi-profiles/ (ルート)
+xapi-japan-profiles/ (ルート)
 ├── core/                               # Core プロファイル（共通の用語定義）
 │   ├── v1.0.0/
 │   │   ├── core_profile.md             # Markdown ドキュメント
@@ -435,9 +435,8 @@ japan-xapi-profiles/ (ルート)
 ├── document/                           # プロジェクト全体のドキュメント
 │   └── document_rules/
 │       ├── Domain_Profile_Guidelines.md
-│       ├── Core_Profile_Guidelines.md
 │       ├── Project_Management_Guidelines.md
-│       └── draft共通テンプレート_new.md
+│       └── Domain_Profile_template.md
 │
 └── README.md                           # プロジェクト全体の README
 ```
@@ -496,9 +495,8 @@ japan-xapi-profiles/ (ルート)
 
 **内容**：
 - Domain Profile Guidelines
-- Core Profile Guidelines
 - Project Management Guidelines
-- 共通テンプレート
+- Domain Profile Template
 
 ### 4.3 バージョンディレクトリの管理
 
@@ -576,7 +574,7 @@ Catalog は、複数のプロファイル間の関係を管理するためのメ
   },
   "profiles": [
     {
-      "id": "https://w3id.org/japan-xapi/profiles/core",
+      "id": "https://w3id.org/xapi-japan-profiles/core",
       "currentVersion": "v1.0.0",
       "versions": ["v1.0.0", "v1.0.1"]
     },
@@ -586,7 +584,7 @@ Catalog は、複数のプロファイル間の関係を管理するためのメ
       "versions": ["v1.0.0", "v1.1.0"],
       "dependencies": [
         {
-          "profile": "https://w3id.org/japan-xapi/profiles/core",
+          "profile": "https://w3id.org/xapi-japan-profiles/core",
           "versionRange": "v1.x"
         }
       ]
@@ -597,7 +595,7 @@ Catalog は、複数のプロファイル間の関係を管理するためのメ
       "versions": ["v1.0.0"],
       "dependencies": [
         {
-          "profile": "https://w3id.org/japan-xapi/profiles/core",
+          "profile": "https://w3id.org/xapi-japan-profiles/core",
           "versionRange": "v1.x"
         }
       ]
@@ -750,7 +748,7 @@ Catalog は、複数のプロファイル間の関係を管理するためのメ
 - [Semantic Versioning](https://semver.org/)
 - [W3C Permanent Identifier (w3id.org)](https://w3id.org/)
 - Domain Profile Guidelines
-- Core Profile Guidelines
+- Domain Profile Template
 
 ### 8.3 統合元ドキュメント
 

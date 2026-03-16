@@ -134,10 +134,10 @@ Assessment Profile は、デジタルドリルやCBT（Computer Based Testing）
 ebook Profile は、電子書籍型デジタル教材上での閲覧行動を記録するためのプロファイルである。
 電子書籍の標準的なUIとして一般的に備わる機能を起点とし、以下の操作を対象とする。
 
-- **プラットフォーム関連操作**: 起動 (`launched`) / 終了 (`terminated`)。
+- **プラットフォーム関連操作**: プラットフォームの起動 (`launched`) / 終了 (`terminated`)。
 - **紙面表示関連操作**: 紙面の表示 (`open`) / 非表示 (`close`)。
 - **読書関連操作**: ページ送り、戻り、特定ページへの遷移を含むページ移動 (`viewed`)。
-- **注釈機能**: しおり (`bookmarked`)、書き込み (`annotated`)、削除 (`delete`)。
+- **注釈機能**: しおり (`bookmarked`)、書き込み作成 (`annotated`)。
 
 **本プロジェクトの成果**
 

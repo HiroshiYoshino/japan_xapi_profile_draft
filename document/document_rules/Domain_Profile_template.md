@@ -5,11 +5,11 @@
 
 ---
 
-# 1.　本ドキュメントについて
+# 1.　本プロファイルについて
 
 ## 1.1　位置づけ
 
-　本ドキュメントは、日本の教育DX事業者が共有して利用するスタディ・ログ（xAPI形式）の仕様策定に向け、ICT CONNECT 21ワーキンググループの配下に設置されたxAPIサブワーキンググループの1つである[ドメイン名]TFにおける学習ログを対象として取りまとめた **xAPI Japan Profiles [Domain] Profile** 標準仕様である。  
+　本プロファイルは、日本の教育DX事業者が共有して利用するスタディ・ログ（xAPI形式）の仕様策定に向け、ICT CONNECT 21ワーキンググループの配下に設置されたxAPIサブワーキンググループの1つである[ドメイン名]TFにおける学習ログを対象として取りまとめた **xAPI Japan Profiles [Domain] Profile** 標準仕様である。  
 　本仕様は、[ドメイン名]分野に記載されている特性を踏まえ、[対象システム・環境]上で発生する[主な活動内容]に関する学習ログを体系的に記録するための仕様である。
 
 ### 1.1.1　共通方針
@@ -23,29 +23,29 @@
 
 ## 1.2　目的
 
-　本ドキュメントは、[ドメイン名]における学習ログについて、関係する事業者間で共通の理解のもとに取り扱うことを可能とするため、[Domain]プロファイルとしての考え方および記述の枠組みを整理し、共有することを目的とする。
+　本プロファイルは、[ドメイン名]における学習ログについて、関係する事業者間で共通の理解のもとに取り扱うことを可能とするため、[Domain] Profileとしての考え方および記述の枠組みを整理し、共有することを目的とする。
 
 ## 1.3　前提条件
 
-　本ドキュメントにおける各ユースケースは、xAPIプロファイル仕様で定義されているStatementTemplateおよびStatementTemplateRulesの構造および考え方に準拠して記載する。  
+　本プロファイルにおける各ユースケースは、xAPIプロファイル仕様で定義されているStatementTemplateおよびStatementTemplateRulesの構造および考え方に準拠して記載する。  
 　本仕様書の記述は、特定製品を前提とせず、現実的な範囲の「架空ツール」を想定して行う。この前提により、既存システムとの部分的不一致や未確定要素に起因する議論停滞を回避する。  
-　本ドキュメントに記載される語彙（Verb、ActivityType、Extension等）は以下のいずれかに整理される。(1) 本プロファイル内のConceptsに定義した語彙を使用する。(2) ADLや他の標準で定義済みの語彙を直接参照する。Domain Profile（本プロファイルはDomain Profileの1つ）として[Domain] Profileは Statement Templateおよび Rules の定義を中心に記述し、Conceptsは必要に応じて記載する。  
+　本プロファイルに記載される語彙（Verb、ActivityType、Extension等）は以下のいずれかに整理される。(1) 必要に応じて本プロファイル内のConceptsで定義する。(2) ADLや他の標準で定義済みの語彙を直接参照する。  
 　各ユースケースに付随するStatementTemplate要素表には、StatementTemplateを構成する要素を示している。ただし、actorについては全ユースケース共通でAgentとするため、各ユースケースの規範表への個別の記載は行わないものとする。  
-　本ドキュメントは、[ドメイン名]における学習ログの標準的な解釈および実装方針を読み手が理解しやすい形で示すことを主目的とした仕様書である。このため、xAPIプロファイル仕様上は必須である項目のうち、機械処理やプロファイル登録といった運用段階において主に必要となる項目については、本書の目的に照らし記載を省略する。省略理由は下記に示すとおりである。
+　本プロファイルは、[ドメイン名]における学習ログの標準的な解釈および実装方針を読み手が理解しやすい形で示すことを主目的とした仕様書である。このため、xAPIプロファイル仕様上は必須である項目のうち、機械処理やプロファイル登録といった運用段階において主に必要となる項目については、本書の目的に照らし記載を省略する。省略理由は下記に示すとおりである。
 
 - typeに期待される固定値StatementTemplate
-  - 省略理由：typeに指定される固定値StatementTemplateは、JSON-LD形式における機械可読性を担保するための項目である。本ドキュメントでは、読み手による理解を前提とした仕様書として、StatementTemplateの構造および位置づけを章構成および見出しによって明示しているため、当該項目は省略する。
+  - 省略理由：typeに指定される固定値StatementTemplateは、JSON-LD形式における機械可読性を担保するための項目である。本プロファイルでは、読み手による理解を前提とした仕様書として、StatementTemplateの構造および位置づけを章構成および見出しによって明示しているため、当該項目は省略する。
 
 　なお、この項目については、将来的にプロファイルの登録や機械可読な形式での提供が必要となる場合に、改めて検討することとする。
 
 ## 1.4　定義範囲
 
-　本ドキュメントは、xAPI Japan Profiles [Domain] Profileを構成する要素のうち、メタ情報、（必要に応じた）Concepts、各操作行動に対応するStatementTemplateおよびStatementのRulesを定義することを目的とする。ただし、[ドメイン名]における学習行動が非線形である特性を踏まえ、xAPIプロファイルにおける patternsは定義の対象外とする。  
-　本ドキュメントは、実装者がJSON形式のプロファイル（StatementTemplateを含む）を理解し、xAPI Statementを正しく生成するための実装補助資料である。定義された各ユースケースの構造やサンプルは、プロファイルビューアーにJSONファイルを読み込ませることで直接確認することができる。
+　本プロファイルは、xAPI Japan Profiles [Domain] Profileを構成する要素のうち、メタ情報、（必要に応じた）Concepts、各操作行動に対応するStatementTemplateおよびStatementのRulesを定義することを目的とする。ただし、[ドメイン名]における学習行動が非線形である特性を踏まえ、xAPIプロファイルにおけるPatternsは定義の対象外とする。  
+　本プロファイルは、実装者がJSON形式のプロファイル（StatementTemplateを含む）を理解し、xAPI Statementを正しく生成するための実装補助資料である。定義された各ユースケースの構造やサンプルは、プロファイルビューアーにJSONファイルを読み込ませることで直接確認することができる。
 
-## 1.5　本ドキュメントの構成について
+## 1.5　本プロファイルの構成について
 
-　本紙は、xAPIプロファイル仕様に基づき、[ドメイン名]学習ログに関する標準的な解釈および実装方針を示すことを目的とする。本紙は、以下の要素を含む。
+　本プロファイルは、xAPIプロファイル仕様に基づき、[ドメイン名]学習ログに関する標準的な解釈および実装方針を示すことを目的とする。本プロファイルは、以下の要素を含む。
 
 - メタ情報：プロファイル全体のメタ情報およびバージョン管理
 - Concepts：必要に応じたVerb、ActivityType、Extensionsの定義
@@ -65,7 +65,7 @@
 
 | 項目                     | 説明                                   | 値                                                           |
 | :----------------------- | :------------------------------------- | :----------------------------------------------------------- |
-| **id**                   | プロファイルIRI                        | `https://w3id.org/xapi-japan-profiles/[domain]/v1.0.0`       |
+| **id**                   | プロファイルIRI                        | `https://w3id.org/xapi-japan-profiles/[domain]/v1.0.0`      |
 | **type**                 | オブジェクトタイプ                     | `Profile`                                                    |
 | **conformsTo**           | 準拠するxAPI Profile仕様               | `https://w3id.org/xapi/profiles#1.0`                         |
 | プロファイル名 prefLabel | プロファイルを識別する名称             | xAPI Japan Profiles [Domain] Profile                         |
@@ -76,40 +76,18 @@
 | 目的/説明 definition     | プロファイルが対象とする学習ログや用途 | 日本の初等中等教育における[ドメイン名]学習ログ標準プロファイル |
 | ドキュメントバージョン   | 文書版数                               | 2026年度版                                                   |
 
-## 2.3　共通記述規則
+## 2.3　記述規則の記載方針
 
-　本プロファイルで定義するすべてのStatementTemplateに対して、以下のRulesを適用する。
+　本プロファイルでは、xAPI Profile Specification および xAPI-Specで規定されている内容と同一の項目は重複して記載しない。  
+　各StatementTemplateでは、[Domain] Profileとして個別に明示する必要がある項目のみを、当該Templateの記述規則（Rules）に記載する。
 
-| 項目                               | Location (JSONPath)                        | Presence    |
-| :--------------------------------- | :----------------------------------------- | :---------- |
-| **ステートメントID**               | `$.id`                                     | included    |
-| **タイムスタンプ**                 | `$.timestamp`                              | included    |
-| **アクター**                       | `$.actor`                                  | included    |
-| **アクターのオブジェクトタイプ**   | `$.actor.objectType`                       | included    |
-| **アクターのアカウントホームページ** | `$.actor.account.homePage`                 | included    |
-| **アクターのアカウント名**         | `$.actor.account.name`                     | included    |
-| **動詞の表示名(英語)**             | `$.verb.display.en`                        | included    |
-| **オブジェクトのオブジェクトタイプ** | `$.object.objectType`                      | included    |
-| **オブジェクトID**                 | `$.object.id`                              | included    |
-| **オブジェクト定義のタイプ**       | `$.object.definition.type`                 | included    |
-| **オブジェクト定義の名称(日本語)** | `$.object.definition.name.ja-JP`        | recommended |
-| **オブジェクト定義の説明(日本語)** | `$.object.definition.description.ja-JP` | recommended |
-| **コンテキスト**                   | `$.context`                                | included    |
-| **コンテキストの言語**             | `$.context.language`                       | included    |
-| **コンテキストのプラットフォーム** | `$.context.platform`                       | included    |
-| **プロファイルバージョン**         | `$.version`                                | included    |
-
-# 3. [ドメイン名]に関するユースケース
+# 3.　[ドメイン名]に関するユースケース
 
 ## 3.1　本章の位置づけ
-
-> **記述ガイド**: 本章では、対象ドメインにおける学習活動の特性を述べ、本プロファイルで定義するStatementTemplateの背景にある考え方を示す。
 
 　本章では、[ドメイン名]における学習活動の特性を述べ、本プロファイルで定義するStatementTemplateの背景にある考え方を示す。
 
 ## 3.2　[ドメイン名]の特性と主な活動
-
-> **記述ガイド**: 対象ドメインの特性（非線形性、協働特性など）を記述し、主な学習活動の例を列挙する。
 
 [ドメイン名]における主なユースケースは、[主要な学習活動の説明]である。
 
@@ -121,26 +99,21 @@
 
 ## 3.3　本プロジェクトの成果と今後の課題
 
-> **記述ガイド**: 
-> - **本プロジェクトの成果**: 本プロファイルで定義したStatementTemplateの範囲と実装内容を簡潔に記述。スコープ外の機能や今後の課題への前置きを含める。
-> - **今後の課題**: 複数項目（3～4項目）を番号付きリストで記載。各項目の形式は「**課題名**: 説明」とする。
-
 **本プロジェクトの成果**
 
-- 本プロファイルでは、[実装範囲：例：プラットフォーム起動・終了、ページ移動、読書時間の記録]を記録するStatementTemplateを定義した。これにより、[実現される効果：例：学習者の読書行動をきめ細かく追跡]することが可能になる。一方で、[スコープ外の機能：例：電子書籍の閲覧行動は極めて非線形であり、行動パターン定義は対象外]としている。
+- 本プロファイルでは、[実装範囲]を記録するStatementTemplateを定義した。これにより、[実現される効果]が可能になる。一方で、[スコープ外の機能]は対象外としている。
 
 **今後の課題**
 
-- **[課題名1]**: [説明：例：生体情報との連携 - 視線追跡やアイトラッキングなど、学習者の生理的反応を含めた分析への対応。]
-- **[課題名2]**: [説明：例：注釈情報の構造化 - ハイライトやしおり等の注釈データの意味的関連性を分析するための構造化。]
+- **[課題名1]**: [説明]
+- **[課題名2]**: [説明]
 - **[課題名3]**: [説明]
-- **[課題名4]**: [説明]
 
 # 4.　StatementTemplate
 
 ## 4.1　本章の位置づけ
 
-　本章では、[Domain]プロファイルにおける各操作のデータ構造を定義する。各テンプレートは以下の「基本仕様」および「記述規則」の構成で記述される。
+　本章では、[Domain] Profileにおける各操作のデータ構造を定義する。各テンプレートは以下の「基本仕様」および「記述規則」の構成で記述される。
 
 ## 4.2　前提条件
 
@@ -153,10 +126,14 @@
 - 記述規則（Rules）
   - Statement内の各プロパティに対する制約を示す。以下の要素を含む。
     - データの所在（location）: JSONPath方式で記述されるデータの位置。
-    - presence：included（必須）、recommended（推奨）、optional（任意）のいずれか1つ。
+    - presence：included（必須）、recommended（推奨）、optional（任意）とする。
     - ScopeNoteの内容に基づいた値の定義や運用上の注意点。
-- Markdownテーブルの構成
-  - 各Templateの末尾には、システム設計・実装時に参照しやすいよう、記述規則（Rules）を一覧化したテーブルを配置する。
+- Rulesテーブルの構成
+  - 各Templateの記述規則（Rules）は、以下の4列で記載する：
+    - 項目
+    - Location (JSONPath)
+    - Presence
+    - 説明(scopeNote)
 
 ## 4.3　StatementTemplate一覧
 
@@ -167,62 +144,29 @@
 - [操作内容の説明]を記録するためのテンプレート。
 - 識別情報
 
-| 項目     | 値                                                             |
-| :------- | :--------------------------------------------------------------- |
-| id       | https://w3id.org/xapi-japan-profiles/[domain]/templates/v1.0.0/[template-id] |
-| inScheme | https://w3id.org/xapi-japan-profiles/[domain]/v1.0.0            |
-| prefLabel | [操作名]                                                      |
+| 項目 | 値 |
+| :--- | :--- |
+| id | https://w3id.org/xapi-japan-profiles/[domain]/templates/v1.0.0/[template-id] |
+| inScheme | https://w3id.org/xapi-japan-profiles/[domain]/v1.0.0 |
+| prefLabel | [操作名] |
 
 - 判定条件
 
-| 項目              | 値                                                                 |
-| :---------------- | :----------------------------------------------------------------- |
-| verb              | [Verb IRI（例：http://adlnet.gov/expapi/verbs/launched）]           |
-| objectActivityType | [ActivityType IRI（例：https://w3id.org/japan-xapi/activity-types/[domain]/xxx）] |
-
-> **記述ガイド**: 
-> - Verbは、Core Profileで定義されたもの、またはADL等の既存標準を参照する
-> - objectActivityTypeも同様に、Core Profileまたは既存標準を参照する
+| 項目 | 値 |
+| :--- | :--- |
+| verb | [Verb IRI] |
+| objectActivityType | [ActivityType IRI] |
 
 #### 4.3.1.2　記述規則（Rules）
 
-> **記述ガイド**: 
-> - 各Ruleは番号付きリストで記述する
-> - JSONPathは `$.` で始まり、Extensions は IRI をクォーテーションで囲む
-> - Presenceは included / recommended / optional のいずれか
-> - 共通記述規則（2.3）に記載済みの項目は、個別TemplateのRulesに重複記載しない
-> - Core Profile参照の場合は「(Core Profile参照)」と明記
-> - Domain固有の場合は「([Domain名] Domain固有)」と明記
-> - 補足がある場合は [!NOTE] ブロックで記述する
-
-1. $.object.id
-   1. included
-   2. [説明：例：開始された[ドメイン]を識別するIRIまたはURLを設定]
-2. $.object.definition.name.ja-JP
-   1. recommended
-   2. [説明：例：オブジェクトの日本語表示名]
-3. $.object.definition.extensions['https://w3id.org/japan-xapi/extensions/[extension-id]']
-   1. recommended
-   2. [説明] (Activity拡張, Core Profile参照 / [Domain名] Domain固有)
-      - [値の範囲や例を記述]
-4. $.context.extensions['https://w3id.org/japan-xapi/extensions/[extension-id]']
-   1. recommended
-   2. [説明] (Context拡張, Core Profile参照 / [Domain名] Domain固有)
-      - [値の範囲や例を記述]
-
-#### 4.3.1.3　Markdownテーブル
-
-| 項目     | 説明 | Location (JSONPath)                                      | Presence    |
-| :------- | :--- | :------------------------------------------------------- | :---------- |
-| **[項目名]** | [詳細説明]                                              | `$.object.id`                                                | included    |
-| **[項目名]** | [詳細説明]                                              | `$.object.definition.name.ja-JP`                          | recommended |
-| **[項目名]（Activity拡張）** | [詳細説明]<br>Core Profile参照 / Domain固有 | `$.object.definition.extensions['https://w3id.org/...']`     | recommended |
-| **[項目名]（Context拡張）** | [詳細説明]<br>Core Profile参照 / Domain固有  | `$.context.extensions['https://w3id.org/...']`               | recommended |
+| 項目 | Location (JSONPath) | Presence | 説明(scopeNote) |
+| :--- | :--- | :--- | :--- |
+| **[項目名]** | `$.object.id` | included | [説明：例：対象を識別するIRI/URLを設定] |
+| **[項目名]** | `$.timestamp` | recommended | [説明：活動が行われた日時を設定] |
+| **[項目名]（Activity拡張）** | `$.object.definition.extensions['https://w3id.org/xapi-japan-profiles/[domain]/extensions/[extension-id]']` | recommended | [説明] (Core Profile参照 / [Domain名] Domain固有) |
 
 > [!NOTE]
-> - [補足や条件がある場合に記載]
-
----
+> - 補足条件がある場合はここに記載する。
 
 ### 4.3.2　[操作名2]
 
@@ -231,31 +175,25 @@
 - [操作内容の説明]を記録するためのテンプレート。
 - 識別情報
 
-| 項目     | 値                                                              |
-| :------- | :--------------------------------------------------------------- |
-| id       | https://w3id.org/xapi-japan-profiles/[domain]/templates/v1.0.0/[template-id-2] |
-| inScheme | https://w3id.org/xapi-japan-profiles/[domain]/v1.0.0            |
-| prefLabel | [操作名2]                                                     |
+| 項目 | 値 |
+| :--- | :--- |
+| id | https://w3id.org/xapi-japan-profiles/[domain]/templates/v1.0.0/[template-id-2] |
+| inScheme | https://w3id.org/xapi-japan-profiles/[domain]/v1.0.0 |
+| prefLabel | [操作名2] |
 
 - 判定条件
 
-| 項目              | 値               |
-| :---------------- | :--------------- |
-| verb              | [Verb IRI]       |
+| 項目 | 値 |
+| :--- | :--- |
+| verb | [Verb IRI] |
 | objectActivityType | [ActivityType IRI] |
 
 #### 4.3.2.2　記述規則（Rules）
 
-1. $.object.id
-   1. included
-   2. [説明]
-2. [その他のRules...]
-
-#### 4.3.2.3　Markdownテーブル
-
-| 項目     | 説明 | Location (JSONPath) | Presence |
-| :------- | :--- | :------------------ | :------- |
-| [項目名] | [説明] | [JSONPath]          | [Presence] |
+| 項目 | Location (JSONPath) | Presence | 説明(scopeNote) |
+| :--- | :--- | :--- | :--- |
+| **[項目名]** | `$.object.id` | included | [説明] |
+| **[その他の項目]** | [JSONPath] | [Presence] | [説明] |
 
 ---
 
@@ -263,63 +201,28 @@
 
 ### 1. プレースホルダーの置換
 
-以下のプレースホルダーを実際の値に置き換えてください：
-
-- `[ドメイン名]`: CBT、LMS、eBook、Group Learning Support Tool 等
-- `[Domain]`: CBT、LMS、eBook、Group-LST 等（表示名）
-- `[domain]`: cbt、lms、ebook、group-lst 等（IRI用小文字）
-- `[操作名]`: 具体的な操作の名称（例：プラットフォームの起動、課題の作成）
-- `[template-id]`: テンプレートのID（例：platform-launched、assignment-created）
-- `[Verb IRI]`: 動詞のIRI（Core ProfileまたはADL等の既存標準を参照）
-- `[ActivityType IRI]`: アクティビティタイプのIRI
-- `[extension-id]`: 拡張フィールドのID
+- `[ドメイン名]`: CBT、LMS、ebook、Group Learning Support Tool 等
+- `[Domain]`: Assessment、LMS、ebook、Group-LST 等（表示名）
+- `[domain]`: assessment、lms、ebook、group-lst 等（IRI用小文字）
+- `[操作名]`: 具体的な操作名称
+- `[template-id]`: テンプレートID
+- `[Verb IRI]`: Core Profileまたは既存標準のVerb IRI
+- `[ActivityType IRI]`: ActivityType IRI
+- `[extension-id]`: 拡張項目ID
 
 ### 2. ドキュメント作成の流れ
 
-1. **メタ情報の記入**
-   - プロファイル名、作成日、説明を記入
-   - 作成日は2026-04-01に統一（または最新版の日付）
+1. メタ情報を記入する。
+2. ユースケースを定義する。
+3. StatementTemplate（基本仕様／記述規則）を記述する。
+4. Core Profile参照とDomain固有語彙の区別を確認する。
+5. ガイドラインのチェックリストで整合性を確認する。
 
-2. **ユースケースの定義**
-   - 対象ドメインの特性と主な学習活動を記述
-
-3. **StatementTemplateの作成**
-   - 各操作に対して、基本仕様・記述規則・Markdownテーブルを記述
-   - Domain Profile Guidelinesに従って記述
-
-4. **Core Profile参照の確認**
-   - 使用する語彙がCore Profileに定義されているか確認
-   - 未定義の場合は新規語彙検討フローに従う
-
-5. **整合性チェック**
-   - Domain Profile Guidelinesのチェックリストを使用
-
-### 3. 各セクションの記述ポイント
-
-#### 基本仕様
-- Templateの目的を1文で簡潔に説明
-- 識別情報（id, inScheme, prefLabel）を正確に記入
-- 判定条件（Verb, objectActivityType）を明記
-
-#### 記述規則（Rules）
-- JSONPathを正確に記述（Extensionsはクォーテーション必須）
-- Presenceを適切に選択（included / recommended / optional）
-- Core Profile参照か Domain固有かを明記
-- 値の範囲や例があれば記述
-
-#### Markdownテーブル
-- Rulesの内容を一覧表にまとめる
-- 複数行の説明は `<br>` で改行
-- 表のアライメントを統一（左揃え `:---`）
-
-### 4. 参考資料
+### 3. 参考資料
 
 - [Domain Profile Guidelines](./Domain_Profile_Guidelines.md)
 - [Core Profile Guidelines](./Core_Profile_Guidelines.md)
-- 既存のDomain Profile
-  - [CBT Profile](../../cbt/v1.0.0/cbt_profile.md)
-  - [LMS Profile](../../lms/v1.0.0/lms_profile.md)
-  - [eBook Profile](../../ebook/v1.0.0/ebook_profile.md)
-  - [Group-LST Profile](../../group-lst/v1.0.0/group-lst_profile.md)
-
----
+- [assessment Profile](../../assessment/v1.0.0/assessment_profile.md)
+- [LMS Profile](../../lms/v1.0.0/lms_profile.md)
+- [ebook Profile](../../ebook/v1.0.0/ebook_profile.md)
+- [Group-LST Profile](../../group-lst/v1.0.0/group-lst_profile.md)

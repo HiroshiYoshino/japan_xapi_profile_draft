@@ -2,7 +2,7 @@
 
 ## 1. 概要
 
-本ドキュメントは、xAPI Japan Profiles における Domain Profile（Assessment, LMS, ebook, Group Learning Support Tool等）の記述方式を統一するためのガイドラインである。
+本プロファイルは、xAPI Japan Profiles における Domain Profile（Assessment, LMS, ebook, Group Learning Support Tool等）の記述方式を統一するためのガイドラインである。
 
 各 Domain Profile が Statement Template および Rules を定義する際に、本ガイドラインに従うことで、プロファイル間での解釈の一貫性を確保し、実装者による混乱を低減する。
 
@@ -55,7 +55,7 @@ xAPI Japan Profilesは以下の階層構造を持つ：
 
 すべての Domain Profile は以下の構成に従う：
 
-#### 1. 本ドキュメントについて
+#### 1. 本プロファイルについて
 
 ##### 1.1 位置づけ
 - 本プロファイルの標準仕様としての位置づけを記述
@@ -63,7 +63,7 @@ xAPI Japan Profilesは以下の階層構造を持つ：
 
 **記述例：**
 ```markdown
-本ドキュメントは、日本の教育DX事業者が共有して利用するスタディ・ログ（xAPI形式）の仕様策定に向け、ICT CONNECT 21ワーキンググループの配下に設置されたxAPIサブワーキンググループの1つである[ドメイン名]TFにおける学習ログを対象として取りまとめた **xAPI Japan Profiles [Domain] Profile** 標準仕様である。
+本プロファイルは、日本の教育DX事業者が共有して利用するスタディ・ログ（xAPI形式）の仕様策定に向け、ICT CONNECT 21ワーキンググループの配下に設置されたxAPIサブワーキンググループの1つである[ドメイン名]TFにおける学習ログを対象として取りまとめた **xAPI Japan Profiles [Domain] Profile** 標準仕様である。
 ```
 
 ##### 1.2 目的
@@ -76,8 +76,8 @@ xAPI Japan Profilesは以下の階層構造を持つ：
 
 **統一記述（必須）：**
 ```markdown
-本ドキュメントにおける各ユースケースは、xAPIプロファイル仕様で定義されているStatementTemplateおよびStatementTemplateRulesの構造および考え方に準拠して記載する。
-本ドキュメントに記載されるStatementTemplateで使用される語彙（Verb、ActivityType、Extension等）は以下のいずれかに整理される。(1) SWG独自に定義した語彙を使用する場合、Core Profile内のConceptsに定義されている。(2) ADLや他の標準で定義済みの語彙を使用する場合、それらを直接参照し、Domain Profileで再定義しない。Domain Profile（本プロファイルはDomain Profileの1つ）として[Domain] Profileは Statement Templateおよび Rules の定義に集中し、語彙定義はCore Profileに委譲する。
+本プロファイルにおける各ユースケースは、xAPIプロファイル仕様で定義されているStatementTemplateおよびStatementTemplateRulesの構造および考え方に準拠して記載する。
+本プロファイルに記載されるStatementTemplateで使用される語彙（Verb、ActivityType、Extension等）は以下のいずれかに整理される。(1) SWG独自に定義した語彙を使用する場合、Core Profile内のConceptsに定義されている。(2) ADLや他の標準で定義済みの語彙を使用する場合、それらを直接参照し、Domain Profileで再定義しない。Domain Profile（本プロファイルはDomain Profileの1つ）として[Domain] Profileは Statement Templateおよび Rules の定義に集中し、語彙定義はCore Profileに委譲する。
 各ユースケースに付随するStatementTemplate要素表には、StatementTemplateを構成する要素を示している。ただし、actorについては全ユースケース共通でAgentとするため、各ユースケースの規範表への個別の記載は行わないものとする。
 ```
 
@@ -88,7 +88,7 @@ xAPI Japan Profilesは以下の階層構造を持つ：
 - メタ情報、StatementTemplate、Rulesを定義対象とすることを明記
 - patternsは定義対象外（非線形特性のため）
 
-##### 1.5 本ドキュメントの構成について
+##### 1.5 本プロファイルの構成について
 - プロファイルに含まれる要素を列挙
 
 #### 2. メタ情報
@@ -114,30 +114,10 @@ xAPI Japan Profilesは以下の階層構造を持つ：
 | 目的/説明 definition     | プロファイルが対象とする学習ログや用途 | 日本の初等中等教育における[ドメイン]学習ログ標準プロファイル |
 | ドキュメントバージョン   | 文書版数                               | 2026年度版                                                   |
 
-##### 2.3 共通記述規則
+##### 2.3 記述規則の記載方針
 
-すべてのStatementTemplateに適用される共通Rulesを表形式で記載。
-
-**必須テーブル（すべてのDomainで統一）：**
-
-| 項目                               | Location (JSONPath)                        | Presence    |
-| :--------------------------------- | :----------------------------------------- | :---------- |
-| **ステートメントID**               | `$.id`                                     | included    |
-| **タイムスタンプ**                 | `$.timestamp`                              | included    |
-| **アクター**                       | `$.actor`                                  | included    |
-| **アクターのオブジェクトタイプ**   | `$.actor.objectType`                       | included    |
-| **アクターのアカウントホームページ** | `$.actor.account.homePage`                 | included    |
-| **アクターのアカウント名**         | `$.actor.account.name`                     | included    |
-| **動詞の表示名(英語)**             | `$.verb.display.en`                        | included    |
-| **オブジェクトのオブジェクトタイプ** | `$.object.objectType`                      | included    |
-| **オブジェクトID**                 | `$.object.id`                              | included    |
-| **オブジェクト定義のタイプ**       | `$.object.definition.type`                 | included    |
-| **オブジェクト定義の名称(日本語)** | `$.object.definition.name.ja-JP`        | recommended |
-| **オブジェクト定義の説明(日本語)** | `$.object.definition.description.ja-JP` | recommended |
-| **コンテキスト**                   | `$.context`                                | included    |
-| **コンテキストの言語**             | `$.context.language`                       | included    |
-| **コンテキストのプラットフォーム** | `$.context.platform`                       | included    |
-| **プロファイルバージョン**         | `$.version`                                | included    |
+本プロファイルでは、xAPI Profile Specification および xAPI-Spec で規定されている内容と同一の項目は重複して記載しない。
+各StatementTemplateでは、当該Domain Profileとして個別に明示する必要がある項目のみを、当該Templateの記述規則（Rules）に記載する。
 
 #### 3. Concepts（任意）
 
@@ -221,20 +201,17 @@ Domain Profile は以下の3.1～3.3の構成で記述する。
 ```
 
 #### X.X.X.2　記述規則（Rules）
-- Statement内の各プロパティに対する制約を番号付きリストで記述
-- 共通記述規則（2.3）に記載済みの項目は、個別TemplateのRulesに重複記載しない
+- Statement内の各プロパティに対する制約をMarkdownテーブルで記述
+- 2.3「記述規則の記載方針」に従い、個別Templateで必要な項目を記載する
 
 **記述形式：**
 ```markdown
 #### X.X.X.2　記述規則（Rules）
 
-1. [JSONPath]
-   1. [presence]
-   2. [説明]
+| 項目 | Location (JSONPath) | Presence | 説明(scopeNote) |
+| :--- | :--- | :--- | :--- |
+| [項目名] | [JSONPath] | [Presence] | [説明] |
 ```
-
-#### X.X.X.3　Markdownテーブル
-- システム設計・実装用の一覧表
 
 ---
 
@@ -261,8 +238,8 @@ Domain Profile は以下の3.1～3.3の構成で記述する。
 
 **例**：
 - `$.object.definition.name.ja-JP` - オブジェクト定義の日本語名称
-- `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/subject']` - 拡張フィールド
-- `$.context.extensions['https://w3id.org/japan-xapi/extensions/assessment-type']` - コンテキスト拡張
+- `$.object.definition.extensions['https://w3id.org/xapi-japan-profiles/core/extensions/subject']` - 拡張フィールド
+- `$.context.extensions['https://w3id.org/xapi-japan-profiles/core/extensions/assessment-type']` - コンテキスト拡張
 - `$.result.score.scaled` - 結果の得点率
 
 **注意点**：
@@ -301,11 +278,11 @@ Domain Profile は以下の3.1～3.3の構成で記述する。
    1. included
    2. 得点率 (0.0 - 1.0)
    
-2. $.context.extensions['https://w3id.org/japan-xapi/extensions/subject']
+2. $.context.extensions['https://w3id.org/xapi-japan-profiles/core/extensions/subject']
    1. recommended
    2. 教科・Activity拡張 (Core Profile参照)
    
-3. $.object.definition.extensions['https://w3id.org/japan-xapi/extensions/purpose-of-question']
+3. $.object.definition.extensions['https://w3id.org/xapi-japan-profiles/core/extensions/purpose-of-question']
    1. recommended
    2. 問題の趣旨 (Core Profile参照)
 ```
@@ -321,33 +298,31 @@ Domain Profile は以下の3.1～3.3の構成で記述する。
 **例**：
 
 ```
-1. $.object.definition.extensions['https://w3id.org/japan-xapi/extensions/subject']
+1. $.object.definition.extensions['https://w3id.org/xapi-japan-profiles/core/extensions/subject']
    1. recommended
    2. 教科 (Activity拡張, Core Profile参照)
 
-2. $.context.extensions['https://w3id.org/japan-xapi/extensions/assessment-type']
+2. $.context.extensions['https://w3id.org/xapi-japan-profiles/core/extensions/assessment-type']
    1. recommended
    2. 評価タイプ (Context拡張, Core Profile参照)
 
-3. $.context.extensions['https://w3id.org/japan-xapi/extensions/ebook/launch-reason']
+3. $.context.extensions['https://w3id.org/xapi-japan-profiles/ebook/extensions/launch-reason']
    1. recommended
    2. ビューア起動の理由 (Context拡張, ebook Domain固有)
 ```
 
 ---
 
-## 6. Markdown テーブルの記述方式
+## 6. Rulesテーブルの記述方式
 
 ### 6.1 基本構成
 
-すべての StatementTemplate は Rules リスト の後に、以下の構成の Markdown テーブルを配置する。
+すべての StatementTemplate は「記述規則（Rules）」節に、以下の構成のテーブルを配置する。
 
 ```markdown
-#### X.X.X.3　Markdownテーブル
-
-| 項目 | 説明 | Location (JSONPath) | Presence |
+| 項目 | Location (JSONPath) | Presence | 説明(scopeNote) |
 | :--- | :--- | :--- | :--- |
-| [項目名] | [説明] | [JSONPath] | [Presence] |
+| [項目名] | [JSONPath] | [Presence] | [説明] |
 ```
 
 ### 6.2 テーブル列の定義
@@ -355,32 +330,32 @@ Domain Profile は以下の3.1～3.3の構成で記述する。
 | 列名 | 説明 | 記述例 |
 |---|---|---|
 | **項目** | 項目名。 | `**教科**` |
-| **説明** | 日本語による説明と補注（ScopeNote）。複数行の場合は `<br>` で改行。 | `Core Profile で定義された教科 Extension。` |
-| **Location** | JSONPath 形式での位置。Extensions は IRI をクォーテーション。 | `$.object.definition.extensions['https://...']` |
+| **Location (JSONPath)** | JSONPath 形式での位置。Extensions は IRI をクォーテーション。 | `$.object.definition.extensions['https://...']` |
 | **Presence** | included, recommended, optional のいずれか。 | `included` |
+| **説明(scopeNote)** | 日本語による説明と補注（ScopeNote）。複数情報は1セルに記載。 | `Core Profile で定義された教科 Extension。` |
 
 ### 6.3 テーブル内の説明書き方
 
 **簡潔形**：1 行で記述
 
 ```
-| **得点率** | 0.0 から 1.0 の実数。 | `$.result.score.scaled` | included |
+| **得点率** | `$.result.score.scaled` | included | 0.0 から 1.0 の実数。 |
 ```
 
 **詳細形**：複数の情報を含める場合
 
 ```
-| **教科（Activity拡張）** | Core Profile で定義された教科 Extension。推奨値は学習指導要領コードに準じる。 | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/subject']` | recommended |
+| **教科（Activity拡張）** | `$.object.definition.extensions['https://w3id.org/xapi-japan-profiles/core/extensions/subject']` | recommended | Core Profile で定義された教科 Extension。推奨値は学習指導要領コードに準じる。 |
 ```
 
 ### 6.4 複数拡張がある場合の記述例
 
 ```markdown
-| 項目 | 説明 | Location (JSONPath) | Presence |
+| 項目 | Location (JSONPath) | Presence | 説明(scopeNote) |
 | :--- | :--- | :--- | :--- |
-| **教科（Activity拡張）** | Core Profile で定義。 | `$.object.definition.extensions['https://w3id.org/japan-xapi/extensions/subject']` | recommended |
-| **教科（Context拡張）** | Core Profile で定義。 | `$.context.extensions['https://w3id.org/japan-xapi/extensions/subject']` | recommended |
-| **評価タイプ** | diagnostic(診断的)、formative(形成的)、summative(総括的)のいずれか。 | `$.context.extensions['https://w3id.org/japan-xapi/extensions/assessment-type']` | recommended |
+| **教科（Activity拡張）** | `$.object.definition.extensions['https://w3id.org/xapi-japan-profiles/core/extensions/subject']` | recommended | Core Profile で定義。 |
+| **教科（Context拡張）** | `$.context.extensions['https://w3id.org/xapi-japan-profiles/core/extensions/subject']` | recommended | Core Profile で定義。 |
+| **評価タイプ** | `$.context.extensions['https://w3id.org/xapi-japan-profiles/core/extensions/assessment-type']` | recommended | diagnostic(診断的)、formative(形成的)、summative(総括的)のいずれか。 |
 ```
 
 ---
@@ -427,7 +402,7 @@ Domain Profile で使用する語彙は以下の3つに分類される：
 
 **例**：
 ```
-1. $.object.definition.extensions['https://w3id.org/japan-xapi/extensions/subject']
+1. $.object.definition.extensions['https://w3id.org/xapi-japan-profiles/core/extensions/subject']
    1. recommended
    2. 教科 (Core Profile参照)
 
@@ -463,7 +438,7 @@ Domain Profile で使用する語彙は以下の3つに分類される：
 
 **例**：
 ```
-1. $.context.extensions['https://w3id.org/japan-xapi/extensions/ebook/launch-reason']
+1. $.context.extensions['https://w3id.org/xapi-japan-profiles/ebook/extensions/launch-reason']
    1. recommended
    2. ビューア起動の理由 (ebook Domain固有)
 ```
@@ -542,7 +517,7 @@ ISO 8601 形式に統一する。
 複数の値を取ることを明示する場合：
 
 ```
-1. $.object.definition.extensions['https://w3id.org/japan-xapi/extensions/subject']
+1. $.object.definition.extensions['https://w3id.org/xapi-japan-profiles/core/extensions/subject']
    1. recommended
    2. 教科 (Core Profile参照、配列型)
 ```
@@ -562,10 +537,10 @@ ISO 8601 形式に統一する。
 | **Presence 定義** | included / recommended / optional の定義を統一 |
 | **JSONPath 形式** | `$.*` 方式で統一 |
 | **Extension 表記** | IRI をクォーテーションで統一 |
-| **テーブル列構成** | 4列（項目、説明、Location、Presence）で統一 |
+| **テーブル列構成** | 4列（項目、Location (JSONPath)、Presence、説明(scopeNote)）で統一 |
 | **Core 参照表記** | 「(Core Profile参照)」で統一 |
 | **Domain 固有表記** | 「([Domain名] Domain固有)」で統一 |
-| **共通記述規則** | 2.3節の17項目テーブルで統一 |
+| **記述規則の記載方針** | 2.3節は「重複記載を避け、各Templateで必要項目を個別記載」の方針で統一 |
 | **メタ情報項目** | 2.2節の10項目で統一 |
 
 ### 9.3 記載方法の整合性チェックリスト
@@ -576,7 +551,7 @@ ISO 8601 形式に統一する。
 - [ ] Presence は included / recommended / optional のいずれかか
 - [ ] Core Profile 参照の場合「(Core Profile参照)」と記載されているか
 - [ ] Domain 固有の場合「([Domain名] Domain固有)」と記載されているか
-- [ ] Markdown テーブルの列構成は「項目｜説明｜Location｜Presence」か
+- [ ] Rulesテーブルの列構成は「項目｜Location (JSONPath)｜Presence｜説明(scopeNote)」か
 - [ ] 説明は簡潔で、条件がある場合は詳細に記載されているか
 
 ---

@@ -70,27 +70,10 @@
 | 目的/説明 definition     | プロファイルが対象とする学習ログや用途 | 日本の初等中等教育における電子書籍学習ログのプロファイル |
 | ドキュメントバージョン   | 文書版数                               | 2026年度版                                                           |
 
-## 2.3　共通記述規則
+## 2.3　記述規則の記載方針
 
-　本プロファイルで定義するすべてのStatementTemplateに対して、xAPI Profile Specification および xAPI-Spec に基づき、以下のRulesを適用する。
-
-| 項目                               | Location (JSONPath)                        | Presence    |
-| :--------------------------------- | :----------------------------------------- | :---------- |
-| **ステートメントID**               | `$.id`                                     | included    |
-| **タイムスタンプ**                 | `$.timestamp`                              | recommended |
-| **アクター**                       | `$.actor`                                  | included    |
-| **アクターのオブジェクトタイプ**   | `$.actor.objectType`                       | included（accountを用いる場合） |
-| **アクターのアカウントホームページ** | `$.actor.account.homePage`                 | included（accountを用いる場合） |
-| **アクターのアカウント名**         | `$.actor.account.name`                     | included（accountを用いる場合） |
-| **動詞の表示名(英語)**             | `$.verb.display.en`                        | included    |
-| **オブジェクトのオブジェクトタイプ** | `$.object.objectType`                      | included    |
-| **オブジェクトID**                 | `$.object.id`                              | included    |
-| **オブジェクト定義のタイプ**       | `$.object.definition.type`                 | recommended    |
-| **オブジェクト定義の名称(日本語)** | `$.object.definition.name.ja-JP`           | recommended |
-| **オブジェクト定義の説明(日本語)** | `$.object.definition.description.ja-JP`    | recommended |
-| **コンテキスト**                   | `$.context`                                | included    |
-
-※ Presenceには included / excluded / recommended を用いる。本表には、全StatementTemplateに共通して指定する項目のみを記載する。表に記載していない項目は、各Templateで個別指定がない限り、共通記述規則としては未指定とする。
+　本プロファイルでは、xAPI Profile Specification および xAPI-Specで規定されている内容と同一の項目は重複して記載しない。
+　各StatementTemplateでは、ebook Profileとして個別に明示する必要がある項目のみを、当該Templateの記述規則（Rules）に記載する。
 
 # 3.　Concepts
 
@@ -127,30 +110,29 @@
 
 | 名称 | id | type | inlineSchema | 補足 |
 | :--- | :--- | :--- | :--- | :--- |
-| startPosition | `https://w3id.org/xapi-japan-profiles/ebook/extensions/startPosition` | ContextExtension | `type: string` | ページ移動前の開始位置を表す。 |
-| endPosition | `https://w3id.org/xapi-japan-profiles/ebook/extensions/endPosition` | ResultExtension | `type: string` | 操作後の終了位置や読了位置を表す。 |
-| navigationMethod | `https://w3id.org/xapi-japan-profiles/ebook/extensions/navigationMethod` | ResultExtension | `type: string, enum: ["paging", "index"]` | ページ移動の操作方法を表す。 |
-| contentPosition | `https://w3id.org/xapi-japan-profiles/ebook/extensions/contentPosition` | ResultExtension | `type: string` | コンテンツ内の位置情報を表す。 |
-| bookmarkId | `https://w3id.org/xapi-japan-profiles/ebook/extensions/bookmarkId` | ContextExtension | `type: string` | アプリ内で一意なブックマーク識別子を表す。 |
+| startPosition | `https://w3id.org/xapi-japan-profiles/ebook/extensions/startPosition` | ContextExtension | `type: string` | 学習行動の起点となる位置情報を表す。 |
+| endPosition | `https://w3id.org/xapi-japan-profiles/ebook/extensions/endPosition` | ResultExtension | `type: string` | 学習行動が終了した位置情報を表す。 |
+| navigationMethod | `https://w3id.org/xapi-japan-profiles/ebook/extensions/navigationMethod` | ResultExtension | `type: string, enum: ["paging", "index"]` | ページ移動や目次遷移などの移動方法を表す。 |
+| contentPosition | `https://w3id.org/xapi-japan-profiles/ebook/extensions/contentPosition` | ResultExtension | `type: string` | コンテンツ内の範囲情報を表す。 |
 | annotationTool | `https://w3id.org/xapi-japan-profiles/ebook/extensions/annotationTool` | ContextExtension | `type: string, enum: ["freehand", "straightline", "textinput"]` | 注釈作成に用いたツール種別を表す。 |
-| targetLocation | `https://w3id.org/xapi-japan-profiles/ebook/extensions/targetLocation` | ResultExtension | `type: string` | 書き込み対象の座標や範囲情報を表す。 |
+| targetLocation | `https://w3id.org/xapi-japan-profiles/ebook/extensions/targetLocation` | ResultExtension | `type: string` | 学習行動対象の矩形座標を表す。 |
 
 # 4.　電子書籍（ebook）における読書行動
 
 ## 4.1　本章の位置づけ
 
-　本章では、電子書籍（ebook）における読書活動の特性を述べ、本プロファイルで定義するStatementTemplateの背景にある考え方を示す。
+　本章では、電子書籍（ebook）における学習活動の特性を述べ、本プロファイルで定義するStatementTemplateの背景にある考え方を示す。
 
-## 4.2　電子書籍プラットフォームの特性と主な学習活動
+## 4.2　電子書籍型デジタル教材プラットフォームの特性と主な学習行動
 
-　電子書籍プラットフォームは、デジタル教科書環境において学習者の読書行動をきめ細かく記録する環境を提供する。  
+　電子書籍型デジタル教材プラットフォームは、デジタル教材を通じ、学習者の学習行動をきめ細かく記録する環境を提供する。
 　本プロファイルは、電子書籍の標準的なUIとして一般的に備わる機能を起点とし、実装間で比較的共通化しやすい操作に対象を限定して標準仕様を策定する。
 
 主な学習活動の例：
 
 - **プラットフォーム関連操作**：プラットフォームの起動、終了
 - **紙面表示関連操作**：紙面の表示、非表示
-- **読書関連操作**：ページ送り、戻り、特定ページへの遷移を含むページ移動
+- **ページ遷移操作**：ページ送り、戻り、特定ページへの遷移を含むページ移動
 - **注釈機能**：しおり・ブックマーク作成、書き込み作成
 - **削除操作**：注釈やしおり等の削除
 
@@ -162,10 +144,9 @@
 
 **今後の課題**
 
-- **周辺機能の拡張**：検索機能、辞書連携、音声読み上げ、外部リンク遷移など、電子書籍プラットフォームで実装差が大きい周辺機能について、実装実態を踏まえた上で順次スコープ化を検討する。
+- **周辺機能の拡張**：検索機能、辞書連携、音声読み上げ、外部リンク遷移など、電子書籍型デジタル教材プラットフォームで実装差が大きい周辺機能について、実装実態を踏まえた上で順次スコープ化を検討する。
 - **学習完了（completed）の定義**：電子書籍型デジタル教材における「完了」は、読本、ドリル、副読本等のコンテンツ特性によって判定基準が大きく異なるため、本バージョンではスコープ外とした。今後、各プラットフォームの実装事例を収集・分析し、共通定義と判定基準の策定を行う必要がある。
 - **読書行動（read）の定義と標準化**：学習体験の本質的な把握に寄与するVerbとして `read` の採用を検討したが、現時点では共通定義および技術的整合性の確保には至らず、本バージョンでは定義対象外とした。今後は各事業者の判定ロジックを収集し、算出困難となる技術的・運用的なボトルネックを可視化した上で、準拠可能な共通判定ロジックを検討する。
-- **コンテンツ特性を踏まえた判定ロジックの整理**：ページ移動や注釈操作の記録だけでは学習成立を十分に表せないケースがあるため、教材種別ごとにどの操作ログを学習解釈へどう結び付けるかについて、今後の拡張方針と合わせて整理する必要がある。
 
 # 5.　StatementTemplate
 
@@ -184,7 +165,7 @@
 - 記述規則（Rules）
   - Statement内の各プロパティに対する制約を示す。以下の要素を含む。
     - データの所在（location）: JSONPath方式で記述されるデータの位置。
-    - presence：included（必須）、recommended（推奨）、または未指定（任意）とする。
+    - presence：included（必須）、recommended（推奨）、optional（任意）とする。
     - ScopeNoteの内容に基づいた値の定義や運用上の注意点。
 - Markdownテーブルの構成
   - 各Templateの末尾には、システム設計・実装時に参照しやすいよう、記述規則（Rules）を一覧化したテーブルを配置する。
@@ -213,7 +194,10 @@
 
 #### 5.3.1.2　記述規則（Rules）
 
-共通記述規則に準拠する。
+| 項目 | Location (JSONPath) | Presence | 説明(scopeNote) |
+| :--- | :--- | :--- | :--- |
+| **オブジェクトID** | `$.object.id` | included | 開始した電子書籍型デジタル教材プラットフォームのURIを設定 |
+| **タイムスタンプ** | `$.timestamp` | recommended | 電子書籍型デジタル教材プラットフォームが起動した日時を設定 |
 
 ### 5.3.2　プラットフォームの終了
 
@@ -237,7 +221,10 @@
 
 #### 5.3.2.2　記述規則（Rules）
 
-共通記述規則に準拠する。
+| 項目 | Location (JSONPath) | Presence | 説明(scopeNote) |
+| :--- | :--- | :--- | :--- |
+| **オブジェクトID** | `$.object.id` | included | 終了した電子書籍型デジタル教材プラットフォームのURIを設定 |
+| **タイムスタンプ** | `$.timestamp` | recommended | 電子書籍型デジタル教材プラットフォームが終了した日時を設定 |
 
 ### 5.3.3　紙面の表示
 
@@ -261,7 +248,10 @@
 
 #### 5.3.3.2　記述規則（Rules）
 
-共通記述規則に準拠する。
+| 項目 | Location (JSONPath) | Presence | 説明(scopeNote) |
+| :--- | :--- | :--- | :--- |
+| **オブジェクトID** | `$.object.id` | included | 表示された紙面のURIを設定 |
+| **タイムスタンプ** | `$.timestamp` | recommended | 紙面が表示された日時を設定 |
 
 ### 5.3.4　紙面の非表示
 
@@ -285,7 +275,10 @@
 
 #### 5.3.4.2　記述規則（Rules）
 
-共通記述規則に準拠する。
+| 項目 | Location (JSONPath) | Presence | 説明(scopeNote) |
+| :--- | :--- | :--- | :--- |
+| **オブジェクトID** | `$.object.id` | included | 表示を終了した紙面のURIを設定 |
+| **タイムスタンプ** | `$.timestamp` | recommended | 紙面が非表示された日時を設定 |
 
 ### 5.3.5　ページ移動
 
@@ -309,10 +302,12 @@
 
 #### 5.3.5.2　記述規則（Rules）
 
-| 項目 | 説明 | Location | Presence |
+| 項目 | Location (JSONPath) | Presence | 説明(scopeNote) |
 | :--- | :--- | :--- | :--- |
-| **移動開始位置** | ページ移動の起点位置 | `$.context.extensions['https://w3id.org/xapi-japan-profiles/ebook/extensions/startPosition']` | recommended |
-| **移動方法** | ページ移動の操作方法（`paging`/`index`） | `$.result.extensions['https://w3id.org/xapi-japan-profiles/ebook/extensions/navigationMethod']` | recommended |
+| **オブジェクトID** | `$.object.id` | included | ページ移動先の要素のURIを設定 |
+| **移動開始位置** | `$.context.extensions['https://w3id.org/xapi-japan-profiles/ebook/extensions/startPosition']` | recommended | ページ移動の起点となった位置情報を設定。目次からの移動の場合は、目次を開く直前の位置情報を設定 |
+| **移動方法** | `$.result.extensions['https://w3id.org/xapi-japan-profiles/ebook/extensions/navigationMethod']` | recommended | ページ移動の操作方法を設定。例：ボタン操作（button）、目次（toc） |
+| **タイムスタンプ** | `$.timestamp` | recommended | ページ移動が行われた日時を設定 |
 
 ### 5.3.6　しおり・ブックマーク作成
 
@@ -336,9 +331,11 @@
 
 #### 5.3.6.2　記述規則（Rules）
 
-| 項目 | 説明 | Location | Presence |
+| 項目 | Location (JSONPath) | Presence | 説明(scopeNote) |
 | :--- | :--- | :--- | :--- |
-| **ブックマークID** | アプリ内で一意な識別ID | `$.context.extensions['https://w3id.org/xapi-japan-profiles/ebook/extensions/bookmarkId']` | recommended |
+| **オブジェクトID** | `$.object.id` | included | 作成されたしおり・ブックマーク自体のURIを設定 |
+| **親アクティビティ** | `$.context.activities.parent` | included | しおり・ブックマークが設定された対象（ページ等）のURIを設定 |
+| **タイムスタンプ** | `$.timestamp` | recommended | しおり・ブックマーク作成が行われた日時を設定 |
 
 ### 5.3.7　書き込み作成
 
@@ -362,16 +359,19 @@
 
 #### 5.3.7.2　記述規則（Rules）
 
-| 項目 | 説明 | Location | Presence |
+| 項目 | Location (JSONPath) | Presence | 説明(scopeNote) |
 | :--- | :--- | :--- | :--- |
-| **注釈ツール種別** | 使用した注釈ツール種別 | `$.context.extensions['https://w3id.org/xapi-japan-profiles/ebook/extensions/annotationTool']` | included |
-| **目標位置** | 書き込み座標や範囲情報 | `$.result.extensions['https://w3id.org/xapi-japan-profiles/ebook/extensions/targetLocation']` | recommended |
+| **オブジェクトID** | `$.object.id` | included | 作成された書き込みを一意に識別するURIを設定 |
+| **親アクティビティ** | `$.context.activities.parent` | included | 書き込みが行われた対象要素（ページ等）のURIを設定 |
+| **注釈ツール種別** | `$.context.extensions['https://w3id.org/xapi-japan-profiles/ebook/extensions/annotationTool']` | included | 使用された注釈ツールの種別を設定 |
+| **目標位置** | `$.result.extensions['https://w3id.org/xapi-japan-profiles/ebook/extensions/targetLocation']` | recommended | ページ内の具体的な書き込み座標や範囲情報などを設定 |
+| **タイムスタンプ** | `$.timestamp` | recommended | 書き込み作成が行われた日時を設定 |
 
 ### 5.3.8　削除
 
 #### 5.3.8.1　基本仕様
 
-- 電子書籍型デジタル教材の表示ページにおいて、書き込み内容や図形、しおり等を削除したことを記録するためのテンプレート。
+- 電子書籍型デジタル教材の表示ページにおいて、書き込み内容や図形、しおり・ブックマーク等の注釈を削除したことを記録するためのテンプレート。
 - 識別情報
 
 | 項目      | 値 |
@@ -389,4 +389,8 @@
 
 #### 5.3.8.2　記述規則（Rules）
 
-共通記述規則に準拠する。
+| 項目 | Location (JSONPath) | Presence | 説明(scopeNote) |
+| :--- | :--- | :--- | :--- |
+| **オブジェクトID** | `$.object.id` | included | 削除対象の要素のURIを設定。object.idがページ等の範囲および注釈・描画・しおり・ブックマーク等の種別を示す場合は、対象範囲の指定された全てまたは個別の種別を対象とした一括削除となる。object.idが注釈・描画・しおり・ブックマーク等の個別の注釈を示す場合は、その対象物の削除となる |
+| **親アクティビティ** | `$.context.activities.parent` | included | 削除が行われた対象要素（ページ等）のURIを設定 |
+| **タイムスタンプ** | `$.timestamp` | recommended | 削除が行われた日時を設定 |

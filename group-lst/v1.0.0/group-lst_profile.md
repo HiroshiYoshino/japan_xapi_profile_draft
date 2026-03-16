@@ -128,7 +128,7 @@
 - 記述規則（Rules）
   - Statement内の各プロパティに対する制約を示す。以下の要素を含む。
     - データの所在（location）: JSONPath方式で記述されるデータの位置。
-    - presence：included（必須）、recommended（推奨）、または未指定（任意）とする。
+    - presence：included（必須）、recommended（推奨）、optional（任意）とする。
     - ScopeNoteの内容に基づいた値の定義や運用上の注意点。
 - Markdownテーブルの構成
   - 各Templateの末尾には、システム設計・実装時に参照しやすいよう、記述規則（Rules）を一覧化したテーブルを配置する。
