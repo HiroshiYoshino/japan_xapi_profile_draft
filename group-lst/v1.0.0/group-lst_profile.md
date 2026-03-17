@@ -1,7 +1,3 @@
-  - presence：included（必須）、recommended（推奨）、optional（任意）とする。
-
-> [!NOTE]
-> xAPIのJSON-LD表現においては、presence: "optional" という値は公式にはサポートされていない。JSON-LD形式でプロファイルを記述する場合、presenceプロパティを省略した場合は「任意（optional）」として扱う。そのため、included（必須）およびrecommended（推奨）の場合のみ presence を明記し、optional（任意）の場合は presence プロパティを省略する運用とする。本プロファイルもこの方針に従う。
 # 1.　本プロファイルについて
 
 ## 1.1　位置づけ
