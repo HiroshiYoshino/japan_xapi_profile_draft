@@ -60,7 +60,7 @@
 | :----------------------- | :------------------------------------- | :---------------------------------------------------- |
 | **id**                   | プロファイルIRI                        | `https://w3id.org/xapi-japan-profiles/ebook/v1.0.0`   |
 | **type**                 | オブジェクトタイプ                     | `Profile`                                             |
-| **conformsTo**           | 準拠するxAPI Profile仕様               | `https://w3id.org/xapi/profiles#1.0`                  |
+| **conformsTo**           | 準拠するxAPIプロファイル仕様               | `https://w3id.org/xapi/profiles#1.0`                  |
 | プロファイル名 prefLabel | プロファイルを識別する名称             | xAPI Japan Profiles ebook Profile                     |
 | バージョン version       | プロファイルの改訂番号やリリース状態   | v1.0.0                                                |
 | 作成者/管理者 author     | プロファイルの作成者や責任者           | ICT CONNECT 21 xAPI SWG                               |
@@ -114,7 +114,6 @@
 | navigationMethod | `https://w3id.org/xapi-japan-profiles/ebook/extensions/navigationMethod` | ResultExtension | `type: string, enum: ["paging", "index"]` | ページ移動や目次遷移などの移動方法を表す。 |
 | contentPosition | `https://w3id.org/xapi-japan-profiles/ebook/extensions/contentPosition` | ResultExtension | `type: string` | コンテンツ内の範囲情報を表す。 |
 | annotationTool | `https://w3id.org/xapi-japan-profiles/ebook/extensions/annotationTool` | ContextExtension | `type: string, enum: ["freehand", "straightline", "textinput"]` | 注釈作成に用いたツール種別を表す。 |
-| targetLocation | `https://w3id.org/xapi-japan-profiles/ebook/extensions/targetLocation` | ResultExtension | `type: string` | 学習行動対象の矩形座標を表す。 |
 
 # 4.　電子書籍（ebook）における学習行動
 
@@ -160,7 +159,7 @@
   - 識別情報
     - Templateを管理上特定するための情報として3要素（id,inScheme,prefLabel）を含む。
   - 判定条件
-    - 受信したStatementがどのTemplateに該当するかを自動判別するための固定値（Verb,objectActivityType）を示す。
+    - 受信したStatementがどのTemplateに該当するかを自動判別するための固定値（verb, objectActivityType）を示す。
 - 記述規則（Rules）
   - Statement内の各プロパティに対する制約を示す。以下の要素を含む。
     - データの所在（location）: JSONPath方式で記述されるデータの位置。
@@ -363,7 +362,6 @@
 | **オブジェクトID** | `$.object.id` | included | 作成された書き込みを一意に識別するURIを設定 |
 | **親アクティビティ** | `$.context.activities.parent` | included | 書き込みが行われた対象要素（ページ等）のURIを設定 |
 | **注釈ツール種別** | `$.context.extensions['https://w3id.org/xapi-japan-profiles/ebook/extensions/annotationTool']` | included | 使用された注釈ツールの種別を設定 |
-| **目標位置** | `$.result.extensions['https://w3id.org/xapi-japan-profiles/ebook/extensions/targetLocation']` | recommended | ページ内の具体的な書き込み座標や範囲情報などを設定 |
 | **タイムスタンプ** | `$.timestamp` | recommended | 書き込み作成が行われた日時を設定 |
 
 ### 5.3.8　削除

@@ -105,7 +105,7 @@ xAPI Japan Profilesは以下の階層構造を持つ：
 | :----------------------- | :------------------------------------- | :----------------------------------------------------------- |
 | **id**                   | プロファイルIRI                        | `https://w3id.org/xapi-japan-profiles/[domain]/v1.0.0`       |
 | **type**                 | オブジェクトタイプ                     | `Profile`                                                    |
-| **conformsTo**           | 準拠するxAPI Profile仕様               | `https://w3id.org/xapi/profiles#1.0`                         |
+| **conformsTo**           | 準拠するxAPIプロファイル仕様               | `https://w3id.org/xapi/profiles#1.0`                         |
 | プロファイル名 prefLabel | プロファイルを識別する名称             | xAPI Japan Profiles [Domain] Profile                         |
 | バージョン version       | プロファイルの改訂番号やリリース状態   | v1.0.0                                                       |
 | 作成者/管理者 author     | プロファイルの作成者や責任者           | ICT CONNECT 21 xAPI SWG                                      |
@@ -177,7 +177,7 @@ Domain Profile は以下の3.1～3.3の構成で記述する。
 #### X.X.X.1　基本仕様
 - Templateの目的と記録対象操作の説明
 - 識別情報（3要素）
-- 判定条件（Verb, objectActivityType）
+- 判定条件（verb, objectActivityType）
 
 **記述例：**
 ```markdown
@@ -197,7 +197,7 @@ Domain Profile は以下の3.1～3.3の構成で記述する。
 | 項目              | 値                              |
 | :---------------- | :------------------------------ |
 | verb              | [Verb IRI]                      |
-| objectActivityType | [ActivityType IRI] (該当する場合) |
+| objectActivityType | [ActivityType IRI]（該当する場合） |
 ```
 
 #### X.X.X.2　記述規則（Rules）
@@ -561,7 +561,7 @@ ISO 8601 形式に統一する。
 ### 10.1 新しい Statement Template を追加する際
 
 1. **テンプレートの目的と判定条件を定義**
-   - Verb、objectActivityType を決定（既存参照か新規定義か）
+   - verb、objectActivityType を決定（既存参照か新規定義か）
 
 2. **必要な Rule を列挙**
    - included（必須）

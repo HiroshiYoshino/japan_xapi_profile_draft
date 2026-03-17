@@ -61,7 +61,7 @@
 | :---------------- | :------------------ | :------------------------------------------------ |
 | **id**            | プロファイルIRI           | `https://w3id.org/xapi-japan-profiles/lms/v1.0.0` |
 | **type**          | オブジェクトタイプ           | `Profile`                                         |
-| **conformsTo**    | 準拠するxAPI Profile仕様  | `https://w3id.org/xapi/profiles#1.0`              |
+| **conformsTo**    | 準拠するxAPIプロファイル仕様  | `https://w3id.org/xapi/profiles#1.0`              |
 | プロファイル名 prefLabel | プロファイルを識別する名称       | xAPI Japan Profiles LMS Profile                   |
 | バージョン version     | プロファイルの改訂番号やリリース状態  | v1.0.0                                            |
 | 作成者/管理者 author    | プロファイルの作成者や責任者      | ICT CONNECT 21 xAPI SWG                           |
@@ -176,7 +176,7 @@
   - 識別情報
     - Templateを管理上特定するための情報として3要素（id,inScheme,prefLabel）を含む。
   - 判定条件
-    - 受信したStatementがどのTemplateに該当するかを自動判別するための固定値（Verb,objectActivityType）を示す。
+    - 受信したStatementがどのTemplateに該当するかを自動判別するための固定値（verb, objectActivityType）を示す。
 - 記述規則（Rules）
   - Statement内の各プロパティに対する制約を示す。以下の要素を含む。
     - データの所在（location）: JSONPath方式で記述されるデータの位置。
