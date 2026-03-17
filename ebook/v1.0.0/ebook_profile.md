@@ -20,7 +20,7 @@
 ## 1.3　前提条件
 
 　本プロファイルにおける各ユースケースは、xAPIプロファイル仕様で定義されているStatementTemplateおよびStatementTemplateRulesの構造・考え方に準拠して記載する。  
-　本仕様書の記述は、特定製品を前提とせず、現実的な範囲の「架空ツール」を想定して行う。これにより、既存システムとの部分的な不一致による議論の停滞を回避し、汎用性の高い標準化を目指す。
+　本仕様書の記述は、特定の製品仕様に制約されないデータ記述の標準化を目指し、「抽象化された学習ツール」を想定して策定している。特定の既存システムへの準拠ではなく、汎用的な標準仕様を定義することで、広範な学習ツールへの適用を可能にしている。実際のシステム実装において本仕様との差異が生じる際は、本仕様を共通の基点とした上で、各システム特有のスタディ・ログ仕様を補足するプロファイルが別途定義されることも考えらえる。
 　本プロファイルに記載される語彙（Verb、ActivityType、Extension等）は、(1) 本プロファイル内のConceptsで定義する語彙、または (2) ADLや他標準で定義済みの語彙を直接参照する語彙として整理する。  
 　各ユースケースに付随するStatementTemplate要素表には、StatementTemplateを構成する要素を示している。ただし、actorについては全ユースケース共通でAgentとするため、各ユースケースの規範表への個別記載は行わないものとする。  
 　本プロファイルは、電子書籍型デジタル教材（ebook）における学習ログの標準的な解釈および実装方針を読み手が理解しやすい形で示すことを主目的とした仕様書である。このため、xAPIプロファイル仕様上は必須である項目のうち、機械処理やプロファイル登録段階で主に必要となる項目については、本書の目的に照らし記載を省略する。省略理由は下記に示すとおりである。  
@@ -116,7 +116,7 @@
 | annotationTool | `https://w3id.org/xapi-japan-profiles/ebook/extensions/annotationTool` | ContextExtension | `type: string, enum: ["freehand", "straightline", "textinput"]` | 注釈作成に用いたツール種別を表す。 |
 | targetLocation | `https://w3id.org/xapi-japan-profiles/ebook/extensions/targetLocation` | ResultExtension | `type: string` | 学習行動対象の矩形座標を表す。 |
 
-# 4.　電子書籍（ebook）における読書行動
+# 4.　電子書籍（ebook）における学習行動
 
 ## 4.1　本章の位置づけ
 
