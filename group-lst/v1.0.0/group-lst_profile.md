@@ -1,3 +1,7 @@
+  - presence：included（必須）、recommended（推奨）、optional（任意）とする。
+
+> [!NOTE]
+> xAPIのJSON-LD表現においては、presence: "optional" という値は公式にはサポートされていない。JSON-LD形式でプロファイルを記述する場合、presenceプロパティを省略した場合は「任意（optional）」として扱う。そのため、included（必須）およびrecommended（推奨）の場合のみ presence を明記し、optional（任意）の場合は presence プロパティを省略する運用とする。本プロファイルもこの方針に従う。
 # 1.　本プロファイルについて
 
 ## 1.1　位置づけ
@@ -127,7 +131,7 @@
 - 記述規則（Rules）
   - Statement内の各プロパティに対する制約を示す。以下の要素を含む。
     - データの所在（location）: JSONPath方式で記述されるデータの位置。
-    - presence：included（必須）、recommended（推奨）、optional（任意）とする。
+    - presence：included（必須）、recommended（推奨）、optional（任意）とする。なお、xAPIのJSON-LD表現においては、presence: "optional" という値は公式にはサポートされていない。JSON-LD形式でプロファイルを記述する場合、presenceプロパティを省略した場合は「任意（optional）」として扱う。そのため、included（必須）およびrecommended（推奨）の場合のみ presence を明記し、optional（任意）の場合は presence プロパティを省略する運用とする。本プロファイルもこの方針に従う。
     - ScopeNoteの内容に基づいた値の定義や運用上の注意点。
 - Markdownテーブルの構成
   - 各Templateの末尾には、システム設計・実装時に参照しやすいよう、記述規則（Rules）を一覧化したテーブルを配置する。
