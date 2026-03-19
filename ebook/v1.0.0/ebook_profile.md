@@ -332,7 +332,7 @@
 | 項目 | Location (JSONPath) | Presence | 説明(scopeNote) |
 | :--- | :--- | :--- | :--- |
 | **オブジェクトID** | `$.object.id` | included | 作成されたしおり・ブックマーク自体のURIを設定 |
-| **親アクティビティ** | `$.context.activities.parent` | included | しおり・ブックマークが設定された対象（ページ等）のURIを設定 |
+| **親アクティビティID** | `$.context.contextActivities.parent[*].id` | included | しおり・ブックマークが設定された対象（ページ等）のURIを設定 |
 | **タイムスタンプ** | `$.timestamp` | recommended | しおり・ブックマーク作成が行われた日時を設定 |
 
 ### 5.3.7　書き込み作成
@@ -360,7 +360,7 @@
 | 項目 | Location (JSONPath) | Presence | 説明(scopeNote) |
 | :--- | :--- | :--- | :--- |
 | **オブジェクトID** | `$.object.id` | included | 作成された書き込みを一意に識別するURIを設定 |
-| **親アクティビティ** | `$.context.activities.parent` | included | 書き込みが行われた対象要素（ページ等）のURIを設定 |
+| **親アクティビティID** | `$.context.contextActivities.parent[*].id` | included | 書き込みが行われた対象要素（ページ等）のURIを設定 |
 | **注釈ツール種別** | `$.context.extensions['https://w3id.org/xapi-japan-profiles/ebook/extensions/annotationTool']` | included | 使用された注釈ツールの種別を設定 |
 | **タイムスタンプ** | `$.timestamp` | recommended | 書き込み作成が行われた日時を設定 |
 
@@ -389,5 +389,5 @@
 | 項目 | Location (JSONPath) | Presence | 説明(scopeNote) |
 | :--- | :--- | :--- | :--- |
 | **オブジェクトID** | `$.object.id` | included | 削除対象の要素のURIを設定。object.idがページ等の範囲および注釈・描画・しおり・ブックマーク等の種別を示す場合は、対象範囲の指定された全てまたは個別の種別を対象とした一括削除となる。object.idが注釈・描画・しおり・ブックマーク等の個別の注釈を示す場合は、その対象物の削除となる |
-| **親アクティビティ** | `$.context.activities.parent` | included | 削除が行われた対象要素（ページ等）のURIを設定 |
+| **親アクティビティID** | `$.context.contextActivities.parent[*].id` | included | 削除が行われた対象要素（ページ等）のURIを設定 |
 | **タイムスタンプ** | `$.timestamp` | recommended | 削除が行われた日時を設定 |
