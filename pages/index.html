@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>xAPI Japan Profiles</title>
-  <meta name="description" content="日本の教育DXにおける学習ログ標準化を目指す xAPI Japan Profiles ドラフトの紹介ページです。">
+  <title>xAPI Japan Profiles | 学習ログの共通言語</title>
+  <meta name="description" content="xAPI Japan Profiles ドラフトの概要、4つのドメイン別プロファイル、Assessment Statement例、実装手順を紹介するGitHub Pagesです。">
   <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
@@ -14,9 +14,11 @@
       <span>xAPI Japan Profiles</span>
     </a>
     <nav class="site-nav" aria-label="ページ内ナビゲーション">
+      <a href="#why">Why</a>
       <a href="#profiles">Profiles</a>
+      <a href="#sample">Sample</a>
       <a href="#implementation">Implementation</a>
-      <a href="#links">Links</a>
+      <a href="#faq">FAQ</a>
     </nav>
   </header>
 
@@ -25,89 +27,115 @@
       <div class="hero__content">
         <p class="eyebrow">Draft profile collection for education data interoperability</p>
         <h1 id="hero-title">xAPI Japan Profiles</h1>
-        <p class="hero__lead">日本の教育DXにおけるスタディ・ログを、領域をまたいで読み解ける共通表現へ。</p>
+        <p class="hero__lead">教育アプリが生み出すスタディ・ログを、事業者や領域をまたいで読み解ける共通表現へ。</p>
         <div class="hero__actions" aria-label="主要リンク">
-          <a class="button button--primary" href="../README.md">概要を読む</a>
-          <a class="button button--secondary" href="#profiles">Profileを見る</a>
+          <a class="button button--primary" href="#profiles">Profileを見る</a>
+          <a class="button button--secondary" href="#sample">Statement例を見る</a>
         </div>
       </div>
 
-      <figure class="hero-visual" aria-label="xAPI Statementが4つのProfile領域へ接続される概念図">
+      <figure class="hero-visual" aria-label="学習ログがxAPI Statementとなり4つのProfileへ整理される概念図">
         <svg viewBox="0 0 760 520" role="img" aria-labelledby="visual-title visual-desc">
-          <title id="visual-title">Profile relationship diagram</title>
-          <desc id="visual-desc">xAPI StatementからAssessment、ebook、LMS、Group Learning Support Toolへ線が伸びる図。</desc>
+          <title id="visual-title">xAPI Japan Profiles relationship diagram</title>
+          <desc id="visual-desc">多様な教育アプリの学習ログがxAPI Statementとして整理され、LMS、Assessment、ebook、Group Learning Support ToolのProfileへ接続される図。</desc>
           <defs>
             <linearGradient id="accentLine" x1="0" x2="1" y1="0" y2="1">
-              <stop offset="0" stop-color="#0a7c7f"/>
-              <stop offset="1" stop-color="#37b6a8"/>
+              <stop offset="0" stop-color="#007c89"/>
+              <stop offset="1" stop-color="#5cb85c"/>
             </linearGradient>
           </defs>
-          <rect class="visual-paper" x="50" y="44" width="660" height="432" rx="18"></rect>
-          <path class="visual-grid" d="M110 118H650M110 188H650M110 258H650M110 328H650M110 398H650"></path>
+          <rect class="visual-paper" x="44" y="42" width="672" height="436" rx="14"></rect>
+          <path class="visual-grid" d="M104 118H656M104 188H656M104 258H656M104 328H656M104 398H656"></path>
           <g class="visual-node visual-node--core">
-            <circle cx="380" cy="258" r="82"></circle>
-            <text x="380" y="246">xAPI</text>
-            <text x="380" y="278">Statement</text>
+            <circle cx="380" cy="258" r="84"></circle>
+            <text x="380" y="242">xAPI</text>
+            <text x="380" y="274">Statement</text>
           </g>
-          <path class="visual-link" d="M318 204C246 150 196 126 136 118"></path>
-          <path class="visual-link" d="M442 204C514 150 564 126 624 118"></path>
-          <path class="visual-link" d="M318 312C246 366 196 390 136 398"></path>
-          <path class="visual-link" d="M442 312C514 366 564 390 624 398"></path>
+          <path class="visual-link" d="M316 204C246 150 192 126 132 118"></path>
+          <path class="visual-link" d="M444 204C514 150 568 126 628 118"></path>
+          <path class="visual-link" d="M316 312C246 366 192 390 132 398"></path>
+          <path class="visual-link" d="M444 312C514 366 568 390 628 398"></path>
           <g class="visual-node">
-            <rect x="82" y="86" width="156" height="64" rx="12"></rect>
-            <text x="160" y="124">Assessment</text>
-          </g>
-          <g class="visual-node">
-            <rect x="522" y="86" width="156" height="64" rx="12"></rect>
-            <text x="600" y="124">ebook</text>
+            <rect x="82" y="86" width="162" height="64" rx="10"></rect>
+            <text x="163" y="124">LMS</text>
           </g>
           <g class="visual-node">
-            <rect x="82" y="366" width="156" height="64" rx="12"></rect>
-            <text x="160" y="404">LMS</text>
+            <rect x="516" y="86" width="162" height="64" rx="10"></rect>
+            <text x="597" y="124">Assessment</text>
           </g>
           <g class="visual-node">
-            <rect x="522" y="366" width="156" height="64" rx="12"></rect>
-            <text x="600" y="394">Group</text>
-            <text x="600" y="414">Learning</text>
+            <rect x="82" y="366" width="162" height="64" rx="10"></rect>
+            <text x="163" y="404">ebook</text>
+          </g>
+          <g class="visual-node">
+            <rect x="516" y="366" width="162" height="64" rx="10"></rect>
+            <text x="597" y="394">Group</text>
+            <text x="597" y="414">Learning</text>
           </g>
         </svg>
       </figure>
     </section>
 
-    <section class="intro section" data-reveal aria-labelledby="intro-title">
-      <div class="section__kicker">Purpose</div>
+    <section id="why" class="section section--lead" data-reveal aria-labelledby="why-title">
+      <div class="section__kicker">Why</div>
       <div class="section__body">
-        <h2 id="intro-title">領域ごとの学習ログを、同じ読み方で扱うためのドラフトです。</h2>
-        <p>本リポジトリでは、日本国内の教育DXで利用される学習ログを相互運用しやすくするため、xAPI 1.0.3を前提としたProfile定義を領域別に整理しています。</p>
+        <h2 id="why-title">学習ログに、共通言語が必要です。</h2>
+        <p>GIGAスクール構想によって、LMS、デジタルドリル、CBT、電子書籍ビューアなど、多様なアプリが大量の学習活動データを生成するようになりました。各サービスが独自形式でログを出力すると、自治体や学校がデータを統合するたびに変換コストが生じます。</p>
+        <p>xAPI Japan Profiles は、xAPI 1.0.3 を前提に、国内の初等中等教育で流通するスタディ・ログの書き方を領域別に揃えるためのドラフトです。</p>
+      </div>
+    </section>
+
+    <section class="section" data-reveal aria-labelledby="xapi-title">
+      <div class="section__kicker">xAPI</div>
+      <div class="section__body">
+        <h2 id="xapi-title">「誰が・何をした・何に対して」をStatementとして記録します。</h2>
+        <div class="concept-grid" aria-label="xAPI Statementの基本要素">
+          <div>
+            <span>actor</span>
+            <strong>誰が</strong>
+            <p>学習者、教員、システムなど、学習活動の主体を表します。</p>
+          </div>
+          <div>
+            <span>verb</span>
+            <strong>何をした</strong>
+            <p>回答した、閲覧した、開始したなどの行為をIRIで識別します。</p>
+          </div>
+          <div>
+            <span>object</span>
+            <strong>何に対して</strong>
+            <p>問題、課題、ページ、投稿など、行為の対象を表します。</p>
+          </div>
+        </div>
+        <p>プロファイルは、xAPI の柔軟な枠組みに対して、Concepts と StatementTemplate / Rules を与えることで、同じ学習行動を同じ読み方で扱えるようにする語彙集と記述ルール集です。</p>
       </div>
     </section>
 
     <section id="profiles" class="profiles section" data-reveal aria-labelledby="profiles-title">
       <div class="section__kicker">Profiles</div>
       <div class="section__body">
-        <h2 id="profiles-title">公開中のv1.0.0 Profile</h2>
+        <h2 id="profiles-title">4つのドメイン別Profileを定義しています。</h2>
         <div class="profile-list">
-          <a class="profile-row" href="../assessment/v1.0.0/assessment_profile.md">
+          <a class="profile-row" href="../lms/v1.0.0/lms_profile.md">
             <span class="profile-row__index">01</span>
             <span class="profile-row__content">
+              <span class="profile-row__title">LMS Profile</span>
+              <span class="profile-row__text">学習課題の作成、配布、開始、完了、フィードバック、閲覧、異常終了、初期化、免除などを扱います。主なExtensionは modules、due-date、range です。</span>
+            </span>
+            <span class="profile-row__link">読む</span>
+          </a>
+          <a class="profile-row" href="../assessment/v1.0.0/assessment_profile.md">
+            <span class="profile-row__index">02</span>
+            <span class="profile-row__content">
               <span class="profile-row__title">Assessment Profile</span>
-              <span class="profile-row__text">CBTやデジタルドリルにおける開始、回答、終了などの学習ログを扱います。</span>
+              <span class="profile-row__text">CBTやデジタルドリルの開始、問題への回答、学習コンテンツやページの参照、終了を扱います。得点率、素点、最大点、回答値、所要時間を揃えます。</span>
             </span>
             <span class="profile-row__link">読む</span>
           </a>
           <a class="profile-row" href="../ebook/v1.0.0/ebook_profile.md">
-            <span class="profile-row__index">02</span>
-            <span class="profile-row__content">
-              <span class="profile-row__title">ebook Profile</span>
-              <span class="profile-row__text">電子書籍型デジタル教材の起動、表示、ページ移動、注釈などの操作ログを扱います。</span>
-            </span>
-            <span class="profile-row__link">読む</span>
-          </a>
-          <a class="profile-row" href="../lms/v1.0.0/lms_profile.md">
             <span class="profile-row__index">03</span>
             <span class="profile-row__content">
-              <span class="profile-row__title">LMS Profile</span>
-              <span class="profile-row__text">学習課題の作成、配布、提出、評価といったLMS上の学習活動を扱います。</span>
+              <span class="profile-row__title">ebook Profile</span>
+              <span class="profile-row__text">プラットフォーム起動/終了、紙面表示/非表示、ページ移動、しおり・ブックマーク、書き込み、削除などの操作ログを扱います。</span>
             </span>
             <span class="profile-row__link">読む</span>
           </a>
@@ -115,7 +143,7 @@
             <span class="profile-row__index">04</span>
             <span class="profile-row__content">
               <span class="profile-row__title">Group Learning Support Tool Profile</span>
-              <span class="profile-row__text">協働学習におけるコメント、スタンプなど、他者との相互作用ログを扱います。</span>
+              <span class="profile-row__text">他者の共有成果物・投稿物へのコメントや返信、いいね等のスタンプ送信を扱います。投稿や共同編集は今後の拡張対象です。</span>
             </span>
             <span class="profile-row__link">読む</span>
           </a>
@@ -123,22 +151,117 @@
       </div>
     </section>
 
+    <section id="sample" class="section sample-section" data-reveal aria-labelledby="sample-title">
+      <div class="section__kicker">Sample</div>
+      <div class="section__body">
+        <h2 id="sample-title">Assessment Profileを適用したStatement例。</h2>
+        <p>「問題への回答」テンプレートの範囲に絞り、得点・回答値・所要時間・Assessment実施グループIDを記録する例です。</p>
+        <pre class="code-sample"><code>{
+  "actor": {
+    "objectType": "Agent",
+    "account": {
+      "homePage": "https://drill.example.jp",
+      "name": "student-00987"
+    }
+  },
+  "verb": {
+    "id": "http://adlnet.gov/expapi/verbs/answered",
+    "display": { "ja-JP": "回答した" }
+  },
+  "object": {
+    "objectType": "Activity",
+    "id": "https://drill.example.jp/assessments/math-2026/questions/q-005",
+    "definition": {
+      "name": { "ja-JP": "第5問：一次方程式" },
+      "description": { "ja-JP": "一次方程式を解く問題" }
+    }
+  },
+  "result": {
+    "response": "b",
+    "score": { "scaled": 1, "raw": 1, "max": 1 },
+    "duration": "PT45S"
+  },
+  "context": {
+    "contextActivities": {
+      "grouping": [
+        {
+          "id": "https://drill.example.jp/assessments/math-2026/attempts/attempt-0001"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-04-15T10:12:45+09:00"
+}</code></pre>
+        <p>選択肢一覧、正解パターン、インタラクションタイプなどは xAPI として表現可能な場合がありますが、Assessment Profile v1.0.0 のこのテンプレートでは必須・推奨項目として扱っていません。</p>
+      </div>
+    </section>
+
     <section id="implementation" class="implementation section" data-reveal aria-labelledby="implementation-title">
       <div class="section__kicker">Implementation</div>
       <div class="section__body">
-        <h2 id="implementation-title">実装者が確認するポイント</h2>
+        <h2 id="implementation-title">実装は、TemplateとRulesから始めます。</h2>
+        <ol class="step-list">
+          <li>
+            <strong>対象ドメインを選ぶ</strong>
+            <span>LMS、Assessment、ebook、Group Learning Support Tool のうち、自システムの学習行動に合うProfileを確認します。</span>
+          </li>
+          <li>
+            <strong>ユースケースを対応づける</strong>
+            <span>記録したい学習行動を StatementTemplate の一覧に対応づけます。該当しない行動は、Extensionや別プロファイルとの共存を検討します。</span>
+          </li>
+          <li>
+            <strong>Statementを生成・検証する</strong>
+            <span>Rulesに沿って、必須要素、IRI、値の型、ISO 8601形式などを確認します。</span>
+          </li>
+          <li>
+            <strong>LRSへ送信する</strong>
+            <span>xAPI 1.0.3 準拠の LRS や学習 eポータル等に送信し、蓄積・分析に利用します。</span>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section benefits" data-reveal aria-labelledby="benefits-title">
+      <div class="section__kicker">Value</div>
+      <div class="section__body">
+        <h2 id="benefits-title">ログを出す側にも、受け取る側にも効きます。</h2>
+        <div class="split-list">
+          <div>
+            <h3>教材アプリ・LMS開発者</h3>
+            <ul>
+              <li>他の準拠ベンダーのデータと集計・比較しやすい形式になる</li>
+              <li>「どんなデータを出すべきか」の設計ガイドとして使える</li>
+              <li>学習 eポータル等との連携実装を進めやすい</li>
+            </ul>
+          </div>
+          <div>
+            <h3>LRS運用者・自治体・プラットフォーム</h3>
+            <ul>
+              <li>複数ベンダーのログの前処理・変換コストを削減できる</li>
+              <li>StatementTemplate の Rules を参照した検証がしやすい</li>
+              <li>学習データ分析の再現性・信頼性を高められる</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="section faq" data-reveal aria-labelledby="faq-title">
+      <div class="section__kicker">FAQ</div>
+      <div class="section__body">
+        <h2 id="faq-title">よくある質問</h2>
         <dl class="note-list">
           <div>
-            <dt>xAPI 1.0.3</dt>
-            <dd>既存LRSとの連携と普及状況を踏まえ、各ProfileはxAPI 1.0.3をベースに整理されています。</dd>
+            <dt>完全準拠は必須ですか。</dt>
+            <dd>いいえ。本プロファイルは推奨として位置づけられており、共通化できる部分から段階的に対応することが想定されています。</dd>
           </div>
           <div>
-            <dt>推奨としてのProfile</dt>
-            <dd>特定の製品実装を強制するものではなく、学習ログ表現の共通化を支える資産として位置づけられています。</dd>
+            <dt>複数ドメインにまたがる場合は。</dt>
+            <dd>LMSがドリル機能を内包する場合など、Statementごとに対応するProfileのTemplateを参照して組み合わせます。</dd>
           </div>
           <div>
-            <dt>StatementTemplate / Rules</dt>
-            <dd>各ユースケースについて、判定条件、JSONPath上の位置、必須・推奨項目、運用上の注意点を確認できます。</dd>
+            <dt>未定義の学習行動はどう扱いますか。</dt>
+            <dd>Extensionを使って独自データを付与できます。IRIの衝突を避けるため、自組織ドメインのIRIを使用してください。</dd>
           </div>
         </dl>
       </div>
@@ -146,16 +269,17 @@
 
     <section id="links" class="final-cta" data-reveal aria-labelledby="links-title">
       <p class="eyebrow">Start reading</p>
-      <h2 id="links-title">まずは概要から。必要な領域のProfileへ進んでください。</h2>
+      <h2 id="links-title">必要なProfileを読み、StatementTemplateのRulesから実装を始めてください。</h2>
       <div class="final-cta__actions">
         <a class="button button--primary" href="../README.md">READMEを開く</a>
-        <a class="button button--secondary" href="#profiles">Profile一覧へ戻る</a>
+        <a class="button button--secondary" href="../document/xapi_japan_profiles_introduction.md">紹介記事を読む</a>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <p>Managed as draft specifications for xAPI Japan Profiles.</p>
+    <p>xAPI Japan Profiles Draft v1.0.0 / ICT CONNECT 21 xAPI SWG</p>
+    <p><a href="https://github.com/adlnet/xAPI-Spec">xAPI Specification</a> · <a href="https://github.com/adlnet/xapi-profiles">xAPI Profile Specification</a> · <a href="https://ictconnect21.jp/">ICT CONNECT 21</a></p>
   </footer>
 
   <script src="./script.js"></script>
